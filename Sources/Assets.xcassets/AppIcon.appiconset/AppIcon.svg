@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" width="1024" height="1024">
+  <!-- Background -->
+  <rect width="108" height="108" fill="#FF6B35"/>
+
+  <!-- Head -->
+  <path fill="#FFFFFF" d="M42,26 A8,8 0 1,0 58,26 A8,8 0 1,0 42,26 Z"/>
+
+  <!-- Torso: neck to hip, forward lean -->
+  <line x1="52" y1="34" x2="60" y2="57" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Back arm sweeps behind -->
+  <line x1="50" y1="43" x2="33" y2="31" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Forward arm pumps ahead -->
+  <line x1="53" y1="42" x2="70" y2="55" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Forward leg: hip to knee to foot striking forward -->
+  <polyline points="60,57 72,73 82,83" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Back leg: heel kick up behind -->
+  <polyline points="58,57 46,71 32,64" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
