@@ -41,14 +41,17 @@ struct ProgramSelectView: View {
                 Section {
                     VStack(alignment: .leading, spacing: 4) {
                         ProgressView(value: Double(completedDays.count), total: Double(totalDays))
-                        Text("\(completedDays.count) of \(totalDays) days completed")
+                        Text(String(format: String(localized: "program_progress"), completedDays.count, totalDays))
                             .font(.caption).foregroundStyle(.secondary)
                     }
                     if let next = nextIncompleteDay {
                         Button {
                             previewDay = next
                         } label: {
-                            Label("Continue: Week \(next.week), Day \(next.day) →", systemImage: "play.fill")
+                            Label(
+                                String(format: String(localized: "program_next_workout"), next.week, next.day),
+                                systemImage: "play.fill"
+                            )
                         }
                     }
                 }
@@ -80,7 +83,8 @@ struct ProgramSelectView: View {
                         expandedWeeks[weekIdx] = !expanded
                     } label: {
                         HStack {
-                            Text("Week \(week)").font(.headline).foregroundStyle(.primary)
+                            Text(String(format: String(localized: "program_week_label"), week))
+                                .font(.headline).foregroundStyle(.primary)
                             if weekComplete {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.warmCoolGreen).font(.subheadline)
@@ -108,7 +112,7 @@ struct ProgramSelectView: View {
                 }
             }
         }
-        .confirmationDialog("Reset progress?", isPresented: $showResetConfirm, titleVisibility: .visible) {
+        .confirmationDialog("Reset progress", isPresented: $showResetConfirm, titleVisibility: .visible) {
             Button("Reset", role: .destructive) {
                 SessionRepository(context: context).resetProgress(programId: programId)
             }
@@ -167,8 +171,8 @@ private struct DayButton: View {
             if completed {
                 Image(systemName: "checkmark.circle.fill").font(.caption)
             }
-            Text("Day \(day)").font(.subheadline.bold())
-            Text("~\(durationMin)m").font(.caption2).opacity(0.8)
+            Text(String(format: String(localized: "program_day_label"), day)).font(.subheadline.bold())
+            Text("~\(durationMin)\(String(localized: "m"))").font(.caption2).opacity(0.8)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 10)

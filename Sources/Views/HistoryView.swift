@@ -3,6 +3,7 @@ import SwiftData
 
 struct HistoryView: View {
     @Environment(\.modelContext) private var context
+    @Environment(UserPreferences.self) private var prefs
 
     @Query(sort: \WorkoutSession.startedAt, order: .reverse)
     private var sessions: [WorkoutSession]
@@ -18,7 +19,7 @@ struct HistoryView: View {
             } else {
                 List {
                     Section {
-                        StatsCard(sessions: sessions)
+                        StatsCard(sessions: sessions, weightKg: prefs.weightKg)
                     }
 
                     Section("Sessions") {
@@ -78,22 +79,69 @@ struct HistoryView: View {
 
 private struct StatsCard: View {
     let sessions: [WorkoutSession]
+    let weightKg: Double?
 
     private var completed: [WorkoutSession] { sessions.filter { $0.completed } }
-    private var totalKm: Double { completed.reduce(0) { $0 + $1.distanceMeters } / 1000 }
-    private var totalSeconds: Int { completed.reduce(0) { $0 + $1.durationSeconds } }
+    private var totalKm: Double { sessions.reduce(0) { $0 + $1.distanceMeters } / 1000 }
+    private var totalSeconds: Int { sessions.reduce(0) { $0 + $1.durationSeconds } }
+
+    private var eligible: [WorkoutSession] { sessions.filter { $0.completed && $0.distanceMeters > 0 } }
+
+    private var totalCalories: Int? {
+        guard let weightKg else { return nil }
+        return sessions.reduce(0) { total, s in
+            total + (CalorieCalculator.estimateCalories(
+                distanceMeters: s.distanceMeters, durationSeconds: s.durationSeconds, weightKg: weightKg
+            ) ?? 0)
+        }
+    }
+
+    private var fastestPaceSecPerKm: Double? {
+        eligible.map { Double($0.durationSeconds) / ($0.distanceMeters / 1000) }.min()
+    }
+
+    private var longestRunMeters: Double? {
+        eligible.map(\.distanceMeters).max()
+    }
 
     var body: some View {
-        HStack {
-            Spacer()
-            StatItem(value: "\(completed.count)", label: "workouts")
-            Spacer()
-            StatItem(value: String(format: "%.1f", totalKm), label: "km")
-            Spacer()
-            StatItem(value: formatDuration(totalSeconds), label: "time")
-            Spacer()
+        VStack(spacing: 4) {
+            Text("Totals").font(.caption.bold()).foregroundStyle(.secondary)
+            HStack {
+                Spacer()
+                StatItem(value: "\(completed.count)", label: workoutsLabel)
+                Spacer()
+                StatItem(value: String(format: "%.1f", totalKm), label: String(localized: "km"))
+                Spacer()
+                StatItem(value: formatDuration(totalSeconds), label: String(localized: "time"))
+                Spacer()
+            }
+
+            if totalCalories != nil || fastestPaceSecPerKm != nil || longestRunMeters != nil {
+                Divider().padding(.vertical, 8)
+                Text("Personal bests").font(.caption.bold()).foregroundStyle(.secondary)
+                HStack {
+                    Spacer()
+                    if let totalCalories {
+                        StatItem(value: "\(totalCalories)", label: String(localized: "kcal"))
+                        Spacer()
+                    }
+                    if let pace = fastestPaceSecPerKm {
+                        StatItem(value: String(format: "%d:%02d", Int(pace) / 60, Int(pace) % 60), label: String(localized: "pace"))
+                        Spacer()
+                    }
+                    if let longest = longestRunMeters {
+                        StatItem(value: String(format: "%.2f", longest / 1000), label: String(localized: "longest"))
+                        Spacer()
+                    }
+                }
+            }
         }
         .padding(.vertical, 8)
+    }
+
+    private var workoutsLabel: String {
+        String.localizedStringWithFormat(NSLocalizedString("history_stats_workouts", comment: ""), completed.count)
     }
 }
 
@@ -118,12 +166,13 @@ private struct SessionRow: View {
     }
 
     var body: some View {
+        let weekDay = String(format: String(localized: "history_week_day"), session.week, session.day)
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 if session.completed {
                     Image(systemName: "checkmark.circle.fill").foregroundColor(.warmCoolGreen)
                 }
-                Text("\(displayName)  ·  Week \(session.week), Day \(session.day)")
+                Text("\(displayName)  ·  \(weekDay)")
                     .font(.headline)
                 Spacer()
                 if session.distanceMeters > 0 {
@@ -136,8 +185,7 @@ private struct SessionRow: View {
             Text(session.startedAt.formatted(date: .abbreviated, time: .shortened))
                 .font(.subheadline).foregroundStyle(.secondary)
             if session.distanceMeters > 0 {
-                Text(String(format: "%.2f km  ·  %@", session.distanceMeters / 1000,
-                            formatDuration(session.durationSeconds)))
+                Text("\(distanceText(session.distanceMeters))  ·  \(formatDuration(session.durationSeconds))")
                     .font(.subheadline)
             } else {
                 Text(formatDuration(session.durationSeconds)).font(.subheadline)
@@ -170,7 +218,7 @@ private func buildGpx(session: WorkoutSession, points: [RoutePoint]) -> String {
     let dateStr = session.startedAt.ISO8601Format()
     var lines = [
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-        "<gpx version=\"1.1\" creator=\"C2K\">",
+        "<gpx version=\"1.1\" creator=\"C2K\" xmlns=\"http://www.topografix.com/GPX/1/1\">",
         "  <trk>",
         "    <name>C2K W\(session.week)D\(session.day)</name>",
         "    <trkseg>",

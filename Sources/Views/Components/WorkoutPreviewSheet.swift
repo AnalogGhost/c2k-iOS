@@ -9,9 +9,9 @@ struct WorkoutPreviewSheet: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Week \(week), Day \(day)")
+            Text(String(format: String(localized: "program_preview_title"), week, day))
                 .font(.title2.bold())
-            Text("~\(workoutDay.totalDurationSeconds / 60) min")
+            Text(previewDurationText)
                 .foregroundStyle(.secondary)
                 .padding(.top, 2)
 
@@ -39,6 +39,12 @@ struct WorkoutPreviewSheet: View {
 
     private var groupedIntervals: [IntervalGroup] {
         workoutDay.intervals.grouped()
+    }
+
+    private var previewDurationText: String {
+        let minutes = workoutDay.totalDurationSeconds / 60
+        return String.localizedStringWithFormat(
+            NSLocalizedString("program_preview_duration", comment: ""), minutes)
     }
 }
 
@@ -70,20 +76,14 @@ private struct IntervalGroupRow: View {
         }
     }
 
-    private var label: String {
-        switch group.type {
-        case .run:      return "RUN"
-        case .walk:     return "WALK"
-        case .warmup:   return "WARM UP"
-        case .cooldown: return "COOL DOWN"
-        }
-    }
+    private var label: String { intervalLabel(group.type) }
 
     private func formatDuration(_ seconds: Int) -> String {
         let m = seconds / 60, s = seconds % 60
-        if m > 0 && s > 0 { return "\(m)m \(s)s" }
-        if m > 0 { return "\(m) min" }
-        return "\(s)s"
+        let mUnit = String(localized: "m"), sUnit = String(localized: "s"), minWord = String(localized: "min")
+        if m > 0 && s > 0 { return "\(m)\(mUnit) \(s)\(sUnit)" }
+        if m > 0 { return "\(m) \(minWord)" }
+        return "\(s)\(sUnit)"
     }
 }
 

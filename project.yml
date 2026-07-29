@@ -28,8 +28,6 @@ targets:
           This is optional — the workout timer works without it.
         NSLocationAlwaysAndWhenInUseUsageDescription: >
           C2K uses your location during workouts to track distance and pace.
-        NSSpeechRecognitionUsageDescription: >
-          C2K uses speech synthesis to announce workout intervals.
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.hackerapps.c2k
       SWIFT_VERSION: "5.9"

@@ -44,8 +44,9 @@ final class WorkoutManager {
 
         backgroundAudio.start()
         ttsManager.setRate(prefs.ttsSpeechRate)
+        ttsManager.setVolume(prefs.ttsVolume)
 
-        if prefs.gpsEnabled {
+        if prefs.gpsEnabled && !prefs.treadmillMode {
             let tracker = LocationTracker()
             locationTracker = tracker
             tracker.onUpdate = { [weak self] update in
@@ -71,7 +72,10 @@ final class WorkoutManager {
             day: workoutDay,
             tts: ttsManager,
             ttsEnabled: prefs.ttsEnabled,
-            countdownWarnings: prefs.countdownWarnings
+            countdownWarnings: prefs.countdownWarnings,
+            countdownWarningSeconds1: prefs.countdownWarning1,
+            countdownWarningSeconds2: prefs.countdownWarning2,
+            midIntervalCues: prefs.midIntervalCues
         )
         engine = eng
         eng.start(sessionId: sessionId)
@@ -81,10 +85,12 @@ final class WorkoutManager {
 
     func pause() {
         engine?.pause()
+        locationTracker?.pause()
     }
 
     func resume() {
         engine?.resume()
+        locationTracker?.resume()
     }
 
     func stop() {
@@ -128,6 +134,10 @@ final class WorkoutManager {
                     let distance = self.locationTracker?.totalDistanceMeters ?? 0
                     repository.finishSession(id: sessionId, durationSeconds: elapsed,
                                              distanceMeters: distance, completed: true)
+                    // Let the final "Workout complete" announcement finish speaking before
+                    // cleanup() calls ttsManager.shutdown() -> stopSpeaking(.immediate), which
+                    // would otherwise cut the cue off. Bounded so a stuck TTS engine can't hang.
+                    await self.waitForSpeechToFinish()
                     self.cleanup()
                     return
 
@@ -136,6 +146,16 @@ final class WorkoutManager {
 
                 try? await Task.sleep(for: .milliseconds(200))
             }
+        }
+    }
+
+    private func waitForSpeechToFinish() async {
+        let timeoutMs = 8_000
+        let pollMs = 100
+        var waitedMs = 0
+        while ttsManager.isSpeaking && waitedMs < timeoutMs {
+            try? await Task.sleep(for: .milliseconds(pollMs))
+            waitedMs += pollMs
         }
     }
 

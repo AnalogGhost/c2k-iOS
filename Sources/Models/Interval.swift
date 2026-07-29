@@ -1,3 +1,5 @@
+import Foundation
+
 struct Interval {
     let type: IntervalType
     let durationSeconds: Int
@@ -7,17 +9,19 @@ struct Interval {
         let secs = durationSeconds % 60
         let duration: String
         if mins > 0 && secs > 0 {
-            duration = "\(mins) minute\(mins > 1 ? "s" : "") and \(secs) seconds"
+            let minStr = String.localizedStringWithFormat(NSLocalizedString("tts_duration_minutes", comment: ""), mins)
+            let secStr = String.localizedStringWithFormat(NSLocalizedString("tts_duration_seconds", comment: ""), secs)
+            duration = String(format: NSLocalizedString("tts_duration_min_sec", comment: ""), minStr, secStr)
         } else if mins > 0 {
-            duration = "\(mins) minute\(mins > 1 ? "s" : "")"
+            duration = String.localizedStringWithFormat(NSLocalizedString("tts_duration_minutes", comment: ""), mins)
         } else {
-            duration = "\(secs) seconds"
+            duration = String.localizedStringWithFormat(NSLocalizedString("tts_duration_seconds", comment: ""), secs)
         }
         switch type {
-        case .warmup:   return "Begin warm-up walk"
-        case .run:      return "Start running for \(duration)"
-        case .walk:     return "Walk for \(duration)"
-        case .cooldown: return "Begin cool-down walk"
+        case .warmup:   return NSLocalizedString("tts_interval_warmup", comment: "")
+        case .run:      return String(format: NSLocalizedString("tts_interval_run", comment: ""), duration)
+        case .walk:     return String(format: NSLocalizedString("tts_interval_walk", comment: ""), duration)
+        case .cooldown: return NSLocalizedString("tts_interval_cooldown", comment: "")
         }
     }
 }

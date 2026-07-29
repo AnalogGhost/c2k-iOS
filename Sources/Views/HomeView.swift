@@ -17,7 +17,7 @@ struct HomeView: View {
             List {
                 if streak > 0 {
                     Section {
-                        Text("\(streak)-day streak 🔥")
+                        Text(streakText)
                             .foregroundColor(.runOrange)
                             .font(.subheadline)
                             .listRowBackground(Color.clear)
@@ -40,10 +40,7 @@ struct HomeView: View {
                         Button {
                             showContinuePreview = true
                         } label: {
-                            Label(
-                                "Continue: \(next.displayName) · Week \(next.week), Day \(next.day)",
-                                systemImage: "play.fill"
-                            )
+                            Label(continueWorkoutText(next), systemImage: "play.fill")
                         }
                     }
                     .sheet(isPresented: $showContinuePreview) {
@@ -83,6 +80,11 @@ struct HomeView: View {
             .navigationTitle("C2K")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    Button { path.append(.contributors) } label: {
+                        Image(systemName: "person.2")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button { path.append(.guide) } label: {
                         Image(systemName: "book")
                     }
@@ -110,6 +112,8 @@ struct HomeView: View {
                     SettingsView()
                 case .guide:
                     GuideView()
+                case .contributors:
+                    ContributorsView()
                 }
             }
         }
@@ -135,6 +139,14 @@ struct HomeView: View {
             else if d < expected { break }
         }
         return count
+    }
+
+    private var streakText: String {
+        String.localizedStringWithFormat(NSLocalizedString("home_streak", comment: ""), streak)
+    }
+
+    private func continueWorkoutText(_ next: NextWorkout) -> String {
+        String(format: String(localized: "home_continue_workout"), next.displayName, next.week, next.day)
     }
 
     private var nextWorkout: NextWorkout? {
@@ -176,7 +188,7 @@ private struct ProgramRow: View {
             HStack {
                 Text(plan.displayName).font(.headline)
                 Spacer()
-                Text("\(plan.totalWeeks) weeks")
+                Text(String(format: String(localized: "home_program_weeks"), plan.totalWeeks))
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
@@ -201,8 +213,9 @@ private struct RecentSessionRow: View {
     var body: some View {
         let displayName = Programs.all().first(where: { $0.programId == session.programId })?.displayName
             ?? session.programId
+        let weekDay = String(format: String(localized: "history_week_day"), session.week, session.day)
         HStack {
-            Text("Week \(session.week), Day \(session.day)  ·  \(displayName)")
+            Text("\(weekDay)  ·  \(displayName)")
                 .font(.subheadline)
             Spacer()
             Text(session.startedAt, style: .date)
@@ -218,4 +231,5 @@ enum AppRoute: Hashable {
     case history
     case settings
     case guide
+    case contributors
 }

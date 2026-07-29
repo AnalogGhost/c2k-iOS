@@ -6,6 +6,7 @@ A free, open-source running trainer for iOS 17+. No account, no subscription, no
 
 | Program | Weeks | For |
 |---------|-------|-----|
+| Pre-C25K | 3 | Absolute beginners who find C25K Week 1 too hard |
 | Couch to 5K | 9 | Complete beginners |
 | Couch to 10K | 14 | Continues from C25K |
 | Bridge to 10K | 6 | C25K graduates not ready to jump to C210K |

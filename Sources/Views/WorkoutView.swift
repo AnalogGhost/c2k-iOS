@@ -11,6 +11,7 @@ struct WorkoutView: View {
     @Environment(UserPreferences.self) private var prefs
     @Environment(WorkoutManager.self) private var workoutManager
     @Environment(\.modelContext) private var context
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     @State private var permissionResolved = false
     @State private var showStopDialog = false
@@ -19,6 +20,13 @@ struct WorkoutView: View {
 
     private var programName: String {
         Programs.byId(programId).displayName
+    }
+
+    private var isLandscape: Bool { verticalSizeClass == .compact }
+
+    private var navigationTitleText: String {
+        let weekDay = String(format: String(localized: "history_week_day"), week, day)
+        return String(format: String(localized: "workout_title"), programName, weekDay)
     }
 
     var body: some View {
@@ -31,12 +39,15 @@ struct WorkoutView: View {
                     currentSpeedMps: workoutManager.currentSpeedMps,
                     gpsActive: workoutManager.gpsActive,
                     hasGpsLock: workoutManager.hasGpsLock,
+                    treadmillMode: prefs.treadmillMode,
+                    isLandscape: isLandscape,
                     onPause: { workoutManager.pause() },
                     onStop: { showStopDialog = true }
                 )
             case .paused(let s):
                 PausedWorkoutContent(
                     state: s,
+                    isLandscape: isLandscape,
                     onResume: { workoutManager.resume() },
                     onStop: { showStopDialog = true }
                 )
@@ -44,6 +55,7 @@ struct WorkoutView: View {
                 CompletedContent(
                     elapsedSeconds: elapsed,
                     distanceMeters: workoutManager.distanceMeters,
+                    weightKg: prefs.weightKg,
                     personalBest: personalBest,
                     onDone: { path.removeAll() }
                 )
@@ -54,7 +66,7 @@ struct WorkoutView: View {
             }
         }
         .padding(24)
-        .navigationTitle("\(programName) · Week \(week), Day \(day)")
+        .navigationTitle(navigationTitleText)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -120,22 +132,56 @@ private struct ActiveWorkoutContent: View {
     let currentSpeedMps: Float?
     let gpsActive: Bool
     let hasGpsLock: Bool
+    let treadmillMode: Bool
+    let isLandscape: Bool
     let onPause: () -> Void
     let onStop: () -> Void
 
-    var body: some View {
-        let ringColor = intervalColor(state.currentInterval.type)
-        let label = intervalLabel(state.currentInterval.type)
-        let progress = 1.0 - Double(state.secondsRemainingInInterval) / Double(state.currentInterval.durationSeconds)
+    private var ringColor: Color { intervalColor(state.currentInterval.type) }
+    private var label: String { intervalLabel(state.currentInterval.type) }
+    private var progress: Double {
+        (1.0 - Double(state.secondsRemainingInInterval) / Double(state.currentInterval.durationSeconds))
+            .clamped(to: 0...1)
+    }
 
+    var body: some View {
         ProgressView(value: Double(state.intervalIndex), total: Double(state.totalIntervals))
 
-        Spacer()
+        if isLandscape {
+            Spacer()
+            HStack(spacing: 48) {
+                ring(size: 180)
+                VStack(spacing: 24) {
+                    details
+                    controls
+                }
+            }
+            Spacer()
+        } else {
+            Spacer()
+            ring(size: 220)
+            if let next = state.nextInterval {
+                Text(nextIntervalText(next))
+                    .font(.subheadline)
+                    .foregroundColor(intervalColor(next.type).opacity(0.75))
+            }
+            details
+            Spacer()
+            controls
+        }
+    }
 
+    private func nextIntervalText(_ next: Interval) -> String {
+        String(format: String(localized: "workout_next_interval"),
+               intervalLabel(next.type), formatTime(next.durationSeconds))
+    }
+
+    private func ring(size: CGFloat) -> some View {
         IntervalRingView(
-            progress: progress.clamped(to: 0...1),
+            progress: progress,
             ringColor: ringColor,
-            accessibilityLabel: "\(label): \(formatTime(state.secondsRemainingInInterval)) remaining"
+            accessibilityLabel: "\(label): \(formatTime(state.secondsRemainingInInterval)) remaining",
+            size: size
         ) {
             VStack(spacing: 4) {
                 Text(label).font(.title3.bold()).foregroundColor(ringColor)
@@ -143,33 +189,42 @@ private struct ActiveWorkoutContent: View {
                     .font(.system(size: 42, weight: .bold, design: .rounded))
             }
         }
+    }
 
-        if let next = state.nextInterval {
-            Text("Next: \(intervalLabel(next.type)) \(formatTime(next.durationSeconds))")
-                .font(.subheadline)
-                .foregroundColor(intervalColor(next.type).opacity(0.75))
-        }
-
+    @ViewBuilder
+    private var details: some View {
         VStack(spacing: 4) {
-            Text("Elapsed: \(formatTime(state.elapsedSessionSeconds))").font(.body)
+            if isLandscape, let next = state.nextInterval {
+                Text(nextIntervalText(next))
+                    .font(.subheadline)
+                    .foregroundColor(intervalColor(next.type).opacity(0.75))
+            }
+
+            Text(String(format: String(localized: "workout_elapsed"), formatTime(state.elapsedSessionSeconds)))
+                .font(.body)
                 .foregroundStyle(.secondary)
-            Text("Interval \(state.intervalIndex + 1) of \(state.totalIntervals)").font(.body)
+            Text(String(format: String(localized: "workout_interval_progress"), state.intervalIndex + 1, state.totalIntervals))
+                .font(.body)
                 .foregroundStyle(.tertiary)
 
-            if distanceMeters > 0 {
+            if treadmillMode {
+                Text(treadmillEffortCue(state.currentInterval.type))
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            } else if distanceMeters > 0 {
                 HStack(spacing: 16) {
-                    Text(String(format: "%.2f km", distanceMeters / 1000)).font(.body)
+                    Text(distanceText(distanceMeters)).font(.body)
                     if let pace = paceString(speedMps: currentSpeedMps) {
-                        Text("\(pace) / km").font(.body)
+                        Text(String(format: String(localized: "workout_pace"), pace)).font(.body)
                     }
                 }
             } else if gpsActive && !hasGpsLock {
                 Text("Acquiring GPS…").font(.subheadline).foregroundStyle(.secondary)
             }
         }
+    }
 
-        Spacer()
-
+    private var controls: some View {
         HStack(spacing: 16) {
             Button(action: onPause) {
                 Label("Pause", systemImage: "pause.fill")
@@ -193,26 +248,58 @@ private struct ActiveWorkoutContent: View {
     }
 }
 
+private func treadmillEffortCue(_ type: IntervalType) -> String {
+    switch type {
+    case .run:      return String(localized: "Comfortable running pace")
+    case .walk:     return String(localized: "Brisk walking pace")
+    case .warmup, .cooldown:
+                    return String(localized: "Easy walking pace")
+    }
+}
+
 // MARK: - Paused
 
 private struct PausedWorkoutContent: View {
     let state: WorkoutState.ActiveSnapshot
+    let isLandscape: Bool
     let onResume: () -> Void
     let onStop: () -> Void
 
-    var body: some View {
-        let ringColor = intervalColor(state.currentInterval.type)
-        let label = intervalLabel(state.currentInterval.type)
-        let progress = 1.0 - Double(state.secondsRemainingInInterval) / Double(state.currentInterval.durationSeconds)
+    private var ringColor: Color { intervalColor(state.currentInterval.type) }
+    private var label: String { intervalLabel(state.currentInterval.type) }
+    private var progress: Double {
+        (1.0 - Double(state.secondsRemainingInInterval) / Double(state.currentInterval.durationSeconds))
+            .clamped(to: 0...1)
+    }
 
+    var body: some View {
         ProgressView(value: Double(state.intervalIndex), total: Double(state.totalIntervals))
 
-        Spacer()
+        if isLandscape {
+            Spacer()
+            HStack(spacing: 48) {
+                ring(size: 180)
+                VStack(spacing: 24) {
+                    details
+                    controls
+                }
+            }
+            Spacer()
+        } else {
+            Spacer()
+            ring(size: 220)
+            details
+            Spacer()
+            controls
+        }
+    }
 
+    private func ring(size: CGFloat) -> some View {
         IntervalRingView(
-            progress: progress.clamped(to: 0...1),
+            progress: progress,
             ringColor: ringColor,
-            accessibilityLabel: "Paused: \(label)"
+            accessibilityLabel: "Paused: \(label)",
+            size: size
         ) {
             VStack(spacing: 4) {
                 Text(label).font(.title3.bold()).foregroundColor(ringColor)
@@ -220,15 +307,19 @@ private struct PausedWorkoutContent: View {
                     .font(.system(size: 42, weight: .bold, design: .rounded))
             }
         }
+    }
 
-        Text("PAUSED")
-            .font(.headline)
-            .foregroundStyle(.secondary)
+    private var details: some View {
+        VStack(spacing: 4) {
+            Text("PAUSED")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+            Text(String(format: String(localized: "workout_elapsed"), formatTime(state.elapsedSessionSeconds)))
+                .font(.body)
+        }
+    }
 
-        Text("Elapsed: \(formatTime(state.elapsedSessionSeconds))").font(.body)
-
-        Spacer()
-
+    private var controls: some View {
         HStack(spacing: 16) {
             Button(action: onResume) {
                 Label("Resume", systemImage: "play.fill")
@@ -249,6 +340,7 @@ private struct PausedWorkoutContent: View {
 private struct CompletedContent: View {
     let elapsedSeconds: Int
     let distanceMeters: Double
+    let weightKg: Double?
     let personalBest: WorkoutSession?
     let onDone: () -> Void
 
@@ -264,9 +356,22 @@ private struct CompletedContent: View {
         }
 
         VStack(spacing: 4) {
-            Text("Time: \(formatTime(elapsedSeconds))").font(.title2.bold())
+            Text(String(format: String(localized: "workout_complete_time"), formatTime(elapsedSeconds)))
+                .font(.title2.bold())
             if distanceMeters > 0 {
-                Text(String(format: "%.2f km", distanceMeters / 1000)).font(.title3)
+                Text(distanceText(distanceMeters)).font(.title3)
+
+                if let weightKg, let calories = CalorieCalculator.estimateCalories(
+                    distanceMeters: distanceMeters, durationSeconds: elapsedSeconds, weightKg: weightKg
+                ) {
+                    Text(String(format: String(localized: "workout_calories_burned"), calories))
+                        .font(.title3)
+                        .foregroundStyle(.secondary)
+                } else {
+                    Text("Set your weight in Settings to see calories burned")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
             }
         }
         .padding(.top, 16)
@@ -278,7 +383,7 @@ private struct CompletedContent: View {
                         .font(.headline)
                         .foregroundColor(.warmCoolGreen)
                 }
-                Text("Previous best: \(formatTime(best.durationSeconds))")
+                Text(String(format: String(localized: "workout_previous_best"), formatTime(best.durationSeconds)))
                     .font(.subheadline).foregroundStyle(.secondary)
             }
             .padding(.top, 8)
@@ -302,12 +407,12 @@ private func intervalColor(_ type: IntervalType) -> Color {
     }
 }
 
-private func intervalLabel(_ type: IntervalType) -> String {
+func intervalLabel(_ type: IntervalType) -> String {
     switch type {
-    case .run:      return "RUN"
-    case .walk:     return "WALK"
-    case .warmup:   return "WARM UP"
-    case .cooldown: return "COOL DOWN"
+    case .run:      return String(localized: "RUN")
+    case .walk:     return String(localized: "WALK")
+    case .warmup:   return String(localized: "WARM UP")
+    case .cooldown: return String(localized: "COOL DOWN")
     }
 }
 
@@ -315,6 +420,10 @@ func formatTime(_ totalSeconds: Int) -> String {
     let m = totalSeconds / 60
     let s = totalSeconds % 60
     return String(format: "%d:%02d", m, s)
+}
+
+func distanceText(_ distanceMeters: Double) -> String {
+    String(format: String(localized: "workout_distance_km"), locale: Locale.current, distanceMeters / 1000)
 }
 
 private extension Comparable {

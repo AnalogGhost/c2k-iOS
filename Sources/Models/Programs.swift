@@ -1,11 +1,13 @@
 enum Programs {
 
+    static let idPreC25K = "PRE_C25K"
     static let idC25K  = "C25K"
     static let idC210K = "C210K"
     static let idB210K = "B210K"
     static let idOHR   = "OHR"
     static let idFiveKI = "5KI"
 
+    static let preC25K       = buildPreC25K()
     static let c25K          = buildC25K()
     static let c210K         = buildC210K()
     static let b210K         = buildB210K()
@@ -14,6 +16,7 @@ enum Programs {
 
     static func byId(_ id: String) -> WorkoutPlan {
         switch id {
+        case idPreC25K: return preC25K
         case idC25K:   return c25K
         case idC210K:  return c210K
         case idB210K:  return b210K
@@ -24,7 +27,7 @@ enum Programs {
     }
 
     static func all() -> [WorkoutPlan] {
-        [c25K, c210K, b210K, oneHourRunner, fiveKImprover]
+        [preC25K, c25K, c210K, b210K, oneHourRunner, fiveKImprover]
     }
 
     // MARK: - Helpers
@@ -51,6 +54,25 @@ enum Programs {
 
     private static func continuousRun(_ week: Int, _ runSec: Int) -> [WorkoutDay] {
         uniformWeek(week, [warmup(), run(runSec), cooldown()])
+    }
+
+    // MARK: - Pre-C25K
+    // Gentler lead-in for absolute beginners who find C25K Week 1 too hard.
+    // Graduates to C25K Week 1 by the final week.
+
+    private static func buildPreC25K() -> WorkoutPlan {
+        let weeks: [[WorkoutDay]] = [
+            uniformWeek(1, repeatRunWalk(8, run: 30, walk: 90)),
+            uniformWeek(2, repeatRunWalk(8, run: 45, walk: 90)),
+            uniformWeek(3, repeatRunWalk(8, run: 60, walk: 90)),
+        ]
+        return WorkoutPlan(
+            programId: idPreC25K,
+            displayName: "Pre-C25K",
+            description: "3-week starter for beginners who find Week 1 of C25K too hard. Graduates into C25K.",
+            weeks: weeks,
+            prerequisite: nil
+        )
     }
 
     // MARK: - C25K

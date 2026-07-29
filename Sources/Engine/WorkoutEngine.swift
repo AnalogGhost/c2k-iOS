@@ -10,6 +10,10 @@ final class WorkoutEngine {
     private let tts: TTSManager
     private let ttsEnabled: Bool
     private let countdownWarnings: Bool
+    private let midIntervalCues: Bool
+    // Sorted descending, deduped: fires the larger threshold first, and the smallest one carries
+    // the next-interval look-ahead announcement since it's the last warning before the interval ends.
+    private let warningThresholds: [Int]
 
     private var timerTask: Task<Void, Never>?
     private var sessionId: UUID = UUID()
@@ -19,12 +23,20 @@ final class WorkoutEngine {
     private var isPaused = false
     private var intervalIndex = 0
     private var warnedCountdowns: Set<Int> = []
+    private var midpointAnnounced = false
 
-    init(day: WorkoutDay, tts: TTSManager, ttsEnabled: Bool, countdownWarnings: Bool) {
+    init(
+        day: WorkoutDay, tts: TTSManager, ttsEnabled: Bool, countdownWarnings: Bool,
+        countdownWarningSeconds1: Int = 10, countdownWarningSeconds2: Int = 5,
+        midIntervalCues: Bool = true
+    ) {
         self.day = day
         self.tts = tts
         self.ttsEnabled = ttsEnabled
         self.countdownWarnings = countdownWarnings
+        self.midIntervalCues = midIntervalCues
+        self.warningThresholds = Array(Set([countdownWarningSeconds1, countdownWarningSeconds2].filter { $0 > 0 }))
+            .sorted(by: >)
     }
 
     func start(sessionId: UUID) {
@@ -35,6 +47,7 @@ final class WorkoutEngine {
         intervalStartTime = now
         isPaused = false
         warnedCountdowns.removeAll()
+        midpointAnnounced = false
         announceInterval(at: intervalIndex)
         timerTask = Task { await runLoop() }
     }
@@ -76,29 +89,52 @@ final class WorkoutEngine {
             let remaining = currentInterval.durationSeconds - intervalElapsed
 
             if remaining <= 0 {
+                let finishedInterval = day.intervals[intervalIndex]
                 intervalIndex += 1
                 if intervalIndex >= day.intervals.count {
+                    // Pin a final Active frame to 0 before completing. If the screen locks, a
+                    // suspended lifecycle-aware observer would otherwise freeze on the last
+                    // Active value it received (1-3s left) even though the workout is done.
+                    state = .active(.init(
+                        currentInterval: finishedInterval,
+                        nextInterval: nil,
+                        intervalIndex: intervalIndex - 1,
+                        totalIntervals: day.intervals.count,
+                        secondsRemainingInInterval: 0,
+                        elapsedSessionSeconds: sessionElapsed,
+                        sessionId: sessionId
+                    ))
                     if ttsEnabled { tts.announce(.workoutComplete) }
                     state = .completed(sessionId: sessionId, elapsedSessionSeconds: sessionElapsed)
                     return
                 }
                 intervalStartTime = now
                 warnedCountdowns.removeAll()
+                midpointAnnounced = false
                 announceInterval(at: intervalIndex)
                 continue
             }
 
-            if countdownWarnings && ttsEnabled && !warnedCountdowns.contains(remaining) {
-                if remaining == 10 {
-                    warnedCountdowns.insert(10)
-                    tts.announce(.countdownWarning(10))
-                } else if remaining == 5 {
-                    warnedCountdowns.insert(5)
-                    tts.announce(.countdownWarning(5))
+            if countdownWarnings && ttsEnabled &&
+                warningThresholds.contains(remaining) && !warnedCountdowns.contains(remaining) {
+                warnedCountdowns.insert(remaining)
+                tts.announce(.countdownWarning(remaining))
+                if remaining == warningThresholds.last {
+                    // Look-ahead: the smallest threshold is the last warning before the interval
+                    // ends, so it also announces what's coming next.
                     if intervalIndex + 1 < day.intervals.count {
                         tts.announce(.nextInterval(day.intervals[intervalIndex + 1]), queueAdd: true)
                     }
                 }
+            }
+
+            if midIntervalCues && ttsEnabled &&
+                currentInterval.type == .run &&
+                currentInterval.durationSeconds >= 60 &&
+                intervalElapsed >= currentInterval.durationSeconds / 2 &&
+                !midpointAnnounced {
+                midpointAnnounced = true
+                tts.announce(.intervalMidpoint(phraseIndex: intervalIndex), queueAdd: true)
             }
 
             state = .active(.init(

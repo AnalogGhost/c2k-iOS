@@ -35,6 +35,17 @@ final class LocationTracker: NSObject, CLLocationManagerDelegate {
         manager.allowsBackgroundLocationUpdates = false
     }
 
+    func pause() {
+        manager.stopUpdatingLocation()
+    }
+
+    func resume() {
+        // Drop the pre-pause fix so the first post-resume update doesn't compute a distance
+        // delta spanning however far the user moved (or GPS drifted) while paused.
+        lastLocation = nil
+        manager.startUpdatingLocation()
+    }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         // Skip inaccurate fixes to avoid cold-start drift
