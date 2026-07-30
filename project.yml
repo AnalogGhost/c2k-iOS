@@ -20,6 +20,10 @@ targets:
         CFBundleVersion: "1"
         UILaunchScreen: {}
         UIRequiresFullScreen: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
         UIBackgroundModes:
           - audio
           - location
@@ -30,7 +34,9 @@ targets:
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.hackerapps.c2k
       SWIFT_VERSION: "5.9"
-      DEVELOPMENT_TEAM: ""
+      DEVELOPMENT_TEAM: 6BRG6VVP3H
+      CODE_SIGN_STYLE: Automatic
+      TARGETED_DEVICE_FAMILY: "1"
       IPHONEOS_DEPLOYMENT_TARGET: "17.0"
       MARKETING_VERSION: "1.0.0"
       CURRENT_PROJECT_VERSION: "1"
