@@ -1,6 +1,18 @@
 import AVFoundation
 import Foundation
 
+// Narrow seam so WorkoutEngine can be unit-tested with a spy instead of a real
+// AVSpeechSynthesizer — mirrors Android's TtsInterface/TtsManager split.
+protocol TTSAnnouncing: AnyObject {
+    func announce(_ announcement: TTSManager.Announcement, queueAdd: Bool)
+}
+
+extension TTSAnnouncing {
+    func announce(_ announcement: TTSManager.Announcement) {
+        announce(announcement, queueAdd: false)
+    }
+}
+
 final class TTSManager: NSObject {
     private let synthesizer = AVSpeechSynthesizer()
     // AVSpeechUtteranceDefaultSpeechRate = 0.5; multiply by Android-scale rate (0.7–1.3)
@@ -109,6 +121,8 @@ final class TTSManager: NSObject {
         return NSLocalizedString(key, comment: "")
     }
 }
+
+extension TTSManager: TTSAnnouncing {}
 
 extension TTSManager: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {

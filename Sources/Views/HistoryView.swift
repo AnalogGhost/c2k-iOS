@@ -85,23 +85,16 @@ private struct StatsCard: View {
     private var totalKm: Double { sessions.reduce(0) { $0 + $1.distanceMeters } / 1000 }
     private var totalSeconds: Int { sessions.reduce(0) { $0 + $1.durationSeconds } }
 
-    private var eligible: [WorkoutSession] { sessions.filter { $0.completed && $0.distanceMeters > 0 } }
-
     private var totalCalories: Int? {
-        guard let weightKg else { return nil }
-        return sessions.reduce(0) { total, s in
-            total + (CalorieCalculator.estimateCalories(
-                distanceMeters: s.distanceMeters, durationSeconds: s.durationSeconds, weightKg: weightKg
-            ) ?? 0)
-        }
+        WorkoutStats.totalCalories(sessions: sessions, weightKg: weightKg)
     }
 
     private var fastestPaceSecPerKm: Double? {
-        eligible.map { Double($0.durationSeconds) / ($0.distanceMeters / 1000) }.min()
+        WorkoutStats.fastestPaceSecPerKm(sessions: sessions)
     }
 
     private var longestRunMeters: Double? {
-        eligible.map(\.distanceMeters).max()
+        WorkoutStats.longestRunMeters(sessions: sessions)
     }
 
     var body: some View {
@@ -141,7 +134,9 @@ private struct StatsCard: View {
     }
 
     private var workoutsLabel: String {
-        String.localizedStringWithFormat(NSLocalizedString("history_stats_workouts", comment: ""), completed.count)
+        completed.count == 1
+            ? NSLocalizedString("history_stats_workout_singular", comment: "")
+            : NSLocalizedString("history_stats_workout_plural", comment: "")
     }
 }
 
@@ -215,7 +210,6 @@ private func buildCsv(sessions: [WorkoutSession]) -> String {
 }
 
 private func buildGpx(session: WorkoutSession, points: [RoutePoint]) -> String {
-    let dateStr = session.startedAt.ISO8601Format()
     var lines = [
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
         "<gpx version=\"1.1\" creator=\"C2K\" xmlns=\"http://www.topografix.com/GPX/1/1\">",

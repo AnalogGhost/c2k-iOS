@@ -21,6 +21,7 @@ final class WorkoutManager {
     private var locationTracker: LocationTracker?
     private let ttsManager = TTSManager()
     private let backgroundAudio = BackgroundAudioManager()
+    private let nowPlaying = NowPlayingManager()
     private var pollingTask: Task<Void, Never>?
     private var currentSessionId: UUID?
     private var repository: SessionRepository?
@@ -46,6 +47,11 @@ final class WorkoutManager {
         ttsManager.setRate(prefs.ttsSpeechRate)
         ttsManager.setVolume(prefs.ttsVolume)
 
+        nowPlaying.onPause = { [weak self] in self?.pause() }
+        nowPlaying.onResume = { [weak self] in self?.resume() }
+        nowPlaying.onStop = { [weak self] in self?.stop() }
+        nowPlaying.start()
+
         if prefs.gpsEnabled && !prefs.treadmillMode {
             let tracker = LocationTracker()
             locationTracker = tracker
@@ -54,7 +60,7 @@ final class WorkoutManager {
                 self.distanceMeters = tracker.totalDistanceMeters
                 self.hasGpsLock = tracker.hasGpsLock
                 self.currentSpeedMps = update.speedMps
-                if case .active(let snapshot) = self.workoutState,
+                if case .active = self.workoutState,
                    let sessionId = self.currentSessionId {
                     repository.addRoutePoint(RoutePoint(sessionId: sessionId, update: update))
                 }
@@ -128,6 +134,10 @@ final class WorkoutManager {
                         self.vibrateInterval()
                     }
                     lastIntervalIndex = s.intervalIndex
+                    self.updateNowPlaying(s, isPlaying: true)
+
+                case .paused(let s):
+                    self.updateNowPlaying(s, isPlaying: false)
 
                 case .completed(let sessionId, let elapsed):
                     if vibrationEnabled { self.vibrateCompletion() }
@@ -149,6 +159,18 @@ final class WorkoutManager {
         }
     }
 
+    private func updateNowPlaying(_ snapshot: WorkoutState.ActiveSnapshot, isPlaying: Bool) {
+        let elapsedInInterval = snapshot.currentInterval.durationSeconds - snapshot.secondsRemainingInInterval
+        nowPlaying.update(
+            title: intervalLabel(snapshot.currentInterval.type),
+            subtitle: String(format: String(localized: "workout_interval_progress"),
+                              snapshot.intervalIndex + 1, snapshot.totalIntervals),
+            isPlaying: isPlaying,
+            elapsedSeconds: Double(max(0, elapsedInInterval)),
+            durationSeconds: Double(snapshot.currentInterval.durationSeconds)
+        )
+    }
+
     private func waitForSpeechToFinish() async {
         let timeoutMs = 8_000
         let pollMs = 100
@@ -168,6 +190,7 @@ final class WorkoutManager {
         locationTracker = nil
         ttsManager.shutdown()
         backgroundAudio.stop()
+        nowPlaying.stop()
         UIApplication.shared.isIdleTimerDisabled = false
         isRunning = false
         currentWorkoutInfo = nil

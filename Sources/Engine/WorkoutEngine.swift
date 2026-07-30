@@ -7,7 +7,7 @@ final class WorkoutEngine {
     var state: WorkoutState = .idle
 
     private let day: WorkoutDay
-    private let tts: TTSManager
+    private let tts: any TTSAnnouncing
     private let ttsEnabled: Bool
     private let countdownWarnings: Bool
     private let midIntervalCues: Bool
@@ -26,7 +26,7 @@ final class WorkoutEngine {
     private var midpointAnnounced = false
 
     init(
-        day: WorkoutDay, tts: TTSManager, ttsEnabled: Bool, countdownWarnings: Bool,
+        day: WorkoutDay, tts: any TTSAnnouncing, ttsEnabled: Bool, countdownWarnings: Bool,
         countdownWarningSeconds1: Int = 10, countdownWarningSeconds2: Int = 5,
         midIntervalCues: Bool = true
     ) {

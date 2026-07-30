@@ -124,21 +124,7 @@ struct HomeView: View {
     }
 
     private var streak: Int {
-        let completed = allSessions.filter { $0.completed }
-        let dayNumbers = Set(completed.map { Int($0.startedAt.timeIntervalSince1970) / 86400 })
-        guard !dayNumbers.isEmpty else { return 0 }
-
-        let today = Int(Date.now.timeIntervalSince1970) / 86400
-        guard dayNumbers.contains(today) || dayNumbers.contains(today - 1) else { return 0 }
-
-        let sorted = dayNumbers.sorted(by: >)
-        var count = 1
-        var expected = sorted[0] - 1
-        for d in sorted.dropFirst() {
-            if d == expected { count += 1; expected -= 1 }
-            else if d < expected { break }
-        }
-        return count
+        WorkoutStats.streak(sessions: allSessions)
     }
 
     private var streakText: String {
