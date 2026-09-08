@@ -107,4 +107,43 @@ final class ProgramsTests: XCTestCase {
         // (Not exercised directly since fatalError can't be caught in a unit test.)
         XCTAssertNotNil(Programs.byId(Programs.idPreC25K))
     }
+
+    // MARK: - nextWorkout
+
+    func testNextWorkoutIsFirstDayWithNoCompletions() {
+        let plan = Programs.c25K
+        XCTAssertEqual(plan.nextWorkout(completedDays: []), WeekDay(week: 1, day: 1))
+    }
+
+    func testNextWorkoutIsTheDayAfterTheOnlyCompletedDay() {
+        let plan = Programs.c25K
+        let completed: Set<WeekDay> = [WeekDay(week: 1, day: 1)]
+        XCTAssertEqual(plan.nextWorkout(completedDays: completed), WeekDay(week: 1, day: 2))
+    }
+
+    func testNextWorkoutNeverBacktracksToFillAnEarlierGap() {
+        // Week 1 day 2 was skipped, but week 1 day 3 and week 2 day 1 are done. By design
+        // (matches Android issue #28) the suggestion only ever looks forward from the latest
+        // completed day, so the earlier (1,2) gap is not backfilled — week 2 day 2 is next.
+        let plan = Programs.c25K
+        let completed: Set<WeekDay> = [
+            WeekDay(week: 1, day: 1), WeekDay(week: 1, day: 3), WeekDay(week: 2, day: 1),
+        ]
+        XCTAssertEqual(plan.nextWorkout(completedDays: completed), WeekDay(week: 2, day: 2))
+    }
+
+    func testNextWorkoutResumesAfterDeliberateSkipAheadRatherThanReturningToTheGap() {
+        // Matches Android issue #28: a user who deliberately starts at week 3 (skipping weeks
+        // 1-2 entirely, e.g. because they were too easy) and completes week 3 day 1 should be
+        // suggested week 3 day 2 next — not sent back to week 1 day 1 to "fill the gap".
+        let plan = Programs.c25K
+        let completed: Set<WeekDay> = [WeekDay(week: 3, day: 1)]
+        XCTAssertEqual(plan.nextWorkout(completedDays: completed), WeekDay(week: 3, day: 2))
+    }
+
+    func testNextWorkoutIsNilWhenEverythingAfterTheLastCompletedDayIsDone() {
+        let plan = Programs.preC25K // 3 weeks x 3 days = 9 days total
+        let completed = Set(plan.weeks.flatMap { $0.map { WeekDay(week: $0.week, day: $0.day) } })
+        XCTAssertNil(plan.nextWorkout(completedDays: completed))
+    }
 }

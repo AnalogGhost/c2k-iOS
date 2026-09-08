@@ -135,13 +135,7 @@ struct ProgramSelectView: View {
     }
 
     private var nextIncompleteDay: WeekDay? {
-        for (weekIdx, days) in plan.weeks.enumerated() {
-            for dayIdx in days.indices {
-                let wd = WeekDay(week: weekIdx + 1, day: dayIdx + 1)
-                if !completedDays.contains(wd) { return wd }
-            }
-        }
-        return nil
+        plan.nextWorkout(completedDays: completedDays)
     }
 }
 

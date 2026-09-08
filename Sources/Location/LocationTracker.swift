@@ -52,7 +52,16 @@ final class LocationTracker: NSObject, CLLocationManagerDelegate {
         guard location.horizontalAccuracy > 0 && location.horizontalAccuracy <= 25 else { return }
         hasGpsLock = true
         if let last = lastLocation {
-            totalDistanceMeters += location.distance(from: last)
+            let dtSeconds = location.timestamp.timeIntervalSince(last.timestamp)
+            let meters = location.distance(from: last)
+            guard dtSeconds > 0 && meters / dtSeconds <= DistanceCalculator.maxSpeedMps else {
+                // A fix implying impossible speed is bad data, not movement (issue #30: one
+                // teleporting fix added 584 km). Skip the delta and the route point, but
+                // rebase on the new position so tracking resumes from wherever GPS settles.
+                lastLocation = location
+                return
+            }
+            totalDistanceMeters += meters
         }
         lastLocation = location
         onUpdate?(LocationUpdate(

@@ -85,6 +85,26 @@ final class SessionRepository {
         fetchRoutePoints(sessionId: sessionId)
     }
 
+    /// Re-derives every session's distance from its stored route points, applying the same
+    /// implied-speed filter the live tracker now uses, so sessions recorded before that
+    /// filter existed lose their teleporting-GPS kilometres (issue #30). Sessions without a
+    /// route (treadmill mode, GPS off) are left untouched. Idempotent, so it's safe to re-run
+    /// if interrupted.
+    func recomputeSessionDistances() {
+        let sessions = (try? context.fetch(FetchDescriptor<WorkoutSession>())) ?? []
+        for session in sessions {
+            let points = fetchRoutePoints(sessionId: session.id)
+            guard points.count >= 2 else { continue }
+            let filtered = DistanceCalculator.filteredDistanceMeters(points: points)
+            // 1 m tolerance: haversine vs CoreLocation's geodesic distance differ by
+            // fractions of a metre, which shouldn't rewrite every clean session.
+            if abs(filtered - session.distanceMeters) > 1 {
+                session.distanceMeters = filtered
+            }
+        }
+        try? context.save()
+    }
+
     private func fetchSession(id: UUID) -> WorkoutSession? {
         let descriptor = FetchDescriptor<WorkoutSession>(
             predicate: #Predicate { $0.id == id }

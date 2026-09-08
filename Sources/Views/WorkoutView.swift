@@ -180,7 +180,8 @@ private struct ActiveWorkoutContent: View {
         IntervalRingView(
             progress: progress,
             ringColor: ringColor,
-            accessibilityLabel: "\(label): \(formatTime(state.secondsRemainingInInterval)) remaining",
+            accessibilityLabel: String(format: String(localized: "cd_interval_remaining"),
+                                       label, formatTime(state.secondsRemainingInInterval)),
             size: size
         ) {
             VStack(spacing: 4) {
@@ -298,7 +299,7 @@ private struct PausedWorkoutContent: View {
         IntervalRingView(
             progress: progress,
             ringColor: ringColor,
-            accessibilityLabel: "Paused: \(label)",
+            accessibilityLabel: String(format: String(localized: "cd_interval_paused"), label),
             size: size
         ) {
             VStack(spacing: 4) {

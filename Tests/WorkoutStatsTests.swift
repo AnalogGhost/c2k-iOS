@@ -18,6 +18,10 @@ final class WorkoutStatsTests: XCTestCase {
     }
 
     // MARK: - Streak
+    //
+    // Weekly, not daily (matches Android issue #29): a program schedules ~3 runs a week with
+    // rest days between, so tests exercise week-granularity — one completed session per week
+    // is enough to keep a streak alive, spaced 7+ days apart with rest days in between.
 
     func testStreakIsZeroWithNoSessions() {
         XCTAssertEqual(WorkoutStats.streak(sessions: []), 0)
@@ -29,68 +33,78 @@ final class WorkoutStatsTests: XCTestCase {
         XCTAssertEqual(WorkoutStats.streak(sessions: [s], now: now, calendar: utc), 0)
     }
 
-    func testStreakOfOneForSingleSessionToday() {
+    func testStreakOfOneForSingleSessionThisWeek() {
         let now = Date.now
         let s = session(daysAgo: 0, now: now, calendar: utc)
         XCTAssertEqual(WorkoutStats.streak(sessions: [s], now: now, calendar: utc), 1)
     }
 
-    func testStreakCountsConsecutiveDaysEndingToday() {
+    func testStreakSurvivesRestDaysWithinTheSameWeek() {
+        // Three sessions within the same calendar week (e.g. Mon/Wed/Fri) with rest days
+        // between them should still be a streak of 1 week, not broken by the day-level gaps.
         let now = Date.now
-        let sessions = (0..<4).map { session(daysAgo: $0, now: now, calendar: utc) }
+        let sessions = [0, 2, 4].map { session(daysAgo: $0, now: now, calendar: utc) }
+        XCTAssertEqual(WorkoutStats.streak(sessions: sessions, now: now, calendar: utc), 1)
+    }
+
+    func testStreakCountsConsecutiveWeeksEndingThisWeek() {
+        let now = Date.now
+        // One completed session per week for 4 consecutive weeks, most recent this week.
+        let sessions = (0..<4).map { session(daysAgo: $0 * 7, now: now, calendar: utc) }
         XCTAssertEqual(WorkoutStats.streak(sessions: sessions, now: now, calendar: utc), 4)
     }
 
-    func testStreakStillCountsIfLastWorkoutWasYesterday() {
+    func testStreakStillCountsIfLastWorkoutWasLastWeek() {
         let now = Date.now
-        let sessions = (1..<4).map { session(daysAgo: $0, now: now, calendar: utc) }
+        // Weeks 1-3 ago completed, this week not yet — still alive via the grace period.
+        let sessions = (1..<4).map { session(daysAgo: $0 * 7, now: now, calendar: utc) }
         XCTAssertEqual(WorkoutStats.streak(sessions: sessions, now: now, calendar: utc), 3)
     }
 
-    func testStreakBreaksOnAGapOfTwoOrMoreDays() {
+    func testStreakBreaksOnAGapOfTwoOrMoreWeeks() {
         let now = Date.now
-        // Today, yesterday, then a gap (2 days ago missing), then 3 days ago.
+        // This week, last week, then a gap (2 weeks ago missing), then 3 weeks ago.
         let sessions = [
             session(daysAgo: 0, now: now, calendar: utc),
-            session(daysAgo: 1, now: now, calendar: utc),
-            session(daysAgo: 3, now: now, calendar: utc),
+            session(daysAgo: 7, now: now, calendar: utc),
+            session(daysAgo: 21, now: now, calendar: utc),
         ]
         XCTAssertEqual(WorkoutStats.streak(sessions: sessions, now: now, calendar: utc), 2)
     }
 
-    func testStreakIsZeroIfMostRecentWorkoutWasTwoDaysAgo() {
+    func testStreakIsZeroIfMostRecentWorkoutWasTwoWeeksAgo() {
         let now = Date.now
-        let s = session(daysAgo: 2, now: now, calendar: utc)
+        let s = session(daysAgo: 14, now: now, calendar: utc)
         XCTAssertEqual(WorkoutStats.streak(sessions: [s], now: now, calendar: utc), 0)
     }
 
-    func testStreakDedupesMultipleSessionsOnTheSameDay() {
+    func testStreakDedupesMultipleSessionsInTheSameWeek() {
         let now = Date.now
         let sessions = [
             session(daysAgo: 0, now: now, calendar: utc),
-            session(daysAgo: 0, now: now, calendar: utc),
             session(daysAgo: 1, now: now, calendar: utc),
+            session(daysAgo: 7, now: now, calendar: utc),
         ]
         XCTAssertEqual(WorkoutStats.streak(sessions: sessions, now: now, calendar: utc), 2)
     }
 
-    func testStreakUsesLocalCalendarDayNotUTC() {
-        // Two workouts on two different LOCAL calendar days (11:30pm and the following
-        // 12:30am Pacific) that land on the *same* UTC calendar day, since Pacific is
-        // UTC-7 in June (both convert to ~06:30/07:30 UTC on the same UTC date). A streak
-        // bucketed by UTC epoch day — the original iOS port's bug, which used
-        // timeIntervalSince1970/86400 instead of Android's ZoneId.systemDefault()
-        // local-date bucketing — would collapse these into one day and report a streak
-        // of 1 instead of 2.
+    func testStreakUsesLocalCalendarWeekNotUTC() {
+        // Two workouts that land in different LOCAL calendar weeks (Sunday 11:30pm and the
+        // following Monday 12:30am Pacific) but the same UTC calendar day/week, since Pacific
+        // is UTC-7 in June. A streak bucketed by UTC — the original iOS port's bug, which used
+        // timeIntervalSince1970/86400 instead of Android's ZoneId.systemDefault() local-date
+        // bucketing — could misplace a session near a week boundary into the wrong week.
         var pacific = Calendar(identifier: .gregorian)
         pacific.timeZone = TimeZone(identifier: "America/Los_Angeles")!
 
+        // 2026-06-14 is a Sunday, so this session falls in the ISO week ending that Sunday.
         var comps = DateComponents()
-        comps.year = 2026; comps.month = 6; comps.day = 15; comps.hour = 23; comps.minute = 30
-        let sessionA = pacific.date(from: comps)! // June 15, 11:30pm local
+        comps.year = 2026; comps.month = 6; comps.day = 14; comps.hour = 23; comps.minute = 30
+        let sessionA = pacific.date(from: comps)! // Sunday, 11:30pm local — last day of its week
 
-        comps.day = 16; comps.hour = 0; comps.minute = 30
-        let sessionB = pacific.date(from: comps)! // June 16, 12:30am local — next local day
+        // 2026-06-15 is the following Monday — the first day of the *next* ISO week.
+        comps.day = 15; comps.hour = 0; comps.minute = 30
+        let sessionB = pacific.date(from: comps)! // Monday, 12:30am local — next local week
 
         let sessions = [makeSession(startedAt: sessionA), makeSession(startedAt: sessionB)]
         XCTAssertEqual(WorkoutStats.streak(sessions: sessions, now: sessionB, calendar: pacific), 2)

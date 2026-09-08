@@ -670,7 +670,7 @@
     },
     "home_streak": {
       "extractionState": "manual",
-      "comment": "{n}-day streak 🔥 — plural",
+      "comment": "{n}-week streak 🔥 — plural",
       "localizations": {
         "en": {
           "variations": {
@@ -678,13 +678,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%1$lld-day streak 🔥"
+                  "value": "%1$lld-week streak 🔥"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%1$lld-day streak 🔥"
+                  "value": "%1$lld-week streak 🔥"
                 }
               }
             }
@@ -696,13 +696,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%1$lld Tag in Folge 🔥"
+                  "value": "%1$lld Woche in Folge 🔥"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%1$lld Tage in Folge 🔥"
+                  "value": "%1$lld Wochen in Folge 🔥"
                 }
               }
             }
@@ -714,13 +714,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Racha de %1$lld día 🔥"
+                  "value": "Racha de %1$lld semana 🔥"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Racha de %1$lld días 🔥"
+                  "value": "Racha de %1$lld semanas 🔥"
                 }
               }
             }
@@ -732,13 +732,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%1$lld jour d’affilée 🔥"
+                  "value": "%1$lld semaine d’affilée 🔥"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%1$lld jours d’affilée 🔥"
+                  "value": "%1$lld semaines d’affilée 🔥"
                 }
               }
             }
@@ -750,13 +750,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Xeira de %1$lld día 🔥"
+                  "value": "Xeira de %1$lld semana 🔥"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Xeira de %1$lld días 🔥"
+                  "value": "Xeira de %1$lld semanas 🔥"
                 }
               }
             }
@@ -768,13 +768,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Sequência de %1$lld dia 🔥"
+                  "value": "Sequência de %1$lld semana 🔥"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Sequência de %1$lld dias 🔥"
+                  "value": "Sequência de %1$lld semanas 🔥"
                 }
               }
             }
@@ -786,25 +786,25 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Серия в %1$lld день! 🔥"
+                  "value": "Серия в %1$lld неделю! 🔥"
                 }
               },
               "few": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Серия в %1$lld дня! 🔥"
+                  "value": "Серия в %1$lld недели! 🔥"
                 }
               },
               "many": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Серия в %1$lld дней! 🔥"
+                  "value": "Серия в %1$lld недель! 🔥"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Серия в %1$lld дней! 🔥"
+                  "value": "Серия в %1$lld недели! 🔥"
                 }
               }
             }
@@ -8818,6 +8818,102 @@
           "stringUnit": {
             "state": "translated",
             "value": "День %1$lld"
+          }
+        }
+      }
+    },
+    "cd_interval_remaining": {
+      "extractionState": "manual",
+      "comment": "Accessibility label: {label}: {time remaining} remaining",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ remaining"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ verbleibend"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ restante"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ : %2$@ restantes"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ restantes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ restantes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ осталось"
+          }
+        }
+      }
+    },
+    "cd_interval_paused": {
+      "extractionState": "manual",
+      "comment": "Accessibility label: Paused: {label}",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paused: %1$@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausiert: %1$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En pausa: %1$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En pause : %1$@"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detido: %1$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausado: %1$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На паузе: %1$@"
           }
         }
       }

@@ -74,4 +74,11 @@ final class UserPreferences {
     }() {
         didSet { defaults.set(weightUnit.rawValue, forKey: "weight_unit") }
     }
+
+    // Set once SessionRepository.recomputeSessionDistances() has repaired distances inflated
+    // by faulty GPS data recorded before the implied-speed filter existed (issue #30), so the
+    // one-time repair pass runs at most once per install.
+    var gpsDistancesRecomputed: Bool = (UserDefaults.standard.object(forKey: "gps_distances_recomputed") as? Bool) ?? false {
+        didSet { defaults.set(gpsDistancesRecomputed, forKey: "gps_distances_recomputed") }
+    }
 }

@@ -140,21 +140,14 @@ struct HomeView: View {
         guard let plan = Programs.all().first(where: { $0.programId == programId }) else { return nil }
         let repo = SessionRepository(context: context)
         let completed = repo.completedDays(programId: programId)
-        for (weekIdx, days) in plan.weeks.enumerated() {
-            for (dayIdx, workoutDay) in days.enumerated() {
-                let wd = WeekDay(week: weekIdx + 1, day: dayIdx + 1)
-                if !completed.contains(wd) {
-                    return NextWorkout(
-                        programId: programId,
-                        displayName: plan.displayName,
-                        week: weekIdx + 1,
-                        day: dayIdx + 1,
-                        workoutDay: workoutDay
-                    )
-                }
-            }
-        }
-        return nil
+        guard let wd = plan.nextWorkout(completedDays: completed) else { return nil }
+        return NextWorkout(
+            programId: programId,
+            displayName: plan.displayName,
+            week: wd.week,
+            day: wd.day,
+            workoutDay: plan.weeks[wd.week - 1][wd.day - 1]
+        )
     }
 }
 
