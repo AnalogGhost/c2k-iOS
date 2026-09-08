@@ -29,7 +29,15 @@ Verify the App Store Connect API key authenticates
 [bundle exec] fastlane ios screenshots
 ```
 
-Capture App Store screenshots in every locale (no upload)
+Capture raw screenshots in every locale, then composite the framed/captioned marketing set into fastlane/screenshots/framed (what deliver uploads). No upload.
+
+### ios frame_screenshots
+
+```sh
+[bundle exec] fastlane ios frame_screenshots
+```
+
+Re-run only the framing step over the existing raw screenshots
 
 ### ios store
 

@@ -63,6 +63,14 @@ This mirrors the Android app (`~/Projects/c2k`).
    git add fastlane/screenshots && git commit -m "Regenerate store screenshots"
    ```
 
+   This captures raw shots into `fastlane/screenshots/raw/` (via `snapshot`),
+   then composites the framed + captioned marketing set into
+   `fastlane/screenshots/framed/` (via `Tools/ScreenshotComposer`, a small
+   Swift/CoreGraphics program — mirrors the Android app's composer). deliver
+   uploads the framed set. Edit the caption text in
+   `fastlane/screenshot_captions.yml` and re-run `bundle exec fastlane
+   frame_screenshots` to re-frame without re-capturing.
+
    (Or run the **Screenshots** GitHub Actions workflow and commit the artifact.)
 
 4. **Commit the version bump and notes.**
@@ -96,7 +104,8 @@ This mirrors the Android app (`~/Projects/c2k`).
 | Lane | What it does | Default |
 |---|---|---|
 | `check` | Verify the App Store Connect API key authenticates. | — |
-| `screenshots` | Capture App Store screenshots in every locale (`fastlane snapshot`). No upload. | — |
+| `screenshots` | Capture raw screenshots (`snapshot`) + composite the framed/captioned set. No upload. | — |
+| `frame_screenshots` | Re-run only the framing step over the existing raw screenshots. | — |
 | `store` | Build a signed app-store IPA and upload the build + metadata. | **dry run** (`verify_only:true`) |
 | `metadata` | Upload only the listing text, URLs, and release notes. No build. | **dry run** |
 | `upload_screenshots` | Upload only the screenshots. No build. | **dry run** |

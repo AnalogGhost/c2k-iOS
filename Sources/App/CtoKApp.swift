@@ -3,23 +3,35 @@ import SwiftData
 
 @main
 struct CtoKApp: App {
-    @State private var prefs = UserPreferences()
+    @State private var prefs: UserPreferences
     private let container: ModelContainer
 
     init() {
         #if DEBUG
-        if CommandLine.arguments.contains("--screenshot-seed") {
+        let screenshotMode = CommandLine.arguments.contains("--screenshot-seed")
+        if screenshotMode {
+            // Must run before UserPreferences() below reads UserDefaults.
+            ScreenshotSeed.applyDefaults()
+        }
+        #else
+        let screenshotMode = false
+        #endif
+
+        _prefs = State(initialValue: UserPreferences())
+
+        if screenshotMode {
+            #if DEBUG
             container = try! ModelContainer(
                 for: WorkoutSession.self, RoutePoint.self,
                 configurations: ModelConfiguration(isStoredInMemoryOnly: true)
             )
-            ScreenshotSeed.populate(context: container.mainContext)
+            ScreenshotSeed.seedHistory(context: container.mainContext)
+            #else
+            container = try! ModelContainer(for: WorkoutSession.self, RoutePoint.self)
+            #endif
         } else {
             container = try! ModelContainer(for: WorkoutSession.self, RoutePoint.self)
         }
-        #else
-        container = try! ModelContainer(for: WorkoutSession.self, RoutePoint.self)
-        #endif
     }
 
     var body: some Scene {

@@ -1,8 +1,9 @@
 name: Screenshots
 
-# Manual only. Produces an artifact of the App Store screenshots in every
-# locale; download it and commit the PNGs under fastlane/screenshots/.
-# (Mirrors the Android app's screenshots workflow — CI never commits them.)
+# Manual only. Captures the raw screenshots, composites the framed/captioned
+# marketing set, and uploads both as an artifact; download it and commit the
+# PNGs under fastlane/screenshots/. (Mirrors the Android app's screenshots
+# workflow — CI never commits them.)
 on:
   workflow_dispatch:
 

@@ -13,57 +13,47 @@ final class ScreenshotTests: XCTestCase {
         continueAfterFailure = false
         app = XCUIApplication()
         setupSnapshot(app)
-        app.launchArguments += [
-            "--screenshot-seed",         // seed deterministic history (CtoKApp)
-            "-treadmill_mode", "YES",    // no GPS permission prompt during the run
-            "-gps_enabled", "NO",
-            "-last_program_id", "C25K",  // Home shows the "continue" shortcut
-            "-weight_kg", "70",          // History shows a calorie total
-        ]
+        // Seeds deterministic history + settings (see CtoKApp / ScreenshotSeed).
+        app.launchArguments += ["--screenshot-seed"]
         app.launch()
     }
 
     func testScreenshots() {
-        // 1 — Home: program list, streak, recent workouts
+        // Home first. The History/Guide/Settings shots are taken before the workout
+        // so History shows only the seeded sessions (no 7-second incomplete run).
         XCTAssertTrue(app.navigationBars["C2K"].waitForExistence(timeout: 30))
         XCTAssertTrue(app.staticTexts["home-streak"].waitForExistence(timeout: 5),
                       "Seeded history is missing — ScreenshotSeed did not populate the store")
-        snapshot("01_Home")
+        snapshot("01_home")
 
-        // 2 — Program: week/day grid with progress
+        tap(app.buttons["nav-history"])
+        XCTAssertTrue(app.navigationBars["History"].waitForExistence(timeout: 10))
+        snapshot("05_history")
+        goBack(from: "History")
+
+        tap(app.buttons["nav-guide"])
+        XCTAssertTrue(app.navigationBars["Guide"].waitForExistence(timeout: 10))
+        snapshot("06_guide")
+        goBack(from: "Guide")
+
+        tap(app.buttons["nav-settings"])
+        XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 10))
+        snapshot("07_settings")
+        goBack(from: "Settings")
+
+        // Program → preview → active workout.
         tap(app.buttons["program-C25K"])
         XCTAssertTrue(app.navigationBars["Couch to 5K"].waitForExistence(timeout: 10))
-        snapshot("02_Program")
+        snapshot("02_program")
 
-        // 3 — Workout preview sheet (week 3, day 3 — the next incomplete day)
-        tap(app.buttons["day-3-3"])
+        tap(app.buttons["day-3-3"])   // week 3, day 3 — the next incomplete day
         XCTAssertTrue(app.buttons["start-workout"].waitForExistence(timeout: 10))
-        snapshot("03_Preview")
+        snapshot("03_preview")
 
-        // 4 — Active workout
         app.buttons["start-workout"].tap()
         XCTAssertTrue(app.buttons["Pause"].waitForExistence(timeout: 20))
         Thread.sleep(forTimeInterval: 2)  // let the elapsed clock tick past 0:00
-        snapshot("04_Workout")
-
-        endWorkout()
-
-        // 5 — History: totals and session list
-        tap(app.buttons["nav-history"])
-        XCTAssertTrue(app.navigationBars["History"].waitForExistence(timeout: 10))
-        snapshot("05_History")
-        goBack(from: "History")
-
-        // 6 — Guide (FAQ)
-        tap(app.buttons["nav-guide"])
-        XCTAssertTrue(app.navigationBars["Guide"].waitForExistence(timeout: 10))
-        snapshot("06_Guide")
-        goBack(from: "Guide")
-
-        // 7 — Settings
-        tap(app.buttons["nav-settings"])
-        XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 10))
-        snapshot("07_Settings")
+        snapshot("04_workout")
     }
 
     // MARK: - Helpers
@@ -77,17 +67,6 @@ final class ScreenshotTests: XCTestCase {
 
     private func goBack(from title: String) {
         app.navigationBars[title].buttons.element(boundBy: 0).tap()
-        XCTAssertTrue(app.navigationBars["C2K"].waitForExistence(timeout: 10))
-    }
-
-    private func endWorkout() {
-        app.buttons["Stop"].firstMatch.tap()
-        let sheet = app.sheets.firstMatch
-        if sheet.waitForExistence(timeout: 3) {
-            sheet.buttons["Stop"].tap()
-        } else {
-            app.buttons["Stop"].firstMatch.tap()
-        }
         XCTAssertTrue(app.navigationBars["C2K"].waitForExistence(timeout: 10))
     }
 }

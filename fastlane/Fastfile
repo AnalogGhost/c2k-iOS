@@ -4,7 +4,9 @@ SCHEME = "CtoK".freeze
 PROJECT = "CtoK.xcodeproj".freeze
 APP_IDENTIFIER = "com.hackerapps.c2k".freeze
 METADATA_PATH = "./fastlane/metadata".freeze
-SCREENSHOTS_PATH = "./fastlane/screenshots".freeze
+# deliver uploads the framed/captioned set; `fastlane snapshot` writes raw
+# captures to ./fastlane/screenshots/raw and the composer frames them into here.
+SCREENSHOTS_PATH = "./fastlane/screenshots/framed".freeze
 RELEASE_NOTES = "fastlane/metadata/en-US/release_notes.txt".freeze
 
 # Lane arguments arrive as strings ("verify_only:false" -> "false"), so coerce
@@ -74,9 +76,16 @@ platform :ios do
     UI.success("Authenticated. Latest TestFlight build: #{build}")
   end
 
-  desc "Capture App Store screenshots in every locale (no upload)"
+  desc "Capture raw screenshots in every locale, then composite the framed/captioned"
+  desc "marketing set into fastlane/screenshots/framed (what deliver uploads). No upload."
   lane :screenshots do
     capture_ios_screenshots
+    sh("cd .. && swift run --package-path Tools/ScreenshotComposer screenshot-composer")
+  end
+
+  desc "Re-run only the framing step over the existing raw screenshots"
+  lane :frame_screenshots do
+    sh("cd .. && swift run --package-path Tools/ScreenshotComposer screenshot-composer")
   end
 
   desc "Build and upload a release to App Store Connect. Dry run by default; pass verify_only:false to ship."

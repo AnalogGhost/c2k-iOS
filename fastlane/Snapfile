@@ -20,7 +20,9 @@ languages([
 
 scheme("CtoKUITests")
 
-output_directory("./fastlane/screenshots")
+# Raw captures. The `screenshots` lane then composites the framed/captioned
+# marketing set into ./fastlane/screenshots/framed, which is what deliver uploads.
+output_directory("./fastlane/screenshots/raw")
 clear_previous_screenshots(true)
 concurrent_simulators(true)
 
