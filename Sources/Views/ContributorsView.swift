@@ -8,9 +8,11 @@ private struct Contributor {
 }
 
 // Only contributors whose actual work is present in this codebase are listed here. Android
-// additionally credits Andrew Farabee for two bug fixes (TTS ducking, completion-announcement
-// cutoff) — those iOS bugs were fixed independently in this codebase, not ported from his
-// Android commits, so his credit isn't carried over.
+// additionally credits Andrew Farabee (TTS ducking, completion-announcement cutoff),
+// Ahmet Emre (Turkish translation) and Hamza Bilen (manual language selection) — those iOS
+// bugs were fixed independently, the Turkish here is a machine draft pending native review,
+// and the iOS language picker is a fresh implementation, so none are carried over yet. Add
+// each when their actual work lands.
 private let contributors: [Contributor] = [
     Contributor(
         name: "xmgz",

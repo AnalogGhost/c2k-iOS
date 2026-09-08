@@ -18,6 +18,8 @@ final class TTSManager: NSObject {
     // AVSpeechUtteranceDefaultSpeechRate = 0.5; multiply by Android-scale rate (0.7–1.3)
     private var speechRate: Float = AVSpeechUtteranceDefaultSpeechRate
     private var volume: Float = 1.0
+    // BCP-47 code from the in-app language picker; nil follows the system voice.
+    private var languageOverride: String?
 
     // Tracks the utterances in the current announcement group (a flush plus any queued
     // follow-ups). Audio ducking is held for the whole group and released once it drains —
@@ -55,10 +57,26 @@ final class TTSManager: NSObject {
         volume = v
     }
 
+    func setLanguage(_ bcp47: String?) {
+        languageOverride = bcp47
+    }
+
+    /// The language code announcements will actually use — override, else the system voice.
+    func resolvedLanguageCode() -> String {
+        languageOverride ?? AVSpeechSynthesisVoice.currentLanguageCode()
+    }
+
+    private func resolvedVoice() -> AVSpeechSynthesisVoice? {
+        let code = resolvedLanguageCode()
+        return AVSpeechSynthesisVoice(language: code)
+            ?? AVSpeechSynthesisVoice(language: String(code.prefix(2)))
+    }
+
     func announce(_ announcement: Announcement, queueAdd: Bool = false) {
         let utterance = AVSpeechUtterance(string: text(for: announcement))
         utterance.rate = speechRate
         utterance.volume = volume
+        utterance.voice = resolvedVoice()   // nil is valid — AVSpeech falls back to the default
         if !queueAdd {
             synthesizer.stopSpeaking(at: .word)
             pending.removeAll()

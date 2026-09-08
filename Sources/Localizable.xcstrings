@@ -39,6 +39,12 @@
             "state": "translated",
             "value": "Отмена"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "İptal"
+          }
         }
       }
     },
@@ -79,6 +85,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Стоп"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Durdur"
           }
         }
       }
@@ -121,6 +133,12 @@
             "state": "translated",
             "value": "Удалить"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sil"
+          }
         }
       }
     },
@@ -161,6 +179,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "БЕГ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "KOŞU"
           }
         }
       }
@@ -203,6 +227,12 @@
             "state": "translated",
             "value": "ХОДЬБА"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "YÜRÜ"
+          }
         }
       }
     },
@@ -243,6 +273,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "РАЗМИНКА"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ISINMA"
           }
         }
       }
@@ -285,6 +321,12 @@
             "state": "translated",
             "value": "ЗАМИНКА"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "SOĞUMA"
+          }
         }
       }
     },
@@ -325,6 +367,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Комфортный темп бега"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rahat koşu temposu"
           }
         }
       }
@@ -367,6 +415,12 @@
             "state": "translated",
             "value": "Быстрый темп ходьбы"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tempolu yürüyüş"
+          }
         }
       }
     },
@@ -408,6 +462,12 @@
             "state": "translated",
             "value": "Лёгкий темп ходьбы"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hafif yürüyüş"
+          }
         }
       }
     },
@@ -418,6 +478,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "кг"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "kg"
           }
         }
       }
@@ -430,6 +496,12 @@
             "state": "translated",
             "value": "фунт"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "lb"
+          }
         }
       }
     },
@@ -440,6 +512,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "стоун"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "st"
           }
         }
       }
@@ -487,6 +565,12 @@
             "state": "translated",
             "value": "Выберите программу"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bir program seç"
+          }
         }
       }
     },
@@ -528,6 +612,12 @@
             "state": "translated",
             "value": "Недавние тренировки"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Son antrenmanlar"
+          }
         }
       }
     },
@@ -568,6 +658,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Идёт тренировка — нажмите для возврата"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenman sürüyor — dönmek için dokun"
           }
         }
       }
@@ -617,6 +713,12 @@
             "state": "translated",
             "value": "Продолжить: %1$@ · Неделя %2$lld, День %3$lld"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Devam et: %1$@ · %2$lld. Hafta, %3$lld. Gün"
+          }
         }
       }
     },
@@ -664,6 +766,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$lld нед."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$lld hafta"
           }
         }
       }
@@ -809,6 +917,24 @@
               }
             }
           }
+        },
+        "tr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%1$lld haftalık seri 🔥"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%1$lld haftalık seri 🔥"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -857,6 +983,12 @@
             "state": "translated",
             "value": "Неделя %1$lld, День %2$lld"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$lld. Hafta, %2$lld. Gün"
+          }
         }
       }
     },
@@ -897,6 +1029,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Полностью удалить весь прогресс завершённых сессий для этой программы. Ваша общая история будет сохранена."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bu, bu programdaki tüm tamamlanmış antrenmanları kalıcı olarak siler. Genel geçmişin korunur."
           }
         }
       }
@@ -939,6 +1077,12 @@
             "state": "translated",
             "value": "Сбросить прогресс"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "İlerlemeyi sıfırla"
+          }
         }
       }
     },
@@ -979,6 +1123,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сбросить"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sıfırla"
           }
         }
       }
@@ -1028,6 +1178,12 @@
             "state": "translated",
             "value": "%1$lld из %2$lld дн. завершено"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%2$lld günün %1$lld tanesi tamamlandı"
+          }
         }
       }
     },
@@ -1075,6 +1231,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Продолжить: Неделя %1$lld, День %2$lld →"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Devam et: %1$lld. Hafta, %2$lld. Gün →"
           }
         }
       }
@@ -1124,6 +1286,12 @@
             "state": "translated",
             "value": "Неделя %1$lld, День %2$lld"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$lld. Hafta, %2$lld. Gün"
+          }
         }
       }
     },
@@ -1165,6 +1333,12 @@
             "state": "translated",
             "value": "Начать"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Başla"
+          }
         }
       }
     },
@@ -1205,6 +1379,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Заново"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tekrarla"
           }
         }
       }
@@ -1350,6 +1530,24 @@
               }
             }
           }
+        },
+        "tr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "~%1$lld dk"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "~%1$lld dk"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -1362,6 +1560,12 @@
             "state": "translated",
             "value": "м"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "dk"
+          }
         }
       }
     },
@@ -1373,6 +1577,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "с"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "sn"
           }
         }
       }
@@ -1390,6 +1600,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "мин"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "dk"
           }
         }
       }
@@ -1432,6 +1648,12 @@
             "state": "translated",
             "value": "Остановить тренировку?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenman durdurulsun mu?"
+          }
         }
       }
     },
@@ -1472,6 +1694,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ваш прогресс будет сохранён как незавершённый."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "İlerlemen tamamlanmadı olarak kaydedilecek."
           }
         }
       }
@@ -1521,6 +1749,12 @@
             "state": "translated",
             "value": "Прошло: %1$@"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geçen süre: %1$@"
+          }
         }
       }
     },
@@ -1568,6 +1802,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Интервал %1$lld из %2$lld"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aralık %1$lld / %2$lld"
           }
         }
       }
@@ -1617,6 +1857,12 @@
             "state": "translated",
             "value": "Далее: %1$@ %2$@"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sıradaki: %1$@ %2$@"
+          }
         }
       }
     },
@@ -1635,6 +1881,12 @@
             "state": "translated",
             "value": "%1$.2f км"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$.2f km"
+          }
         }
       }
     },
@@ -1652,6 +1904,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@ / км"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@ / km"
           }
         }
       }
@@ -1694,6 +1952,12 @@
             "state": "translated",
             "value": "Подключение к GPS…"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPS alınıyor…"
+          }
         }
       }
     },
@@ -1735,6 +1999,12 @@
             "state": "translated",
             "value": "Тренировка завершена!"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenman Tamamlandı!"
+          }
         }
       }
     },
@@ -1775,6 +2045,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Отличная работа! Так держать."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Harika iş! Böyle devam et."
           }
         }
       }
@@ -1824,6 +2100,12 @@
             "state": "translated",
             "value": "Время: %1$@"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Süre: %1$@"
+          }
         }
       }
     },
@@ -1872,6 +2154,12 @@
             "state": "translated",
             "value": "%1$lld ккал сожжено (оценка)"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$lld kcal yakıldı (tahmini)"
+          }
         }
       }
     },
@@ -1913,6 +2201,12 @@
             "state": "translated",
             "value": "Укажите свой вес в настройках, чтобы видеть сожжённые калории"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yakılan kaloriyi görmek için Ayarlar’dan kilonu gir"
+          }
         }
       }
     },
@@ -1953,6 +2247,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Новый личный рекорд!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yeni kişisel rekor!"
           }
         }
       }
@@ -2002,6 +2302,12 @@
             "state": "translated",
             "value": "Прошлый рекорд: %1$@"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Önceki rekor: %1$@"
+          }
         }
       }
     },
@@ -2042,6 +2348,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Готово"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bitti"
           }
         }
       }
@@ -2084,6 +2396,12 @@
             "state": "translated",
             "value": "НА ПАУЗЕ"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "DURAKLATILDI"
+          }
         }
       }
     },
@@ -2124,6 +2442,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Переподключение…"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yeniden bağlanılıyor…"
           }
         }
       }
@@ -2166,6 +2490,12 @@
             "state": "translated",
             "value": "Начинаем…"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Başlatılıyor…"
+          }
         }
       }
     },
@@ -2207,6 +2537,12 @@
             "state": "translated",
             "value": "История"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geçmiş"
+          }
         }
       }
     },
@@ -2216,38 +2552,44 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Noch keine Trainingseinheiten"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Aún no hay entrenamientos"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Aucune séance pour l’instant"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Aínda non hai adestramentos"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Ainda não há treinos"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Пока нет тренировок"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Henüz antrenman yok"
           }
         }
       }
@@ -2290,6 +2632,12 @@
             "state": "translated",
             "value": "Пока нет завершённых тренировок."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geçmişini burada görmek için bir antrenman tamamla."
+          }
         }
       }
     },
@@ -2330,6 +2678,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Удалить тренировку?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenman silinsin mi?"
           }
         }
       }
@@ -2372,6 +2726,12 @@
             "state": "translated",
             "value": "Безвозвратно удалит эту сессию из вашей истории."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bu antrenmanı geçmişinden kalıcı olarak siler."
+          }
         }
       }
     },
@@ -2382,6 +2742,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "км"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "km"
           }
         }
       }
@@ -2424,6 +2790,12 @@
             "state": "translated",
             "value": "время"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "süre"
+          }
         }
       }
     },
@@ -2434,6 +2806,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ккал"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "kcal"
           }
         }
       }
@@ -2476,6 +2854,12 @@
             "state": "translated",
             "value": "темп"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "tempo"
+          }
         }
       }
     },
@@ -2516,6 +2900,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "макс. дист."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "en uzun"
           }
         }
       }
@@ -2558,6 +2948,12 @@
             "state": "translated",
             "value": "Всего"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Toplamlar"
+          }
         }
       }
     },
@@ -2598,6 +2994,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Личные рекорды"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kişisel rekorlar"
           }
         }
       }
@@ -2640,6 +3042,12 @@
             "state": "translated",
             "value": "Настройки"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ayarlar"
+          }
         }
       }
     },
@@ -2649,38 +3057,44 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Sprache"
+            "state": "translated",
+            "value": "Stimme"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Voz"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Voix"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Voz"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Voz"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Голос"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ses"
           }
         }
       }
@@ -2723,6 +3137,12 @@
             "state": "translated",
             "value": "Голосовые уведомления"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sesli anonslar"
+          }
         }
       }
     },
@@ -2763,6 +3183,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Предупреждающий обратный отсчёт"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geri sayım uyarıları"
           }
         }
       }
@@ -2805,6 +3231,12 @@
             "state": "translated",
             "value": "Первое предупреждение"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "İlk uyarı"
+          }
         }
       }
     },
@@ -2845,6 +3277,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Второе предупреждение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "İkinci uyarı"
           }
         }
       }
@@ -2887,6 +3325,12 @@
             "state": "translated",
             "value": "Подбадривания посреди пробежки"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Koşu ortası teşvik"
+          }
         }
       }
     },
@@ -2927,6 +3371,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Скорость речи"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ses hızı"
           }
         }
       }
@@ -2969,6 +3419,12 @@
             "state": "translated",
             "value": "Медленно"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yavaş"
+          }
         }
       }
     },
@@ -3009,6 +3465,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Быстро"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hızlı"
           }
         }
       }
@@ -3051,6 +3513,12 @@
             "state": "translated",
             "value": "Громкость речи"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ses seviyesi"
+          }
         }
       }
     },
@@ -3091,6 +3559,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Тихо"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kısık"
           }
         }
       }
@@ -3133,6 +3607,12 @@
             "state": "translated",
             "value": "Громко"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yüksek"
+          }
         }
       }
     },
@@ -3173,6 +3653,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вибрировать при смене интервала"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aralık değişiminde titret"
           }
         }
       }
@@ -3215,6 +3701,12 @@
             "state": "translated",
             "value": "Режим беговой дорожки (отключает GPS)"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Koşu bandı modu (GPS’i kapatır)"
+          }
         }
       }
     },
@@ -3255,6 +3747,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "GPS-отслеживание"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPS takibi"
           }
         }
       }
@@ -3297,6 +3795,12 @@
             "state": "translated",
             "value": "Оставлять экран включённым во время тренировки"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenman sırasında ekranı açık tut"
+          }
         }
       }
     },
@@ -3337,6 +3841,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вес"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kilo"
           }
         }
       }
@@ -3379,6 +3889,12 @@
             "state": "translated",
             "value": "Не задан"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ayarlanmadı"
+          }
         }
       }
     },
@@ -3419,6 +3935,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Используется только для оценки сожжённых калорий. Никогда не покидает ваше устройство."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yalnızca yakılan kaloriyi tahmin etmek için kullanılır. Cihazından asla çıkmaz."
           }
         }
       }
@@ -3461,6 +3983,12 @@
             "state": "translated",
             "value": "Подсказки"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rehber"
+          }
         }
       }
     },
@@ -3501,6 +4029,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Прежде чем начать"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Başlamadan Önce"
           }
         }
       }
@@ -3543,6 +4077,12 @@
             "state": "translated",
             "value": "Во время тренировки"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenman Sırasında"
+          }
         }
       }
     },
@@ -3583,6 +4123,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Между тренировками"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenmanlar Arasında"
           }
         }
       }
@@ -3625,6 +4171,12 @@
             "state": "translated",
             "value": "Словарь"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sözlük"
+          }
         }
       }
     },
@@ -3665,6 +4217,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Авторы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Katkıda bulunanlar"
           }
         }
       }
@@ -3711,6 +4269,12 @@
             "state": "translated",
             "value": "Fediverse"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fediverse"
+          }
         }
       }
     },
@@ -3751,6 +4315,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перевод на испанский (es)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "İspanyolca (es) çevirisi"
           }
         }
       }
@@ -3793,6 +4363,12 @@
             "state": "translated",
             "value": "Перевод на галисийский (gl)"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Galiçyaca (gl) çevirisi"
+          }
         }
       }
     },
@@ -3833,6 +4409,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перевод на русский (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rusça (ru) çevirisi"
           }
         }
       }
@@ -3875,6 +4457,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Исправление: голосовые уведомления теперь приглушают фоновое воспроизведения музыки вместо установки её на паузу"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Düzeltme: Sesli anonslar artık arka plan müziğini durdurmak yerine kısıyor"
           }
         }
       }
@@ -3923,6 +4511,12 @@
             "state": "translated",
             "value": "Что такое разговорный темп?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sohbet temposu nedir?"
+          }
         }
       }
     },
@@ -3969,6 +4563,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Разговорный темп означает медленный бег в темпе, достаточном, чтобы поддержать полноценную беседу — полные предложения, а не вздохи между отдельных слов. Если вам не хватает дыхания, замедлитесь.\n\nБольшинство новичков бегут слишком быстро и выдыхаются в первые минуты. Замедление это не признак слабости — это правильная техника. Вы должны чувствовать, что работаете, но в комфортном режиме."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sohbet temposu, tam bir sohbeti sürdürebilecek kadar yavaş koşmak demektir — kelimeler arasında nefes nefese kalmadan, tam cümlelerle. Konuşamayacak kadar nefes nefeseysen yavaşla.  Çoğu yeni başlayan çok hızlı koşar ve ilk dakikada tükenir. Yavaşlamak zayıflık değildir; doğru tekniktir. Çalıştığını hissetmelisin ama rahatça."
           }
         }
       }
@@ -4017,6 +4617,12 @@
             "state": "translated",
             "value": "Что мне реально нужно для бега?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gerçekte hangi ekipmana ihtiyacım var?"
+          }
         }
       }
     },
@@ -4063,6 +4669,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Хорошая пара кроссовок для бега — единственная вещь, на которую стоит потратить деньги. Они смягчают повторяющиеся удары в ваших суставах и значительно снижают риск получения травмы. Если возможно, посетите специалиста по бегу в магазине и проконсультируйтесь — они посмотрят, как вы ходите/бегаете и подскажут нужный тип обуви.\n\nВсё остальное — специальная одежда, устройства для отслеживания ЧСС, часы с GPS — опциональное. Любая комфортная одежда, которая у вас уже есть, более чем подходит для начала."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Para harcamaya değer tek şey iyi bir çift koşu ayakkabısıdır. Eklemlerine binen tekrarlayan darbeyi yastıklar ve yaralanma riskini belirgin şekilde azaltır. Mümkünse uzman bir koşu mağazasına git ve ayağını ölçtür — kısa süre yürüyüşünü ya da koşunu izleyip doğru türü önerirler.  Diğer her şey — özel kıyafetler, nabız ölçerler, GPS saatleri — isteğe bağlıdır. Başlamak için elindeki rahat kıyafetler yeterli."
           }
         }
       }
@@ -4111,6 +4723,12 @@
             "state": "translated",
             "value": "Как должна ощущаться первая неделя?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "İlk hafta nasıl hissettirmeli?"
+          }
         }
       }
     },
@@ -4157,6 +4775,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Тяжело. Даже интервалы бега в 60 секунд первую неделю будут удивлять, если вы не бегали до этого, и это абсолютно нормально.\n\nВаша сердечно-сосудистая система адаптируется быстрее, чем ваши мускулы и соединительные ткани, поэтому одышка обычно проходит раньше, чем усталость в ногах. Ожидайте усталость после каждой сессии — это тренировка делает свою работу. К третьей или четвёртой неделе большинство людей замечают значительное улучшение."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zorlu. Daha önce koşmadıysan 1. Hafta’daki 60 saniyelik koşu aralıkları bile şaşırtıcı gelecek ve bu tamamen normal.  Kalp-damar sistemin kaslarından ve bağ dokundan daha hızlı uyum sağlar, bu yüzden nefes darlığı genellikle bacak yorgunluğundan önce hafifler. Her seanstan sonra yorgun hissetmeyi bekle — bu, antrenmanın işini yaptığının işaretidir. 3. ya da 4. haftada çoğu kişi belirgin bir gelişme fark eder."
           }
         }
       }
@@ -4205,6 +4829,12 @@
             "state": "translated",
             "value": "Безопасно ли начинать, если я не занимался несколько лет?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yıllardır spor yapmadıysam başlamak güvenli mi?"
+          }
         }
       }
     },
@@ -4251,6 +4881,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Для большинства людей, да — бег на 5 км специально создан начинающих с нуля. Если у вас есть проблемы с сердцем, суставами, вы долгое время не занимались физически или вам больше 40 лет, то быстрый осмотр у вашего лечащего врача может быть полезен, но не всегда обязателен.\n\nПрограмма начинается очень мягко именно по той причине, что рассчитана на полных новичков."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Çoğu kişi için evet — C25K, sıfırdan başlayan insanlar için özel olarak tasarlandı. Bir kalp rahatsızlığın, eklem sorunların varsa ya da uzun süredir hareketsizsen ve 40 yaş üzerindeysen, önce doktoruna kısa bir danışma mantıklıdır ama her zaman gerekli değildir.  Program tam da tamamen yeni başlayanlara yönelik olduğu için çok yumuşak başlar."
           }
         }
       }
@@ -4299,6 +4935,12 @@
             "state": "translated",
             "value": "Что такое разминка и почему не стоит её пропускать?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Isınma nedir ve neden atlamamalıyım?"
+          }
         }
       }
     },
@@ -4345,6 +4987,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Лёгкая ходьба в течение 5 минут перед началом каждой сессии постепенно повышает частоту вашего сердцебиения и увеличивает приток крови к вашим мускулам. «Холодные» мускулы менее эластичные и более склонны к напряжению.\n\nЕсли вы пропустите разминку, то первый интервал бега будет ощущаться гораздо сложнее, чем должен, что также увеличивает риск растянуть что-либо. Пять минут — это небольшое вложение."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Her seansın başındaki 5 dakikalık tempolu yürüyüş, nabzını kademeli olarak yükseltir ve kaslarına kan akışını artırır. Soğuk kaslar daha az esnektir ve zorlanmaya daha yatkındır.  Isınmayı atlamak ilk koşu aralığını olması gerekenden çok daha zor hissettirir ve bir yerini incitme riskini artırır. Beş dakika küçük bir yatırımdır."
           }
         }
       }
@@ -4393,6 +5041,12 @@
             "state": "translated",
             "value": "Что такое заминка?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Soğuma nedir?"
+          }
         }
       }
     },
@@ -4439,6 +5093,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Пятиминутная ходьба в конце постепенно возвращает частоту вашего сердцебиения в норму вместо внезапной остановки. Это также помогает вашему телу начать выводить молочную кислоту из ваших мышц, что уменьшается жёсткость мышц после тренировки.\n\nЭто занимает всего 5 минут и вносит значительный вклад к то, как вы будете себя чувствовать на следующий день."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sondaki 5 dakikalık yürüyüş, nabzını aniden durmak yerine kademeli olarak düşürür. Ayrıca vücudunun kaslarındaki laktik asidi temizlemeye başlamasına yardımcı olur, bu da antrenman sonrası tutukluğu azaltır.  Yalnızca 5 dakika sürer ve ertesi gün kendini nasıl hissedeceğinde gerçek bir fark yaratır."
           }
         }
       }
@@ -4487,6 +5147,12 @@
             "state": "translated",
             "value": "Боль или дискомфорт — как понять разницу?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ağrı ile rahatsızlık — farkı nasıl anlarım?"
+          }
         }
       }
     },
@@ -4533,6 +5199,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Дискомфорт это нормально и ожидаемо: «горящие» лёгкие, уставшие ноги, «сопротивляющиеся» мускулы. Это именно то, как ощущаются упражнения, особенно поначалу.\n\nБоль же это другое. Она острая, локализованная в конкретной точке (колено, голень, нога), или же ухудшается по мере продолжения бега. Боль — это сигнал вашего организма, что что-то идёт не так.\n\nДискомфорт означает «это тяжело». Боль означает «стоп». Если вы ощущаете настоящую боль во время сессии, остановитесь и идите домой. Если она сохраняется после целого дня отдыха, обратитесь к физиотерапевту или врачу перед тем, как начать бегать снова."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rahatsızlık normaldir ve beklenir: yanan ciğerler, yorgun bacaklar, şikâyet ediyormuş gibi hissettiren kaslar. Egzersiz, özellikle başlarda, böyle hissettirir.  Ağrı farklıdır. Keskindir, belirli bir noktaya (bir diz, bir kaval kemiği, bir ayak) yerleşiktir ya da koşmaya devam ettikçe kötüleşir. Ağrı, vücudunun bir şeylerin yanlış olduğunu bildirmesidir.  Rahatsızlık “bu zor” der. Ağrı “dur” der. Bir seans sırasında gerçek bir ağrı hissedersen dur ve eve yürü. Bir günlük dinlenmeden sonra da geçmiyorsa, tekrar koşmadan önce bir fizyoterapiste ya da doktora görün."
           }
         }
       }
@@ -4581,6 +5253,12 @@
             "state": "translated",
             "value": "Как мне следует дышать?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nasıl nefes almalıyım?"
+          }
         }
       }
     },
@@ -4627,6 +5305,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Нет единственной правильной техники — дышите так, чтобы забирать как можно больше воздуха. Многие бегуны естественным образом приходят к ритму 2-на-2: вдох на 2 шага, выдох на 2 шага. Другие предпочитают 3-на-2 или дышат по мере необходимости.\n\nДыхание одновременно через нос и рот является абсолютно нормальным и, более того, рекомендуется во время тяжелых нагрузок. Если вы чувствуете, что задыхаетесь, то вы бежите слишком быстро — замедляйтесь до тех пор, пока дыхание не станет контролируемым."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tek bir doğru teknik yoktur — en çok havayı almanı sağlayan şekilde nefes al. Birçok koşucu doğal olarak 2:2 ritmine oturur: 2 adım nefes al, 2 adım ver. Bazıları 3:2’yi tercih eder ya da ihtiyaç oldukça nefes alır.  Hem burnundan hem ağzından nefes almak tamamen normaldir ve yoğun çalışırken aslında tavsiye edilir. Nefes nefeseysen çok hızlı koşuyorsun demektir — nefesin rahatlayana kadar yavaşla."
           }
         }
       }
@@ -4675,6 +5359,12 @@
             "state": "translated",
             "value": "Почему я не могу завершить интервалы бега?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bir koşu aralığını bitiremezsem ne olur?"
+          }
         }
       }
     },
@@ -4721,6 +5411,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ходите. Нет ничего страшного в ходьбе — передышки с ходьбой встроены в программу именно по этой причине.\n\nЕсли вы постоянно не можете завершать интервалы бега, попробуйте снизить ваш темп бега ещё сильнее. Многие люди удивляются, насколько медленным должен быть «медленный» темп поначалу. Очень медленный бег, который вы можете поддерживать, значительно лучше, чем быстрый бег, из-за которого вы вынуждены приостанавливаться."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yürü. Yürümekte başarısızlık yoktur — yürüyüş molaları tam da bu nedenle programa yerleştirilmiştir.  Koşu aralıklarını düzenli olarak tamamlayamıyorsan koşu temponu daha da yavaşlatmayı dene. Çoğu kişi başlarda “yavaş”ın ne kadar yavaş olması gerektiğine şaşırır. Sürdürebildiğin çok yavaş bir jog, seni durmaya zorlayan hızlı bir koşudan çok daha iyidir."
           }
         }
       }
@@ -4769,6 +5465,12 @@
             "state": "translated",
             "value": "Почему мне нужны дни отдыха?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Neden dinlenme günlerine ihtiyacım var?"
+          }
         }
       }
     },
@@ -4815,6 +5517,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Польза от упражнений наступает во время отдыха, не во время бега. Тренировки создают небольшие повреждения в ваших мышцах и соединительных тканях; дни отдыха нужны для того, чтобы в это время ваше тело устранило эти повреждения и вернулось в строй более сильным.\n\nРасписание программы C25K включает в себя 3 сессии в неделю именно по этой причине. Бег каждый день, когда вы новичок, значительно увеличивает риск травм, связанных с перенагрузкой — стрессовые переломы, боли в голенях и проблемы в сухожилиях,которые могут вывести вас из игры на недели."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kondisyon kazanımları koşunun kendisinde değil, dinlenme sırasında olur. Antrenman kaslarında ve bağ dokunda küçük zorlanmalar yaratır; dinlenme günleri vücudunun bu zorlanmaları onardığı ve biraz daha güçlü döndüğü zamandır.  C25K programında bu nedenle haftada 3 seans vardır. Yeni başlayan biri olarak her gün koşmak aşırı kullanım yaralanmalarının riskini belirgin şekilde artırır — stres kırıkları, kaval kemiği ağrıları ve seni haftalarca sahadan uzak tutabilecek tendon sorunları."
           }
         }
       }
@@ -4863,6 +5571,12 @@
             "state": "translated",
             "value": "Что мне нужно делать во время дней отдыха?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dinlenme günlerinde ne yapmalıyım?"
+          }
         }
       }
     },
@@ -4909,6 +5623,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Дни отдыха не означают, что не нужно ничего не делать. Лёгкая активность — ходьба, растяжка или калистетика — помогает крови приливать к болящим мышцам без добавления специфичной для бега нагрузки, и позволит ускорить восстановление по сравнению с полным отсутствуем активности.\n\nКалистетические упражнения вроде приседаний, выпадов, планки и подъёма на носки особенно эффективны вместе с программой C25K: они улучшают стабильность мышц бёдер, центра и лодыжек, которая не тренируется одним бегом, а сильные стабилизирующие мышцы это одни из самых лучших защит против типичных травм у новичков вроде боли в голенях и коленях. Две или три коротких сессии в неделю по 15–20 минут более чем достаточно — расписание данной программы уже является вашим основным тренировочным стимулом."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dinlenmek hiçbir şey yapmamak zorunda değildir. Hafif aktivite — yürüyüş, esneme ya da vücut ağırlığıyla kuvvet çalışması — koşuya özgü zorlanma eklemeden ağrıyan kaslara kan akışını sürdürür ve tam hareketsizliğe kıyasla toparlanmayı hızlandırabilir.  Squat, lunge, plank ve topuk kaldırma gibi vücut ağırlığı egzersizleri C25K ile birlikte özellikle yararlıdır: koşunun tek başına çalıştırmadığı kalça, kor ve ayak bileği dengesini geliştirir ve daha güçlü sabitleyici kaslar kaval kemiği ağrıları ve koşucu dizi gibi yaygın yeni başlayan koşucu yaralanmalarına karşı en iyi savunmalardan biridir. Haftada iki üç kısa seans — 15–20 dakika — yeterlidir; bu programın koşu takvimi zaten ana antrenman uyaranındır."
           }
         }
       }
@@ -4957,6 +5677,12 @@
             "state": "translated",
             "value": "Стоит ли повторить день или двигаться дальше?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bir günü tekrarlamalı mıyım yoksa devam mı etmeliyim?"
+          }
         }
       }
     },
@@ -5003,6 +5729,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Двигайтесь дальше, даже если сессия ощущалась тяжело — пока вы можете завершить её. Программа C25K включает лёгкое постепенное усложнение в течение недели, которое должно быть почти всем по плечу.\n\nПовторяйте день только в том случае, если вы совсем не смогли завершить интервалы бега, например, если вы останавливались посреди интервала несколько раз (а не в конце интервала как положено). Чувство усталости, медленности или нехватки воздуха — не причина повторять. Так просто ощущается неделя 2."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bir seans zor gelse bile — tamamladığın sürece — devam et. C25K, neredeyse herkesin her hafta ilerleyebileceği kadar kademeli bir ilerlemeyle tasarlandı.  Bir günü yalnızca koşu aralıklarını hiç tamamlayamadıysan tekrarla — örneğin aralığın ortasında birkaç kez durmak zorunda kaldıysan (aralığın doğal sonunda değil). Yorgun, yavaş ya da nefes nefese hissetmek tekrarlamak için bir neden değildir. 2. Hafta zaten böyle hissettirir."
           }
         }
       }
@@ -5051,6 +5783,12 @@
             "state": "translated",
             "value": "Когда я готов начать мою следующую сессию?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bir sonraki seansa ne zaman hazırım?"
+          }
         }
       }
     },
@@ -5097,6 +5835,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Когда боль в мышцах после предыдущей сессии в основном пройдёт — обычно через день или два. Некоторая боль в мышцах в течение 24–48 часов является нормой (это называется крепатура — синдром отсроченной мышечной боли) и её интенсивность снижается по мере адаптации вашего тела после первых нескольких недель.\n\nЕсли вы всё ещё чувствуете значительную боль или напряжение, возьмите дополнительный день отдыха. Один дополнительный день едва ли что-либо значит, а вот бег на уставших ногах увеличивает риск получения травмы."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Önceki seanstan kalan ağrı büyük ölçüde geçtiğinde — genellikle 1 ila 2 gün. Bir koşudan 24–48 saat sonra biraz kas ağrısı normaldir (buna gecikmeli kas ağrısı, DOMS denir) ve vücudun ilk birkaç hafta boyunca uyum sağladıkça hafifler.  Hâlâ belirgin şekilde ağrılı ya da tutuksan fazladan bir dinlenme günü al. Fazladan bir gün nadiren önemlidir; çok yorgun bacaklarla koşmak yaralanma riskini artırır."
           }
         }
       }
@@ -5145,6 +5889,12 @@
             "state": "translated",
             "value": "Нужна ли мне растяжка?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esnemem gerekiyor mu?"
+          }
         }
       }
     },
@@ -5191,6 +5941,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Лёгкая растяжка после бега (не перед) может помочь с гибкостью и снизить мышечное напряжение. Сфокусируйтесь на икроножных мышцах, мышцах бедра и квадрицепцах — мышцах, выполняющих основную часть работы.\n\nРастяжка перед бегом менее эффективна из-за «холодности» мышц и даже может привезти к напряжению. Разминочная ходьба является более эффективной подготовкой по сравнению с растяжкой на месте."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Koşudan sonra (öncesinde değil) hafif esneme esnekliğe yardımcı olabilir ve tutukluğu azaltabilir. En çok çalışan kaslara — baldırlar, arka bacak kasları, kalça fleksörleri ve ön bacak kasları — odaklan.  Kaslar soğukken koşudan önce esnemek daha az yararlıdır ve hatta zorlanmaya yol açabilir. Isınma yürüyüşü statik esnemeden daha etkili bir hazırlıktır."
           }
         }
       }
@@ -5239,6 +5995,12 @@
             "state": "translated",
             "value": "Аэробная выносливость"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aerobik kondisyon"
+          }
         }
       }
     },
@@ -5285,6 +6047,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Возможности вашего сердца и лёгких по доставке кислорода к вашим мышцам во время продолжительных тренировок. Программа C25K специально ориентирована на аэробную выносливость — основу всех других видов выносливости."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kalbinin ve akciğerlerinin uzun süreli egzersiz sırasında kaslarına oksijen iletme kapasitesi. C25K özellikle aerobik kondisyonu geliştirir — tüm dayanıklılık aktivitelerinin temeli."
           }
         }
       }
@@ -5333,6 +6101,12 @@
             "state": "translated",
             "value": "Интервал"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aralık"
+          }
         }
       }
     },
@@ -5379,6 +6153,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Период приложения усилий конкретной интенсивности в течение указанного периода времени. Каждая сессия программы C25K структурирована в виде серии из интервалов бега и ходьбы — например, 8 повторений «60 секунд бега, 90 секунд ходьбы»."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Belirli bir yoğunlukta, belirli bir süre boyunca sürdürülen çaba dönemi. Her C25K seansı bir dizi koşu ve yürüyüş aralığı olarak yapılandırılır — örneğin “60 saniye koş, 90 saniye yürü”nün sekiz tekrarı."
           }
         }
       }
@@ -5427,6 +6207,12 @@
             "state": "translated",
             "value": "Темп"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tempo"
+          }
         }
       }
     },
@@ -5473,6 +6259,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Как быстро вы бежите, обычно выражен в виде минут на километр или милю — например, 7:30 на км означает, что бег на один километр занимает 7 минут и 30 секунд.\n\nДля большей части программ C25K темп не важен. Важно именно завершение интервалов. Игнорируйте темп полностью до тех пор, пока не завершите программу."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ne kadar hızlı koştuğun, genellikle kilometre ya da mil başına dakika olarak ifade edilir — örneğin km başına 7:30, bir kilometre koşmanın 7 dakika 30 saniye sürdüğü anlamına gelir.  C25K’nın büyük kısmında tempo önemli değildir. Aralıkları tamamlamak önemlidir. Programı bitirene kadar tempoyu tamamen görmezden gel."
           }
         }
       }
@@ -5521,6 +6313,12 @@
             "state": "translated",
             "value": "Крепатура (синдром отсроченной мышечной боли)"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "DOMS (Gecikmeli Kas Ağrısı)"
+          }
         }
       }
     },
@@ -5567,6 +6365,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Мышечная боль, которая наступает через 24-48 часов после упражнений, вызванная микроскопическими повреждениями мышечных тканей в процессе их адаптации к новой нагрузке. Это нормально, не вредно, интенсивность значительно снижается после первых нескольких недель тренировок."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Egzersizden 24–48 saat sonra ortaya çıkan, kas liflerinin yeni zorlanmaya uyum sağlarken oluşan mikroskobik hasardan kaynaklanan kas ağrısı. Normaldir, zararlı değildir ve ilk birkaç antrenman haftasından sonra belirgin şekilde hafifler."
           }
         }
       }
@@ -5615,6 +6419,12 @@
             "state": "translated",
             "value": "Боль в голенях"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kaval kemiği ağrısı"
+          }
         }
       }
     },
@@ -5661,6 +6471,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Боль вдоль внешнего или внутреннего края голеней, обычная ситуация у бегунов-новичков. Обычно возникает из-за попытки прикладывания слишком большого количества усилий слишком рано или из-за изношенности обуви.\n\nПри возникновении рекомендуется отдохнуть в течение 3–5 дней. После возвращения убедитесь, что ваша обувь в порядке, и ваш темп бега не слишком высокий. При постоянной боли в области голеней проконсультируйтесь с врачом."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alt bacağın ön ya da iç kenarı boyunca hissedilen, yeni koşucularda yaygın ağrı. Genellikle çok kısa sürede çok fazla yapmaktan ya da yıpranmış ayakkabılarla koşmaktan kaynaklanır.  Kaval kemiği ağrısı gelişirse 3–5 gün dinlen. Döndüğünde ayakkabılarını kontrol et ve koşu temponun çok hızlı olmadığından emin ol. Israrlı kaval ağrısı bir fizyoterapist tarafından değerlendirilmelidir."
           }
         }
       }
@@ -5709,6 +6525,12 @@
             "state": "translated",
             "value": "Уровень воспринимаемой нагрузки"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "RPE (Algılanan Zorlanma Derecesi)"
+          }
         }
       }
     },
@@ -5755,6 +6577,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Простая шкала от 1 до 10 по оценке прилагаемых усилий, где 1 означает сидение на месте, а 10 означает спринт максимальной интенсивности, который вы не можете поддерживать больше нескольких секунд.\n\nБольшая часть бега по программе C25K должна ощущаться на 5–6: вы прикладываете усилия, но спокойной поддерживаете их. Разговорный темп."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bir çabanın ne kadar zor hissettirdiğine dair basit bir 1–10 ölçeği; 1 hareketsiz oturmak, 10 ise birkaç saniyeden fazla sürdüremeyeceğin tam güç bir sprinttir.  C25K koşularının çoğu 5–6 gibi hissettirmeli: belirgin şekilde çalışıyorsun ama sürdürülebilir. Sohbet temposu."
           }
         }
       }
@@ -5803,6 +6631,12 @@
             "state": "translated",
             "value": "Как оценивается количество сожжённых калорий?"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yakılan kalori nasıl tahmin ediliyor?"
+          }
         }
       }
     },
@@ -5849,6 +6683,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Оценка основана на вашей средней скорости, весе тела и продолжительности движения с использованием значений MET (метаболический эквивалент задачи) — стандартной меры интенсивности активности относительно скорости: калории = MET × вес (кг) × продолжительность (часы).\n\nЭто оценка, а не точное измерение — она не учитывает уровень физической подготовки, рельеф местности или частоту сердечных сокращений, поэтому воспринимайте её как приблизительный ориентир, а не точное число. Она появляется только после того, как вы укажете свой вес в настройках, и это значение никогда не покидает ваше устройство."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ortalama hızına, vücut ağırlığına ve ne kadar süre hareket ettiğine dayanır; MET (Metabolik Eşdeğer) değerlerini kullanır — bir aktivitenin hıza göre ne kadar zorlayıcı olduğunun standart bir ölçüsü: kalori = MET × ağırlık (kg) × süre (saat).  Bu bir ölçüm değil, bir tahmindir — kondisyon düzeyini, araziyi ya da nabzı hesaba katmaz, bu yüzden kesin bir sayı değil kaba bir kılavuz olarak değerlendir. Yalnızca Ayarlar’dan kilonu girdikten sonra görünür ve o sayı cihazından asla çıkmaz."
           }
         }
       }
@@ -5897,6 +6737,12 @@
             "state": "translated",
             "value": "Начните разми́ночную ходьбу"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Isınma yürüyüşüne başla"
+          }
         }
       }
     },
@@ -5943,6 +6789,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Побежали! Бег %1$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@ koşmaya başla"
           }
         }
       }
@@ -5991,6 +6843,12 @@
             "state": "translated",
             "value": "Ходьба %1$@"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@ yürü"
+          }
         }
       }
     },
@@ -6037,6 +6895,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Начните зами́ночную ходьбу"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Soğuma yürüyüşüne başla"
           }
         }
       }
@@ -6085,6 +6949,12 @@
             "state": "translated",
             "value": "Приготовьтесь к бегу"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Koşmaya hazırlan"
+          }
         }
       }
     },
@@ -6131,6 +7001,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Приготовьтесь к ходьбе"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yürümeye hazırlan"
           }
         }
       }
@@ -6179,6 +7055,12 @@
             "state": "translated",
             "value": "Приготовьтесь к разми́нке"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Isınmaya hazırlan"
+          }
         }
       }
     },
@@ -6225,6 +7107,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Приготовьтесь к скорой зами́нке"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Az sonra soğumaya başla"
           }
         }
       }
@@ -6273,6 +7161,12 @@
             "state": "translated",
             "value": "Тренировка завершена. Отличная работа!"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenman tamamlandı. Harika iş!"
+          }
         }
       }
     },
@@ -6319,6 +7213,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Уже на полпути, не сдавайтесь!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yarıyı geçtin, böyle devam!"
           }
         }
       }
@@ -6367,6 +7267,12 @@
             "state": "translated",
             "value": "Последняя пробежка, финишируйте на высокой ноте!"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Son koşu, güçlü bitir!"
+          }
         }
       }
     },
@@ -6413,6 +7319,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@ и %2$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@ %2$@"
           }
         }
       }
@@ -6553,6 +7465,24 @@
                 "stringUnit": {
                   "state": "translated",
                   "value": "Осталось %1$lld секунд"
+                }
+              }
+            }
+          }
+        },
+        "tr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%1$lld saniye kaldı"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%1$lld saniye kaldı"
                 }
               }
             }
@@ -6700,6 +7630,24 @@
               }
             }
           }
+        },
+        "tr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld dakika"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld dakika"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -6843,6 +7791,24 @@
               }
             }
           }
+        },
+        "tr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld saniye"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "needs_review",
+                  "value": "%lld saniye"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -6889,6 +7855,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "У вас отлично получается, продолжайте!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Harika gidiyorsun, böyle devam!"
           }
         }
       }
@@ -6937,6 +7909,12 @@
             "state": "translated",
             "value": "Уже на полпути, не сдавайтесь!"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yarısı bitti, güçlü kal!"
+          }
         }
       }
     },
@@ -6983,6 +7961,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Продолжайте, вы справитесь!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Devam et, bunu yapabilirsin!"
           }
         }
       }
@@ -7031,6 +8015,12 @@
             "state": "translated",
             "value": "Вы молодец, уже почти у цели!"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Büyük çaba, neredeyse bitti!"
+          }
         }
       }
     },
@@ -7077,6 +8067,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Великолепный прогресс, не останавливайтесь!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Muhteşem gidiyorsun, zorlamaya devam!"
           }
         }
       }
@@ -7125,6 +8121,12 @@
             "state": "translated",
             "value": "Бегите в таком темпе, чтобы вы могли спокойно разговаривать. Перерывы с ходьбой являются частью тренировки."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hâlâ konuşabileceğin bir tempoda koş. Yürüyüş molaları antrenmanın bir parçası."
+          }
         }
       }
     },
@@ -7171,6 +8173,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вы справились с первой неделей — ваше тело уже адаптируется. Сохраняйте спокойный темп."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "1. haftayı bitirdin — vücudun şimdiden uyum sağlıyor. Tempoyu rahat tut."
           }
         }
       }
@@ -7219,6 +8227,12 @@
             "state": "translated",
             "value": "Более продолжительные интервалы на этой неделе. Сфокусируйтесь на размеренном дыхании: вдох на 2 шага, выдох на 2 шага."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bu hafta daha uzun aralıklar var. İstikrarlı nefese odaklan: 2 adım al, 2 adım ver."
+          }
         }
       }
     },
@@ -7265,6 +8279,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Четыре разных дистанции сегодня. Это укрепляет силу воли вместе с вашим телом."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bugün dört farklı koşu uzunluğu. Bu, kondisyon kadar zihinsel dayanıklılık da geliştirir."
           }
         }
       }
@@ -7313,6 +8333,12 @@
             "state": "translated",
             "value": "День 3 на этой неделе знаменательный: 20 минут непрерывного бега. Вы это заслужили."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bu haftanın 3. günü ünlü kilometre taşı: 20 dakika kesintisiz koşu. Bunu hak ettin."
+          }
         }
       }
     },
@@ -7359,6 +8385,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вы более чем на полпути. Продолжительные забеги увеличиваются вашу аэробную силу."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yarıyı geçtin. Uzun koşular aerobik temelini kuruyor."
           }
         }
       }
@@ -7407,6 +8439,12 @@
             "state": "translated",
             "value": "25 минут непрерывности. Не каждый может достичь такого — теперь вы бегун."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "25 dakika kesintisiz. Herkes buraya kadar gelemez — artık bir koşucusun."
+          }
         }
       }
     },
@@ -7453,6 +8491,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "28 минут. Цель почти достигнута. Не ускоряйтесь — сохраните силы на следующую неделю."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "28 dakika. Hedef neredeyse elinde. Hızlanma — onu gelecek haftaya sakla."
           }
         }
       }
@@ -7501,6 +8545,12 @@
             "state": "translated",
             "value": "Выпускная неделя. 30 минут, а потом праздновать!"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bu mezuniyet haftası. 30 dakika, sonra kutla!"
+          }
         }
       }
     },
@@ -7547,6 +8597,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Возврат к интервалам для адаптации вашего организма к длительным забегам. Не геройствуйте."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Daha uzun mesafe için temelini yeniden kurmak üzere aralıklara dönüyoruz. Rahat kal."
           }
         }
       }
@@ -7595,6 +8651,12 @@
             "state": "translated",
             "value": "Более продолжительные комбинированные усилия. Сохраняйте разговорный темп на всей дистанции."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Daha uzun birleşik çabalar. Tempoyu baştan sona sohbet düzeyinde tut."
+          }
         }
       }
     },
@@ -7641,6 +8703,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "40 минут бега с коротким перерывом. Сохраняйте спокойствие и не устраивайте гонку."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kısa bir molayla 40 dakika koşu. Rahatla ve yarışma."
           }
         }
       }
@@ -7689,6 +8757,12 @@
             "state": "translated",
             "value": "50 минут. Если вы сможете это сделать, то до 10 км уже рукой подать."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "50 dakika. Bunu yapabiliyorsan 10K bitişi elinin altında."
+          }
         }
       }
     },
@@ -7735,6 +8809,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "60 минут — ваш выпускной бег на 10 км. Покажите всем!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "60 dakika — 10K mezuniyet koşun. Git ve al onu!"
           }
         }
       }
@@ -7783,6 +8863,12 @@
             "state": "translated",
             "value": "Меняем привычки после бега на 5 км. Бегите налегке, не надо лезть из кожи вон."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "C25K sonrası alışkanlığı yeniden kuruyorsun. Rahat koş, henüz zorlamana gerek yok."
+          }
         }
       }
     },
@@ -7829,6 +8915,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Два продолжительных блока с коротким перерывом. Старайтесь поддерживать стабильный темп в обоих блоках."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kısa bir dinlenmeyle iki uzun blok. Her iki koşuda da eşit bir tempo hedefle."
           }
         }
       }
@@ -7877,6 +8969,12 @@
             "state": "translated",
             "value": "Увеличение общего объёма. Сфокусируйтесь на постоянном усилии между обоими интервалами."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Toplam hacim artıyor. Her iki aralıkta da tutarlı çabaya odaklan."
+          }
         }
       }
     },
@@ -7923,6 +9021,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Почти 45 минут бега. Это настоящий десятикилометровый фитнес."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Neredeyse 45 dakika koşu. Gerçek 10K kondisyonu geliştiriyorsun."
           }
         }
       }
@@ -7971,6 +9075,12 @@
             "state": "translated",
             "value": "50 минут на этой неделе. Полный выпускной забег на 60 минут всего в одной неделе от вас."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bu hafta 50 dakika. Tam 60 dakikalık mezuniyet koşusu bir hafta uzakta."
+          }
         }
       }
     },
@@ -8017,6 +9127,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "60 минут — финишная прямая. Отлично сработано!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "60 dakika — B210K bitiş çizgisi. Aferin!"
           }
         }
       }
@@ -8065,6 +9181,12 @@
             "state": "translated",
             "value": "33 минут простого комфортного бега. Не переживайте насчёт темпа, просто финишируйте."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "33 dakika rahat, hafif koşu. Tempoyu dert etme, sadece bitir."
+          }
         }
       }
     },
@@ -8111,6 +9233,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "40 минут. Каждую неделю вы улучшаете естественную выносливость."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "40 dakika. Her hafta gerçek dayanıklılık geliştiriyorsun."
           }
         }
       }
@@ -8159,6 +9287,12 @@
             "state": "translated",
             "value": "Почти 50 минут. Вы уже далеко за пределами зоны комфорта обычного бегуна."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Neredeyse 50 dakika. Ortalama koşucunun konfor alanının çok ötesindesin."
+          }
         }
       }
     },
@@ -8205,6 +9339,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "55 минут. Целый час бега всего в одной неделе от вас."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "55 dakika. Bir saatlik hedef iyi bir hafta uzakta."
           }
         }
       }
@@ -8253,6 +9393,12 @@
             "state": "translated",
             "value": "60 минут — вот и оно. Мы можете бежать целый час!"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "60 dakika — işte bu. Sen bir saat koşucususun!"
+          }
         }
       }
     },
@@ -8299,6 +9445,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Короткие и сильные толчки увеличивают скорость ног. Прикладывайте чуть больше усилий, чем во время обычного бега на 5 км."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kısa, sert çabalar bacak hızını geliştirir. Her zamanki 5K temponun biraz üstüne çık."
           }
         }
       }
@@ -8347,6 +9499,12 @@
             "state": "translated",
             "value": "Пятиминутные интервалы лучше всего подходят для повышения аэробной силы."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "5 dakikalık aralıklar aerobik güç geliştirmek için ideal noktadır."
+          }
         }
       }
     },
@@ -8393,6 +9551,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Комбинированная тренировка: более продолжительные интервалы с бегом на финише. Это улучшает выносливость при соревновательном беге."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kombine antrenman: bitiriş koşusuyla daha uzun aralıklar. Bu, yarış dayanıklılığı kurar."
           }
         }
       }
@@ -8441,6 +9605,12 @@
             "state": "translated",
             "value": "2 пятнадцатиминутных пробежки — достойная аэробная нагрузка, которая напрямую приведёт к более быстрому бегу на 5 км."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "İki 15 dakikalık koşu — doğrudan daha hızlı bir 5K’ya yansıyacak sağlam aerobik iş."
+          }
         }
       }
     },
@@ -8487,6 +9657,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Выпускной забег: 30 минут при усилиях как при беге на 5 км. Узнайте, насколько далеко вы пробежите — должно ощущаться здорово."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mezuniyet koşusu: 5K çabasında 30 dakika. Ne kadar gidebildiğine bak — iyi hissettirmeli."
           }
         }
       }
@@ -8535,6 +9711,12 @@
             "state": "translated",
             "value": "Исправление: счётчик завершения больше не зависает, и объявление о завершении больше не обрывается при блокировке экрана"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Düzeltme: tamamlanma sayacı artık donmuyor ve ekran kilitlendiğinde tamamlanma anonsu artık yarıda kesilmiyor"
+          }
         }
       }
     },
@@ -8544,38 +9726,44 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Training"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Entrenamiento"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Séance"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Adestramento"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Treino"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Тренировка"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenman"
           }
         }
       }
@@ -8598,38 +9786,44 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Trainingseinheiten"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Sesiones"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Séances"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Sesións"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Sessões"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Сессии"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Antrenmanlar"
           }
         }
       }
@@ -8678,6 +9872,12 @@
             "state": "translated",
             "value": "тренировка"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "antrenman"
+          }
         }
       }
     },
@@ -8724,6 +9924,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "тренировок"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "antrenman"
           }
         }
       }
@@ -8772,6 +9978,12 @@
             "state": "translated",
             "value": "Неделя %1$lld"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$lld. Hafta"
+          }
         }
       }
     },
@@ -8818,6 +10030,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "День %1$lld"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$lld. Gün"
           }
         }
       }
@@ -8867,6 +10085,12 @@
             "state": "translated",
             "value": "%1$@: %2$@ осталось"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@: %2$@ kaldı"
+          }
         }
       }
     },
@@ -8914,6 +10138,1125 @@
           "stringUnit": {
             "state": "translated",
             "value": "На паузе: %1$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Duraklatıldı: %1$@"
+          }
+        }
+      }
+    },
+    "settings_vibration_strength": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vibration strength"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vibrationsstärke"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intensidad de la vibración"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intensité des vibrations"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intensidade da vibración"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intensidade da vibração"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Сила вибрации"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Titreşim gücü"
+          }
+        }
+      }
+    },
+    "vibration_strength_light": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Leicht"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Suave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Légère"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Suave"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Leve"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Слабая"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hafif"
+          }
+        }
+      }
+    },
+    "vibration_strength_medium": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medium"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mittel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Media"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Moyenne"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Media"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Média"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Средняя"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Orta"
+          }
+        }
+      }
+    },
+    "vibration_strength_strong": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strong"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Stark"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fuerte"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Forte"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Forte"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Forte"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Сильная"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Güçlü"
+          }
+        }
+      }
+    },
+    "settings_tts_test_button": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test voice"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Stimme testen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Probar voz"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tester la voix"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Probar a voz"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Testar voz"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Проверить голос"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sesi test et"
+          }
+        }
+      }
+    },
+    "settings_tts_test_phrase": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C2K voice announcements are working."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Die Sprachansagen von C2K funktionieren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Los anuncios de voz de C2K funcionan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Les annonces vocales de C2K fonctionnent."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Os anuncios de voz de C2K funcionan."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Os anúncios de voz do C2K estão funcionando."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Голосовые объявления C2K работают."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "C2K sesli anonsları çalışıyor."
+          }
+        }
+      }
+    },
+    "settings_tts_open_ios_settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open iOS settings"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iOS-Einstellungen öffnen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abrir ajustes de iOS"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ouvrir les réglages iOS"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abrir os axustes de iOS"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abrir ajustes do iOS"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Открыть настройки iOS"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iOS ayarlarını aç"
+          }
+        }
+      }
+    },
+    "settings_tts_test_help": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you hear nothing, check the silent switch and volume, and make sure a voice is installed under Settings › Accessibility › Spoken Content › Voices."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wenn du nichts hörst, prüfe den Stummschalter und die Lautstärke und stelle sicher, dass unter Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen eine Stimme installiert ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Si no oyes nada, revisa el interruptor de silencio y el volumen, y asegúrate de que haya una voz instalada en Ajustes › Accesibilidad › Contenido leído › Voces."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Si vous n’entendez rien, vérifiez le bouton silencieux et le volume, et assurez-vous qu’une voix est installée dans Réglages › Accessibilité › Contenu énoncé › Voix."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Se non escoitas nada, comproba o interruptor de silencio e o volume, e asegúrate de ter unha voz instalada en Axustes › Accesibilidade › Contido falado › Voces."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Se você não ouvir nada, verifique o botão de silêncio e o volume e confirme que há uma voz instalada em Ajustes › Acessibilidade › Conteúdo Falado › Vozes."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Если ничего не слышно, проверьте переключатель звука и громкость и убедитесь, что в разделе «Настройки › Универсальный доступ › Проговаривание › Голоса» установлен голос."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hiçbir şey duymuyorsan sessiz anahtarını ve ses seviyesini kontrol et ve Ayarlar › Erişilebilirlik › Sözlü İçerik › Sesler bölümünde bir sesin yüklü olduğundan emin ol."
+          }
+        }
+      }
+    },
+    "settings_tts_status_initializing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wird vorbereitet…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preparando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Préparation…"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preparando…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preparando…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Подготовка…"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hazırlanıyor…"
+          }
+        }
+      }
+    },
+    "settings_tts_status_playing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Playing…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wird abgespielt…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reproduciendo…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lecture…"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reproducindo…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reproduzindo…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Воспроизведение…"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Çalıyor…"
+          }
+        }
+      }
+    },
+    "settings_tts_status_finished": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voice test finished."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sprachtest abgeschlossen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Prueba de voz finalizada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Test vocal terminé."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Proba de voz rematada."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Teste de voz concluído."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Проверка голоса завершена."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ses testi tamamlandı."
+          }
+        }
+      }
+    },
+    "settings_tts_status_voice_unavailable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No voice is available for this language. Install one in iOS settings."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Für diese Sprache ist keine Stimme verfügbar. Installiere eine in den iOS-Einstellungen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No hay ninguna voz disponible para este idioma. Instala una en los ajustes de iOS."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucune voix n’est disponible pour cette langue. Installez-en une dans les réglages iOS."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Non hai ningunha voz dispoñible para este idioma. Instala unha nos axustes de iOS."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nenhuma voz disponível para este idioma. Instale uma nos ajustes do iOS."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Для этого языка нет доступного голоса. Установите его в настройках iOS."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bu dil için ses yok. iOS ayarlarından bir tane yükle."
+          }
+        }
+      }
+    },
+    "settings_tts_status_audio_failure": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not start audio output. Check that nothing else is holding audio."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Audioausgabe konnte nicht gestartet werden. Prüfe, ob eine andere App den Ton belegt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No se pudo iniciar la salida de audio. Comprueba que nada más esté usando el audio."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Impossible de démarrer la sortie audio. Vérifiez qu’aucune autre app n’utilise le son."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Non se puido iniciar a saída de audio. Comproba que nada máis estea usando o son."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Não foi possível iniciar a saída de áudio. Verifique se nada mais está usando o áudio."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Не удалось запустить вывод звука. Убедитесь, что звук не занят другим приложением."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ses çıkışı başlatılamadı. Başka bir şeyin sesi tutmadığından emin ol."
+          }
+        }
+      }
+    },
+    "settings_tts_status_synth_failure": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speech synthesis failed. Try again."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sprachsynthese fehlgeschlagen. Versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La síntesis de voz falló. Inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La synthèse vocale a échoué. Réessayez."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A síntese de voz fallou. Téntao de novo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A síntese de voz falhou. Tente novamente."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Синтез речи не удался. Попробуйте ещё раз."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Konuşma sentezi başarısız oldu. Tekrar dene."
+          }
+        }
+      }
+    },
+    "settings_language_section": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sprache"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Idioma"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Langue"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Idioma"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Idioma"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Язык"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dil"
+          }
+        }
+      }
+    },
+    "settings_language_label": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App language"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "App-Sprache"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Idioma de la app"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Langue de l’app"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Idioma da app"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Idioma do app"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Язык приложения"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Uygulama dili"
+          }
+        }
+      }
+    },
+    "settings_language_system": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System default"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Systemstandard"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Predeterminado del sistema"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Réglage du système"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Predeterminado do sistema"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Padrão do sistema"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Как в системе"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sistem varsayılanı"
+          }
+        }
+      }
+    },
+    "settings_language_restart_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restart required"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Neustart erforderlich"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Se requiere reiniciar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Redémarrage requis"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Requírese reiniciar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reinício necessário"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Требуется перезапуск"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yeniden başlatma gerekli"
+          }
+        }
+      }
+    },
+    "settings_language_restart_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C2K needs to restart to change the language."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "C2K muss neu gestartet werden, um die Sprache zu ändern."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "C2K debe reiniciarse para cambiar el idioma."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "C2K doit redémarrer pour changer de langue."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "C2K debe reiniciarse para cambiar o idioma."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O C2K precisa reiniciar para mudar o idioma."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Для смены языка C2K нужно перезапустить."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dili değiştirmek için C2K’nin yeniden başlaması gerekiyor."
+          }
+        }
+      }
+    },
+    "settings_language_restart_now": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restart now"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jetzt neu starten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reiniciar ahora"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Redémarrer maintenant"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reiniciar agora"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reiniciar agora"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Перезапустить сейчас"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Şimdi yeniden başlat"
+          }
+        }
+      }
+    },
+    "settings_language_open_ios_settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open iOS language settings"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iOS-Spracheinstellungen öffnen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abrir ajustes de idioma de iOS"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ouvrir les réglages de langue iOS"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abrir os axustes de idioma de iOS"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abrir ajustes de idioma do iOS"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Открыть языковые настройки iOS"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iOS dil ayarlarını aç"
           }
         }
       }

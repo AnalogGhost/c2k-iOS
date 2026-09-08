@@ -22,11 +22,15 @@ final class WorkoutManager {
     private let ttsManager = TTSManager()
     private let backgroundAudio = BackgroundAudioManager()
     private let nowPlaying = NowPlayingManager()
+    private let haptics: HapticCuePlaying
     private var pollingTask: Task<Void, Never>?
     private var currentSessionId: UUID?
     private var repository: SessionRepository?
 
-    private init() {}
+    // `haptics` is injectable so WorkoutManager can be exercised with a spy.
+    init(haptics: HapticCuePlaying = HapticsPlayer()) {
+        self.haptics = haptics
+    }
 
     func start(
         programId: String, week: Int, day: Int,
@@ -46,6 +50,10 @@ final class WorkoutManager {
         backgroundAudio.start()
         ttsManager.setRate(prefs.ttsSpeechRate)
         ttsManager.setVolume(prefs.ttsVolume)
+        ttsManager.setLanguage(prefs.appLanguage.bcp47 ?? Locale.preferredLanguages.first)
+
+        haptics.configure(strength: prefs.vibrationStrength)
+        if prefs.vibrationEnabled { haptics.start() }
 
         nowPlaying.onPause = { [weak self] in self?.pause() }
         nowPlaying.onResume = { [weak self] in self?.resume() }
@@ -131,7 +139,7 @@ final class WorkoutManager {
                 switch state {
                 case .active(let s):
                     if s.intervalIndex != lastIntervalIndex && lastIntervalIndex >= 0 && vibrationEnabled {
-                        self.vibrateInterval()
+                        self.haptics.play(s.currentInterval.type == .run ? .runIntervalChange : .intervalChange)
                     }
                     lastIntervalIndex = s.intervalIndex
                     self.updateNowPlaying(s, isPlaying: true)
@@ -140,7 +148,7 @@ final class WorkoutManager {
                     self.updateNowPlaying(s, isPlaying: false)
 
                 case .completed(let sessionId, let elapsed):
-                    if vibrationEnabled { self.vibrateCompletion() }
+                    if vibrationEnabled { self.haptics.play(.workoutComplete) }
                     let distance = self.locationTracker?.totalDistanceMeters ?? 0
                     repository.finishSession(id: sessionId, durationSeconds: elapsed,
                                              distanceMeters: distance, completed: true)
@@ -189,6 +197,7 @@ final class WorkoutManager {
         locationTracker?.stop()
         locationTracker = nil
         ttsManager.shutdown()
+        haptics.stop()
         backgroundAudio.stop()
         nowPlaying.stop()
         UIApplication.shared.isIdleTimerDisabled = false
@@ -197,20 +206,5 @@ final class WorkoutManager {
         currentSessionId = nil
         currentSpeedMps = nil
         repository = nil
-    }
-
-    // MARK: - Haptics
-
-    private func vibrateInterval() {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
-    }
-
-    private func vibrateCompletion() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-            generator.notificationOccurred(.success)
-        }
     }
 }

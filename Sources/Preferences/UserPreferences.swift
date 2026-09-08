@@ -25,6 +25,13 @@ final class UserPreferences {
         didSet { defaults.set(vibrationEnabled, forKey: "vibration_enabled") }
     }
 
+    var vibrationStrength: VibrationStrength = {
+        let raw = UserDefaults.standard.string(forKey: "vibration_strength") ?? VibrationStrength.medium.rawValue
+        return VibrationStrength(rawValue: raw) ?? .medium
+    }() {
+        didSet { defaults.set(vibrationStrength.rawValue, forKey: "vibration_strength") }
+    }
+
     var ttsSpeechRate: Float = {
         let v = UserDefaults.standard.float(forKey: "tts_speech_rate")
         return v == 0 ? 1.0 : v
@@ -80,5 +87,11 @@ final class UserPreferences {
     // one-time repair pass runs at most once per install.
     var gpsDistancesRecomputed: Bool = (UserDefaults.standard.object(forKey: "gps_distances_recomputed") as? Bool) ?? false {
         didSet { defaults.set(gpsDistancesRecomputed, forKey: "gps_distances_recomputed") }
+    }
+
+    // Round-trips through the AppleLanguages override, which iOS reads at launch — so a
+    // change only takes effect after the app restarts.
+    var appLanguage: AppLanguage = LanguageController.current() {
+        didSet { LanguageController.apply(appLanguage) }
     }
 }
