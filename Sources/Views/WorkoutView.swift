@@ -70,18 +70,12 @@ struct WorkoutView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    if case .completed = workoutManager.workoutState {
-                        path.removeAll()
-                    } else {
-                        showStopDialog = true
-                    }
-                } label: {
-                    if case .completed = workoutManager.workoutState {
+            // Only the completed screen needs a back control; during an active or
+            // paused run the on-screen Stop button handles leaving.
+            if case .completed = workoutManager.workoutState {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button { path.removeAll() } label: {
                         Image(systemName: "chevron.left")
-                    } else {
-                        EmptyView()
                     }
                 }
             }
