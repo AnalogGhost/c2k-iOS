@@ -11,7 +11,9 @@ Programs:
 Features:
 • Audible voice prompts — "Start running", "Walk for 90 seconds", countdown warnings
 • Customizable coaching — adjust voice speed/volume, countdown warning timing, and mid-interval cues
-• Vibration cues as an alternative or addition to voice
+• Test voice playback before a workout
+• Vibration cues as an alternative or addition to voice, with Light, Medium, and Strong strength presets
+• Manual language selection, independent of your device language
 • Background workout timer — continues with the screen off
 • Lock screen controls — see interval progress and pause/resume from the lock screen or Control Center
 • GPS tracking (optional) — records distance and pace; works without GPS too
@@ -19,7 +21,7 @@ Features:
 • Workout history — session log with total distance, time, best pace, longest run, and calorie estimates
 • Progress tracking — remembers which weeks and days you've completed, with the option to reset
 • In-app running guide — FAQ covering pacing, gear, and terminology
-• Available in 7 languages — English, German, Spanish, French, Galician, Portuguese (Brazil), Russian
+• Available in 8 languages — English, German, Spanish, French, Galician, Portuguese (Brazil), Russian, Turkish
 • Works entirely offline — no data ever leaves your device
 
 C2K is free software released under the GNU General Public License v3.

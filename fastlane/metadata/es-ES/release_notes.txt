@@ -1,0 +1,7 @@
+Esta versión pone la app de iOS a la par con la versión de Android:
+
+• Compatibilidad con turco
+• Intensidad de vibración ajustable: Suave, Media y Fuerte
+• Selección manual de idioma en la app, independiente del idioma del dispositivo
+• Botón «Probar voz» en Ajustes
+• Los anuncios de voz siguen el idioma elegido en la app

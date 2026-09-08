@@ -18,7 +18,7 @@ metadata/
     release_notes.txt               "What's New" for the current version
     support_url.txt                 Support URL
     privacy_url.txt                 Privacy policy URL
-  de-DE/ es-ES/ fr-FR/ pt-BR/ ru/   Other locales — see each TRANSLATE.md
+  de-DE/ es-ES/ fr-FR/ pt-BR/ ru/ tr/   Other locales (same files as en-US, minus the URLs)
   review_information/
     notes.txt                       Notes for App Review
     demo_user.txt / demo_password.txt   Empty — the app has no accounts
@@ -26,12 +26,13 @@ metadata/
 
 ## Locales
 
-Store copy covers `en-US` plus `de-DE`, `es-ES`, `fr-FR`, `pt-BR`, `ru`.
+Store copy covers `en-US` plus `de-DE`, `es-ES`, `fr-FR`, `pt-BR`, `ru`, `tr`.
 The app also ships **Galician (`gl`)**, but App Store Connect has no Galician
 storefront localization, so there is no `gl` directory here.
 
-Non-English locale directories currently contain only a `TRANSLATE.md`;
-`deliver` skips a locale until it has `.txt` files.
+The non-English copy is **machine-drafted and needs a native review** before those
+locales are enabled in App Store Connect. Until then, push `en-US` only
+(`fastlane metadata` uploads every populated dir).
 
 ## Review contact details
 

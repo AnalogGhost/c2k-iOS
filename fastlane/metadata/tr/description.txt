@@ -1,0 +1,27 @@
+C2K, seni kanepeden 5K, 10K ve ötesine taşıyan, iOS için ücretsiz ve açık kaynak bir koşu koçudur — reklamsız ve takipsiz.
+
+Programlar:
+• Pre-C25K — mutlak yeni başlayanlar için 3 haftalık nazik başlangıç
+• Couch to 5K (C25K) — 9 haftalık program, haftada 3 koşu
+• Bridge to 10K (B210K) — C25K mezunları için 6 haftalık köprü
+• Couch to 10K (C210K) — 14 haftalık program, C25K’den devam eder
+• One Hour Runner — 30’dan 60 dakikaya kesintisiz koşuya 13 haftalık ilerleme
+• 5K Improver — 5K’yı zaten tamamlayabilenler için 8 haftalık hız ve dayanıklılık programı
+
+Özellikler:
+• Sesli yönlendirmeler — “Koşmaya başla”, “90 saniye yürü”, geri sayım uyarıları
+• Özelleştirilebilir koçluk — ses hızı/seviyesi, uyarı zamanlaması ve aralık ortası teşvikleri
+• Antrenmandan önce sesi test et
+• Sesin yerine ya da yanında titreşim ipuçları; Hafif, Orta ve Güçlü seviyeleri
+• Cihaz dilinden bağımsız, elle dil seçimi
+• Arka plan zamanlayıcı — ekran kapalıyken sürer
+• Kilit ekranı denetimleri — aralık ilerlemesini gör, duraklat/sürdür
+• GPS takibi (isteğe bağlı) — mesafe ve tempoyu kaydeder; GPS olmadan da çalışır
+• Koşu bandı modu — GPS olmadan iç mekân koşuları
+• Antrenman geçmişi — toplam mesafe, süre, en iyi tempo, en uzun koşu ve kalori tahmini
+• İlerleme takibi — tamamladığın hafta ve günleri hatırlar, sıfırlama seçeneğiyle
+• Uygulama içi koşu rehberi — tempo, ekipman ve terimlerle ilgili SSS
+• 8 dilde — İngilizce, Almanca, İspanyolca, Fransızca, Galiçyaca, Portekizce (Brezilya), Rusça, Türkçe
+• Tamamen çevrimdışı — hiçbir veri cihazından çıkmaz
+
+C2K, GNU General Public License v3 altında yayımlanan özgür yazılımdır.

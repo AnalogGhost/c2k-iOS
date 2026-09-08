@@ -1,0 +1,7 @@
+Bu sürüm iOS uygulamasını Android sürümüyle aynı özellik seviyesine getiriyor:
+
+• Türkçe dil desteği
+• Ayarlanabilir titreşim gücü — Hafif, Orta ve Güçlü
+• Cihaz dilinden bağımsız, uygulama içi elle dil seçimi
+• Ayarlar’da “Sesi test et” düğmesi
+• Sesli anonslar artık seçtiğin uygulama dilini izliyor

@@ -1,0 +1,7 @@
+Cette version met l’app iOS au niveau de la version Android :
+
+• Prise en charge du turc
+• Intensité des vibrations réglable — Légère, Moyenne et Forte
+• Choix manuel de la langue dans l’app, indépendant de celle de l’appareil
+• Bouton « Tester la voix » dans les réglages
+• Les annonces vocales suivent la langue choisie dans l’app

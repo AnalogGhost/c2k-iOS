@@ -15,7 +15,8 @@ languages([
   "es-ES",
   "fr-FR",
   "pt-BR",
-  "ru"
+  "ru",
+  "tr"
 ])
 
 scheme("CtoKUITests")

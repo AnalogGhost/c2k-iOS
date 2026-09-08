@@ -53,8 +53,10 @@ This mirrors the Android app (`~/Projects/c2k`).
    The build number is set automatically to `latest TestFlight build + 1`.
 
 2. **Write the release notes.** Replace `fastlane/metadata/en-US/release_notes.txt`
-   with this version's "What's New". Translate into other locales if their
-   directories have been populated.
+   with this version's "What's New", then update `release_notes.txt` in each of the
+   `de-DE/ es-ES/ fr-FR/ pt-BR/ ru/ tr/` dirs (their listing copy is machine-drafted
+   and marked for native review in `fastlane/metadata/README.md` — push `en-US` only
+   until a native pass lands).
 
 3. **Refresh screenshots** if the UI changed:
 

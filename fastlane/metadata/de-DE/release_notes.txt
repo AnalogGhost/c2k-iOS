@@ -1,0 +1,7 @@
+Diese Version bringt die iOS-App auf den Funktionsstand der Android-Version:
+
+• Türkische Sprachunterstützung
+• Einstellbare Vibrationsstärke – Leicht, Mittel und Stark
+• Manuelle Sprachauswahl in der App, unabhängig von der Gerätesprache
+• „Stimme testen“-Schaltfläche in den Einstellungen
+• Sprachansagen folgen jetzt der gewählten App-Sprache

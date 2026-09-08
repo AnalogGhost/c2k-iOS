@@ -9,6 +9,7 @@
   fr-FR: "Commencez où vous êtes. Courez votre premier 5K"
   pt-BR: "Comece de onde está. Corra seus primeiros 5K"
   ru: "Начните с нуля. Пробегите свои первые 5 км"
+  tr: "Olduğun yerden başla. İlk 5K'nı koş"
 02_program:
   en-US: "A plan that grows with you"
   de-DE: "Dein ganzer Trainingsplan im Blick"
@@ -16,6 +17,7 @@
   fr-FR: "Tout votre plan d'entraînement en un coup d'œil"
   pt-BR: "Todo o seu plano de treino em um só lugar"
   ru: "Весь план тренировок как на ладони"
+  tr: "Tüm antrenman planınızı görün"
 03_preview:
   en-US: "Preview every workout before you start"
   de-DE: "Vorschau für jedes Training"
@@ -23,6 +25,7 @@
   fr-FR: "Aperçu de chaque entraînement avant de commencer"
   pt-BR: "Prévia de cada treino antes de começar"
   ru: "Просмотр тренировки перед началом"
+  tr: "Başlamadan önce her antrenmanı önizleyin"
 04_workout:
   en-US: "Live run/walk coaching, hands-free"
   de-DE: "Lauf-/Gehintervalle live begleitet"
@@ -30,6 +33,7 @@
   fr-FR: "Intervalles course/marche en direct"
   pt-BR: "Intervalos de corrida e caminhada ao vivo"
   ru: "Интервалы бега и ходьбы в реальном времени"
+  tr: "Canlı koşu/yürüyüş yönlendirmesi, eller serbest"
 05_history:
   en-US: "Track pace, distance, and progress"
   de-DE: "Tempo, Distanz und Kalorien im Blick"
@@ -37,6 +41,7 @@
   fr-FR: "Allure, distance et calories suivies"
   pt-BR: "Ritmo, distância e calorias acompanhados"
   ru: "Темп, дистанция и калории под рукой"
+  tr: "Tempo, mesafe ve ilerlemeyi takip edin"
 06_guide:
   en-US: "Private, offline, and built to last"
   de-DE: "Integrierter Lauf-Ratgeber, keine Fragen offen"
@@ -44,6 +49,7 @@
   fr-FR: "Guide de course intégré, sans hésitation"
   pt-BR: "Guia de corrida integrado, sem dúvidas"
   ru: "Встроенный гид по бегу — никаких вопросов"
+  tr: "Özel, çevrimdışı ve kalıcı"
 07_settings:
   en-US: "Tune voice, vibration, and language"
   de-DE: "Keine Werbung. Kein Tracking. Kein Konto."
@@ -51,3 +57,4 @@
   fr-FR: "Sans publicité. Sans suivi. Sans compte."
   pt-BR: "Sem anúncios. Sem rastreamento. Sem conta."
   ru: "Без рекламы. Без отслеживания. Без аккаунта."
+  tr: "Sesi, titreşimi ve dili ayarlayın"

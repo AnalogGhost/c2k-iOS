@@ -1,0 +1,27 @@
+C2K est un coach de course libre et open source pour iOS qui vous mène du canapé à 5 km, 10 km et au-delà, sans publicité et sans pistage.
+
+Programmes :
+• Pre-C25K — démarrage en douceur de 3 semaines pour les grands débutants
+• Couch to 5K (C25K) — programme de 9 semaines, 3 séances par semaine
+• Bridge to 10K (B210K) — passerelle de 6 semaines pour les diplômés du C25K
+• Couch to 10K (C210K) — programme de 14 semaines, dans la continuité du C25K
+• One Hour Runner — progression de 13 semaines de 30 à 60 minutes de course continue
+• 5K Improver — programme de 8 semaines de vitesse et d’endurance pour ceux qui bouclent déjà un 5 km
+
+Fonctionnalités :
+• Annonces vocales — « Commencez à courir », « Marchez 90 secondes », alertes de décompte
+• Coaching personnalisable — vitesse/volume de la voix, minutage des alertes et encouragements à mi-intervalle
+• Testez la voix avant une séance
+• Vibrations en complément ou à la place de la voix, avec les niveaux Légère, Moyenne et Forte
+• Choix manuel de la langue, indépendant de celle de l’appareil
+• Minuteur en arrière-plan — continue écran éteint
+• Commandes sur l’écran verrouillé — progression de l’intervalle et pause/reprise
+• Suivi GPS (facultatif) — enregistre distance et allure ; fonctionne aussi sans GPS
+• Mode tapis — courses en intérieur sans GPS
+• Historique — distance totale, temps, meilleure allure, plus longue course et estimation des calories
+• Suivi de progression — mémorise les semaines et jours terminés, avec réinitialisation possible
+• Guide de course intégré — FAQ sur l’allure, l’équipement et le vocabulaire
+• Disponible en 8 langues — anglais, allemand, espagnol, français, galicien, portugais (Brésil), russe, turc
+• Entièrement hors ligne — aucune donnée ne quitte votre appareil
+
+C2K est un logiciel libre publié sous licence GNU General Public License v3.

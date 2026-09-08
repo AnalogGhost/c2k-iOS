@@ -1,1 +1,7 @@
-Bug fixes and performance improvements.
+This release brings the iOS app to feature parity with the Android version:
+
+• Turkish language support
+• Adjustable vibration strength — Light, Medium, and Strong
+• Manual in-app language selection, independent of your device language
+• A "Test voice" button in Settings
+• Voice announcements now follow your chosen app language
