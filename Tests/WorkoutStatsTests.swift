@@ -40,9 +40,13 @@ final class WorkoutStatsTests: XCTestCase {
     }
 
     func testStreakSurvivesRestDaysWithinTheSameWeek() {
-        // Three sessions within the same calendar week (e.g. Mon/Wed/Fri) with rest days
-        // between them should still be a streak of 1 week, not broken by the day-level gaps.
-        let now = Date.now
+        // Three sessions within the same calendar week (Mon/Wed/Fri) with rest days between
+        // them should still be a streak of 1 week, not broken by the day-level gaps. Pin
+        // `now` to a Friday so the 4-day lookback stays inside one ISO week regardless of
+        // when the test runs.
+        var comps = DateComponents()
+        comps.year = 2026; comps.month = 6; comps.day = 12 // Friday
+        let now = utc.date(from: comps)!
         let sessions = [0, 2, 4].map { session(daysAgo: $0, now: now, calendar: utc) }
         XCTAssertEqual(WorkoutStats.streak(sessions: sessions, now: now, calendar: utc), 1)
     }
