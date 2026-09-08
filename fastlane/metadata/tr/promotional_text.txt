@@ -1,1 +1,1 @@
-iOS için ücretsiz, açık kaynak koşu koçu. Hesap yok, abonelik yok, reklam yok, takip yok.
+Açık kaynaklı C25K/C210K koşu antrenörü. Reklamsız, takipsiz.

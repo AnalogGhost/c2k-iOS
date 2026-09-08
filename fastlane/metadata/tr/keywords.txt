@@ -1,1 +1,1 @@
-koşu,c25k,5k,10k,kanepeden 5k,jogging,koç,fitness,çevrimdışı,reklamsız,gps
+koşu,c25k,5k,10k,kanepeden 5k,jogging,antrenör,fitness,çevrimdışı,reklamsız,gps

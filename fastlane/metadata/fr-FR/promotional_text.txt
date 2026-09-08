@@ -1,1 +1,1 @@
-Coach de course libre et open source pour iOS. Sans compte, sans abonnement, sans pub, sans pistage.
+Entraîneur de course C25K/C210K open-source. Sans publicité, sans suivi.

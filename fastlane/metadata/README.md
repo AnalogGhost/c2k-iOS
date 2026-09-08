@@ -30,9 +30,11 @@ Store copy covers `en-US` plus `de-DE`, `es-ES`, `fr-FR`, `pt-BR`, `ru`, `tr`.
 The app also ships **Galician (`gl`)**, but App Store Connect has no Galician
 storefront localization, so there is no `gl` directory here.
 
-The non-English copy is **machine-drafted and needs a native review** before those
-locales are enabled in App Store Connect. Until then, push `en-US` only
-(`fastlane metadata` uploads every populated dir).
+The non-English `description.txt` and `promotional_text.txt` are the contributors'
+native translations, ported from the Android app and adapted for iOS (Android
+permissions block removed, lock-screen bullet added). `subtitle.txt` and
+`keywords.txt` are lightly machine-drafted (short, App-Store-length-limited) and
+worth a quick native check.
 
 ## Review contact details
 

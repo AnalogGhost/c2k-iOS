@@ -1,27 +1,27 @@
-C2K ist ein kostenloser Open-Source-Lauftrainer für iOS, der dich von der Couch bis zu 5 km, 10 km und darüber hinaus bringt – ohne Werbung und ohne Tracking.
+C2K ist ein kostenloser Open-Source-Lauftrainer für iOS, der dich vom Sofa bis zum 5K-, 10K-Lauf und darüber hinaus begleitet — ohne Werbung und ohne Tracking.
 
 Programme:
-• Pre-C25K – 3-wöchiger sanfter Einstieg für absolute Anfänger
-• Couch to 5K (C25K) – 9-wöchiges Programm, 3 Läufe pro Woche
-• Bridge to 10K (B210K) – 6-wöchige Brücke für C25K-Absolventen
-• Couch to 10K (C210K) – 14-wöchiges Programm, schließt an C25K an
-• One Hour Runner – 13-wöchige Steigerung von 30 auf 60 Minuten Dauerlauf
-• 5K Improver – 8-wöchiges Tempo- und Ausdauerprogramm für Läufer, die 5 km schon schaffen
+• Pre-C25K — 3-wöchiger sanfter Einstieg für absolute Anfänger
+• Vom Sofa zum 5K (C25K) — 9-wöchiges Programm, 3 Läufe pro Woche
+• Brücke zum 10K (B210K) — 6-wöchige Brücke für C25K-Absolventen
+• Vom Sofa zum 10K (C210K) — 14-wöchiges Programm, Fortsetzung von C25K
+• One Hour Runner — 13-wöchige Steigerung von 30 auf 60 Minuten Dauerlauf
+• 5K Improver — 8-wöchiges Tempo- und Ausdauerprogramm für Läufer, die bereits 5K schaffen
 
 Funktionen:
-• Sprachansagen – „Lauf los“, „Geh 90 Sekunden“, Countdown-Warnungen
-• Anpassbares Coaching – Sprechtempo/Lautstärke, Countdown-Timing und Zwischenrufe einstellen
-• Stimme vor dem Training testen
-• Vibrationssignale als Alternative oder Ergänzung zur Stimme, mit den Stufen Leicht, Mittel und Stark
-• Manuelle Sprachauswahl, unabhängig von der Gerätesprache
-• Hintergrund-Timer – läuft bei ausgeschaltetem Bildschirm weiter
-• Sperrbildschirm-Steuerung – Intervallfortschritt sehen und pausieren/fortsetzen
-• GPS-Tracking (optional) – zeichnet Distanz und Tempo auf; funktioniert auch ohne GPS
-• Laufbandmodus – Indoor-Läufe ohne GPS
-• Trainingsverlauf – Distanz, Zeit, beste Pace, längster Lauf und Kalorienschätzung
-• Fortschritt – merkt sich abgeschlossene Wochen und Tage, mit Zurücksetzen-Option
-• Integrierter Lauf-Ratgeber – FAQ zu Pace, Ausrüstung und Begriffen
-• In 8 Sprachen verfügbar – Englisch, Deutsch, Spanisch, Französisch, Galicisch, Portugiesisch (Brasilien), Russisch, Türkisch
-• Komplett offline – keine Daten verlassen dein Gerät
+• Hörbare Sprachansagen — „Beginne zu laufen", „Gehe 90 Sekunden", Countdown-Warnungen
+• Anpassbares Coaching — Sprachtempo/-lautstärke, Countdown-Warnzeiten und Zwischenansagen einstellbar
+• Sprachwiedergabe vor dem Training testen
+• Vibrationssignale als Alternative oder Ergänzung zur Sprachausgabe
+• Vibrationsstärke und Sprache anpassen
+• Trainings-Timer im Hintergrund — läuft weiter, auch wenn der Bildschirm aus ist
+• Sperrbildschirm-Steuerung — Intervallfortschritt sehen und vom Sperrbildschirm oder Kontrollzentrum aus pausieren/fortsetzen
+• GPS-Tracking (optional) — zeichnet Distanz und Tempo auf; funktioniert auch ohne GPS
+• Laufbandmodus — für Läufe drinnen ohne GPS
+• Trainingsverlauf — Sitzungsprotokoll mit Gesamtdistanz, -zeit, bestem Tempo, längstem Lauf und geschätztem Kalorienverbrauch
+• Fortschrittsverfolgung — merkt sich, welche Wochen und Tage du abgeschlossen hast, mit Zurücksetzen-Option
+• Integrierter Lauf-Ratgeber — FAQ zu Lauftempo, Ausrüstung und Fachbegriffen
+• Verfügbar in 8 Sprachen — Englisch, Deutsch, Spanisch, Französisch, Galicisch, brasilianisches Portugiesisch, Russisch, Türkisch
+• Komplett offline — keine Daten verlassen dein Gerät
 
-C2K ist freie Software unter der GNU General Public License v3.
+C2K ist freie Software, veröffentlicht unter der GNU General Public License v3.

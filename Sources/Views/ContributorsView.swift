@@ -8,11 +8,10 @@ private struct Contributor {
 }
 
 // Only contributors whose actual work is present in this codebase are listed here. Android
-// additionally credits Andrew Farabee (TTS ducking, completion-announcement cutoff),
-// Ahmet Emre (Turkish translation) and Hamza Bilen (manual language selection) — those iOS
-// bugs were fixed independently, the Turkish here is a machine draft pending native review,
-// and the iOS language picker is a fresh implementation, so none are carried over yet. Add
-// each when their actual work lands.
+// additionally credits Andrew Farabee (TTS ducking, completion-announcement cutoff) and
+// Hamza Bilen (manual language selection) — the iOS bugs were fixed independently and the
+// iOS language picker is a fresh implementation, so neither is carried over. Ahmet Emre's
+// Turkish translation *is* used here (ported from the Android repo), so he is credited.
 private let contributors: [Contributor] = [
     Contributor(
         name: "xmgz",
@@ -25,6 +24,12 @@ private let contributors: [Contributor] = [
         github: "ilyushenok",
         fediverse: nil,
         contributions: [String(localized: "Russian (ru) translation")]
+    ),
+    Contributor(
+        name: "Ahmet Emre",
+        github: "ahmetemrew",
+        fediverse: nil,
+        contributions: [String(localized: "Turkish (tr) translation")]
     ),
 ]
 

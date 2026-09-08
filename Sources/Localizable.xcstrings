@@ -42,7 +42,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "İptal"
           }
         }
@@ -89,7 +89,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Durdur"
           }
         }
@@ -136,7 +136,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Sil"
           }
         }
@@ -183,8 +183,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "KOŞU"
+            "state": "translated",
+            "value": "KOŞ"
           }
         }
       }
@@ -230,7 +230,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "YÜRÜ"
           }
         }
@@ -277,7 +277,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "ISINMA"
           }
         }
@@ -324,7 +324,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "SOĞUMA"
           }
         }
@@ -371,7 +371,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Rahat koşu temposu"
           }
         }
@@ -418,8 +418,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Tempolu yürüyüş"
+            "state": "translated",
+            "value": "Tempolu yürüyüş hızı"
           }
         }
       }
@@ -465,8 +465,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Hafif yürüyüş"
+            "state": "translated",
+            "value": "Hafif yürüyüş hızı"
           }
         }
       }
@@ -482,7 +482,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "kg"
           }
         }
@@ -499,7 +499,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "lb"
           }
         }
@@ -516,7 +516,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "st"
           }
         }
@@ -568,8 +568,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bir program seç"
+            "state": "translated",
+            "value": "Bir program seçin"
           }
         }
       }
@@ -615,7 +615,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Son antrenmanlar"
           }
         }
@@ -662,8 +662,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Antrenman sürüyor — dönmek için dokun"
+            "state": "translated",
+            "value": "Antrenman sürüyor — dönmek için dokunun"
           }
         }
       }
@@ -716,7 +716,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Devam et: %1$@ · %2$lld. Hafta, %3$lld. Gün"
           }
         }
@@ -770,7 +770,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%1$lld hafta"
           }
         }
@@ -923,13 +923,13 @@
             "plural": {
               "one": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "%1$lld haftalık seri 🔥"
                 }
               },
               "other": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "%1$lld haftalık seri 🔥"
                 }
               }
@@ -986,8 +986,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "%1$lld. Hafta, %2$lld. Gün"
+            "state": "translated",
+            "value": "%1$lld. Hafta, %2$lld. Gün"
           }
         }
       }
@@ -1033,8 +1033,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bu, bu programdaki tüm tamamlanmış antrenmanları kalıcı olarak siler. Genel geçmişin korunur."
+            "state": "translated",
+            "value": "Bu işlem bu programdaki tüm tamamlanmış antrenmanları kalıcı olarak kaldıracaktır. Genel antrenman geçmişiniz korunur."
           }
         }
       }
@@ -1080,7 +1080,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "İlerlemeyi sıfırla"
           }
         }
@@ -1127,7 +1127,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Sıfırla"
           }
         }
@@ -1181,8 +1181,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "%2$lld günün %1$lld tanesi tamamlandı"
+            "state": "translated",
+            "value": "%1$lld / %2$lld gün tamamlandı"
           }
         }
       }
@@ -1235,8 +1235,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Devam et: %1$lld. Hafta, %2$lld. Gün →"
+            "state": "translated",
+            "value": "Devam et: %1$lld. Hafta, %2$lld. Gün"
           }
         }
       }
@@ -1289,7 +1289,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%1$lld. Hafta, %2$lld. Gün"
           }
         }
@@ -1336,8 +1336,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Başla"
+            "state": "translated",
+            "value": "Başlat"
           }
         }
       }
@@ -1383,8 +1383,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Tekrarla"
+            "state": "translated",
+            "value": "Yeniden Yap"
           }
         }
       }
@@ -1536,13 +1536,13 @@
             "plural": {
               "one": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "~%1$lld dk"
                 }
               },
               "other": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "~%1$lld dk"
                 }
               }
@@ -1563,7 +1563,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "dk"
           }
         }
@@ -1581,7 +1581,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "sn"
           }
         }
@@ -1604,7 +1604,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "dk"
           }
         }
@@ -1651,7 +1651,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Antrenman durdurulsun mu?"
           }
         }
@@ -1698,8 +1698,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "İlerlemen tamamlanmadı olarak kaydedilecek."
+            "state": "translated",
+            "value": "İlerlemeniz tamamlanmadı olarak kaydedilecek."
           }
         }
       }
@@ -1752,7 +1752,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Geçen süre: %1$@"
           }
         }
@@ -1806,8 +1806,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Aralık %1$lld / %2$lld"
+            "state": "translated",
+            "value": "Aralık: %1$lld / %2$lld"
           }
         }
       }
@@ -1860,7 +1860,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Sıradaki: %1$@ %2$@"
           }
         }
@@ -1884,7 +1884,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%1$.2f km"
           }
         }
@@ -1908,7 +1908,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%1$@ / km"
           }
         }
@@ -1955,8 +1955,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "GPS alınıyor…"
+            "state": "translated",
+            "value": "GPS aranıyor…"
           }
         }
       }
@@ -2002,7 +2002,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Antrenman Tamamlandı!"
           }
         }
@@ -2049,8 +2049,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Harika iş! Böyle devam et."
+            "state": "translated",
+            "value": "Tebrikler! Harika iş çıkardın."
           }
         }
       }
@@ -2103,7 +2103,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Süre: %1$@"
           }
         }
@@ -2157,7 +2157,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%1$lld kcal yakıldı (tahmini)"
           }
         }
@@ -2204,8 +2204,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Yakılan kaloriyi görmek için Ayarlar’dan kilonu gir"
+            "state": "translated",
+            "value": "Yakılan kaloriyi görmek için Ayarlar'dan kilonuzu girin"
           }
         }
       }
@@ -2251,7 +2251,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Yeni kişisel rekor!"
           }
         }
@@ -2305,7 +2305,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Önceki rekor: %1$@"
           }
         }
@@ -2352,7 +2352,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Bitti"
           }
         }
@@ -2399,7 +2399,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "DURAKLATILDI"
           }
         }
@@ -2446,8 +2446,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Yeniden bağlanılıyor…"
+            "state": "translated",
+            "value": "Yeniden bağlanıyor…"
           }
         }
       }
@@ -2493,7 +2493,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Başlatılıyor…"
           }
         }
@@ -2540,7 +2540,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Geçmiş"
           }
         }
@@ -2588,7 +2588,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Henüz antrenman yok"
           }
         }
@@ -2635,7 +2635,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Geçmişini burada görmek için bir antrenman tamamla."
           }
         }
@@ -2682,7 +2682,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Antrenman silinsin mi?"
           }
         }
@@ -2729,8 +2729,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bu antrenmanı geçmişinden kalıcı olarak siler."
+            "state": "translated",
+            "value": "Bu antrenman kalıcı olarak geçmişinizden silinecektir."
           }
         }
       }
@@ -2746,7 +2746,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "km"
           }
         }
@@ -2793,7 +2793,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "süre"
           }
         }
@@ -2810,7 +2810,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "kcal"
           }
         }
@@ -2857,7 +2857,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "tempo"
           }
         }
@@ -2904,7 +2904,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "en uzun"
           }
         }
@@ -2951,7 +2951,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Toplamlar"
           }
         }
@@ -2998,7 +2998,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Kişisel rekorlar"
           }
         }
@@ -3045,7 +3045,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Ayarlar"
           }
         }
@@ -3093,7 +3093,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Ses"
           }
         }
@@ -3140,8 +3140,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Sesli anonslar"
+            "state": "translated",
+            "value": "Sesli yönlendirmeler"
           }
         }
       }
@@ -3187,7 +3187,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Geri sayım uyarıları"
           }
         }
@@ -3234,8 +3234,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "İlk uyarı"
+            "state": "translated",
+            "value": "Birinci uyarı"
           }
         }
       }
@@ -3281,7 +3281,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "İkinci uyarı"
           }
         }
@@ -3328,8 +3328,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Koşu ortası teşvik"
+            "state": "translated",
+            "value": "Aralık ortası motivasyonu"
           }
         }
       }
@@ -3375,7 +3375,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Ses hızı"
           }
         }
@@ -3422,7 +3422,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Yavaş"
           }
         }
@@ -3469,7 +3469,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Hızlı"
           }
         }
@@ -3516,8 +3516,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Ses seviyesi"
+            "state": "translated",
+            "value": "Ses düzeyi"
           }
         }
       }
@@ -3563,7 +3563,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Kısık"
           }
         }
@@ -3610,7 +3610,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Yüksek"
           }
         }
@@ -3657,8 +3657,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Aralık değişiminde titret"
+            "state": "translated",
+            "value": "Aralık değişiminde titreşim"
           }
         }
       }
@@ -3704,8 +3704,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Koşu bandı modu (GPS’i kapatır)"
+            "state": "translated",
+            "value": "Koşu bandı modu (GPS'i kapatır)"
           }
         }
       }
@@ -3751,7 +3751,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "GPS takibi"
           }
         }
@@ -3798,7 +3798,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Antrenman sırasında ekranı açık tut"
           }
         }
@@ -3845,7 +3845,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Kilo"
           }
         }
@@ -3892,8 +3892,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Ayarlanmadı"
+            "state": "translated",
+            "value": "Belirtilmedi"
           }
         }
       }
@@ -3939,8 +3939,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Yalnızca yakılan kaloriyi tahmin etmek için kullanılır. Cihazından asla çıkmaz."
+            "state": "translated",
+            "value": "Yalnızca yakılan kaloriyi tahmin etmek için kullanılır. Cihazınızdan asla ayrılmaz."
           }
         }
       }
@@ -3986,7 +3986,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Rehber"
           }
         }
@@ -4033,7 +4033,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Başlamadan Önce"
           }
         }
@@ -4080,7 +4080,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Antrenman Sırasında"
           }
         }
@@ -4127,7 +4127,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Antrenmanlar Arasında"
           }
         }
@@ -4174,8 +4174,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Sözlük"
+            "state": "translated",
+            "value": "Terimler Sözlüğü"
           }
         }
       }
@@ -4221,8 +4221,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Katkıda bulunanlar"
+            "state": "translated",
+            "value": "Katkıda Bulunanlar"
           }
         }
       }
@@ -4272,7 +4272,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Fediverse"
           }
         }
@@ -4319,8 +4319,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "İspanyolca (es) çevirisi"
+            "state": "translated",
+            "value": "İspanyolca (es) çeviri"
           }
         }
       }
@@ -4366,8 +4366,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Galiçyaca (gl) çevirisi"
+            "state": "translated",
+            "value": "Galiçyaca (gl) çeviri"
           }
         }
       }
@@ -4413,8 +4413,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Rusça (ru) çevirisi"
+            "state": "translated",
+            "value": "Rusça (ru) çeviri"
           }
         }
       }
@@ -4461,8 +4461,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Düzeltme: Sesli anonslar artık arka plan müziğini durdurmak yerine kısıyor"
+            "state": "translated",
+            "value": "Düzeltme: TTS seslendirmeleri artık arka plan müziğini duraklatmak yerine sesini kısıyor"
           }
         }
       }
@@ -4514,8 +4514,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Sohbet temposu nedir?"
+            "state": "translated",
+            "value": "Konuşma temposu nedir?"
           }
         }
       }
@@ -4567,8 +4567,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Sohbet temposu, tam bir sohbeti sürdürebilecek kadar yavaş koşmak demektir — kelimeler arasında nefes nefese kalmadan, tam cümlelerle. Konuşamayacak kadar nefes nefeseysen yavaşla.  Çoğu yeni başlayan çok hızlı koşar ve ilk dakikada tükenir. Yavaşlamak zayıflık değildir; doğru tekniktir. Çalıştığını hissetmelisin ama rahatça."
+            "state": "translated",
+            "value": "Konuşma temposu, koşarken kelimeler arasında nefes nefese kalmadan tam cümlelerle rahatça konuşabileceğiniz hızda koşmak anlamına gelir. Konuşamayacak kadar nefesiniz kesiliyorsa yavaşlayın.\n\nBirçok yeni başlayan çok hızlı koşar ve ilk dakikada tükenir. Yavaşlamak zayıflık göstergesi değil, doğru tekniktir. Efor sarf ettiğinizi hissetmeli ama rahat olmalısınız."
           }
         }
       }
@@ -4620,8 +4620,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Gerçekte hangi ekipmana ihtiyacım var?"
+            "state": "translated",
+            "value": "Gerçekten hangi ekipmanlara ihtiyacım var?"
           }
         }
       }
@@ -4673,8 +4673,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Para harcamaya değer tek şey iyi bir çift koşu ayakkabısıdır. Eklemlerine binen tekrarlayan darbeyi yastıklar ve yaralanma riskini belirgin şekilde azaltır. Mümkünse uzman bir koşu mağazasına git ve ayağını ölçtür — kısa süre yürüyüşünü ya da koşunu izleyip doğru türü önerirler.  Diğer her şey — özel kıyafetler, nabız ölçerler, GPS saatleri — isteğe bağlıdır. Başlamak için elindeki rahat kıyafetler yeterli."
+            "state": "translated",
+            "value": "Para harcamaya değer tek şey iyi bir koşu ayakkabısıdır. Ayakkabılar eklemlerinize binen tekrarlı darbeleri yumuşatır ve sakatlık riskini önemli ölçüde azaltır. Mümkünse uzman bir koşu mağazasına gidip ayağınıza uygun bir model seçin.\n\nBunun dışındaki her şey — özel kıyafetler, nabız bantları, GPS saatler — isteğe bağlıdır. Başlangıçta halihazırda sahip olduğunuz rahat kıyafetler fazlasıyla yeterlidir."
           }
         }
       }
@@ -4726,7 +4726,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "İlk hafta nasıl hissettirmeli?"
           }
         }
@@ -4779,8 +4779,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Zorlu. Daha önce koşmadıysan 1. Hafta’daki 60 saniyelik koşu aralıkları bile şaşırtıcı gelecek ve bu tamamen normal.  Kalp-damar sistemin kaslarından ve bağ dokundan daha hızlı uyum sağlar, bu yüzden nefes darlığı genellikle bacak yorgunluğundan önce hafifler. Her seanstan sonra yorgun hissetmeyi bekle — bu, antrenmanın işini yaptığının işaretidir. 3. ya da 4. haftada çoğu kişi belirgin bir gelişme fark eder."
+            "state": "translated",
+            "value": "Zor. Daha önce koşmadıysanız 1. Haftadaki 60 saniyelik koşu aralıkları bile şaşırtıcı derecede zor gelecektir ve bu tamamen normaldir.\n\nKardiyovasküler sisteminiz kas ve bağ dokularınızdan daha hızlı adapte olur, bu nedenle nefes nefese kalma hissi bacak yorgunluğundan daha önce hafifler. Her seanstan sonra yorgun hissetmeyi bekleyin — bu, antrenmanın işe yaradığını gösterir. 3. veya 4. haftaya geldiğinizde çoğu insan belirgin bir gelişme fark eder."
           }
         }
       }
@@ -4832,7 +4832,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Yıllardır spor yapmadıysam başlamak güvenli mi?"
           }
         }
@@ -4885,8 +4885,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Çoğu kişi için evet — C25K, sıfırdan başlayan insanlar için özel olarak tasarlandı. Bir kalp rahatsızlığın, eklem sorunların varsa ya da uzun süredir hareketsizsen ve 40 yaş üzerindeysen, önce doktoruna kısa bir danışma mantıklıdır ama her zaman gerekli değildir.  Program tam da tamamen yeni başlayanlara yönelik olduğu için çok yumuşak başlar."
+            "state": "translated",
+            "value": "Çoğu insan için evet — C25K özellikle sıfırdan başlayanlar için tasarlanmıştır. Bir kalp rahatsızlığınız veya eklem probleminiz varsa ya da uzun süredir hareketsizseniz ve 40 yaşın üzerindeyseniz, önce doktorunuza danışmanız mantıklıdır ancak her zaman şart değildir.\n\nProgram, tam olarak yeni başlayanlara yönelik olduğu için çok hafif başlar."
           }
         }
       }
@@ -4938,7 +4938,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Isınma nedir ve neden atlamamalıyım?"
           }
         }
@@ -4991,8 +4991,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Her seansın başındaki 5 dakikalık tempolu yürüyüş, nabzını kademeli olarak yükseltir ve kaslarına kan akışını artırır. Soğuk kaslar daha az esnektir ve zorlanmaya daha yatkındır.  Isınmayı atlamak ilk koşu aralığını olması gerekenden çok daha zor hissettirir ve bir yerini incitme riskini artırır. Beş dakika küçük bir yatırımdır."
+            "state": "translated",
+            "value": "Her seansın başındaki 5 dakikalık tempolu yürüyüş kalp atış hızınızı kademeli olarak yükseltir ve kaslarınıza giden kan akışını artırır. Soğuk kaslar daha az esnektir ve zorlanmaya daha yatkındır.\n\nIsınmayı atlamak ilk koşu aralığının gereğinden çok daha zor hissettirmesine neden olur ve kas çekmesi riskini artırır. Beş dakika küçük bir yatırımdır."
           }
         }
       }
@@ -5044,7 +5044,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Soğuma nedir?"
           }
         }
@@ -5097,8 +5097,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Sondaki 5 dakikalık yürüyüş, nabzını aniden durmak yerine kademeli olarak düşürür. Ayrıca vücudunun kaslarındaki laktik asidi temizlemeye başlamasına yardımcı olur, bu da antrenman sonrası tutukluğu azaltır.  Yalnızca 5 dakika sürer ve ertesi gün kendini nasıl hissedeceğinde gerçek bir fark yaratır."
+            "state": "translated",
+            "value": "Seans sonundaki 5 dakikalık yürüyüş, aniden durmak yerine kalp atış hızınızı kademeli olarak düşürür. Ayrıca vücudunuzun kaslarınızdaki laktik asidi temizlemeye başlamasına yardımcı olur ve antrenman sonrası sertliği azaltır.\n\nSadece 5 dakika sürer ve ertesi gün nasıl hissettiğinizde büyük bir fark yaratır."
           }
         }
       }
@@ -5150,8 +5150,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Ağrı ile rahatsızlık — farkı nasıl anlarım?"
+            "state": "translated",
+            "value": "Ağrı ile rahatsızlık hissi — farkı nasıl anlarım?"
           }
         }
       }
@@ -5203,8 +5203,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Rahatsızlık normaldir ve beklenir: yanan ciğerler, yorgun bacaklar, şikâyet ediyormuş gibi hissettiren kaslar. Egzersiz, özellikle başlarda, böyle hissettirir.  Ağrı farklıdır. Keskindir, belirli bir noktaya (bir diz, bir kaval kemiği, bir ayak) yerleşiktir ya da koşmaya devam ettikçe kötüleşir. Ağrı, vücudunun bir şeylerin yanlış olduğunu bildirmesidir.  Rahatsızlık “bu zor” der. Ağrı “dur” der. Bir seans sırasında gerçek bir ağrı hissedersen dur ve eve yürü. Bir günlük dinlenmeden sonra da geçmiyorsa, tekrar koşmadan önce bir fizyoterapiste ya da doktora görün."
+            "state": "translated",
+            "value": "Rahatsızlık hissi normaldir ve beklenir: yanan akciğerler, yorgun bacaklar, sızlayan kaslar. Egzersiz yapmak özellikle başlarda böyle hissettirir.\n\nAğrı ise farklıdır. Keskindir, belirli bir noktada odaklanır (diz, kaval kemiği, ayak) veya koştukça kötüleşir. Ağrı, vücudunuzun bir şeylerin ters gittiğini belirten sinyalidir.\n\nRahatsızlık hissi \"bu zor\" der. Ağrı ise \"dur\" der. Bir seans sırasında gerçek bir ağrı hissederseniz durun ve eve yürüyün. Bir gün dinlendikten sonra da devam ederse, tekrar koşmadan önce bir fizyoterapiste veya doktora görünün."
           }
         }
       }
@@ -5256,7 +5256,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Nasıl nefes almalıyım?"
           }
         }
@@ -5309,8 +5309,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Tek bir doğru teknik yoktur — en çok havayı almanı sağlayan şekilde nefes al. Birçok koşucu doğal olarak 2:2 ritmine oturur: 2 adım nefes al, 2 adım ver. Bazıları 3:2’yi tercih eder ya da ihtiyaç oldukça nefes alır.  Hem burnundan hem ağzından nefes almak tamamen normaldir ve yoğun çalışırken aslında tavsiye edilir. Nefes nefeseysen çok hızlı koşuyorsun demektir — nefesin rahatlayana kadar yavaşla."
+            "state": "translated",
+            "value": "Tek bir doğru teknik yoktur — en çok havayı almanızı sağlayan şekilde nefes alın. Birçok koşucu doğal olarak 2:2 ritmine alışır: 2 adımda nefes al, 2 adımda nefes ver. Diğerleri 3:2 tercih eder veya ihtiyaca göre nefes alır.\n\nHem burundan hem ağızdan nefes almak tamamen normaldir ve yüksek tempoda çalışırken tavsiye edilir. Nefes nefese kalıyorsanız çok hızlı koşuyorsunuz demektir — nefesiniz kontrol edilebilir hissettirene kadar yavaşlayın."
           }
         }
       }
@@ -5362,8 +5362,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bir koşu aralığını bitiremezsem ne olur?"
+            "state": "translated",
+            "value": "Bir koşu aralığını tamamlayamazsam ne olur?"
           }
         }
       }
@@ -5415,8 +5415,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Yürü. Yürümekte başarısızlık yoktur — yürüyüş molaları tam da bu nedenle programa yerleştirilmiştir.  Koşu aralıklarını düzenli olarak tamamlayamıyorsan koşu temponu daha da yavaşlatmayı dene. Çoğu kişi başlarda “yavaş”ın ne kadar yavaş olması gerektiğine şaşırır. Sürdürebildiğin çok yavaş bir jog, seni durmaya zorlayan hızlı bir koşudan çok daha iyidir."
+            "state": "translated",
+            "value": "Yürüyün. Yürümekte bir başarısızlık yoktur — yürüme molaları programa tam da bu nedenle dahil edilmiştir.\n\nKoşu aralıklarını düzenli olarak tamamlayamıyorsanız, koşu temponuzu daha da yavaşlatmayı deneyin. Birçok insan \"yavaş\" temposunun başlangıçta ne kadar yavaş olması gerektiğine şaşırır. Sürdürebileceğiniz çok yavaş bir hafif tempo koşu, sizi durmaya zorlayan hızlı bir koşudan çok daha iyidir."
           }
         }
       }
@@ -5468,7 +5468,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Neden dinlenme günlerine ihtiyacım var?"
           }
         }
@@ -5521,8 +5521,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Kondisyon kazanımları koşunun kendisinde değil, dinlenme sırasında olur. Antrenman kaslarında ve bağ dokunda küçük zorlanmalar yaratır; dinlenme günleri vücudunun bu zorlanmaları onardığı ve biraz daha güçlü döndüğü zamandır.  C25K programında bu nedenle haftada 3 seans vardır. Yeni başlayan biri olarak her gün koşmak aşırı kullanım yaralanmalarının riskini belirgin şekilde artırır — stres kırıkları, kaval kemiği ağrıları ve seni haftalarca sahadan uzak tutabilecek tendon sorunları."
+            "state": "translated",
+            "value": "Kondisyon kazanımları koşunun kendisinde değil, dinlenme sırasında gerçekleşir. Antrenman kaslarınızda ve bağ dokularınızda küçük mikro yıpranmalar oluşturur; dinlenme günleri vücudunuzun bu yıpranmaları onarıp biraz daha güçlü hale geldiği zamandır.\n\nC25K programının haftada 3 seans olmasının nedeni budur. Yeni başlayan biri olarak her gün koşmak, aşırı kullanım sakatlıkları (stres kırıkları, kaval kemiği ağrısı ve tendon sorunları) riskini önemli ölçüde artırır ve sizi haftalarca kenarda bırakabilir."
           }
         }
       }
@@ -5574,7 +5574,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Dinlenme günlerinde ne yapmalıyım?"
           }
         }
@@ -5627,8 +5627,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Dinlenmek hiçbir şey yapmamak zorunda değildir. Hafif aktivite — yürüyüş, esneme ya da vücut ağırlığıyla kuvvet çalışması — koşuya özgü zorlanma eklemeden ağrıyan kaslara kan akışını sürdürür ve tam hareketsizliğe kıyasla toparlanmayı hızlandırabilir.  Squat, lunge, plank ve topuk kaldırma gibi vücut ağırlığı egzersizleri C25K ile birlikte özellikle yararlıdır: koşunun tek başına çalıştırmadığı kalça, kor ve ayak bileği dengesini geliştirir ve daha güçlü sabitleyici kaslar kaval kemiği ağrıları ve koşucu dizi gibi yaygın yeni başlayan koşucu yaralanmalarına karşı en iyi savunmalardan biridir. Haftada iki üç kısa seans — 15–20 dakika — yeterlidir; bu programın koşu takvimi zaten ana antrenman uyaranındır."
+            "state": "translated",
+            "value": "Dinlenmek hiçbir şey yapmamak anlamına gelmez. Hafif aktiviteler — yürüyüş, esneme veya vücut ağırlığıyla kuvvet çalışmaları — koşuya özgü stres yaratmadan ağrıyan kaslara kan akışını sürdürür ve tamamen hareketsiz kalmaya kıyasla toparlanmayı hızlandırabilir.\n\nSquat, lunge, plank ve calf raise gibi vücut ağırlığı egzersizleri C25K ile birlikte özellikle faydalıdır: tek başına koşunun çalıştırmadığı kalça, karın (core) ve ayak bileği stabilitesini güçlendirir. Güçlü dengeleyici kaslar, kaval kemiği ağrısı ve koşucu dizi gibi yaygın sakatlıklara karşı en iyi savunmadır. Haftada iki veya üç kısa seans (15–20 dakika) yeterlidir; ana antrenman uyarınız zaten koşu programıdır."
           }
         }
       }
@@ -5680,7 +5680,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Bir günü tekrarlamalı mıyım yoksa devam mı etmeliyim?"
           }
         }
@@ -5733,8 +5733,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bir seans zor gelse bile — tamamladığın sürece — devam et. C25K, neredeyse herkesin her hafta ilerleyebileceği kadar kademeli bir ilerlemeyle tasarlandı.  Bir günü yalnızca koşu aralıklarını hiç tamamlayamadıysan tekrarla — örneğin aralığın ortasında birkaç kez durmak zorunda kaldıysan (aralığın doğal sonunda değil). Yorgun, yavaş ya da nefes nefese hissetmek tekrarlamak için bir neden değildir. 2. Hafta zaten böyle hissettirir."
+            "state": "translated",
+            "value": "Seans zor hissettirse bile tamamladığınız sürece devam edin. C25K, neredeyse herkesin her hafta ilerleyebileceği kadar kademeli bir tempoyla tasarlanmıştır.\n\nBir günü yalnızca koşu aralıklarını hiç tamamlayamadıysanız tekrarlayın — örneğin aralıkların ortasında birkaç kez durmak zorunda kaldıysanız. Yorgun, yavaş veya nefessiz hissetmek tekrarlamak için bir neden değildir; 2. Hafta zaten böyle hissettirir."
           }
         }
       }
@@ -5786,7 +5786,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Bir sonraki seansa ne zaman hazırım?"
           }
         }
@@ -5839,8 +5839,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Önceki seanstan kalan ağrı büyük ölçüde geçtiğinde — genellikle 1 ila 2 gün. Bir koşudan 24–48 saat sonra biraz kas ağrısı normaldir (buna gecikmeli kas ağrısı, DOMS denir) ve vücudun ilk birkaç hafta boyunca uyum sağladıkça hafifler.  Hâlâ belirgin şekilde ağrılı ya da tutuksan fazladan bir dinlenme günü al. Fazladan bir gün nadiren önemlidir; çok yorgun bacaklarla koşmak yaralanma riskini artırır."
+            "state": "translated",
+            "value": "Önceki seansın kas ağrısı büyük oranda geçtiğinde — genellikle 1 ila 2 gün sonra. Bir koşudan 24–48 saat sonra hafif kas ağrısı olması normaldir (buna DOMS, gecikmiş kas ağrısı denir) ve ilk birkaç haftada vücudunuz alıştıkça şiddeti azalır.\n\nHâlâ belirgin şekilde ağrınız veya kas sertliğiniz varsa fazladan bir gün dinlenin. Bir gün gecikmek sorun yaratmaz; çok yorgun bacaklarla koşmak sakatlık riskini artırır."
           }
         }
       }
@@ -5892,8 +5892,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Esnemem gerekiyor mu?"
+            "state": "translated",
+            "value": "Esneme yapmam gerekir mi?"
           }
         }
       }
@@ -5945,8 +5945,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Koşudan sonra (öncesinde değil) hafif esneme esnekliğe yardımcı olabilir ve tutukluğu azaltabilir. En çok çalışan kaslara — baldırlar, arka bacak kasları, kalça fleksörleri ve ön bacak kasları — odaklan.  Kaslar soğukken koşudan önce esnemek daha az yararlıdır ve hatta zorlanmaya yol açabilir. Isınma yürüyüşü statik esnemeden daha etkili bir hazırlıktır."
+            "state": "translated",
+            "value": "Koşudan sonra (öncesinde değil) hafif esneme hareketleri esnekliğe yardımcı olabilir ve kas sertliğini azaltabilir. Baldırlara, hamstringlere, kalça fleksörlerine ve kuadrisepslere — yani en çok çalışan kaslara — odaklanın.\n\nKaslarınız soğukken koşudan önce statik esneme yapmak daha az faydalıdır ve hatta kas zorlanmalarına yol açabilir. Isınma yürüyüşü, statik esnemeden çok daha etkili bir hazırlıktır."
           }
         }
       }
@@ -5998,7 +5998,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Aerobik kondisyon"
           }
         }
@@ -6051,8 +6051,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Kalbinin ve akciğerlerinin uzun süreli egzersiz sırasında kaslarına oksijen iletme kapasitesi. C25K özellikle aerobik kondisyonu geliştirir — tüm dayanıklılık aktivitelerinin temeli."
+            "state": "translated",
+            "value": "Kalbinizin ve akciğerlerinizin sürekli egzersiz sırasında kaslarınıza oksijen iletme kapasitesi. C25K özellikle aerobik kondisyonu — tüm dayanıklılık aktivitelerinin temelini — geliştirir."
           }
         }
       }
@@ -6104,8 +6104,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Aralık"
+            "state": "translated",
+            "value": "Aralık (Interval)"
           }
         }
       }
@@ -6157,8 +6157,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Belirli bir yoğunlukta, belirli bir süre boyunca sürdürülen çaba dönemi. Her C25K seansı bir dizi koşu ve yürüyüş aralığı olarak yapılandırılır — örneğin “60 saniye koş, 90 saniye yürü”nün sekiz tekrarı."
+            "state": "translated",
+            "value": "Belirli bir süre boyunca belirli bir yoğunlukta yapılan efor dönemi. Her C25K seansı bir dizi koşu ve yürüme aralığı olarak yapılandırılmıştır — örneğin sekiz kez \"60 saniye koş, 90 saniye yürü\"."
           }
         }
       }
@@ -6210,8 +6210,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Tempo"
+            "state": "translated",
+            "value": "Tempo (Pace)"
           }
         }
       }
@@ -6263,8 +6263,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Ne kadar hızlı koştuğun, genellikle kilometre ya da mil başına dakika olarak ifade edilir — örneğin km başına 7:30, bir kilometre koşmanın 7 dakika 30 saniye sürdüğü anlamına gelir.  C25K’nın büyük kısmında tempo önemli değildir. Aralıkları tamamlamak önemlidir. Programı bitirene kadar tempoyu tamamen görmezden gel."
+            "state": "translated",
+            "value": "Ne kadar hızlı koştuğunuz; genellikle kilometre veya mil başına dakika olarak ifade edilir — örneğin 7:30 / km, bir kilometreyi koşmanın 7 dakika 30 saniye sürdüğü anlamına gelir.\n\nC25K'nın büyük bölümünde tempo önemli değildir; önemli olan aralıkları tamamlamaktır. Programı bitirene kadar tempoyu tamamen göz ardı edin."
           }
         }
       }
@@ -6316,8 +6316,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "DOMS (Gecikmeli Kas Ağrısı)"
+            "state": "translated",
+            "value": "DOMS (Gecikmiş Kas Ağrısı)"
           }
         }
       }
@@ -6369,8 +6369,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Egzersizden 24–48 saat sonra ortaya çıkan, kas liflerinin yeni zorlanmaya uyum sağlarken oluşan mikroskobik hasardan kaynaklanan kas ağrısı. Normaldir, zararlı değildir ve ilk birkaç antrenman haftasından sonra belirgin şekilde hafifler."
+            "state": "translated",
+            "value": "Egzersizden 24–48 saat sonra ortaya çıkan, kas liflerinin yeni yüke uyum sağlarken geçirdiği mikroskobik hasarın neden olduğu kas ağrısı. Normaldir, zararlı değildir ve antrenmanın ilk birkaç haftasından sonra belirgin şekilde hafifler."
           }
         }
       }
@@ -6422,8 +6422,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Kaval kemiği ağrısı"
+            "state": "translated",
+            "value": "Shin splints (Kaval kemiği ağrısı)"
           }
         }
       }
@@ -6475,8 +6475,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Alt bacağın ön ya da iç kenarı boyunca hissedilen, yeni koşucularda yaygın ağrı. Genellikle çok kısa sürede çok fazla yapmaktan ya da yıpranmış ayakkabılarla koşmaktan kaynaklanır.  Kaval kemiği ağrısı gelişirse 3–5 gün dinlen. Döndüğünde ayakkabılarını kontrol et ve koşu temponun çok hızlı olmadığından emin ol. Israrlı kaval ağrısı bir fizyoterapist tarafından değerlendirilmelidir."
+            "state": "translated",
+            "value": "Alt bacağın ön veya iç kenarı boyunca hissedilen, yeni koşucularda yaygın ağrı. Genellikle çok kısa sürede çok fazla yüklenmekten veya yıpranmış ayakkabılarla koşmaktan kaynaklanır.\n\nKaval kemiği ağrısı oluşursa 3–5 gün dinlenin. Döndüğünüzde ayakkabılarınızı kontrol edin ve koşu temponuzun çok hızlı olmadığından emin olun. İnatçı kaval kemiği ağrısı bir fizyoterapist tarafından değerlendirilmelidir."
           }
         }
       }
@@ -6528,8 +6528,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "RPE (Algılanan Zorlanma Derecesi)"
+            "state": "translated",
+            "value": "RPE (Algılanan Efor Derecesi)"
           }
         }
       }
@@ -6581,8 +6581,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bir çabanın ne kadar zor hissettirdiğine dair basit bir 1–10 ölçeği; 1 hareketsiz oturmak, 10 ise birkaç saniyeden fazla sürdüremeyeceğin tam güç bir sprinttir.  C25K koşularının çoğu 5–6 gibi hissettirmeli: belirgin şekilde çalışıyorsun ama sürdürülebilir. Sohbet temposu."
+            "state": "translated",
+            "value": "Bir eforun ne kadar zor hissettirdiğini gösteren 1–10 arası basit bir ölçek; 1 hareketsiz oturmak, 10 ise birkaç saniyeden fazla sürdüremeyeceğiniz tam güçte bir sprinttir.\n\nC25K koşularınızın çoğu 5–6 gibi hissettirmelidir: belirgin şekilde çalışılan ama sürdürülebilir bir tempo. Konuşma temposu."
           }
         }
       }
@@ -6634,7 +6634,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Yakılan kalori nasıl tahmin ediliyor?"
           }
         }
@@ -6687,8 +6687,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Ortalama hızına, vücut ağırlığına ve ne kadar süre hareket ettiğine dayanır; MET (Metabolik Eşdeğer) değerlerini kullanır — bir aktivitenin hıza göre ne kadar zorlayıcı olduğunun standart bir ölçüsü: kalori = MET × ağırlık (kg) × süre (saat).  Bu bir ölçüm değil, bir tahmindir — kondisyon düzeyini, araziyi ya da nabzı hesaba katmaz, bu yüzden kesin bir sayı değil kaba bir kılavuz olarak değerlendir. Yalnızca Ayarlar’dan kilonu girdikten sonra görünür ve o sayı cihazından asla çıkmaz."
+            "state": "translated",
+            "value": "Ortalama hızınız, vücut ağırlığınız ve hareket sürenize dayanarak MET (Metabolic Equivalent of Task) değerleri kullanılarak hesaplanır: kalori = MET × ağırlık (kg) × süre (saat).\n\nBu bir ölçüm değil, tahmindir — kondisyon seviyesi, zemin veya kalp atış hızını hesaba katmaz; bu nedenle kesin bir sayı yerine genel bir rehber olarak değerlendirin. Yalnızca Ayarlar'da kilonuzu girdikten sonra görünür ve bu bilgi asla cihazınızdan dışarı çıkmaz."
           }
         }
       }
@@ -6740,8 +6740,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Isınma yürüyüşüne başla"
+            "state": "translated",
+            "value": "Isınma yürüyüşüne başlayın"
           }
         }
       }
@@ -6793,8 +6793,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "%1$@ koşmaya başla"
+            "state": "translated",
+            "value": "%1$@ koşmaya başlayın"
           }
         }
       }
@@ -6846,8 +6846,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "%1$@ yürü"
+            "state": "translated",
+            "value": "%1$@ yürüyün"
           }
         }
       }
@@ -6899,8 +6899,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Soğuma yürüyüşüne başla"
+            "state": "translated",
+            "value": "Soğuma yürüyüşüne başlayın"
           }
         }
       }
@@ -6952,8 +6952,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Koşmaya hazırlan"
+            "state": "translated",
+            "value": "Koşmaya hazır olun"
           }
         }
       }
@@ -7005,8 +7005,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Yürümeye hazırlan"
+            "state": "translated",
+            "value": "Yürümeye hazır olun"
           }
         }
       }
@@ -7058,8 +7058,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Isınmaya hazırlan"
+            "state": "translated",
+            "value": "Isınmaya hazır olun"
           }
         }
       }
@@ -7111,8 +7111,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Az sonra soğumaya başla"
+            "state": "translated",
+            "value": "Soğumaya hazır olun"
           }
         }
       }
@@ -7164,8 +7164,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Antrenman tamamlandı. Harika iş!"
+            "state": "translated",
+            "value": "Antrenman tamamlandı. Harika iş çıkardın!"
           }
         }
       }
@@ -7217,8 +7217,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Yarıyı geçtin, böyle devam!"
+            "state": "translated",
+            "value": "Yarı yoldasın, devam et!"
           }
         }
       }
@@ -7270,7 +7270,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Son koşu, güçlü bitir!"
           }
         }
@@ -7323,7 +7323,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%1$@ %2$@"
           }
         }
@@ -7475,13 +7475,13 @@
             "plural": {
               "one": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "%1$lld saniye kaldı"
                 }
               },
               "other": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "%1$lld saniye kaldı"
                 }
               }
@@ -7636,13 +7636,13 @@
             "plural": {
               "one": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "%lld dakika"
                 }
               },
               "other": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "%lld dakika"
                 }
               }
@@ -7797,13 +7797,13 @@
             "plural": {
               "one": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "%lld saniye"
                 }
               },
               "other": {
                 "stringUnit": {
-                  "state": "needs_review",
+                  "state": "translated",
                   "value": "%lld saniye"
                 }
               }
@@ -7859,8 +7859,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Harika gidiyorsun, böyle devam!"
+            "state": "translated",
+            "value": "Harika gidiyorsun, aynen devam!"
           }
         }
       }
@@ -7912,7 +7912,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Yarısı bitti, güçlü kal!"
           }
         }
@@ -7965,8 +7965,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Devam et, bunu yapabilirsin!"
+            "state": "translated",
+            "value": "Devam et, başarabilirsin!"
           }
         }
       }
@@ -8018,8 +8018,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Büyük çaba, neredeyse bitti!"
+            "state": "translated",
+            "value": "Harika çaba, az kaldı!"
           }
         }
       }
@@ -8071,8 +8071,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Muhteşem gidiyorsun, zorlamaya devam!"
+            "state": "translated",
+            "value": "Mükemmel gidiyorsun, zorlamaya devam!"
           }
         }
       }
@@ -8124,8 +8124,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Hâlâ konuşabileceğin bir tempoda koş. Yürüyüş molaları antrenmanın bir parçası."
+            "state": "translated",
+            "value": "Hâlâ konuşabileceğiniz bir tempoda koşun. Yürüme molaları antrenmanın bir parçasıdır."
           }
         }
       }
@@ -8177,8 +8177,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "1. haftayı bitirdin — vücudun şimdiden uyum sağlıyor. Tempoyu rahat tut."
+            "state": "translated",
+            "value": "1. haftayı bitirdiniz — vücudunuz şimdiden adapte oluyor. Tempoyu hafif tutun."
           }
         }
       }
@@ -8230,8 +8230,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bu hafta daha uzun aralıklar var. İstikrarlı nefese odaklan: 2 adım al, 2 adım ver."
+            "state": "translated",
+            "value": "Bu hafta daha uzun aralıklar var. Düzenli nefes almaya odaklanın: 2 adımda al, 2 adımda ver."
           }
         }
       }
@@ -8283,8 +8283,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bugün dört farklı koşu uzunluğu. Bu, kondisyon kadar zihinsel dayanıklılık da geliştirir."
+            "state": "translated",
+            "value": "Bugün dört farklı koşu süresi var. Bu, kondisyon kadar zihinsel dayanıklılığı da geliştirir."
           }
         }
       }
@@ -8336,8 +8336,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bu haftanın 3. günü ünlü kilometre taşı: 20 dakika kesintisiz koşu. Bunu hak ettin."
+            "state": "translated",
+            "value": "Bu haftanın 3. Günü ünlü dönüm noktası: 20 dakika kesintisiz koşu. Bunu hak ettiniz."
           }
         }
       }
@@ -8389,8 +8389,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Yarıyı geçtin. Uzun koşular aerobik temelini kuruyor."
+            "state": "translated",
+            "value": "Yarıyı geçtiniz. Uzun koşular aerobik temelinizi inşa ediyor."
           }
         }
       }
@@ -8442,8 +8442,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "25 dakika kesintisiz. Herkes buraya kadar gelemez — artık bir koşucusun."
+            "state": "translated",
+            "value": "25 dakika kesintisiz koşu. Herkes bu aşamaya gelemez — artık bir koşucusunuz."
           }
         }
       }
@@ -8495,8 +8495,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "28 dakika. Hedef neredeyse elinde. Hızlanma — onu gelecek haftaya sakla."
+            "state": "translated",
+            "value": "28 dakika. Hedef neredeyse elinizin altında. Hızlanmayın — enerjinizi gelecek haftaya saklayın."
           }
         }
       }
@@ -8548,8 +8548,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bu mezuniyet haftası. 30 dakika, sonra kutla!"
+            "state": "translated",
+            "value": "Bu mezuniyet haftası. 30 dakika koşun ve ardından kutlayın!"
           }
         }
       }
@@ -8601,8 +8601,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Daha uzun mesafe için temelini yeniden kurmak üzere aralıklara dönüyoruz. Rahat kal."
+            "state": "translated",
+            "value": "Daha uzun mesafe için temelinizi yeniden inşa etmek üzere aralıklara dönüyoruz. Sakin kalın."
           }
         }
       }
@@ -8654,8 +8654,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Daha uzun birleşik çabalar. Tempoyu baştan sona sohbet düzeyinde tut."
+            "state": "translated",
+            "value": "Daha uzun birleşik eforlar. Tempo boyunca konuşma hızınızı koruyun."
           }
         }
       }
@@ -8707,8 +8707,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Kısa bir molayla 40 dakika koşu. Rahatla ve yarışma."
+            "state": "translated",
+            "value": "Kısa bir mola ile 40 dakika koşu. Rahatlayın ve yarışmayın."
           }
         }
       }
@@ -8760,8 +8760,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "50 dakika. Bunu yapabiliyorsan 10K bitişi elinin altında."
+            "state": "translated",
+            "value": "50 dakika. Bunu yapabilirseniz 10K bitişi artık çok yakın."
           }
         }
       }
@@ -8813,8 +8813,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "60 dakika — 10K mezuniyet koşun. Git ve al onu!"
+            "state": "translated",
+            "value": "60 dakika — 10K mezuniyet koşunuz. Başarabilirsiniz!"
           }
         }
       }
@@ -8866,8 +8866,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "C25K sonrası alışkanlığı yeniden kuruyorsun. Rahat koş, henüz zorlamana gerek yok."
+            "state": "translated",
+            "value": "C25K'dan sonra alışkanlığı yeniden pekiştiriyoruz. Rahat koşun, henüz zorlamaya gerek yok."
           }
         }
       }
@@ -8919,8 +8919,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Kısa bir dinlenmeyle iki uzun blok. Her iki koşuda da eşit bir tempo hedefle."
+            "state": "translated",
+            "value": "Kısa bir dinlenmeyle iki uzun blok. Her iki koşuda da dengeli bir tempo hedefleyin."
           }
         }
       }
@@ -8972,8 +8972,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Toplam hacim artıyor. Her iki aralıkta da tutarlı çabaya odaklan."
+            "state": "translated",
+            "value": "Toplam hacmi artırıyoruz. Her iki aralıkta da istikrarlı efora odaklanın."
           }
         }
       }
@@ -9025,8 +9025,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Neredeyse 45 dakika koşu. Gerçek 10K kondisyonu geliştiriyorsun."
+            "state": "translated",
+            "value": "Neredeyse 45 dakika koşu. Gerçek bir 10K kondisyonu inşa ediyorsunuz."
           }
         }
       }
@@ -9078,8 +9078,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bu hafta 50 dakika. Tam 60 dakikalık mezuniyet koşusu bir hafta uzakta."
+            "state": "translated",
+            "value": "Bu hafta 50 dakika. 60 dakikalık tam mezuniyet koşusuna sadece bir hafta kaldı."
           }
         }
       }
@@ -9131,8 +9131,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "60 dakika — B210K bitiş çizgisi. Aferin!"
+            "state": "translated",
+            "value": "60 dakika — B210K bitiş çizgisi. Tebrikler!"
           }
         }
       }
@@ -9184,8 +9184,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "33 dakika rahat, hafif koşu. Tempoyu dert etme, sadece bitir."
+            "state": "translated",
+            "value": "33 dakikalık rahat, hafif koşu. Tempoyu dert etmeyin, sadece tamamlayın."
           }
         }
       }
@@ -9237,8 +9237,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "40 dakika. Her hafta gerçek dayanıklılık geliştiriyorsun."
+            "state": "translated",
+            "value": "40 dakika. Her hafta gerçek bir dayanıklılık inşa ediyorsunuz."
           }
         }
       }
@@ -9290,8 +9290,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Neredeyse 50 dakika. Ortalama koşucunun konfor alanının çok ötesindesin."
+            "state": "translated",
+            "value": "Neredeyse 50 dakika. Ortalama bir koşucunun konfor alanının çok ötesindesiniz."
           }
         }
       }
@@ -9343,8 +9343,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "55 dakika. Bir saatlik hedef iyi bir hafta uzakta."
+            "state": "translated",
+            "value": "55 dakika. Bir saatlik hedefe sadece iyi bir hafta kaldı."
           }
         }
       }
@@ -9396,8 +9396,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "60 dakika — işte bu. Sen bir saat koşucususun!"
+            "state": "translated",
+            "value": "60 dakika — işte bu kadar. Artık bir saatlik bir koşucusunuz!"
           }
         }
       }
@@ -9449,8 +9449,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Kısa, sert çabalar bacak hızını geliştirir. Her zamanki 5K temponun biraz üstüne çık."
+            "state": "translated",
+            "value": "Kısa ve sert eforlar bacak hızını artırır. Normal 5K temponuzdan biraz daha fazla zorlayın."
           }
         }
       }
@@ -9502,8 +9502,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "5 dakikalık aralıklar aerobik güç geliştirmek için ideal noktadır."
+            "state": "translated",
+            "value": "5 dakikalık aralıklar aerobik güç oluşturmak için en ideal noktadır."
           }
         }
       }
@@ -9555,8 +9555,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Kombine antrenman: bitiriş koşusuyla daha uzun aralıklar. Bu, yarış dayanıklılığı kurar."
+            "state": "translated",
+            "value": "Kombinasyon antrenmanı: bitiriş koşusu ile daha uzun aralıklar. Bu, yarış dayanıklılığı kazandırır."
           }
         }
       }
@@ -9608,8 +9608,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "İki 15 dakikalık koşu — doğrudan daha hızlı bir 5K’ya yansıyacak sağlam aerobik iş."
+            "state": "translated",
+            "value": "İki adet 15 dakikalık koşu — doğrudan daha hızlı bir 5K'ya dönüşecek sağlam aerobik çalışma."
           }
         }
       }
@@ -9661,8 +9661,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Mezuniyet koşusu: 5K çabasında 30 dakika. Ne kadar gidebildiğine bak — iyi hissettirmeli."
+            "state": "translated",
+            "value": "Mezuniyet koşusu: 5K yarış eforunda 30 dakika. Ne kadar ilerleyebildiğinizi görün — harika hissettirmeli."
           }
         }
       }
@@ -9714,8 +9714,8 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Düzeltme: tamamlanma sayacı artık donmuyor ve ekran kilitlendiğinde tamamlanma anonsu artık yarıda kesilmiyor"
+            "state": "translated",
+            "value": "Düzeltme: Tamamlama sayacı artık ekran kilitlendiğinde donmuyor ve tamamlama anonsu kesilmiyor"
           }
         }
       }
@@ -9762,7 +9762,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Antrenman"
           }
         }
@@ -9822,7 +9822,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Antrenmanlar"
           }
         }
@@ -9875,7 +9875,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "antrenman"
           }
         }
@@ -9928,7 +9928,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "antrenman"
           }
         }
@@ -9981,7 +9981,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%1$lld. Hafta"
           }
         }
@@ -10034,7 +10034,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%1$lld. Gün"
           }
         }
@@ -10088,7 +10088,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%1$@: %2$@ kaldı"
           }
         }
@@ -10142,7 +10142,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Duraklatıldı: %1$@"
           }
         }
@@ -10159,43 +10159,43 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Vibrationsstärke"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Intensidad de la vibración"
+            "state": "translated",
+            "value": "Intensidad de vibración"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Intensité des vibrations"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Intensidade da vibración"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Intensidade da vibração"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Сила вибрации"
+            "state": "translated",
+            "value": "Интенсивность вибрации"
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Titreşim gücü"
           }
         }
@@ -10212,43 +10212,43 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Leicht"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Suave"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Légère"
+            "state": "translated",
+            "value": "Faible"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Suave"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Leve"
+            "state": "translated",
+            "value": "Fraca"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Слабая"
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Hafif"
           }
         }
@@ -10265,43 +10265,43 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Mittel"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Media"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Moyenne"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Media"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Média"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Средняя"
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Orta"
           }
         }
@@ -10318,43 +10318,43 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Stark"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Fuerte"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Forte"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Forte"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Forte"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Сильная"
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Güçlü"
           }
         }
@@ -10371,43 +10371,43 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Stimme testen"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Probar voz"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Tester la voix"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Probar a voz"
+            "state": "translated",
+            "value": "Probar voz"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Testar voz"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Проверить голос"
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Sesi test et"
           }
         }
@@ -10424,44 +10424,44 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Die Sprachansagen von C2K funktionieren."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Los anuncios de voz de C2K funcionan."
+            "state": "translated",
+            "value": "Los avisos de voz de C2K funcionan."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Les annonces vocales de C2K fonctionnent."
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Os anuncios de voz de C2K funcionan."
+            "state": "translated",
+            "value": "Os avisos de voz de C2K funcionan."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Os anúncios de voz do C2K estão funcionando."
+            "state": "translated",
+            "value": "Os avisos de voz do C2K estão funcionando."
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Голосовые объявления C2K работают."
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "C2K sesli anonsları çalışıyor."
+            "state": "translated",
+            "value": "C2K sesli duyuruları çalışıyor."
           }
         }
       }
@@ -10513,7 +10513,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "iOS ayarlarını aç"
           }
         }
@@ -10567,7 +10567,7 @@
         "tr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Hiçbir şey duymuyorsan sessiz anahtarını ve ses seviyesini kontrol et ve Ayarlar › Erişilebilirlik › Sözlü İçerik › Sesler bölümünde bir sesin yüklü olduğundan emin ol."
+            "value": "Hiçbir şey duymuyorsanız sessiz anahtarını ve ses düzeyini kontrol edin ve Ayarlar › Erişilebilirlik › Sözlü İçerik › Sesler bölümünde bir sesin yüklü olduğundan emin olun."
           }
         }
       }
@@ -10583,44 +10583,44 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Wird vorbereitet…"
+            "state": "translated",
+            "value": "Sprachausgabe wird initialisiert…"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Preparando…"
+            "state": "translated",
+            "value": "Inicializando texto a voz…"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Préparation…"
+            "state": "translated",
+            "value": "Initialisation de la synthèse vocale…"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Preparando…"
+            "state": "translated",
+            "value": "Inicializando a síntese de voz…"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Preparando…"
+            "state": "translated",
+            "value": "Inicializando a conversão de texto em fala…"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Подготовка…"
+            "state": "translated",
+            "value": "Инициализация синтеза речи…"
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Hazırlanıyor…"
+            "state": "translated",
+            "value": "Metin okuma başlatılıyor…"
           }
         }
       }
@@ -10636,44 +10636,44 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Wird abgespielt…"
+            "state": "translated",
+            "value": "Testansage wird wiedergegeben…"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Reproduciendo…"
+            "state": "translated",
+            "value": "Reproduciendo aviso de prueba…"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Lecture…"
+            "state": "translated",
+            "value": "Lecture de l’annonce test…"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Reproducindo…"
+            "state": "translated",
+            "value": "Reproducindo o aviso de proba…"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Reproduzindo…"
+            "state": "translated",
+            "value": "Reproduzindo aviso de teste…"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Воспроизведение…"
+            "state": "translated",
+            "value": "Воспроизведение тестового объявления…"
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Çalıyor…"
+            "state": "translated",
+            "value": "Test duyurusu oynatılıyor…"
           }
         }
       }
@@ -10725,7 +10725,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Ses testi tamamlandı."
           }
         }
@@ -10742,44 +10742,44 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Für diese Sprache ist keine Stimme verfügbar. Installiere eine in den iOS-Einstellungen."
+            "state": "translated",
+            "value": "Für deine Gerätesprache oder Englisch ist keine Stimme verfügbar. Installiere Sprachdaten in den Android-Einstellungen."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "No hay ninguna voz disponible para este idioma. Instala una en los ajustes de iOS."
+            "state": "translated",
+            "value": "No hay ninguna voz disponible para el idioma del dispositivo ni para inglés. Instala datos de voz en los ajustes de Android."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Aucune voix n’est disponible pour cette langue. Installez-en une dans les réglages iOS."
+            "state": "translated",
+            "value": "Aucune voix n’est disponible pour la langue de l’appareil ni pour l’anglais. Installez des données vocales dans les paramètres Android."
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Non hai ningunha voz dispoñible para este idioma. Instala unha nos axustes de iOS."
+            "state": "translated",
+            "value": "Non hai ningunha voz dispoñible para o idioma do dispositivo nin para inglés. Instala datos de voz nos axustes de Android."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Nenhuma voz disponível para este idioma. Instale uma nos ajustes do iOS."
+            "state": "translated",
+            "value": "Nenhuma voz está disponível para o idioma do dispositivo ou inglês. Instale dados de voz nas configurações do Android."
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Для этого языка нет доступного голоса. Установите его в настройках iOS."
+            "state": "translated",
+            "value": "Нет голоса для языка устройства или английского языка. Установите голосовые данные в настройках Android."
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Bu dil için ses yok. iOS ayarlarından bir tane yükle."
+            "state": "translated",
+            "value": "Cihaz diliniz veya İngilizce için kullanılabilir ses yok. Android ayarlarından ses verilerini yükleyin."
           }
         }
       }
@@ -10795,44 +10795,44 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Audioausgabe konnte nicht gestartet werden. Prüfe, ob eine andere App den Ton belegt."
+            "state": "translated",
+            "value": "Android konnte die Ansage nicht wiedergeben. Prüfe Medienlautstärke, Audioausgabe und Sprachausgabe-Einstellungen."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "No se pudo iniciar la salida de audio. Comprueba que nada más esté usando el audio."
+            "state": "translated",
+            "value": "Android no pudo reproducir el aviso. Comprueba el volumen multimedia, la salida de audio y los ajustes de texto a voz."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Impossible de démarrer la sortie audio. Vérifiez qu’aucune autre app n’utilise le son."
+            "state": "translated",
+            "value": "Android n’a pas pu lire l’annonce. Vérifiez le volume multimédia, la sortie audio et les paramètres de synthèse vocale."
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Non se puido iniciar a saída de audio. Comproba que nada máis estea usando o son."
+            "state": "translated",
+            "value": "Android non puido reproducir o aviso. Comproba o volume multimedia, a saída de audio e os axustes de síntese de voz."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Não foi possível iniciar a saída de áudio. Verifique se nada mais está usando o áudio."
+            "state": "translated",
+            "value": "O Android não conseguiu reproduzir o aviso. Verifique o volume de mídia, a saída de áudio e as configurações de texto em fala."
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Не удалось запустить вывод звука. Убедитесь, что звук не занят другим приложением."
+            "state": "translated",
+            "value": "Android не удалось воспроизвести объявление. Проверьте громкость мультимедиа, аудиовыход и настройки синтеза речи."
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Ses çıkışı başlatılamadı. Başka bir şeyin sesi tutmadığından emin ol."
+            "state": "translated",
+            "value": "Android duyuruyu oynatamadı. Medya ses düzeyini, ses çıkışını ve metin okuma ayarlarını kontrol edin."
           }
         }
       }
@@ -10848,44 +10848,44 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Sprachsynthese fehlgeschlagen. Versuche es erneut."
+            "state": "translated",
+            "value": "Der Sprachausgabedienst konnte die Ansage nicht erstellen. Prüfe die Engine in den Android-Einstellungen oder starte sie neu."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "La síntesis de voz falló. Inténtalo de nuevo."
+            "state": "translated",
+            "value": "El servicio de texto a voz no pudo crear el aviso. Comprueba o reinicia el motor en los ajustes de Android."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "La synthèse vocale a échoué. Réessayez."
+            "state": "translated",
+            "value": "Le service de synthèse vocale n’a pas pu créer l’annonce. Vérifiez ou redémarrez le moteur dans les paramètres Android."
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "A síntese de voz fallou. Téntao de novo."
+            "state": "translated",
+            "value": "O servizo de síntese de voz non puido crear o aviso. Comproba ou reinicia o motor nos axustes de Android."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "A síntese de voz falhou. Tente novamente."
+            "state": "translated",
+            "value": "O serviço de conversão de texto em fala não conseguiu criar o aviso. Verifique ou reinicie o mecanismo nas configurações do Android."
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Синтез речи не удался. Попробуйте ещё раз."
+            "state": "translated",
+            "value": "Службе синтеза речи не удалось создать объявление. Проверьте или перезапустите модуль в настройках Android."
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Konuşma sentezi başarısız oldu. Tekrar dene."
+            "state": "translated",
+            "value": "Metin okuma hizmeti duyuruyu oluşturamadı. Android ayarlarından motoru kontrol edin veya yeniden başlatın."
           }
         }
       }
@@ -10901,43 +10901,43 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Sprache"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Idioma"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Langue"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Idioma"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Idioma"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Язык"
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Dil"
           }
         }
@@ -10990,7 +10990,7 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Uygulama dili"
           }
         }
@@ -11007,43 +11007,43 @@
         },
         "de": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Systemstandard"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Predeterminado del sistema"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Réglage du système"
+            "state": "translated",
+            "value": "Par défaut"
           }
         },
         "gl": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Predeterminado do sistema"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Padrão do sistema"
           }
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Как в системе"
+            "state": "translated",
+            "value": "Системный по умолчанию"
           }
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Sistem varsayılanı"
           }
         }
@@ -11150,7 +11150,7 @@
         "tr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dili değiştirmek için C2K’nin yeniden başlaması gerekiyor."
+            "value": "Dili değiştirmek için C2K'nin yeniden başlaması gerekiyor."
           }
         }
       }
@@ -11255,8 +11255,61 @@
         },
         "tr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "iOS dil ayarlarını aç"
+          }
+        }
+      }
+    },
+    "Turkish (tr) translation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turkish (tr) translation"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Türkische (tr) Übersetzung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traducción al turco (tr)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traduction en turc (tr)"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tradución ao turco (tr)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tradução para o turco (tr)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перевод на турецкий (tr)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Türkçe (tr) çeviri"
           }
         }
       }

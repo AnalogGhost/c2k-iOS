@@ -1,27 +1,27 @@
-C2K, seni kanepeden 5K, 10K ve ötesine taşıyan, iOS için ücretsiz ve açık kaynak bir koşu koçudur — reklamsız ve takipsiz.
+C2K, seni koltuğundan 5K, 10K ve ötesine koşmaya yönlendiren, iOS için ücretsiz ve açık kaynak bir koşu antrenörüdür — reklamsız ve takipsiz.
 
 Programlar:
-• Pre-C25K — mutlak yeni başlayanlar için 3 haftalık nazik başlangıç
-• Couch to 5K (C25K) — 9 haftalık program, haftada 3 koşu
-• Bridge to 10K (B210K) — C25K mezunları için 6 haftalık köprü
-• Couch to 10K (C210K) — 14 haftalık program, C25K’den devam eder
-• One Hour Runner — 30’dan 60 dakikaya kesintisiz koşuya 13 haftalık ilerleme
-• 5K Improver — 5K’yı zaten tamamlayabilenler için 8 haftalık hız ve dayanıklılık programı
+• 5K Ön Hazırlık — tam yeni başlayanlar için 3 haftalık hafif başlangıç
+• Koltuğundan 5K'ya (C25K) — 9 haftalık program, haftada 3 koşu
+• 10K'ya Köprü (B210K) — C25K mezunları için 6 haftalık köprü programı
+• Koltuğundan 10K'ya (C210K) — C25K'nın devamı niteliğinde 14 haftalık program
+• 1 Saat Koşucusu — 30 dakikadan 60 dakikaya kesintisiz koşu için 13 haftalık ilerleme programı
+• 5K Geliştirici — halihazırda 5K koşabilenler için 8 haftalık hız ve dayanıklılık programı
 
 Özellikler:
-• Sesli yönlendirmeler — “Koşmaya başla”, “90 saniye yürü”, geri sayım uyarıları
-• Özelleştirilebilir koçluk — ses hızı/seviyesi, uyarı zamanlaması ve aralık ortası teşvikleri
-• Antrenmandan önce sesi test et
-• Sesin yerine ya da yanında titreşim ipuçları; Hafif, Orta ve Güçlü seviyeleri
+• Sesli yönlendirmeler — "Koşmaya başlayın", "90 saniye yürüyün", geri sayım uyarıları
+• Özelleştirilebilir yönlendirme — ses hızını/düzeyini, geri sayım uyarı zamanlamasını ve aralık ortası ipuçlarını ayarlayın
+• Antrenmandan önce sesi test edin
+• Sese alternatif veya ek olarak titreşimli uyarılar; Hafif, Orta ve Güçlü güç seviyeleri
 • Cihaz dilinden bağımsız, elle dil seçimi
-• Arka plan zamanlayıcı — ekran kapalıyken sürer
-• Kilit ekranı denetimleri — aralık ilerlemesini gör, duraklat/sürdür
+• Arka planda çalışan antrenman zamanlayıcısı — ekran kapalıyken çalışmaya devam eder
+• Kilit ekranı denetimleri — aralık ilerlemesini görün, kilit ekranından ya da Kontrol Merkezi'nden duraklatın/sürdürün
 • GPS takibi (isteğe bağlı) — mesafe ve tempoyu kaydeder; GPS olmadan da çalışır
-• Koşu bandı modu — GPS olmadan iç mekân koşuları
-• Antrenman geçmişi — toplam mesafe, süre, en iyi tempo, en uzun koşu ve kalori tahmini
-• İlerleme takibi — tamamladığın hafta ve günleri hatırlar, sıfırlama seçeneğiyle
-• Uygulama içi koşu rehberi — tempo, ekipman ve terimlerle ilgili SSS
+• Koşu bandı modu — GPS olmadan kapalı alan koşuları
+• Antrenman geçmişi — toplam mesafe, süre, en iyi tempo, en uzun koşu ve kalori tahminlerini içeren oturum günlüğü
+• İlerleme takibi — tamamladığınız haftaları ve günleri hatırlar, sıfırlama seçeneği sunar
+• Uygulama içi koşu rehberi — tempo, ekipman ve terimleri kapsayan SSS
 • 8 dilde — İngilizce, Almanca, İspanyolca, Fransızca, Galiçyaca, Portekizce (Brezilya), Rusça, Türkçe
 • Tamamen çevrimdışı — hiçbir veri cihazından çıkmaz
 
-C2K, GNU General Public License v3 altında yayımlanan özgür yazılımdır.
+C2K, GNU Genel Kamu Lisansı v3 altında yayınlanan özgür bir yazılımdır.

@@ -1,1 +1,1 @@
-Açık kaynak C25K koçu
+Açık kaynak C25K antrenörü

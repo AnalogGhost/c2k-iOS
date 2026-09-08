@@ -1,27 +1,27 @@
-C2K es un entrenador de carrera libre y de código abierto para iOS que te lleva del sofá a correr 5K, 10K y más, sin anuncios y sin rastreo.
+C2K es una app de entrenamiento para iOS, libre y de código abierto, que te guía desde el nivel más básico hasta correr 5K, 10K y más allá — no te rastrea y no tiene publicidad.
 
 Programas:
-• Pre-C25K: inicio suave de 3 semanas para principiantes absolutos
-• Couch to 5K (C25K): programa de 9 semanas, 3 carreras por semana
-• Bridge to 10K (B210K): puente de 6 semanas para quienes terminaron C25K
-• Couch to 10K (C210K): programa de 14 semanas, continúa desde C25K
-• One Hour Runner: progresión de 13 semanas de 30 a 60 minutos de carrera continua
-• 5K Improver: programa de 8 semanas de velocidad y resistencia para quienes ya completan 5K
+• Pre-C25K — inicio suave de 3 semanas para principiantes absolutos
+• Del sofá a 5K (C25K) — programa de 9 semanas, 3 sesiones por semana
+• Puente a 10K (B210K) — puente de 6 semanas para quienes completaron C25K
+• Del sofá a 10K (C210K) — programa de 14 semanas, continúa desde C25K
+• One Hour Runner — progresión de 13 semanas de 30 a 60 minutos de carrera continua
+• 5K Improver — programa de 8 semanas de velocidad y resistencia para corredores que ya pueden completar 5K
 
-Funciones:
-• Indicaciones de voz: «Empieza a correr», «Camina 90 segundos», avisos de cuenta atrás
-• Entrenamiento personalizable: ajusta velocidad/volumen de voz, tiempos de aviso y ánimos a mitad de intervalo
+Características:
+• Indicaciones por voz — "Comienza a correr", "Camina durante 90 segundos", cuenta atrás
+• Entrenamiento personalizable — ajusta la velocidad/volumen de voz, el momento de las cuentas atrás y los avisos intermedios
 • Prueba la voz antes de entrenar
-• Vibración como alternativa o complemento a la voz, con niveles Suave, Media y Fuerte
-• Selección manual de idioma, independiente del idioma del dispositivo
-• Temporizador en segundo plano: sigue con la pantalla apagada
-• Controles en la pantalla bloqueada: ver el progreso del intervalo y pausar/reanudar
-• Seguimiento por GPS (opcional): registra distancia y ritmo; también funciona sin GPS
-• Modo cinta: carreras en interior sin GPS
-• Historial: distancia total, tiempo, mejor ritmo, carrera más larga y estimación de calorías
-• Progreso: recuerda las semanas y días completados, con opción de reiniciar
-• Guía de carrera integrada: preguntas frecuentes sobre ritmo, equipo y terminología
-• Disponible en 8 idiomas: inglés, alemán, español, francés, gallego, portugués (Brasil), ruso, turco
-• Totalmente sin conexión: ningún dato sale de tu dispositivo
+• Avisos por vibración como alternativa o complemento a la voz
+• Ajusta la intensidad de vibración y el idioma
+• Temporizador en segundo plano — continúa funcionando con la pantalla apagada
+• Controles en la pantalla bloqueada — ver el progreso del intervalo y pausar/reanudar desde la pantalla bloqueada o el Centro de Control
+• Registro con GPS (opcional) — graba la distancia y ritmo; funciona igualmente sin GPS
+• Modo cinta de correr — para entrenar en interiores sin GPS
+• Historial de entrenamientos — registro de sesiones con distancia total, tiempo, mejor ritmo, carrera más larga y calorías estimadas
+• Seguimiento de progreso — registra cuantos días y semanas has completado, con opción de reiniciar
+• Guía de carrera integrada — preguntas frecuentes sobre ritmo, equipo y terminología
+• Disponible en 8 idiomas — inglés, alemán, español, francés, gallego, portugués (Brasil), ruso, turco
+• Totalmente sin conexión — ningún dato sale de tu dispositivo
 
-C2K es software libre publicado bajo la Licencia Pública General de GNU v3.
+C2K es software libre publicado con licencia GNU General Public License v3.
