@@ -1,0 +1,161 @@
+default_platform(:ios)
+
+SCHEME = "CtoK".freeze
+PROJECT = "CtoK.xcodeproj".freeze
+APP_IDENTIFIER = "com.hackerapps.c2k".freeze
+METADATA_PATH = "./fastlane/metadata".freeze
+SCREENSHOTS_PATH = "./fastlane/screenshots".freeze
+RELEASE_NOTES = "fastlane/metadata/en-US/release_notes.txt".freeze
+
+# Lane arguments arrive as strings ("verify_only:false" -> "false"), so coerce
+# to a real boolean before using one in Ruby control flow.
+def flag(options, key, default)
+  value = options.fetch(key, default)
+  return default if value.nil?
+  !%w[false no 0].include?(value.to_s.strip.downcase)
+end
+
+# App Store Connect API key, read from fastlane/.env.default (git-ignored).
+def asc_api_key
+  app_store_connect_api_key(
+    key_id: ENV.fetch("ASC_KEY_ID"),
+    issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+    key_filepath: ENV.fetch("ASC_KEY_PATH"),
+    in_house: false
+  )
+end
+
+# Marketing version is the single source of truth in project.yml.
+def marketing_version
+  yml = File.read(File.expand_path("../project.yml", __dir__))
+  yml[/MARKETING_VERSION:\s*"?([0-9][0-9.]*)"?/, 1] or
+    UI.user_error!("Could not read MARKETING_VERSION from project.yml")
+end
+
+# Next build number = highest already on App Store Connect + 1.
+def next_build_number(api_key)
+  latest = latest_testflight_build_number(
+    api_key: api_key,
+    app_identifier: APP_IDENTIFIER,
+    version: marketing_version,
+    initial_build_number: 1
+  )
+  latest.to_i + 1
+end
+
+def build_release_ipa(api_key)
+  build_number = next_build_number(api_key)
+  UI.message("Building #{marketing_version} (#{build_number})")
+  build_app(
+    scheme: SCHEME,
+    project: PROJECT,
+    export_method: "app-store",
+    xcargs: "-allowProvisioningUpdates CURRENT_PROJECT_VERSION=#{build_number}",
+    output_directory: "build/fastlane",
+    output_name: "CtoK.ipa",
+    clean: true
+  )
+end
+
+platform :ios do
+  before_all do
+    # Lanes must work on a fresh checkout — the .xcodeproj is generated.
+    sh("cd .. && xcodegen generate")
+  end
+
+  desc "Verify the App Store Connect API key authenticates"
+  lane :check do
+    api_key = asc_api_key
+    build = latest_testflight_build_number(
+      api_key: api_key,
+      app_identifier: APP_IDENTIFIER,
+      initial_build_number: 0
+    )
+    UI.success("Authenticated. Latest TestFlight build: #{build}")
+  end
+
+  desc "Capture App Store screenshots in every locale (no upload)"
+  lane :screenshots do
+    capture_ios_screenshots
+  end
+
+  desc "Build and upload a release to App Store Connect. Dry run by default; pass verify_only:false to ship."
+  lane :store do |options|
+    api_key = asc_api_key
+    upload_screenshots = !flag(options, :skip_screenshots, true)
+    build_release_ipa(api_key)
+    upload_to_app_store(
+      api_key: api_key,
+      ipa: "build/fastlane/CtoK.ipa",
+      metadata_path: METADATA_PATH,
+      screenshots_path: SCREENSHOTS_PATH,
+      skip_metadata: flag(options, :skip_metadata, false),
+      skip_screenshots: !upload_screenshots,
+      overwrite_screenshots: upload_screenshots,
+      submit_for_review: flag(options, :submit, false),
+      precheck_include_in_app_purchases: false,
+      run_precheck_before_submit: false,
+      force: true,
+      verify_only: flag(options, :verify_only, true)
+    )
+  end
+
+  desc "Upload only the listing text, URLs, and release notes. No build. Dry run by default."
+  lane :metadata do |options|
+    upload_to_app_store(
+      api_key: asc_api_key,
+      metadata_path: METADATA_PATH,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: false,
+      force: true,
+      verify_only: flag(options, :verify_only, true)
+    )
+  end
+
+  desc "Upload only the screenshots. No build. Dry run by default."
+  lane :upload_screenshots do |options|
+    upload_to_app_store(
+      api_key: asc_api_key,
+      screenshots_path: SCREENSHOTS_PATH,
+      skip_binary_upload: true,
+      skip_metadata: true,
+      skip_screenshots: false,
+      overwrite_screenshots: true,
+      force: true,
+      verify_only: flag(options, :verify_only, true)
+    )
+  end
+
+  desc "Build and upload to TestFlight only"
+  lane :beta do
+    api_key = asc_api_key
+    build_release_ipa(api_key)
+    upload_to_testflight(
+      api_key: api_key,
+      ipa: "build/fastlane/CtoK.ipa",
+      skip_waiting_for_build_processing: true
+    )
+  end
+
+  desc "Tag v<MARKETING_VERSION> and create the matching GitHub release"
+  lane :release do
+    ensure_git_status_clean
+    tag = "v#{marketing_version}"
+
+    add_git_tag(tag: tag)
+
+    notes_path = File.expand_path("../#{RELEASE_NOTES}", __dir__)
+    notes = File.exist?(notes_path) ? File.read(notes_path).strip : ""
+    UI.important("Tagged #{tag} locally.")
+    UI.message("Release notes:\n#{notes}")
+
+    unless UI.confirm("Push #{tag} to origin and create the GitHub release now?")
+      UI.user_error!("Aborted. Remove the local tag with: git tag -d #{tag}")
+    end
+
+    push_git_tags(tag: tag)
+    sh("gh release create #{tag.shellescape} --title #{tag.shellescape} --notes #{notes.shellescape}")
+    UI.success("Released #{tag}")
+  end
+end

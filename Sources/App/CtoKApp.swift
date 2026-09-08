@@ -4,7 +4,23 @@ import SwiftData
 @main
 struct CtoKApp: App {
     @State private var prefs = UserPreferences()
-    private let container = try! ModelContainer(for: WorkoutSession.self, RoutePoint.self)
+    private let container: ModelContainer
+
+    init() {
+        #if DEBUG
+        if CommandLine.arguments.contains("--screenshot-seed") {
+            container = try! ModelContainer(
+                for: WorkoutSession.self, RoutePoint.self,
+                configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+            )
+            ScreenshotSeed.populate(context: container.mainContext)
+        } else {
+            container = try! ModelContainer(for: WorkoutSession.self, RoutePoint.self)
+        }
+        #else
+        container = try! ModelContainer(for: WorkoutSession.self, RoutePoint.self)
+        #endif
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -21,6 +37,9 @@ struct CtoKApp: App {
     // interrupted run simply retries on next launch.
     @MainActor
     private func repairGpsDistancesIfNeeded() {
+        #if DEBUG
+        if CommandLine.arguments.contains("--screenshot-seed") { return }
+        #endif
         guard !prefs.gpsDistancesRecomputed else { return }
         SessionRepository(context: container.mainContext).recomputeSessionDistances()
         prefs.gpsDistancesRecomputed = true

@@ -74,6 +74,7 @@ struct ProgramSelectView: View {
                                 DayButton(day: day, durationMin: workoutDay.totalDurationSeconds / 60, completed: done) {
                                     previewDay = WeekDay(week: week, day: day)
                                 }
+                                .accessibilityIdentifier("day-\(week)-\(day)")
                             }
                         }
                         .padding(.vertical, 4)

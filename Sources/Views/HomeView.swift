@@ -21,6 +21,7 @@ struct HomeView: View {
                             .foregroundColor(.runOrange)
                             .font(.subheadline)
                             .listRowBackground(Color.clear)
+                            .accessibilityIdentifier("home-streak")
                     }
                 }
 
@@ -66,6 +67,7 @@ struct HomeView: View {
                             ProgramRow(plan: plan)
                         }
                         .buttonStyle(.plain)
+                        .accessibilityIdentifier("program-\(plan.programId)")
                     }
                 }
 
@@ -83,21 +85,25 @@ struct HomeView: View {
                     Button { path.append(.contributors) } label: {
                         Image(systemName: "person.2")
                     }
+                    .accessibilityIdentifier("nav-contributors")
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button { path.append(.guide) } label: {
                         Image(systemName: "book")
                     }
+                    .accessibilityIdentifier("nav-guide")
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button { path.append(.history) } label: {
                         Image(systemName: "clock.arrow.circlepath")
                     }
+                    .accessibilityIdentifier("nav-history")
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button { path.append(.settings) } label: {
                         Image(systemName: "gearshape")
                     }
+                    .accessibilityIdentifier("nav-settings")
                 }
             }
             .navigationDestination(for: AppRoute.self) { route in

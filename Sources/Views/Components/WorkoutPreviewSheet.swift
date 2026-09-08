@@ -30,6 +30,7 @@ struct WorkoutPreviewSheet: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
+            .accessibilityIdentifier("start-workout")
             .padding(.top, 24)
         }
         .padding(.horizontal, 24)

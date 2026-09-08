@@ -1,0 +1,6 @@
+app_identifier("com.hackerapps.c2k")
+team_id("6BRG6VVP3H")
+
+# Apple ID is only needed for the rare fastlane action that can't use the
+# App Store Connect API key. Set it in fastlane/.env.default if you hit one.
+apple_id(ENV["FASTLANE_APPLE_ID"]) if ENV["FASTLANE_APPLE_ID"]

@@ -33,7 +33,7 @@ content exists in this app, so none of those need to appear in the recording.
 
 **2. Devices and OS versions tested**
 
-- iPhone 17, iOS [version — fill in]
+- iPhone 17, iOS 26.6
 
 (C2K is restricted to iPhone via `TARGETED_DEVICE_FAMILY`, so an iPad isn't
 a relevant test target for this app.)

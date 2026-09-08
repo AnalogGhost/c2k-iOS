@@ -36,6 +36,11 @@ open CtoK.xcodeproj
 
 Set your development team in Xcode under Signing & Capabilities, then build and run.
 
+## Releasing
+
+App Store builds, store copy, and screenshots are automated with
+[fastlane](https://fastlane.tools). See [RELEASING.md](RELEASING.md).
+
 ## License
 
 Copyright (C) 2026 Mathew Brown

@@ -1,0 +1,37 @@
+name: Screenshots
+
+# Manual only. Produces an artifact of the App Store screenshots in every
+# locale; download it and commit the PNGs under fastlane/screenshots/.
+# (Mirrors the Android app's screenshots workflow — CI never commits them.)
+on:
+  workflow_dispatch:
+
+jobs:
+  screenshots:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.app
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Capture screenshots
+        run: bundle exec fastlane screenshots
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: fastlane/screenshots/**/*.png
+          if-no-files-found: error
