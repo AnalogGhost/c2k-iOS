@@ -17,13 +17,17 @@ jobs:
       - name: Generate Xcode project
         run: xcodegen generate
 
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.app
-
       - name: Run unit tests
         run: |
+          DEVICE_ID=$(xcrun simctl list devices available \
+            | grep -m1 -E 'iPhone' \
+            | grep -oE '[0-9A-Fa-f-]{36}')
+          if [ -z "$DEVICE_ID" ]; then
+            echo "No available iPhone simulator found"; exit 1
+          fi
+          echo "Using simulator $DEVICE_ID"
           xcodebuild -scheme CtoK \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -destination "platform=iOS Simulator,id=$DEVICE_ID" \
             test
 
       - name: Upload test report
