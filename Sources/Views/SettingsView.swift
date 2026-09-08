@@ -155,6 +155,7 @@ struct SettingsView: View {
             }
         }
         .navigationTitle("Settings")
+        .accessibilityIdentifier("screen-settings")
         .onAppear {
             weightText = prefs.weightKg.map { formatWeight(prefs.weightUnit.fromKg($0)) } ?? ""
         }

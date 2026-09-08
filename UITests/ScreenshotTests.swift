@@ -3,8 +3,8 @@ import XCTest
 /// App Store screenshot walkthrough, driven by `fastlane snapshot`
 /// (`bundle exec fastlane screenshots`). Launches the app against a seeded
 /// in-memory store (`--screenshot-seed`, see `CtoKApp`) and captures one shot
-/// per key screen. Navigation uses the accessibility identifiers added to the
-/// relevant controls plus a few stable button titles.
+/// per key screen. Navigation is entirely by accessibility identifier so it
+/// works in every localisation — it must, since snapshot runs it per language.
 @MainActor
 final class ScreenshotTests: XCTestCase {
     private var app: XCUIApplication!
@@ -19,54 +19,64 @@ final class ScreenshotTests: XCTestCase {
     }
 
     func testScreenshots() {
-        // Home first. The History/Guide/Settings shots are taken before the workout
-        // so History shows only the seeded sessions (no 7-second incomplete run).
+        // "C2K" is the same in every language (it's the brand, not a localized key).
         XCTAssertTrue(app.navigationBars["C2K"].waitForExistence(timeout: 30))
-        XCTAssertTrue(app.staticTexts["home-streak"].waitForExistence(timeout: 5),
+        XCTAssertTrue(marker("home-streak").waitForExistence(timeout: 5),
                       "Seeded history is missing — ScreenshotSeed did not populate the store")
         snapshot("01_home")
 
+        // History / Guide / Settings are captured before the workout so History shows
+        // only the seeded sessions (no incomplete run from the walkthrough).
         tap(app.buttons["nav-history"])
-        XCTAssertTrue(app.navigationBars["History"].waitForExistence(timeout: 10))
+        waitForScreen("screen-history")
         snapshot("05_history")
-        goBack(from: "History")
+        goBack()
 
         tap(app.buttons["nav-guide"])
-        XCTAssertTrue(app.navigationBars["Guide"].waitForExistence(timeout: 10))
+        waitForScreen("screen-guide")
         snapshot("06_guide")
-        goBack(from: "Guide")
+        goBack()
 
         tap(app.buttons["nav-settings"])
-        XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 10))
+        waitForScreen("screen-settings")
         snapshot("07_settings")
-        goBack(from: "Settings")
+        goBack()
 
-        // Program → preview → active workout.
+        // Program grid → preview sheet → active workout.
         tap(app.buttons["program-C25K"])
-        XCTAssertTrue(app.navigationBars["Couch to 5K"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["day-3-3"].waitForExistence(timeout: 10))
         snapshot("02_program")
 
-        tap(app.buttons["day-3-3"])   // week 3, day 3 — the next incomplete day
+        tap(app.buttons["day-3-3"])            // week 3, day 3 — the next incomplete day
         XCTAssertTrue(app.buttons["start-workout"].waitForExistence(timeout: 10))
         snapshot("03_preview")
 
         app.buttons["start-workout"].tap()
-        XCTAssertTrue(app.buttons["Pause"].waitForExistence(timeout: 20))
-        Thread.sleep(forTimeInterval: 2)  // let the elapsed clock tick past 0:00
+        XCTAssertTrue(app.buttons["workout-pause"].waitForExistence(timeout: 20))
+        Thread.sleep(forTimeInterval: 2)       // let the elapsed clock tick past 0:00
         snapshot("04_workout")
     }
 
     // MARK: - Helpers
 
+    /// An element carrying `.accessibilityIdentifier(id)`, of whatever type.
+    private func marker(_ id: String) -> XCUIElement {
+        app.descendants(matching: .any).matching(identifier: id).firstMatch
+    }
+
+    private func waitForScreen(_ id: String, timeout: TimeInterval = 10) {
+        XCTAssertTrue(marker(id).waitForExistence(timeout: timeout), "\(id) never appeared")
+    }
+
     private func tap(_ element: XCUIElement, timeout: TimeInterval = 15) {
-        XCTAssertTrue(element.waitForExistence(timeout: timeout),
-                      "\(element) never appeared")
+        XCTAssertTrue(element.waitForExistence(timeout: timeout), "\(element) never appeared")
         if !element.isHittable { app.swipeUp() }
         element.tap()
     }
 
-    private func goBack(from title: String) {
-        app.navigationBars[title].buttons.element(boundBy: 0).tap()
+    /// Taps the leading (back) button of whatever nav bar is showing and waits for Home.
+    private func goBack() {
+        app.navigationBars.buttons.element(boundBy: 0).tap()
         XCTAssertTrue(app.navigationBars["C2K"].waitForExistence(timeout: 10))
     }
 }

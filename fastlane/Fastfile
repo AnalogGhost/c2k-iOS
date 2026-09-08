@@ -84,7 +84,7 @@ platform :ios do
   end
 
   desc "Re-run only the framing step over the existing raw screenshots"
-  lane :frame_screenshots do
+  lane :reframe do
     sh("cd .. && swift run --package-path Tools/ScreenshotComposer screenshot-composer")
   end
 

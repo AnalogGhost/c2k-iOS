@@ -41,6 +41,7 @@ struct HistoryView: View {
             }
         }
         .navigationTitle("History")
+        .accessibilityIdentifier("screen-history")
         .toolbar {
             if !sessions.isEmpty {
                 ToolbarItem(placement: .navigationBarTrailing) {

@@ -71,7 +71,7 @@ This mirrors the Android app (`~/Projects/c2k`).
    Swift/CoreGraphics program — mirrors the Android app's composer). deliver
    uploads the framed set. Edit the caption text in
    `fastlane/screenshot_captions.yml` and re-run `bundle exec fastlane
-   frame_screenshots` to re-frame without re-capturing.
+   reframe` to re-frame without re-capturing.
 
    (Or run the **Screenshots** GitHub Actions workflow and commit the artifact.)
 
@@ -107,7 +107,7 @@ This mirrors the Android app (`~/Projects/c2k`).
 |---|---|---|
 | `check` | Verify the App Store Connect API key authenticates. | — |
 | `screenshots` | Capture raw screenshots (`snapshot`) + composite the framed/captioned set. No upload. | — |
-| `frame_screenshots` | Re-run only the framing step over the existing raw screenshots. | — |
+| `reframe` | Re-run only the framing step over the existing raw screenshots. | — |
 | `store` | Build a signed app-store IPA and upload the build + metadata. | **dry run** (`verify_only:true`) |
 | `metadata` | Upload only the listing text, URLs, and release notes. No build. | **dry run** |
 | `upload_screenshots` | Upload only the screenshots. No build. | **dry run** |

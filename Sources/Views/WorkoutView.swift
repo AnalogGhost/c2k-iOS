@@ -224,6 +224,7 @@ private struct ActiveWorkoutContent: View {
             Button(action: onPause) {
                 Label("Pause", systemImage: "pause.fill")
             }
+            .accessibilityIdentifier("workout-pause")
             .buttonStyle(.borderedProminent)
 
             Button(action: onStop) {

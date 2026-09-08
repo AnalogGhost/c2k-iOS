@@ -18,6 +18,7 @@ struct GuideView: View {
             }
         }
         .navigationTitle("Guide")
+        .accessibilityIdentifier("screen-guide")
         .navigationBarTitleDisplayMode(.large)
     }
 }
