@@ -8,7 +8,7 @@ C2K for iOS is a SwiftUI running trainer targeting iOS 17. Source code is under 
 
 - `xcodegen generate` regenerates `CtoK.xcodeproj` from `project.yml`.
 - `open CtoK.xcodeproj` opens the generated project in Xcode.
-- `xcodebuild -scheme CtoK -destination 'platform=iOS Simulator,name=iPhone 15' test` runs tests when that simulator is installed; adjust the destination to an available simulator.
+- `xcodebuild -scheme CtoK -destination 'platform=iOS Simulator,name=iPhone 16' test` runs the unit tests (any installed iPhone simulator works; CI picks one automatically).
 
 ## Coding and testing
 
