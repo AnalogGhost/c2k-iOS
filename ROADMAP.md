@@ -6,8 +6,8 @@ release) is in place — see `RELEASING.md`.
 
 ## Before the next App Store submission
 
-- [ ] Generate and commit the framed store screenshots for all locales
-      (`bundle exec fastlane screenshots`, or the Screenshots GitHub Action)
+- [x] Generate and commit the framed store screenshots for all locales
+      (captured on the Screenshots GitHub Action — see `RELEASING.md`)
 - [ ] Native review of the ~52 `needs_review` strings in
       `Sources/Localizable.xcstrings` (the iOS-only Settings labels with no
       Android equivalent) and the machine-drafted store `subtitle.txt` /
