@@ -24,7 +24,7 @@ None. The app makes no network requests and integrates no third-party SDKs, anal
 
 6. Regional differences
 
-The app functions identically in every region. The only regional variation is language: the app is localized into English, German, Spanish, French, Galician, Portuguese (Brazil), and Russian. There are no region-locked features, content, or pricing differences (the app has no purchases at all).
+The app functions identically in every region. The only regional variation is language: the app is localized into English, German, Spanish, French, Galician, Portuguese (Brazil), Russian, and Turkish. There are no region-locked features, content, or pricing differences (the app has no purchases at all).
 
 7. Regulated industry / protected material
 
