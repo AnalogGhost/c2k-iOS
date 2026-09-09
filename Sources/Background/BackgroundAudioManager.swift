@@ -7,6 +7,12 @@ final class BackgroundAudioManager {
     private var playerNode: AVAudioPlayerNode?
 
     func start() {
+        #if DEBUG
+        // The screenshot walkthrough never plays audio; skip the AVAudioEngine
+        // keep-alive so a starved CoreAudio RPC can't abort the app mid-capture.
+        if CommandLine.arguments.contains("--screenshot-seed") { return }
+        #endif
+
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setCategory(.playback, mode: .default, options: [.mixWithOthers])

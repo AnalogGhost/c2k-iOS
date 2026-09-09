@@ -25,13 +25,17 @@ scheme("CtoKUITests")
 # marketing set into ./fastlane/screenshots/framed, which is what deliver uploads.
 output_directory("./fastlane/screenshots/raw")
 clear_previous_screenshots(true)
-concurrent_simulators(true)
+# Serial capture — one simulator at a time. Slower, but concurrent booting of
+# multiple 6.9" simulators starves a loaded machine and the UI queries time out.
+concurrent_simulators(false)
 
 # Clean 9:41 / full-battery / full-signal status bar on every shot.
 override_status_bar(true)
 
-# Fail fast while the walkthrough is being stabilised.
-stop_after_first_error(true)
+# Keep going if one locale flakes (loaded machine / slow simulator boot); retry
+# a failed locale twice before giving up on it.
+stop_after_first_error(false)
+number_of_retries(2)
 
 # The screenshot walkthrough is the only test in this scheme's UI test target.
 only_testing(["CtoKUITests/ScreenshotTests"])

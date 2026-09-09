@@ -33,10 +33,10 @@ Capture raw screenshots in every locale, then composite the framed/captioned
 
 marketing set into fastlane/screenshots/framed (what deliver uploads). No upload.
 
-### ios frame_screenshots
+### ios reframe
 
 ```sh
-[bundle exec] fastlane ios frame_screenshots
+[bundle exec] fastlane ios reframe
 ```
 
 Re-run only the framing step over the existing raw screenshots

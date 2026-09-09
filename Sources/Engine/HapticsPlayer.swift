@@ -7,7 +7,10 @@ enum HapticCue {
     case workoutComplete      // three pulses
 }
 
-// Test seam so WorkoutManager can be exercised with a spy.
+// Test seam so WorkoutManager can be exercised with a spy. Main-actor isolated to
+// match HapticsPlayer (and WorkoutManager, its only caller) — keeps the conformance
+// from crossing actor boundaries under Swift 6 checking.
+@MainActor
 protocol HapticCuePlaying: AnyObject {
     func configure(strength: VibrationStrength)
     func start()

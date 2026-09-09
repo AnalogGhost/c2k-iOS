@@ -52,7 +52,9 @@ final class ScreenshotTests: XCTestCase {
         snapshot("03_preview")
 
         app.buttons["start-workout"].tap()
-        XCTAssertTrue(app.buttons["workout-pause"].waitForExistence(timeout: 20))
+        // Generous timeout: start() spins up the audio session + first TTS announce,
+        // which can lag on a loaded CI machine before the active screen renders.
+        XCTAssertTrue(app.buttons["workout-pause"].waitForExistence(timeout: 60))
         Thread.sleep(forTimeInterval: 2)       // let the elapsed clock tick past 0:00
         snapshot("04_workout")
     }
