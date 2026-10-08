@@ -41,6 +41,10 @@ Set your development team in Xcode under Signing & Capabilities, then build and 
 App Store builds, store copy, and screenshots are automated with
 [fastlane](https://fastlane.tools). See [RELEASING.md](RELEASING.md).
 
+## Support
+
+C2K is free, with no ads or tracking. If it's useful to you, you can [sponsor its development on GitHub](https://github.com/sponsors/AnalogGhost).
+
 ## License
 
 Copyright (C) 2026 Mathew Brown
