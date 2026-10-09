@@ -11,6 +11,7 @@ enum WorkoutState {
         let nextInterval: Interval?
         let intervalIndex: Int
         let totalIntervals: Int
+        let remainingRunIntervals: Int
         let secondsRemainingInInterval: Int
         let elapsedSessionSeconds: Int
         let sessionId: UUID

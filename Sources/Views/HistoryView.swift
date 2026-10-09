@@ -18,6 +18,27 @@ struct HistoryView: View {
                                        description: Text("Complete a workout to see your history here."))
             } else {
                 List {
+                    let weekly = WorkoutStats.weeklySummary(sessions: sessions, weightKg: prefs.weightKg)
+                    let monthly = WorkoutStats.monthlySummary(sessions: sessions, weightKg: prefs.weightKg)
+
+                    Section {
+                        PeriodSummaryCard(
+                            sectionLabel: String(localized: "history_week_section_this_week"),
+                            totals: weekly.thisWeek,
+                            comparisonKey: "history_week_last_week",
+                            previous: weekly.lastWeek
+                        )
+                    }
+
+                    Section {
+                        PeriodSummaryCard(
+                            sectionLabel: String(localized: "history_month_section_this_month"),
+                            totals: monthly.thisMonth,
+                            comparisonKey: "history_month_last_month",
+                            previous: monthly.lastMonth
+                        )
+                    }
+
                     Section {
                         StatsCard(sessions: sessions, weightKg: prefs.weightKg)
                     }
@@ -78,6 +99,40 @@ struct HistoryView: View {
     }
 }
 
+private struct PeriodSummaryCard: View {
+    let sectionLabel: String
+    let totals: PeriodTotals
+    let comparisonKey: String
+    let previous: PeriodTotals
+
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(sectionLabel).font(.caption.bold()).foregroundStyle(.secondary)
+            HStack {
+                Spacer()
+                StatItem(value: "\(totals.completedSessions)", label: workoutsLabel(count: totals.completedSessions))
+                Spacer()
+                StatItem(value: String(format: "%.1f", totals.totalKm), label: String(localized: "km"))
+                Spacer()
+                StatItem(value: formatDuration(totals.totalTimeSeconds), label: String(localized: "time"))
+                Spacer()
+                if let kcal = totals.totalCalories {
+                    StatItem(value: "\(kcal)", label: String(localized: "kcal"))
+                    Spacer()
+                }
+            }
+            if previous.hasActivity {
+                Text(String(format: NSLocalizedString(comparisonKey, comment: ""),
+                            String(format: "%.1f", previous.totalKm), formatDuration(previous.totalTimeSeconds)))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 8)
+            }
+        }
+        .padding(.vertical, 8)
+    }
+}
+
 private struct StatsCard: View {
     let sessions: [WorkoutSession]
     let weightKg: Double?
@@ -103,7 +158,7 @@ private struct StatsCard: View {
             Text("Totals").font(.caption.bold()).foregroundStyle(.secondary)
             HStack {
                 Spacer()
-                StatItem(value: "\(completed.count)", label: workoutsLabel)
+                StatItem(value: "\(completed.count)", label: workoutsLabel(count: completed.count))
                 Spacer()
                 StatItem(value: String(format: "%.1f", totalKm), label: String(localized: "km"))
                 Spacer()
@@ -133,12 +188,15 @@ private struct StatsCard: View {
         }
         .padding(.vertical, 8)
     }
+}
 
-    private var workoutsLabel: String {
-        completed.count == 1
-            ? NSLocalizedString("history_stats_workout_singular", comment: "")
-            : NSLocalizedString("history_stats_workout_plural", comment: "")
-    }
+// The count is shown above the label, but the label still has to agree with it (Russian
+// needs "2 тренировки" vs "5 тренировок"). String Catalog plurals must contain the number,
+// so every form is "%lld <label>" and the number is dropped again here.
+func workoutsLabel(count: Int) -> String {
+    let counted = String.localizedStringWithFormat(NSLocalizedString("history_stats_workouts", comment: ""), count)
+    guard let space = counted.firstIndex(of: " ") else { return counted }
+    return String(counted[counted.index(after: space)...])
 }
 
 private struct StatItem: View {

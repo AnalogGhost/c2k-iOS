@@ -6,6 +6,15 @@ struct WorkoutDay {
     var totalDurationSeconds: Int {
         intervals.reduce(0) { $0 + $1.durationSeconds }
     }
+
+    /// Drops the warm-up and cool-down intervals, for users who already warm up getting to
+    /// their run (Android issue #43) — the run/walk intervals that are the actual program are
+    /// untouched. Every program day has at least one run interval outside the warm-up/cool-down,
+    /// so this never empties the list.
+    func withoutWarmupCooldown() -> WorkoutDay {
+        WorkoutDay(week: week, day: day,
+                   intervals: intervals.filter { $0.type != .warmup && $0.type != .cooldown })
+    }
 }
 
 struct WorkoutPlan {
@@ -16,6 +25,13 @@ struct WorkoutPlan {
     let prerequisite: String?
 
     var totalWeeks: Int { weeks.count }
+
+    /// The day as it will actually be run: the one place the skip warm-up/cool-down preference
+    /// is applied, so the program grid, preview sheet, and the workout itself can't disagree.
+    func workoutDay(week: Int, day: Int, skipWarmupCooldown: Bool) -> WorkoutDay {
+        let planDay = weeks[week - 1][day - 1]
+        return skipWarmupCooldown ? planDay.withoutWarmupCooldown() : planDay
+    }
 
     /// The (week, day) to suggest next: the first uncompleted day *after* the latest completed
     /// one, in plan order. Scanning for the earliest gap instead would point users who

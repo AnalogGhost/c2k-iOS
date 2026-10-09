@@ -40,6 +40,7 @@ final class TTSManager: NSObject {
         case lastRunInterval
         case halfway
         case intervalMidpoint(phraseIndex: Int)
+        case periodicTimeRemaining(Int)
     }
 
     override init() {
@@ -112,7 +113,7 @@ final class TTSManager: NSObject {
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
     }
 
-    private func text(for announcement: Announcement) -> String {
+    func text(for announcement: Announcement) -> String {
         switch announcement {
         case .intervalStart(let interval):   return interval.announcement
         case .workoutComplete:               return NSLocalizedString("tts_workout_complete", comment: "")
@@ -125,6 +126,9 @@ final class TTSManager: NSObject {
         case .intervalMidpoint(let phraseIndex):
             let key = Self.encouragementPhraseKeys[phraseIndex % Self.encouragementPhraseKeys.count]
             return NSLocalizedString(key, comment: "")
+        case .periodicTimeRemaining(let seconds):
+            return String(format: NSLocalizedString("tts_time_remaining", comment: ""),
+                          Interval.spokenDuration(seconds: seconds))
         }
     }
 

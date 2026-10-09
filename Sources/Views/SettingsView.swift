@@ -48,6 +48,12 @@ struct SettingsView: View {
 
                     Toggle(String(localized: "Mid-run encouragement"), isOn: $prefs.midIntervalCues)
 
+                    Toggle(String(localized: "settings_periodic_time_cues"), isOn: $prefs.periodicTimeCues)
+
+                    if prefs.periodicTimeCues {
+                        SecondsSlider(label: String(localized: "settings_periodic_time_cue_interval"), seconds: $prefs.periodicTimeCueInterval, range: 15...120)
+                    }
+
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
                             Text("Voice speed")
@@ -121,6 +127,10 @@ struct SettingsView: View {
                     }
                 }
                 Toggle("Treadmill mode (disables GPS)", isOn: $prefs.treadmillMode)
+                Toggle(isOn: $prefs.skipWarmupCooldown) {
+                    Text("settings_skip_warmup_cooldown")
+                    Text("settings_skip_warmup_cooldown_caption")
+                }
                 Toggle("GPS tracking", isOn: $prefs.gpsEnabled)
                     .disabled(prefs.treadmillMode)
                 Toggle("Keep screen on during workout", isOn: $prefs.keepScreenOn)

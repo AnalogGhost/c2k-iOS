@@ -67,8 +67,23 @@ final class UserPreferences {
         didSet { defaults.set(midIntervalCues, forKey: "mid_interval_cues") }
     }
 
+    var periodicTimeCues: Bool = (UserDefaults.standard.object(forKey: "periodic_time_cues") as? Bool) ?? false {
+        didSet { defaults.set(periodicTimeCues, forKey: "periodic_time_cues") }
+    }
+
+    var periodicTimeCueInterval: Int = {
+        let v = UserDefaults.standard.object(forKey: "periodic_time_cue_interval") as? Int
+        return v ?? 30
+    }() {
+        didSet { defaults.set(periodicTimeCueInterval, forKey: "periodic_time_cue_interval") }
+    }
+
     var treadmillMode: Bool = (UserDefaults.standard.object(forKey: "treadmill_mode") as? Bool) ?? false {
         didSet { defaults.set(treadmillMode, forKey: "treadmill_mode") }
+    }
+
+    var skipWarmupCooldown: Bool = (UserDefaults.standard.object(forKey: "skip_warmup_cooldown") as? Bool) ?? false {
+        didSet { defaults.set(skipWarmupCooldown, forKey: "skip_warmup_cooldown") }
     }
 
     var weightKg: Double? = UserDefaults.standard.object(forKey: "weight_kg") as? Double {

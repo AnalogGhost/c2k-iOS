@@ -11,6 +11,8 @@ final class WorkoutEngine {
     private let ttsEnabled: Bool
     private let countdownWarnings: Bool
     private let midIntervalCues: Bool
+    private let periodicTimeCues: Bool
+    private let periodicTimeCueIntervalSeconds: Int
     // Sorted descending, deduped: fires the larger threshold first, and the smallest one carries
     // the next-interval look-ahead announcement since it's the last warning before the interval ends.
     private let warningThresholds: [Int]
@@ -24,17 +26,21 @@ final class WorkoutEngine {
     private var intervalIndex = 0
     private var warnedCountdowns: Set<Int> = []
     private var midpointAnnounced = false
+    private var lastPeriodicCueElapsed = -1
 
     init(
         day: WorkoutDay, tts: any TTSAnnouncing, ttsEnabled: Bool, countdownWarnings: Bool,
         countdownWarningSeconds1: Int = 10, countdownWarningSeconds2: Int = 5,
-        midIntervalCues: Bool = true
+        midIntervalCues: Bool = true,
+        periodicTimeCues: Bool = false, periodicTimeCueIntervalSeconds: Int = 30
     ) {
         self.day = day
         self.tts = tts
         self.ttsEnabled = ttsEnabled
         self.countdownWarnings = countdownWarnings
         self.midIntervalCues = midIntervalCues
+        self.periodicTimeCues = periodicTimeCues
+        self.periodicTimeCueIntervalSeconds = periodicTimeCueIntervalSeconds
         self.warningThresholds = Array(Set([countdownWarningSeconds1, countdownWarningSeconds2].filter { $0 > 0 }))
             .sorted(by: >)
     }
@@ -48,6 +54,7 @@ final class WorkoutEngine {
         isPaused = false
         warnedCountdowns.removeAll()
         midpointAnnounced = false
+        lastPeriodicCueElapsed = -1
         announceInterval(at: intervalIndex)
         timerTask = Task { await runLoop() }
     }
@@ -100,6 +107,7 @@ final class WorkoutEngine {
                         nextInterval: nil,
                         intervalIndex: intervalIndex - 1,
                         totalIntervals: day.intervals.count,
+                        remainingRunIntervals: remainingRunIntervals(from: intervalIndex - 1),
                         secondsRemainingInInterval: 0,
                         elapsedSessionSeconds: sessionElapsed,
                         sessionId: sessionId
@@ -111,6 +119,7 @@ final class WorkoutEngine {
                 intervalStartTime = now
                 warnedCountdowns.removeAll()
                 midpointAnnounced = false
+                lastPeriodicCueElapsed = -1
                 announceInterval(at: intervalIndex)
                 continue
             }
@@ -128,6 +137,13 @@ final class WorkoutEngine {
                 }
             }
 
+            if periodicTimeCues && ttsEnabled && periodicTimeCueIntervalSeconds > 0 &&
+                intervalElapsed > 0 && intervalElapsed % periodicTimeCueIntervalSeconds == 0 &&
+                intervalElapsed != lastPeriodicCueElapsed {
+                lastPeriodicCueElapsed = intervalElapsed
+                tts.announce(.periodicTimeRemaining(remaining), queueAdd: true)
+            }
+
             if midIntervalCues && ttsEnabled &&
                 currentInterval.type == .run &&
                 currentInterval.durationSeconds >= 60 &&
@@ -142,11 +158,17 @@ final class WorkoutEngine {
                 nextInterval: day.intervals[safe: intervalIndex + 1],
                 intervalIndex: intervalIndex,
                 totalIntervals: day.intervals.count,
+                remainingRunIntervals: remainingRunIntervals(from: intervalIndex),
                 secondsRemainingInInterval: remaining,
                 elapsedSessionSeconds: sessionElapsed,
                 sessionId: sessionId
             ))
         }
+    }
+
+    // Counts the current interval too, so the figure only drops once a run has finished.
+    private func remainingRunIntervals(from index: Int) -> Int {
+        day.intervals.dropFirst(index).filter { $0.type == .run }.count
     }
 
     private func announceInterval(at index: Int) {

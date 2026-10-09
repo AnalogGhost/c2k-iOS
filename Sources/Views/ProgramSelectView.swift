@@ -6,6 +6,7 @@ struct ProgramSelectView: View {
     @Binding var path: [AppRoute]
 
     @Environment(\.modelContext) private var context
+    @Environment(UserPreferences.self) private var prefs
 
     @Query private var sessions: [WorkoutSession]
 
@@ -28,6 +29,12 @@ struct ProgramSelectView: View {
     }
 
     private var totalDays: Int { plan.weeks.reduce(0) { $0 + $1.count } }
+
+    // So the day grid and preview sheet show the same duration/intervals the workout will
+    // actually run with (see WorkoutManager, which applies this same preference).
+    private func displayDay(week: Int, day: Int) -> WorkoutDay {
+        plan.workoutDay(week: week, day: day, skipWarmupCooldown: prefs.skipWarmupCooldown)
+    }
 
     var body: some View {
         List {
@@ -68,10 +75,10 @@ struct ProgramSelectView: View {
                             Text(tip).font(.caption).foregroundStyle(.secondary)
                         }
                         HStack(spacing: 8) {
-                            ForEach(Array(days.enumerated()), id: \.offset) { dayIdx, workoutDay in
+                            ForEach(Array(days.enumerated()), id: \.offset) { dayIdx, _ in
                                 let day = dayIdx + 1
                                 let done = completedDays.contains(WeekDay(week: week, day: day))
-                                DayButton(day: day, durationMin: workoutDay.totalDurationSeconds / 60, completed: done) {
+                                DayButton(day: day, durationMin: displayDay(week: week, day: day).totalDurationSeconds / 60, completed: done) {
                                     previewDay = WeekDay(week: week, day: day)
                                 }
                                 .accessibilityIdentifier("day-\(week)-\(day)")
@@ -122,7 +129,7 @@ struct ProgramSelectView: View {
             Text("This will permanently remove all completed sessions for this program. Your overall history is kept.")
         }
         .sheet(item: Binding(get: { previewDay }, set: { previewDay = $0 })) { wd in
-            let workoutDay = plan.weeks[wd.week - 1][wd.day - 1]
+            let workoutDay = displayDay(week: wd.week, day: wd.day)
             WorkoutPreviewSheet(
                 week: wd.week, day: wd.day,
                 workoutDay: workoutDay,

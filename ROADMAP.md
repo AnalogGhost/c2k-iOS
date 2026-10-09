@@ -1,6 +1,6 @@
 # C2K for iOS — Roadmap
 
-The iOS app is at **feature parity with the Android app (1.2.17)**. The
+The iOS app is at **feature parity with the Android app (1.2.20)**. The
 release pipeline (fastlane: build, metadata, screenshots, TestFlight, GitHub
 release) is in place — see `RELEASING.md`.
 

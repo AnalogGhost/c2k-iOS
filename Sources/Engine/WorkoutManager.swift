@@ -39,7 +39,8 @@ final class WorkoutManager {
     ) {
         guard !isRunning else { return }
 
-        let workoutDay = Programs.byId(programId).weeks[week - 1][day - 1]
+        let workoutDay = Programs.byId(programId).workoutDay(
+            week: week, day: day, skipWarmupCooldown: prefs.skipWarmupCooldown)
         self.repository = repository
 
         isRunning = true
@@ -89,7 +90,9 @@ final class WorkoutManager {
             countdownWarnings: prefs.countdownWarnings,
             countdownWarningSeconds1: prefs.countdownWarning1,
             countdownWarningSeconds2: prefs.countdownWarning2,
-            midIntervalCues: prefs.midIntervalCues
+            midIntervalCues: prefs.midIntervalCues,
+            periodicTimeCues: prefs.periodicTimeCues,
+            periodicTimeCueIntervalSeconds: prefs.periodicTimeCueInterval
         )
         engine = eng
         eng.start(sessionId: sessionId)
@@ -171,12 +174,20 @@ final class WorkoutManager {
         let elapsedInInterval = snapshot.currentInterval.durationSeconds - snapshot.secondsRemainingInInterval
         nowPlaying.update(
             title: intervalLabel(snapshot.currentInterval.type),
-            subtitle: String(format: String(localized: "workout_interval_progress"),
-                              snapshot.intervalIndex + 1, snapshot.totalIntervals),
+            subtitle: Self.nowPlayingSubtitle(snapshot),
             isPlaying: isPlaying,
             elapsedSeconds: Double(max(0, elapsedInInterval)),
             durationSeconds: Double(snapshot.currentInterval.durationSeconds)
         )
+    }
+
+    // "Interval 3 of 9  •  2 runs left" — mirrors the text of Android's workout notification.
+    static func nowPlayingSubtitle(_ snapshot: WorkoutState.ActiveSnapshot) -> String {
+        let progress = String(format: String(localized: "workout_interval_progress"),
+                              snapshot.intervalIndex + 1, snapshot.totalIntervals)
+        let runsLeft = String.localizedStringWithFormat(
+            NSLocalizedString("notification_runs_remaining", comment: ""), snapshot.remainingRunIntervals)
+        return "\(progress)  •  \(runsLeft)"
     }
 
     private func waitForSpeechToFinish() async {
