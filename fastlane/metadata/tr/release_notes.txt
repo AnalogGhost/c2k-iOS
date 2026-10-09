@@ -1,7 +1,5 @@
-Bu sürüm iOS uygulamasını Android sürümüyle aynı özellik seviyesine getiriyor:
-
-• Türkçe dil desteği
-• Ayarlanabilir titreşim gücü — Hafif, Orta ve Güçlü
-• Cihaz dilinden bağımsız, uygulama içi elle dil seçimi
-• Ayarlar’da “Sesi test et” düğmesi
-• Sesli anonslar artık seçtiğin uygulama dilini izliyor
+• Geçmiş ekranında artık önceki hafta ve ayla hızlı bir karşılaştırmayla birlikte haftalık ve aylık özetler görüntüleniyor.
+• Koşunuza zaten yürüyerek gidip geliyorsanız ısınmayı ve soğumayı atlamanızı sağlayan yeni bir ayar eklendi.
+• Aralık sırasında kalan süreyi Ayarlar'da seçtiğiniz sıklıkta sesli olarak bildiren isteğe bağlı bir hatırlatıcı eklendi.
+• Kilit ekranı artık yalnızca genel ilerlemeyi değil, kaç koşu aralığının kaldığını da gösteriyor.
+• Geçmiş ekranındaki antrenman sayısı ifadesi Rusça çeviride düzeltildi.

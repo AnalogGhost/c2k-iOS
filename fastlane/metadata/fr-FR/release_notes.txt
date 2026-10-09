@@ -1,7 +1,5 @@
-Cette version met l’app iOS au niveau de la version Android :
-
-• Prise en charge du turc
-• Intensité des vibrations réglable — Légère, Moyenne et Forte
-• Choix manuel de la langue dans l’app, indépendant de celle de l’appareil
-• Bouton « Tester la voix » dans les réglages
-• Les annonces vocales suivent la langue choisie dans l’app
+• L'écran Historique affiche désormais des résumés hebdomadaires et mensuels, avec une comparaison rapide à la semaine et au mois précédents.
+• Nouveau réglage pour ignorer l'échauffement et la récupération, pour les jours où vous marchez déjà pour aller courir et en revenir.
+• Nouveau rappel vocal facultatif qui annonce périodiquement le temps restant pendant un intervalle, à la cadence choisie dans les Réglages.
+• L'écran verrouillé indique désormais le nombre d'intervalles de course restants, et plus seulement la progression globale.
+• Correction du libellé du nombre de séances sur l'écran Historique dans la traduction russe.

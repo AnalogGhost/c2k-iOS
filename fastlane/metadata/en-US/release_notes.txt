@@ -1,7 +1,5 @@
-This release brings the iOS app to feature parity with the Android version:
-
-• Turkish language support
-• Adjustable vibration strength — Light, Medium, and Strong
-• Manual in-app language selection, independent of your device language
-• A "Test voice" button in Settings
-• Voice announcements now follow your chosen app language
+• See weekly and monthly summaries on the History screen, with a quick comparison to the previous week and month.
+• New setting to skip the warm-up and cool-down, for days when you already walk to and from your run.
+• Added an optional voice reminder that periodically announces time remaining during an interval, on a cadence you choose in Settings.
+• The lock screen now shows how many running intervals are left, not just overall progress.
+• Fixed the wording of the workout count on the History screen in the Russian translation.

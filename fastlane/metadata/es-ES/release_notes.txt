@@ -1,7 +1,5 @@
-Esta versión pone la app de iOS a la par con la versión de Android:
-
-• Compatibilidad con turco
-• Intensidad de vibración ajustable: Suave, Media y Fuerte
-• Selección manual de idioma en la app, independiente del idioma del dispositivo
-• Botón «Probar voz» en Ajustes
-• Los anuncios de voz siguen el idioma elegido en la app
+• La pantalla de Historial ahora muestra resúmenes semanales y mensuales, con una comparación rápida con la semana y el mes anteriores.
+• Nuevo ajuste para omitir el calentamiento y el enfriamiento, para los días en que ya caminas para ir y volver de tu carrera.
+• Nuevo recordatorio de voz opcional que anuncia periódicamente el tiempo restante durante un intervalo, con la frecuencia que elijas en Ajustes.
+• La pantalla de bloqueo ahora muestra cuántos intervalos de carrera quedan, no solo el progreso general.
+• Se corrigió el texto del número de entrenamientos en la traducción al ruso de la pantalla de Historial.

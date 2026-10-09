@@ -51,7 +51,7 @@ targets:
         CODE_SIGN_STYLE: Automatic
         TARGETED_DEVICE_FAMILY: "1"
         IPHONEOS_DEPLOYMENT_TARGET: "17.0"
-        MARKETING_VERSION: "1.2.17"
+        MARKETING_VERSION: "1.2.20"
         CURRENT_PROJECT_VERSION: "1"
       configs:
         Debug:

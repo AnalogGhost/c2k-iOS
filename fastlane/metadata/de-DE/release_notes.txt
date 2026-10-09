@@ -1,7 +1,5 @@
-Diese Version bringt die iOS-App auf den Funktionsstand der Android-Version:
-
-• Türkische Sprachunterstützung
-• Einstellbare Vibrationsstärke – Leicht, Mittel und Stark
-• Manuelle Sprachauswahl in der App, unabhängig von der Gerätesprache
-• „Stimme testen“-Schaltfläche in den Einstellungen
-• Sprachansagen folgen jetzt der gewählten App-Sprache
+• Im Verlauf gibt es jetzt wöchentliche und monatliche Zusammenfassungen mit einem kurzen Vergleich zur Vorwoche bzw. zum Vormonat.
+• Neue Einstellung, um Aufwärmen und Abkühlen zu überspringen – für Tage, an denen du bereits zu deinem Lauf hin- und zurückgehst.
+• Neue optionale Sprachansage, die während eines Intervalls regelmäßig die verbleibende Zeit ansagt – in einem Abstand, den du in den Einstellungen festlegst.
+• Der Sperrbildschirm zeigt jetzt, wie viele Laufintervalle noch übrig sind, nicht nur den Gesamtfortschritt.
+• Die Formulierung der Trainingsanzahl im Verlauf wurde in der russischen Übersetzung korrigiert.
