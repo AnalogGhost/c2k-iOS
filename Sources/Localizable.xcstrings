@@ -11106,6 +11106,112 @@
         }
       }
     },
+    "settings_vibration_smartwatch": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auch Smartwatch benachrichtigen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also notify smartwatch"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisar también al smartwatch"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifier aussi la montre"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisar tamén ao reloxo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisar também o smartwatch"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уведомлять также смарт-часы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akıllı saate de bildir"
+          }
+        }
+      }
+    },
+    "settings_vibration_watch_caption": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sendet bei jedem Intervallwechsel und am Trainingsende eine Benachrichtigung, damit deine Smartwatch vibriert."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sends a notification at each interval change and when the workout ends, for your watch to vibrate."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envía una notificación en cada cambio de intervalo y al terminar el entrenamiento para que tu smartwatch vibre."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envoie une notification à chaque changement d'intervalle et à la fin de la séance pour faire vibrer votre montre connectée."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envía unha notificación en cada cambio de intervalo e ao rematar o adestramento para que vibre o teu reloxo intelixente."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envia uma notificação a cada troca de intervalo e ao fim do treino para o seu smartwatch vibrar."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отправляет уведомление при каждой смене интервала и в конце тренировки, чтобы смарт-часы вибрировали."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akıllı saatinizin titremesi için her aralık değişiminde ve antrenman bittiğinde bir bildirim gönderir."
+          }
+        }
+      }
+    },
     "vibration_strength_light": {
       "extractionState": "manual",
       "localizations": {

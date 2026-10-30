@@ -25,6 +25,11 @@ final class UserPreferences {
         didSet { defaults.set(vibrationEnabled, forKey: "vibration_enabled") }
     }
 
+    // Also post a notification at each interval change so a paired Apple Watch taps the wrist.
+    var smartwatchCues: Bool = (UserDefaults.standard.object(forKey: "smartwatch_cues") as? Bool) ?? false {
+        didSet { defaults.set(smartwatchCues, forKey: "smartwatch_cues") }
+    }
+
     var vibrationStrength: VibrationStrength = {
         let raw = UserDefaults.standard.string(forKey: "vibration_strength") ?? VibrationStrength.medium.rawValue
         return VibrationStrength(rawValue: raw) ?? .medium

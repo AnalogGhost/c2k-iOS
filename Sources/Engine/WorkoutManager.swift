@@ -25,13 +25,15 @@ final class WorkoutManager {
     private let backgroundAudio = BackgroundAudioManager()
     private let nowPlaying = NowPlayingManager()
     private let haptics: HapticCuePlaying
+    private let watchCues: WatchCuePosting
     private var pollingTask: Task<Void, Never>?
     private var currentSessionId: UUID?
     private var repository: SessionRepository?
 
-    // `haptics` is injectable so WorkoutManager can be exercised with a spy.
-    init(haptics: HapticCuePlaying = HapticsPlayer()) {
+    // `haptics` and `watchCues` are injectable so WorkoutManager can be exercised with spies.
+    init(haptics: HapticCuePlaying = HapticsPlayer(), watchCues: WatchCuePosting = WatchCueNotifier()) {
         self.haptics = haptics
+        self.watchCues = watchCues
         self.cuePlayer = ttsManager
     }
 
@@ -111,7 +113,9 @@ final class WorkoutManager {
         engine = eng
         eng.start(sessionId: sessionId)
 
-        startPolling(vibrationEnabled: prefs.vibrationEnabled, repository: repository)
+        startPolling(vibrationEnabled: prefs.vibrationEnabled,
+                     notifyWatch: prefs.vibrationEnabled && prefs.smartwatchCues,
+                     repository: repository)
     }
 
     func pause() {
@@ -148,7 +152,7 @@ final class WorkoutManager {
         cleanup()
     }
 
-    private func startPolling(vibrationEnabled: Bool, repository: SessionRepository) {
+    private func startPolling(vibrationEnabled: Bool, notifyWatch: Bool, repository: SessionRepository) {
         pollingTask = Task { [weak self] in
             var lastIntervalIndex = -1
             while !Task.isCancelled {
@@ -159,8 +163,12 @@ final class WorkoutManager {
 
                 switch state {
                 case .active(let s):
-                    if s.intervalIndex != lastIntervalIndex && lastIntervalIndex >= 0 && vibrationEnabled {
-                        self.haptics.play(s.currentInterval.type == .run ? .runIntervalChange : .intervalChange)
+                    // The watch cue mirrors the phone's vibration moments: interval changes and the end.
+                    if s.intervalIndex != lastIntervalIndex && lastIntervalIndex >= 0 {
+                        if vibrationEnabled {
+                            self.haptics.play(s.currentInterval.type == .run ? .runIntervalChange : .intervalChange)
+                        }
+                        if notifyWatch { self.watchCues.post(.interval(s.currentInterval)) }
                     }
                     lastIntervalIndex = s.intervalIndex
                     self.updateNowPlaying(s, isPlaying: true)
@@ -178,6 +186,8 @@ final class WorkoutManager {
                     // off. Bounded so a stuck TTS engine can't hang.
                     await self.waitForSpeechToFinish()
                     self.cleanup()
+                    // After cleanup, which clears the last interval cue, so this one stays.
+                    if notifyWatch { self.watchCues.post(.complete) }
                     return
 
                 default: break
@@ -227,6 +237,7 @@ final class WorkoutManager {
         locationTracker = nil
         cuePlayer.shutdown()
         haptics.stop()
+        watchCues.clear()
         backgroundAudio.stop()
         nowPlaying.stop()
         UIApplication.shared.isIdleTimerDisabled = false

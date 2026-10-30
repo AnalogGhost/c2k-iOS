@@ -4,7 +4,7 @@ import XCTest
 // UserPreferences reads and writes UserDefaults.standard directly, so these tests save the
 // keys they touch and put them back afterwards.
 final class UserPreferencesTests: XCTestCase {
-    private let keys = ["periodic_time_cues", "periodic_time_cue_interval", "skip_warmup_cooldown", "skip_warmup", "skip_cooldown", "countdown_warning_2_enabled", "cue_style", "repeated_week", "progression_dismissed_at"]
+    private let keys = ["periodic_time_cues", "periodic_time_cue_interval", "skip_warmup_cooldown", "skip_warmup", "skip_cooldown", "countdown_warning_2_enabled", "cue_style", "repeated_week", "progression_dismissed_at", "smartwatch_cues"]
     private var saved: [String: Any] = [:]
 
     override func setUp() {
@@ -79,6 +79,13 @@ final class UserPreferencesTests: XCTestCase {
         XCTAssertNil(UserDefaults.standard.object(forKey: "progression_dismissed_at"))
         XCTAssertNil(UserPreferences().repeatedWeek)
         XCTAssertNil(UserPreferences().progressionDismissedAt)
+    }
+
+    func testSmartwatchCuesAreOptInAndPersistUnderTheAndroidKey() {
+        XCTAssertFalse(UserPreferences().smartwatchCues)
+        UserPreferences().smartwatchCues = true
+        XCTAssertEqual(UserDefaults.standard.object(forKey: "smartwatch_cues") as? Bool, true)
+        XCTAssertTrue(UserPreferences().smartwatchCues)
     }
 
     func testReadingDefaultsDoesNotWriteThem() {

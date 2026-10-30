@@ -9,6 +9,7 @@ struct SettingsView: View {
     @State private var hapticsPreview = HapticsPreview()
     @State private var voiceTester = VoiceTester()
     @State private var toneTester = ToneTester()
+    @State private var watchCuesDenied = false
     @State private var pendingRestartLanguage: AppLanguage?
     @State private var languageBeforeChange: AppLanguage?
 
@@ -154,6 +155,20 @@ struct SettingsView: View {
                     .onChange(of: prefs.vibrationStrength) { _, newValue in
                         hapticsPreview.preview(newValue)
                     }
+
+                    Toggle(isOn: smartwatchCuesBinding) {
+                        Text("settings_vibration_smartwatch")
+                        Text("settings_vibration_watch_caption")
+                    }
+                    .accessibilityIdentifier("settings-smartwatch-cues")
+                    if watchCuesDenied {
+                        Button(String(localized: "settings_tts_open_ios_settings")) {
+                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                UIApplication.shared.open(url)
+                            }
+                        }
+                        .font(.footnote)
+                    }
                 }
                 Toggle("Treadmill mode (disables GPS)", isOn: $prefs.treadmillMode)
                 Toggle(isOn: $prefs.skipWarmup) {
@@ -237,6 +252,27 @@ struct SettingsView: View {
         return rounded == rounded.rounded()
             ? String(format: "%.0f", rounded)
             : String(format: "%.1f", rounded)
+    }
+}
+
+extension SettingsView {
+    // Turning the cues on asks for notification permission first; if it's refused the switch
+    // stays off and offers a way into iOS Settings instead.
+    private var smartwatchCuesBinding: Binding<Bool> {
+        Binding(
+            get: { prefs.smartwatchCues },
+            set: { enabled in
+                guard enabled else {
+                    prefs.smartwatchCues = false
+                    return
+                }
+                Task {
+                    let granted = await WatchCueNotifier.requestAuthorization()
+                    prefs.smartwatchCues = granted
+                    watchCuesDenied = !granted
+                }
+            }
+        )
     }
 }
 
