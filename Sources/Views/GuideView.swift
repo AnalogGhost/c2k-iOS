@@ -4,7 +4,7 @@ struct GuideView: View {
     var body: some View {
         List {
             ForEach(guideSections, id: \.title) { section in
-                Section(section.title) {
+                Section(NSLocalizedString(section.title, comment: "")) {
                     ForEach(section.entries, id: \.questionKey) { entry in
                         DisclosureGroup(NSLocalizedString(entry.questionKey, comment: "")) {
                             Text(NSLocalizedString(entry.answerKey, comment: ""))

@@ -196,7 +196,7 @@ struct SettingsView: View {
                                 prefs.weightKg = nil
                             }
                         }
-                    Picker("Unit", selection: $prefs.weightUnit) {
+                    Picker("Weight", selection: $prefs.weightUnit) {
                         ForEach(WeightUnit.allCases, id: \.self) { unit in
                             Text(unit.label).tag(unit)
                         }

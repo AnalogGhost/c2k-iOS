@@ -162,7 +162,7 @@ struct HomeView: View {
             ?? plan.nextWorkout(completedDays: completed) else { return nil }
         return NextWorkout(
             programId: programId,
-            displayName: plan.displayName,
+            displayName: plan.localizedName,
             week: wd.week,
             day: wd.day,
             workoutDay: plan.workoutDay(week: wd.week, day: wd.day, skipWarmup: prefs.skipWarmup, skipCooldown: prefs.skipCooldown)
@@ -244,18 +244,18 @@ private struct ProgramRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text(plan.displayName).font(.headline)
+                Text(plan.localizedName).font(.headline)
                 Spacer()
                 Text(String(format: String(localized: "home_program_weeks"), plan.totalWeeks))
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
-            if !plan.description.isEmpty {
-                Text(plan.description)
+            if !plan.localizedDescription.isEmpty {
+                Text(plan.localizedDescription)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
-            if let prereq = plan.prerequisite {
+            if let prereq = plan.localizedPrerequisite {
                 Text(prereq)
                     .font(.caption)
                     .foregroundStyle(.tertiary)
@@ -269,7 +269,7 @@ private struct RecentSessionRow: View {
     let session: WorkoutSession
 
     var body: some View {
-        let displayName = Programs.all().first(where: { $0.programId == session.programId })?.displayName
+        let displayName = Programs.all().first(where: { $0.programId == session.programId })?.localizedName
             ?? session.programId
         let weekDay = String(format: String(localized: "history_week_day"), session.week, session.day)
         HStack {

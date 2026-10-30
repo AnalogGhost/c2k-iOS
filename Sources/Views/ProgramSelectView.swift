@@ -38,9 +38,9 @@ struct ProgramSelectView: View {
 
     var body: some View {
         List {
-            if !plan.description.isEmpty {
+            if !plan.localizedDescription.isEmpty {
                 Section {
-                    Text(plan.description).foregroundStyle(.secondary)
+                    Text(plan.localizedDescription).foregroundStyle(.secondary)
                 }
             }
 
@@ -105,7 +105,7 @@ struct ProgramSelectView: View {
                 }
             }
         }
-        .navigationTitle(plan.displayName)
+        .navigationTitle(plan.localizedName)
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             if !completedDays.isEmpty {

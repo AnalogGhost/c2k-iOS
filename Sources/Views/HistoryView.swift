@@ -79,10 +79,11 @@ struct HistoryView: View {
             if !sessions.isEmpty {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     ShareLink(item: buildCsv(sessions: sessions),
-                              subject: Text("C2K Workout History"),
+                              subject: Text("history_export_chooser"),
                               message: Text("")) {
                         Image(systemName: "square.and.arrow.up")
                     }
+                    .accessibilityLabel(Text("history_export"))
                 }
             }
         }
@@ -231,7 +232,7 @@ private struct SessionRow: View {
     let onExportGpx: () -> Void
 
     private var displayName: String {
-        Programs.all().first(where: { $0.programId == session.programId })?.displayName ?? session.programId
+        Programs.all().first(where: { $0.programId == session.programId })?.localizedName ?? session.programId
     }
 
     var body: some View {

@@ -19,7 +19,7 @@ struct WorkoutView: View {
     @State private var locationManager = CLLocationManager()
 
     private var programName: String {
-        Programs.byId(programId).displayName
+        Programs.byId(programId).localizedName
     }
 
     private var isLandscape: Bool { verticalSizeClass == .compact }
