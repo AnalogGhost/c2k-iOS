@@ -80,12 +80,12 @@ platform :ios do
   desc "marketing set into fastlane/screenshots/framed (what deliver uploads). No upload."
   lane :screenshots do
     capture_ios_screenshots
-    sh("cd .. && swift run --package-path Tools/ScreenshotComposer screenshot-composer")
+    sh("cd .. && python3 Tools/StoreScreenshots/build.py")
   end
 
   desc "Re-run only the framing step over the existing raw screenshots"
   lane :reframe do
-    sh("cd .. && swift run --package-path Tools/ScreenshotComposer screenshot-composer")
+    sh("cd .. && python3 Tools/StoreScreenshots/build.py")
   end
 
   desc "Build and upload a release to App Store Connect. Dry run by default; pass verify_only:false to ship."
