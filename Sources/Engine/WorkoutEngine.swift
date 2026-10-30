@@ -27,6 +27,8 @@ final class WorkoutEngine {
     private var warnedCountdowns: Set<Int> = []
     private var midpointAnnounced = false
     private var lastPeriodicCueElapsed = -1
+    // Set by skipWarmupOrCooldown(), consumed by the run loop.
+    private var skipRequested = false
 
     init(
         day: WorkoutDay, tts: any TTSAnnouncing, ttsEnabled: Bool, countdownWarnings: Bool,
@@ -55,6 +57,7 @@ final class WorkoutEngine {
         warnedCountdowns.removeAll()
         midpointAnnounced = false
         lastPeriodicCueElapsed = -1
+        skipRequested = false
         announceInterval(at: intervalIndex)
         timerTask = Task { await runLoop() }
     }
@@ -77,6 +80,13 @@ final class WorkoutEngine {
         state = .active(snapshot)
     }
 
+    /// Ends the current warm-up or cool-down early; ignored while paused and during any other
+    /// interval. Only raises a flag, which the run loop applies on its next tick, so a request
+    /// landing just as an interval changes naturally can't cut the following interval short.
+    func skipWarmupOrCooldown() {
+        if !isPaused { skipRequested = true }
+    }
+
     func stop() {
         timerTask?.cancel()
         timerTask = nil
@@ -90,6 +100,15 @@ final class WorkoutEngine {
             guard !isPaused else { continue }
 
             let now = Date.now
+            if skipRequested {
+                skipRequested = false
+                let skippable = day.intervals[intervalIndex]
+                if skippable.type == .warmup || skippable.type == .cooldown {
+                    // Backdate the interval start so the normal end-of-interval path below runs:
+                    // announcement and warning reset, or completion for a final cool-down.
+                    intervalStartTime = now.addingTimeInterval(-Double(skippable.durationSeconds))
+                }
+            }
             let sessionElapsed = Int(now.timeIntervalSince(sessionStartTime))
             let intervalElapsed = Int(now.timeIntervalSince(intervalStartTime))
             let currentInterval = day.intervals[intervalIndex]

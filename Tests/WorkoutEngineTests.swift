@@ -413,4 +413,76 @@ final class WorkoutEngineTests: XCTestCase {
         XCTAssertEqual(s.remainingRunIntervals, 2)
         engine.stop()
     }
+
+    // MARK: - Skip warm-up / cool-down
+
+    func testSkippingTheWarmupMovesStraightToTheNextInterval() async {
+        let spy = TTSSpy()
+        let engine = makeEngine(intervals: [
+            Interval(type: .warmup, durationSeconds: 300), Interval(type: .run, durationSeconds: 60),
+        ], tts: spy)
+        engine.start(sessionId: UUID())
+        await waitUntil { if case .active = engine.state { return true }; return false }
+
+        engine.skipWarmupOrCooldown()
+        await waitUntil(timeout: 2) {
+            guard case .active(let s) = engine.state else { return false }
+            return s.currentInterval.type == .run
+        }
+        guard case .active(let s) = engine.state else { XCTFail("expected active"); return }
+        XCTAssertEqual(s.currentInterval.type, .run)
+        XCTAssertEqual(spy.count(.intervalStart(.run, 60)), 1)
+        // Session time keeps counting real time rather than jumping by the skipped warm-up.
+        XCTAssertLessThan(s.elapsedSessionSeconds, 5)
+        engine.stop()
+    }
+
+    func testSkippingTheFinalCooldownCompletesTheWorkout() async {
+        let spy = TTSSpy()
+        let engine = makeEngine(intervals: [
+            Interval(type: .run, durationSeconds: 1), Interval(type: .cooldown, durationSeconds: 300),
+        ], tts: spy)
+        engine.start(sessionId: UUID())
+        await waitUntil(timeout: 3) {
+            guard case .active(let s) = engine.state else { return false }
+            return s.currentInterval.type == .cooldown
+        }
+
+        engine.skipWarmupOrCooldown()
+        await waitUntil(timeout: 2) { if case .completed = engine.state { return true }; return false }
+        guard case .completed = engine.state else { XCTFail("skipping the cool-down should complete"); return }
+        XCTAssertEqual(spy.count(.workoutComplete), 1)
+    }
+
+    func testSkipIsIgnoredDuringARunInterval() async {
+        let spy = TTSSpy()
+        let engine = makeEngine(intervals: [
+            Interval(type: .run, durationSeconds: 300), Interval(type: .walk, durationSeconds: 60),
+        ], tts: spy)
+        engine.start(sessionId: UUID())
+        await waitUntil { if case .active = engine.state { return true }; return false }
+
+        engine.skipWarmupOrCooldown()
+        try? await Task.sleep(for: .milliseconds(600))
+        guard case .active(let s) = engine.state else { XCTFail("expected active"); return }
+        XCTAssertEqual(s.currentInterval.type, .run)
+        engine.stop()
+    }
+
+    func testSkipIsIgnoredWhilePaused() async {
+        let spy = TTSSpy()
+        let engine = makeEngine(intervals: [
+            Interval(type: .warmup, durationSeconds: 300), Interval(type: .run, durationSeconds: 60),
+        ], tts: spy)
+        engine.start(sessionId: UUID())
+        await waitUntil { if case .active = engine.state { return true }; return false }
+
+        engine.pause()
+        engine.skipWarmupOrCooldown()
+        engine.resume()
+        try? await Task.sleep(for: .milliseconds(600))
+        guard case .active(let s) = engine.state else { XCTFail("expected active"); return }
+        XCTAssertEqual(s.currentInterval.type, .warmup)
+        engine.stop()
+    }
 }

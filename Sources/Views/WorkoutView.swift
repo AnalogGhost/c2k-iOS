@@ -42,7 +42,8 @@ struct WorkoutView: View {
                     treadmillMode: prefs.treadmillMode,
                     isLandscape: isLandscape,
                     onPause: { workoutManager.pause() },
-                    onStop: { showStopDialog = true }
+                    onStop: { showStopDialog = true },
+                    onSkipWarmupOrCooldown: { workoutManager.skipWarmupOrCooldown() }
                 )
             case .paused(let s):
                 PausedWorkoutContent(
@@ -130,6 +131,7 @@ private struct ActiveWorkoutContent: View {
     let isLandscape: Bool
     let onPause: () -> Void
     let onStop: () -> Void
+    let onSkipWarmupOrCooldown: () -> Void
 
     private var ringColor: Color { intervalColor(state.currentInterval.type) }
     private var label: String { intervalLabel(state.currentInterval.type) }
@@ -220,18 +222,35 @@ private struct ActiveWorkoutContent: View {
     }
 
     private var controls: some View {
-        HStack(spacing: 16) {
-            Button(action: onPause) {
-                Label("Pause", systemImage: "pause.fill")
-            }
-            .accessibilityIdentifier("workout-pause")
-            .buttonStyle(.borderedProminent)
+        VStack(spacing: 8) {
+            HStack(spacing: 16) {
+                Button(action: onPause) {
+                    Label("Pause", systemImage: "pause.fill")
+                }
+                .accessibilityIdentifier("workout-pause")
+                .buttonStyle(.borderedProminent)
 
-            Button(action: onStop) {
-                Label("Stop", systemImage: "stop.fill")
+                Button(action: onStop) {
+                    Label("Stop", systemImage: "stop.fill")
+                }
+                .buttonStyle(.bordered)
+                .tint(.secondary)
             }
-            .buttonStyle(.bordered)
-            .tint(.secondary)
+            if let skipLabel {
+                Button(action: onSkipWarmupOrCooldown) {
+                    Label(skipLabel, systemImage: "forward.end.fill")
+                }
+                .accessibilityIdentifier("workout-skip-phase")
+                .buttonStyle(.borderless)
+            }
+        }
+    }
+
+    private var skipLabel: LocalizedStringKey? {
+        switch state.currentInterval.type {
+        case .warmup:   return "workout_skip_warmup"
+        case .cooldown: return "workout_skip_cooldown"
+        case .run, .walk: return nil
         }
     }
 

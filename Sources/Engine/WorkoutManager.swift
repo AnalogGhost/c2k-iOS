@@ -110,6 +110,10 @@ final class WorkoutManager {
         locationTracker?.resume()
     }
 
+    func skipWarmupOrCooldown() {
+        engine?.skipWarmupOrCooldown()
+    }
+
     func stop() {
         guard let engine else { cleanup(); return }
 
