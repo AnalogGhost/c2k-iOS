@@ -226,6 +226,8 @@ private struct ProgressionSuggestionCard: View {
             }
         }
         .padding(.vertical, 4)
+        // Keep the buttons as their own elements; without this the card's identifier replaces theirs.
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("progression-suggestion")
     }
 }
