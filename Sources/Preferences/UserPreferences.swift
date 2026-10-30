@@ -63,6 +63,10 @@ final class UserPreferences {
         didSet { defaults.set(countdownWarning2, forKey: "countdown_warning_2") }
     }
 
+    var countdownWarning2Enabled: Bool = (UserDefaults.standard.object(forKey: "countdown_warning_2_enabled") as? Bool) ?? true {
+        didSet { defaults.set(countdownWarning2Enabled, forKey: "countdown_warning_2_enabled") }
+    }
+
     var midIntervalCues: Bool = (UserDefaults.standard.object(forKey: "mid_interval_cues") as? Bool) ?? true {
         didSet { defaults.set(midIntervalCues, forKey: "mid_interval_cues") }
     }

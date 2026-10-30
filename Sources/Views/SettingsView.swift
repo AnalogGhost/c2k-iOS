@@ -43,7 +43,12 @@ struct SettingsView: View {
 
                     if prefs.countdownWarnings {
                         SecondsSlider(label: String(localized: "First warning"), seconds: $prefs.countdownWarning1, range: 3...30)
-                        SecondsSlider(label: String(localized: "Second warning"), seconds: $prefs.countdownWarning2, range: 3...30)
+                        Toggle("Second warning", isOn: $prefs.countdownWarning2Enabled)
+                        if prefs.countdownWarning2Enabled {
+                            // The toggle above already carries the "Second warning" label.
+                            SecondsSlider(label: String(localized: "Second warning"), seconds: $prefs.countdownWarning2,
+                                          range: 3...30, showsLabel: false)
+                        }
                     }
 
                     Toggle(String(localized: "Mid-run encouragement"), isOn: $prefs.midIntervalCues)
@@ -215,11 +220,12 @@ private struct SecondsSlider: View {
     let label: String
     @Binding var seconds: Int
     let range: ClosedRange<Double>
+    var showsLabel = true
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text(label)
+                if showsLabel { Text(label) }
                 Spacer()
                 Text("\(seconds) \(String(localized: "s"))").foregroundStyle(.secondary)
             }
@@ -231,6 +237,7 @@ private struct SecondsSlider: View {
                 in: range,
                 step: 1
             )
+            .accessibilityLabel(label)
         }
     }
 }

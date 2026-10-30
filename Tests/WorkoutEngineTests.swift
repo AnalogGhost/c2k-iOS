@@ -51,14 +51,14 @@ final class WorkoutEngineTests: XCTestCase {
     private func makeEngine(
         intervals: [Interval], tts: TTSSpy, ttsEnabled: Bool = true,
         countdownWarnings: Bool = false, warning1: Int = 10, warning2: Int = 5,
-        midIntervalCues: Bool = false,
+        warning2Enabled: Bool = true, midIntervalCues: Bool = false,
         periodicTimeCues: Bool = false, periodicTimeCueInterval: Int = 30
     ) -> WorkoutEngine {
         let day = WorkoutDay(week: 1, day: 1, intervals: intervals)
         return WorkoutEngine(
             day: day, tts: tts, ttsEnabled: ttsEnabled, countdownWarnings: countdownWarnings,
             countdownWarningSeconds1: warning1, countdownWarningSeconds2: warning2,
-            midIntervalCues: midIntervalCues,
+            countdownWarning2Enabled: warning2Enabled, midIntervalCues: midIntervalCues,
             periodicTimeCues: periodicTimeCues, periodicTimeCueIntervalSeconds: periodicTimeCueInterval
         )
     }
@@ -182,6 +182,25 @@ final class WorkoutEngineTests: XCTestCase {
         XCTAssertEqual(spy.count(.countdownWarning(2)), 1)
         XCTAssertEqual(spy.count(.countdownWarning(1)), 1)
         // The smallest threshold (1s) carries the next-interval look-ahead announcement.
+        XCTAssertEqual(spy.count(.nextInterval(.walk)), 1)
+        engine.stop()
+    }
+
+    func testWithTheSecondWarningOffTheFirstOneCarriesTheLookahead() async {
+        let spy = TTSSpy()
+        let engine = makeEngine(intervals: [
+            Interval(type: .run, durationSeconds: 3),
+            Interval(type: .walk, durationSeconds: 3),
+        ], tts: spy, countdownWarnings: true, warning1: 2, warning2: 1, warning2Enabled: false)
+        engine.start(sessionId: UUID())
+
+        await waitUntil(timeout: 5) {
+            guard case .active(let s) = engine.state else { return false }
+            return s.intervalIndex == 1
+        }
+
+        XCTAssertEqual(spy.count(.countdownWarning(2)), 1)
+        XCTAssertEqual(spy.count(.countdownWarning(1)), 0)
         XCTAssertEqual(spy.count(.nextInterval(.walk)), 1)
         engine.stop()
     }

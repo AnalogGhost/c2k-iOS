@@ -90,6 +90,7 @@ final class WorkoutManager {
             countdownWarnings: prefs.countdownWarnings,
             countdownWarningSeconds1: prefs.countdownWarning1,
             countdownWarningSeconds2: prefs.countdownWarning2,
+            countdownWarning2Enabled: prefs.countdownWarning2Enabled,
             midIntervalCues: prefs.midIntervalCues,
             periodicTimeCues: prefs.periodicTimeCues,
             periodicTimeCueIntervalSeconds: prefs.periodicTimeCueInterval

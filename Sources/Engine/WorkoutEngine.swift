@@ -33,6 +33,7 @@ final class WorkoutEngine {
     init(
         day: WorkoutDay, tts: any TTSAnnouncing, ttsEnabled: Bool, countdownWarnings: Bool,
         countdownWarningSeconds1: Int = 10, countdownWarningSeconds2: Int = 5,
+        countdownWarning2Enabled: Bool = true,
         midIntervalCues: Bool = true,
         periodicTimeCues: Bool = false, periodicTimeCueIntervalSeconds: Int = 30
     ) {
@@ -43,8 +44,9 @@ final class WorkoutEngine {
         self.midIntervalCues = midIntervalCues
         self.periodicTimeCues = periodicTimeCues
         self.periodicTimeCueIntervalSeconds = periodicTimeCueIntervalSeconds
-        self.warningThresholds = Array(Set([countdownWarningSeconds1, countdownWarningSeconds2].filter { $0 > 0 }))
-            .sorted(by: >)
+        // With the second warning off, the first warning is the only (and therefore last) one.
+        let thresholds = [countdownWarningSeconds1] + (countdownWarning2Enabled ? [countdownWarningSeconds2] : [])
+        self.warningThresholds = Array(Set(thresholds.filter { $0 > 0 })).sorted(by: >)
     }
 
     func start(sessionId: UUID) {
