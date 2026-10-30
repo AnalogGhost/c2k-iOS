@@ -6,8 +6,9 @@
     {"name": "03_plans", "main": "02_program", "back": "01_home"},
     {"name": "04_step_back", "main": "08_progression", "back": "02_program"},
     {"name": "05_music", "main": "07_settings", "back": "04_workout"},
-    {"name": "06_guide", "main": "06_guide", "back": "03_preview"},
-    {"name": "07_progress", "main": "05_history", "back": "01_home"}
+    {"name": "06_watch", "main": "04_workout", "watch": "watch:watch"},
+    {"name": "07_guide", "main": "06_guide", "back": "03_preview"},
+    {"name": "08_progress", "main": "05_history", "back": "01_home"}
   ],
   "copy": {
     "en-US": [
@@ -16,6 +17,7 @@
       ["A plan|for every|{stage.}", "Six programs, from 30-second runs to a full hour."],
       ["Tough week?|{Step back.}", "Stop the same workout early twice and C2K suggests the week before."],
       ["Cues over|your {music.}", "Spoken cues or vibration. Your music dips, then returns."],
+      ["Your watch|{buzzes too.}", "Alerts arrive as notifications. No watch app needed."],
       ["Not sure?|{Ask the guide.}", "Answers on pace, breathing, rest days and more."],
       ["See how|far you've|{come.}", "Streaks, weekly totals and personal bests."]
     ],
@@ -25,6 +27,7 @@
       ["Ein Plan|für jede|{Stufe.}", "Sechs Programme, von 30-Sekunden-Läufen bis zu einer vollen Stunde."],
       ["Zu hart?|{Woche wiederholen.}", "Brichst du dasselbe Training zweimal ab, schlägt C2K die Woche davor vor."],
       ["Ansagen über|deiner {Musik.}", "Sprachansagen oder Vibration. Die Musik wird leiser und kommt zurück."],
+      ["Auch deine|Uhr {vibriert.}", "Hinweise kommen als Benachrichtigung. Keine Uhr-App nötig."],
       ["Unsicher?|{Frag den}|{Leitfaden.}", "Antworten zu Tempo, Atmung, Ruhetagen und mehr."],
       ["Dein Fortschritt|auf einen {Blick.}", "Serien, Wochensummen und Bestleistungen."]
     ],
@@ -34,6 +37,7 @@
       ["Un plan|para cada|{etapa.}", "Seis programas, de carreras de 30 segundos a una hora completa."],
       ["¿Semana dura?|{Da un paso atrás.}", "Si dejas el mismo entrenamiento a medias dos veces, C2K te sugiere la semana anterior."],
       ["Avisos sobre|tu {música.}", "Voz o vibración. Tu música baja y luego vuelve."],
+      ["Tu reloj|{también vibra.}", "Los avisos llegan como notificaciones. Sin app para el reloj."],
       ["¿Dudas?|{Consulta}|{la guía.}", "Respuestas sobre ritmo, respiración, días de descanso y más."],
       ["Mira cuánto|has {avanzado.}", "Rachas, totales semanales y mejores marcas."]
     ],
@@ -43,6 +47,7 @@
       ["Un plan|pour chaque|{étape.}", "Six programmes, de 30 secondes de course à une heure complète."],
       ["Semaine dure ?|{Un pas en arrière.}", "Arrêtez deux fois la même séance avant la fin et C2K propose la semaine précédente."],
       ["Des signaux|sur votre {musique.}", "Voix ou vibration. Votre musique baisse, puis revient."],
+      ["Votre montre|{vibre aussi.}", "Les alertes arrivent en notifications. Aucune app de montre requise."],
       ["Un doute ?|{Le guide}|{répond.}", "Allure, respiration, jours de repos et plus encore."],
       ["Voyez le|chemin {parcouru.}", "Séries, totaux hebdomadaires et records personnels."]
     ],
@@ -52,6 +57,7 @@
       ["Um plano|para cada|{fase.}", "Seis programas, de corridas de 30 segundos a uma hora inteira."],
       ["Semana difícil?|{Dê um passo atrás.}", "Interrompa o mesmo treino cedo duas vezes e o C2K sugere a semana anterior."],
       ["Avisos sobre|sua {música.}", "Voz ou vibração. Sua música abaixa e depois volta."],
+      ["Seu relógio|{vibra também.}", "Os alertas chegam como notificações. Sem app no relógio."],
       ["Dúvidas?|{Veja o guia.}", "Respostas sobre ritmo, respiração, dias de descanso e mais."],
       ["Veja até onde|você {chegou.}", "Sequências, totais semanais e recordes pessoais."]
     ],
@@ -61,6 +67,7 @@
       ["План|для каждого|{этапа.}", "Шесть программ: от 30-секундных пробежек до целого часа."],
       ["Тяжёлая неделя?|{Шаг назад.}", "Дважды прервёте одну и ту же тренировку — C2K предложит предыдущую неделю."],
       ["Подсказки|поверх {музыки.}", "Голос или вибрация. Музыка стихает, а потом возвращается."],
+      ["Часы тоже|{вибрируют.}", "Оповещения приходят как уведомления. Приложение для часов не нужно."],
       ["Сомневаетесь?|{Загляните}|{в подсказки.}", "Темп, дыхание, дни отдыха и многое другое."],
       ["Ваш прогресс|{как на ладони.}", "Серии, недельные итоги и личные рекорды."]
     ],
@@ -70,6 +77,7 @@
       ["Her seviye|için bir|{plan.}", "30 saniyelik koşulardan tam bir saate, altı program."],
       ["Zor bir hafta mı?|{Bir adım geri.}", "Aynı antrenmanı iki kez erken bırakırsan C2K bir önceki haftayı önerir."],
       ["Uyarılar|müziğin {üstünde.}", "Ses veya titreşim. Müzik kısılır, sonra geri gelir."],
+      ["Saatin de|{titreşir.}", "Uyarılar bildirim olarak gelir. Saat uygulaması gerekmez."],
       ["Aklında|soru mu var?|{Rehbere bak.}", "Tempo, nefes, dinlenme günleri ve daha fazlası."],
       ["Ne kadar|ilerlediğini|{gör.}", "Seriler, haftalık toplamlar ve kişisel rekorlar."]
     ]

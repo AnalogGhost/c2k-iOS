@@ -2,7 +2,7 @@
 """Composes the App Store screenshot set from the raw captures.
 
 Reads the raw screenshots that `fastlane snapshot` writes to fastlane/screenshots/raw/<locale>,
-lays each slide out as HTML with the copy from captions.json, and renders it with headless Chrome
+plus the Apple Watch captures in watch/<locale>/ (capture-watch.sh makes watch.png), lays each slide out as HTML with the copy from captions.json, and renders it with headless Chrome
 into fastlane/screenshots/framed/<locale> at 1320x2868 (6.9" iPhone), which deliver uploads.
 Ported from the Android app's tools/store-screenshots/build.py so both stores share one design.
 
@@ -27,6 +27,7 @@ CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacO
 
 WIDTH, HEIGHT = 1320, 2868
 SCREEN_W, SCREEN_H = 1320, 2868
+WATCH_W, WATCH_H = 416, 496         # Apple Watch Series 11 (46mm) capture
 BACKGROUND = "#14324F"
 INK = "#FFFFFF"
 ACCENT = "#FF8A5C"
@@ -95,13 +96,36 @@ def phone(src, width, alt):
             f'</div>')
 
 
+def apple_watch(src, width, alt):
+    bezel = round(width * 0.07)
+    screen_w = width - 2 * bezel
+    screen_h = round(screen_w * WATCH_H / WATCH_W)
+    height = screen_h + 2 * bezel
+    radius = round(width * 0.26)
+    strap_w, strap_h = round(width * 0.64), round(width * 0.42)
+    left = (width - strap_w) // 2
+    strap = "linear-gradient(90deg,#1C1F24,#2C3036 50%,#1C1F24)"
+    return (f'<div style="position:relative;width:{width}px;height:{height}px">'
+            f'<div style="position:absolute;left:{left}px;top:-{strap_h - 20}px;width:{strap_w}px;height:{strap_h}px;border-radius:{strap_w // 3}px {strap_w // 3}px 0 0;background:{strap}"></div>'
+            f'<div style="position:absolute;left:{left}px;bottom:-{strap_h - 20}px;width:{strap_w}px;height:{strap_h}px;border-radius:0 0 {strap_w // 3}px {strap_w // 3}px;background:{strap}"></div>'
+            # Digital Crown and side button.
+            f'<div style="position:absolute;right:-{round(width * .05)}px;top:{round(height * .24)}px;width:{round(width * .07)}px;height:{round(height * .15)}px;border-radius:10px;background:#3A3E46"></div>'
+            f'<div style="position:absolute;right:-{round(width * .025)}px;top:{round(height * .5)}px;width:{round(width * .04)}px;height:{round(height * .2)}px;border-radius:8px;background:#3A3E46"></div>'
+            f'<div class="frame" style="position:absolute;inset:0;border-radius:{radius}px"></div>'
+            f'<img src="{src}" alt="{html.escape(alt)}" style="position:absolute;left:{bezel}px;top:{bezel}px;width:{screen_w}px;height:{screen_h}px;border-radius:{radius - bezel}px">'
+            f'</div>')
+
+
 def placed(content, left, top, rotate):
     return (f'<div class="device" style="left:{left}px;top:{top}px;transform:rotate({rotate}deg)">'
             f'{content}</div>')
 
 
 def source(locale, screen):
-    path = RAW / locale / f"{DEVICE}-{screen}.png"
+    if screen.startswith("watch:"):
+        path = HERE / "watch" / locale / f"{screen.split(':')[1]}.png"
+    else:
+        path = RAW / locale / f"{DEVICE}-{screen}.png"
     if not path.exists():
         sys.exit(f"Missing capture: {path}")
     return path.as_uri()
@@ -109,8 +133,13 @@ def source(locale, screen):
 
 def slide_body(locale, slide, head, sub):
     text = f'<div class="text"><h1>{headline(head)}</h1><p>{html.escape(sub)}</p></div>'
-    devices = (placed(phone(source(locale, slide["back"]), 740, "C2K screen"), 10, DEVICE_TOP + 90, -11)
-               + placed(phone(source(locale, slide["main"]), 830, "C2K screen"), 500, DEVICE_TOP, 7))
+    if "watch" in slide:
+        devices = (placed(phone(source(locale, slide["main"]), 760, "C2K workout screen"), 30, DEVICE_TOP + 40, -11)
+                   + placed(apple_watch(source(locale, slide["watch"]), 600, "Apple Watch showing a C2K interval alert"),
+                            650, DEVICE_TOP + 600, 7))
+    else:
+        devices = (placed(phone(source(locale, slide["back"]), 740, "C2K screen"), 10, DEVICE_TOP + 90, -11)
+                   + placed(phone(source(locale, slide["main"]), 830, "C2K screen"), 500, DEVICE_TOP, 7))
     return text + devices
 
 
