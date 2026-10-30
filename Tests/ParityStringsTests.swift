@@ -48,6 +48,55 @@ final class ParityStringsTests: XCTestCase {
         }
     }
 
+    // Every string any language has must exist in all of them, so a key added in English only
+    // (or a language that drops one) shows up here rather than as English text on a German screen.
+    // Units, symbols and brand names that read the same everywhere are allowed to stay English.
+    func testEveryStringIsTranslatedInEveryLanguage() {
+        let sameEverywhere: Set<String> = ["C2K", "GitHub", "kg", "lb", "st", "m", "s", "min", "km", "kcal"]
+        var tables: [String: Set<String>] = [:]
+        for language in Self.languages where language != "en" {
+            guard let bundle = bundle(language) else { continue }
+            var keys = Set<String>()
+            for file in ["Localizable.strings", "Localizable.stringsdict"] {
+                let url = URL(fileURLWithPath: bundle.bundlePath).appendingPathComponent(file)
+                if let table = NSDictionary(contentsOf: url) as? [String: Any] { keys.formUnion(table.keys) }
+            }
+            XCTAssertFalse(keys.isEmpty, "no compiled strings for \(language)")
+            tables[language] = keys
+        }
+        let all = tables.values.reduce(into: Set<String>()) { $0.formUnion($1) }.subtracting(sameEverywhere)
+        for (language, keys) in tables.sorted(by: { $0.key < $1.key }) {
+            let missing = all.subtracting(keys).sorted()
+            XCTAssertTrue(missing.isEmpty, "\(language) is missing \(missing.count): \(missing.prefix(20))")
+        }
+    }
+
+    func testProgramsAndGuideHeadingsAreTranslated() {
+        let keys = Array(WorkoutPlan.nameKeys.values) + Array(WorkoutPlan.descriptionKeys.values)
+            + Array(Set(WorkoutPlan.prerequisiteKeys.values))
+            + ["Before You Start", "During a Workout", "Between Workouts", "Glossary", "Guide"]
+        // Names that really are spelled the same as in English in that language.
+        let sameAsEnglish: Set<String> = ["program_pre_c25k/de", "program_pre_c25k/es", "program_pre_c25k/gl", "Guide/fr"]
+        for key in keys {
+            let english = string(key, "en") ?? key
+            for language in Self.languages where language != "en" {
+                let value = string(key, language)
+                XCTAssertNotNil(value, "\(key) missing in \(language)")
+                if !sameAsEnglish.contains("\(key)/\(language)") {
+                    XCTAssertNotEqual(value, english, "\(key) is untranslated in \(language)")
+                }
+            }
+        }
+    }
+
+    func testEveryProgramHasANameAndDescriptionKey() {
+        for plan in Programs.all() {
+            XCTAssertNotNil(WorkoutPlan.nameKeys[plan.programId], plan.programId)
+            XCTAssertNotNil(WorkoutPlan.descriptionKeys[plan.programId], plan.programId)
+            XCTAssertEqual(plan.prerequisite != nil, WorkoutPlan.prerequisiteKeys[plan.programId] != nil, plan.programId)
+        }
+    }
+
     func testOnlyEnglishKeepsTheEnglishWording() {
         // Guards against a language silently falling back to the English text.
         let key = "settings_skip_warmup"

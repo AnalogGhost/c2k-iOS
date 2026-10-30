@@ -37,14 +37,17 @@ final class WorkoutManager {
         self.cuePlayer = ttsManager
     }
 
+    /// `workoutDay` replaces the program's day; tests pass a few seconds' worth of intervals so a
+    /// whole workout runs end to end (Android's WorkoutService.testWorkoutDayOverride).
     func start(
         programId: String, week: Int, day: Int,
         prefs: UserPreferences,
-        repository: SessionRepository
+        repository: SessionRepository,
+        workoutDay override: WorkoutDay? = nil
     ) {
         guard !isRunning else { return }
 
-        let workoutDay = Programs.byId(programId).workoutDay(
+        let workoutDay = override ?? Programs.byId(programId).workoutDay(
             week: week, day: day, skipWarmup: prefs.skipWarmup, skipCooldown: prefs.skipCooldown)
         self.repository = repository
 

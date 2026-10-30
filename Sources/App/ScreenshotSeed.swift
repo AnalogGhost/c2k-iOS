@@ -17,6 +17,13 @@ enum ScreenshotSeed {
         d.set(true, forKey: "countdown_warnings")
         d.set(70.0, forKey: "weight_kg")         // History shows a calorie total
         d.set("C25K", forKey: "last_program_id") // Home shows the "continue" shortcut
+        // Simulator defaults outlive a launch, so put back every setting a walkthrough or UI test
+        // may have changed: each launch starts from the same state.
+        for key in ["cue_style", "countdown_warning_2_enabled", "skip_warmup", "skip_cooldown",
+                    "skip_warmup_cooldown", "smartwatch_cues", "vibration_enabled",
+                    "repeated_week", "progression_dismissed_at", "tts_enabled"] {
+            d.removeObject(forKey: key)
+        }
     }
 
     /// Three weeks of Couch to 5K history so the home streak, recent list, program
@@ -48,6 +55,18 @@ enum ScreenshotSeed {
             session.distanceMeters = entry.km * 1000
             session.completed = true
             context.insert(session)
+        }
+
+        // `--seed-early-stops`: two early stops on the next workout (week 3 day 3), so Home shows
+        // the step-back suggestion (UI tests).
+        if CommandLine.arguments.contains("--seed-early-stops") {
+            for hoursAgo in [30.0, 6.0] {
+                let stopped = WorkoutSession(programId: programId, week: 3, day: 3)
+                stopped.startedAt = now.addingTimeInterval(-hoursAgo * 3600)
+                stopped.durationSeconds = 10 * 60
+                stopped.completed = false
+                context.insert(stopped)
+            }
         }
 
         do {

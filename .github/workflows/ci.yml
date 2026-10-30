@@ -26,8 +26,19 @@ jobs:
             echo "No available iPhone simulator found"; exit 1
           fi
           echo "Using simulator $DEVICE_ID"
+          echo "DEVICE_ID=$DEVICE_ID" >> "$GITHUB_ENV"
           xcodebuild -scheme CtoK \
             -destination "platform=iOS Simulator,id=$DEVICE_ID" \
+            test
+
+      # Settings, History, step-back, workout and translation checks against the seeded app.
+      # The screenshot walkthrough in the same scheme stays manual (see screenshots.yml).
+      - name: Run feature UI tests
+        run: |
+          xcodebuild -scheme CtoKUITests \
+            -destination "platform=iOS Simulator,id=$DEVICE_ID" \
+            -only-testing:CtoKUITests/FeatureUITests \
+            -retry-tests-on-failure \
             test
 
       - name: Upload test report
