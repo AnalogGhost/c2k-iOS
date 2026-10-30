@@ -20,6 +20,18 @@ struct HistoryView: View {
                 List {
                     let weekly = WorkoutStats.weeklySummary(sessions: sessions, weightKg: prefs.weightKg)
                     let monthly = WorkoutStats.monthlySummary(sessions: sessions, weightKg: prefs.weightKg)
+                    let streak = WorkoutStats.streak(sessions: sessions)
+
+                    // Same line as Home, from the same calculation, so the two never disagree.
+                    if streak > 0 {
+                        Section {
+                            Text(String.localizedStringWithFormat(NSLocalizedString("home_streak", comment: ""), streak))
+                                .foregroundColor(.runOrange)
+                                .font(.subheadline)
+                                .listRowBackground(Color.clear)
+                                .accessibilityIdentifier("history-streak")
+                        }
+                    }
 
                     Section {
                         PeriodSummaryCard(
