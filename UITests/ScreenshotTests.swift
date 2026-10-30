@@ -15,10 +15,10 @@ final class ScreenshotTests: XCTestCase {
         setupSnapshot(app)
         // Seeds deterministic history + settings (see CtoKApp / ScreenshotSeed).
         app.launchArguments += ["--screenshot-seed"]
-        app.launch()
     }
 
     func testScreenshots() {
+        app.launch()
         // "C2K" is the same in every language (it's the brand, not a localized key).
         XCTAssertTrue(app.navigationBars["C2K"].waitForExistence(timeout: 30))
         XCTAssertTrue(marker("home-streak").waitForExistence(timeout: 5),
@@ -57,6 +57,17 @@ final class ScreenshotTests: XCTestCase {
         XCTAssertTrue(app.buttons["workout-pause"].waitForExistence(timeout: 60))
         Thread.sleep(forTimeInterval: 2)       // let the elapsed clock tick past 0:00
         snapshot("04_workout")
+    }
+
+    /// Home with the step-back suggestion, from a launch seeded with two early stops on the next
+    /// workout. A separate launch so the main walkthrough's Home shot stays without the card.
+    func testProgressionSuggestionScreenshot() {
+        app.launchArguments += ["--seed-early-stops"]
+        app.launch()
+        XCTAssertTrue(app.navigationBars["C2K"].waitForExistence(timeout: 30))
+        XCTAssertTrue(marker("progression-suggestion").waitForExistence(timeout: 10),
+                      "The step-back card is missing — --seed-early-stops did not seed two early stops")
+        snapshot("08_progression")
     }
 
     // MARK: - Helpers
