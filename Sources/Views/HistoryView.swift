@@ -188,11 +188,14 @@ private struct StatsCard: View {
                         Spacer()
                     }
                     if let pace = fastestPaceSecPerKm {
-                        StatItem(value: String(format: "%d:%02d", Int(pace) / 60, Int(pace) % 60), label: String(localized: "pace"))
+                        StatItem(value: String(format: String(localized: "workout_pace"),
+                                                String(format: "%d:%02d", Int(pace) / 60, Int(pace) % 60)),
+                                 label: String(localized: "pace"))
                         Spacer()
                     }
                     if let longest = longestRunMeters {
-                        StatItem(value: String(format: "%.2f", longest / 1000), label: String(localized: "longest"))
+                        StatItem(value: String(format: "%.2f %@", longest / 1000, String(localized: "km")),
+                                 label: String(localized: "longest"))
                         Spacer()
                     }
                 }
