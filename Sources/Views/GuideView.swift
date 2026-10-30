@@ -52,6 +52,7 @@ private let guideSections: [GuideSection] = [
         entry("cooldown"),
         entry("pain_discomfort"),
         entry("breathing"),
+        entry("tones"),
         entry("cant_finish_interval"),
     ]),
 

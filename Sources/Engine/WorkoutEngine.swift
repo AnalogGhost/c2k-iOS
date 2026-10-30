@@ -1,6 +1,15 @@
 import Foundation
 import Observation
 
+/// The countdown warnings that fire before each interval ends, in seconds remaining, sorted
+/// descending and deduped so the larger threshold fires first. With the second warning off, the
+/// first warning is the only (and therefore last) one. Shared with Tones mode so the engine and
+/// the chimes agree on which warning comes second.
+func countdownWarningThresholds(_ warningSeconds1: Int, _ warningSeconds2: Int, warning2Enabled: Bool) -> [Int] {
+    let thresholds = [warningSeconds1] + (warning2Enabled ? [warningSeconds2] : [])
+    return Array(Set(thresholds.filter { $0 > 0 })).sorted(by: >)
+}
+
 @Observable
 @MainActor
 final class WorkoutEngine {
@@ -44,9 +53,8 @@ final class WorkoutEngine {
         self.midIntervalCues = midIntervalCues
         self.periodicTimeCues = periodicTimeCues
         self.periodicTimeCueIntervalSeconds = periodicTimeCueIntervalSeconds
-        // With the second warning off, the first warning is the only (and therefore last) one.
-        let thresholds = [countdownWarningSeconds1] + (countdownWarning2Enabled ? [countdownWarningSeconds2] : [])
-        self.warningThresholds = Array(Set(thresholds.filter { $0 > 0 })).sorted(by: >)
+        self.warningThresholds = countdownWarningThresholds(
+            countdownWarningSeconds1, countdownWarningSeconds2, warning2Enabled: countdownWarning2Enabled)
     }
 
     func start(sessionId: UUID) {

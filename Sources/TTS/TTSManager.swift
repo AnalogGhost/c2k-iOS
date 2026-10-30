@@ -13,6 +13,14 @@ extension TTSAnnouncing {
     }
 }
 
+/// What a workout plays cues through: the voice, or the chimes of Tones mode. Mirrors Android's
+/// CuePlayer.
+protocol CuePlayer: TTSAnnouncing {
+    // True while a cue is queued or sounding, so a final cue can finish before shutdown.
+    var isSpeaking: Bool { get }
+    func shutdown()
+}
+
 final class TTSManager: NSObject {
     private let synthesizer = AVSpeechSynthesizer()
     // AVSpeechUtteranceDefaultSpeechRate = 0.5; multiply by Android-scale rate (0.7–1.3)
@@ -144,7 +152,7 @@ final class TTSManager: NSObject {
     }
 }
 
-extension TTSManager: TTSAnnouncing {}
+extension TTSManager: CuePlayer {}
 
 extension TTSManager: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {

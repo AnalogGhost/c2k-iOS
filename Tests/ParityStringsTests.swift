@@ -31,6 +31,10 @@ final class ParityStringsTests: XCTestCase {
             "history_week_section_this_week", "history_month_section_this_month",
             "settings_skip_warmup", "settings_skip_cooldown", "settings_skip_warmup_cooldown_caption",
             "settings_periodic_time_cues", "settings_periodic_time_cue_interval",
+            "workout_skip_warmup", "workout_skip_cooldown",
+            "settings_tts_enabled", "settings_cue_style", "settings_cue_style_voice", "settings_cue_style_tones",
+            "settings_cue_style_tones_caption", "settings_tone_volume", "settings_test_tones",
+            "guide_q_tones", "guide_a_tones",
         ]
         for language in Self.languages {
             for key in keys {

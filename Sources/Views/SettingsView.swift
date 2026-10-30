@@ -8,6 +8,7 @@ struct SettingsView: View {
     @State private var weightText: String = ""
     @State private var hapticsPreview = HapticsPreview()
     @State private var voiceTester = VoiceTester()
+    @State private var toneTester = ToneTester()
     @State private var pendingRestartLanguage: AppLanguage?
     @State private var languageBeforeChange: AppLanguage?
 
@@ -36,9 +37,21 @@ struct SettingsView: View {
             }
 
             Section("Voice") {
-                Toggle("Voice announcements", isOn: $prefs.ttsEnabled)
+                Toggle("settings_tts_enabled", isOn: $prefs.ttsEnabled)
 
                 if prefs.ttsEnabled {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Picker("settings_cue_style", selection: $prefs.cueStyle) {
+                            ForEach(CueStyle.allCases) { Text($0.label).tag($0) }
+                        }
+                        .accessibilityIdentifier("settings-cue-style")
+                        if prefs.cueStyle == .tones {
+                            Text("settings_cue_style_tones_caption")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+
                     Toggle("Countdown warnings", isOn: $prefs.countdownWarnings)
 
                     if prefs.countdownWarnings {
@@ -51,32 +64,35 @@ struct SettingsView: View {
                         }
                     }
 
-                    Toggle(String(localized: "Mid-run encouragement"), isOn: $prefs.midIntervalCues)
+                    // Encouragement, time reminders and voice speed only apply to the spoken voice.
+                    if prefs.cueStyle == .voice {
+                        Toggle(String(localized: "Mid-run encouragement"), isOn: $prefs.midIntervalCues)
 
-                    Toggle(String(localized: "settings_periodic_time_cues"), isOn: $prefs.periodicTimeCues)
+                        Toggle(String(localized: "settings_periodic_time_cues"), isOn: $prefs.periodicTimeCues)
 
-                    if prefs.periodicTimeCues {
-                        SecondsSlider(label: String(localized: "settings_periodic_time_cue_interval"), seconds: $prefs.periodicTimeCueInterval, range: 15...120)
+                        if prefs.periodicTimeCues {
+                            SecondsSlider(label: String(localized: "settings_periodic_time_cue_interval"), seconds: $prefs.periodicTimeCueInterval, range: 15...120)
+                        }
+
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack {
+                                Text("Voice speed")
+                                Spacer()
+                                Text(String(format: "%.1f×", prefs.ttsSpeechRate))
+                                    .foregroundStyle(.secondary)
+                            }
+                            Slider(value: $prefs.ttsSpeechRate, in: 0.7...1.3, step: 0.1)
+                            HStack {
+                                Text("Slow").font(.caption).foregroundStyle(.secondary)
+                                Spacer()
+                                Text("Fast").font(.caption).foregroundStyle(.secondary)
+                            }
+                        }
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
-                            Text("Voice speed")
-                            Spacer()
-                            Text(String(format: "%.1f×", prefs.ttsSpeechRate))
-                                .foregroundStyle(.secondary)
-                        }
-                        Slider(value: $prefs.ttsSpeechRate, in: 0.7...1.3, step: 0.1)
-                        HStack {
-                            Text("Slow").font(.caption).foregroundStyle(.secondary)
-                            Spacer()
-                            Text("Fast").font(.caption).foregroundStyle(.secondary)
-                        }
-                    }
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack {
-                            Text("Voice volume")
+                            Text(prefs.cueStyle == .tones ? LocalizedStringKey("settings_tone_volume") : "Voice volume")
                             Spacer()
                             Text(String(format: "%.0f%%", prefs.ttsVolume * 100))
                                 .foregroundStyle(.secondary)
@@ -89,32 +105,40 @@ struct SettingsView: View {
                         }
                     }
 
-                    VStack(alignment: .leading, spacing: 6) {
-                        Button(String(localized: "settings_tts_test_button")) {
-                            voiceTester.speakTest(
-                                rate: prefs.ttsSpeechRate,
-                                volume: prefs.ttsVolume,
-                                language: prefs.appLanguage.bcp47 ?? Locale.preferredLanguages.first
-                            )
+                    if prefs.cueStyle == .tones {
+                        Button(String(localized: "settings_test_tones")) {
+                            toneTester.playTest(volume: prefs.ttsVolume)
                         }
-                        .disabled(voiceTester.status == .playing || voiceTester.status == .initializing)
-                        .accessibilityIdentifier("settings-test-voice")
-
-                        if let text = voiceTester.status.localizedText {
-                            Text(text)
-                                .font(.caption)
-                                .foregroundStyle(voiceTester.status.isFailure ? Color.red : Color.secondary)
-                        }
-                        if voiceTester.status.isFailure {
-                            Text("settings_tts_test_help")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Button(String(localized: "settings_tts_open_ios_settings")) {
-                                if let url = URL(string: UIApplication.openSettingsURLString) {
-                                    UIApplication.shared.open(url)
-                                }
+                        .disabled(toneTester.isPlaying)
+                        .accessibilityIdentifier("settings-test-tones")
+                    } else {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Button(String(localized: "settings_tts_test_button")) {
+                                voiceTester.speakTest(
+                                    rate: prefs.ttsSpeechRate,
+                                    volume: prefs.ttsVolume,
+                                    language: prefs.appLanguage.bcp47 ?? Locale.preferredLanguages.first
+                                )
                             }
-                            .font(.footnote)
+                            .disabled(voiceTester.status == .playing || voiceTester.status == .initializing)
+                            .accessibilityIdentifier("settings-test-voice")
+
+                            if let text = voiceTester.status.localizedText {
+                                Text(text)
+                                    .font(.caption)
+                                    .foregroundStyle(voiceTester.status.isFailure ? Color.red : Color.secondary)
+                            }
+                            if voiceTester.status.isFailure {
+                                Text("settings_tts_test_help")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                Button(String(localized: "settings_tts_open_ios_settings")) {
+                                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                                        UIApplication.shared.open(url)
+                                    }
+                                }
+                                .font(.footnote)
+                            }
                         }
                     }
                 }

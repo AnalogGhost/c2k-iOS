@@ -3159,49 +3159,373 @@
         }
       }
     },
-    "Voice announcements": {
+    "settings_tts_enabled": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sprachansagen"
+            "value": "Audiohinweise"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio cues"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Indicaciones por voz"
+            "value": "Avisos sonoros"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Annonces vocales"
+            "value": "Signaux sonores"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anuncios por voz"
+            "value": "Avisos sonoros"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avisos de voz"
+            "value": "Avisos sonoros"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Голосовые уведомления"
+            "value": "Звуковые подсказки"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sesli yönlendirmeler"
+            "value": "İşitsel uyarılar"
+          }
+        }
+      }
+    },
+    "settings_cue_style": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinweisart"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cue type"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo de aviso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type de signal"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo de aviso"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo de aviso"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тип подсказок"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyarı türü"
+          }
+        }
+      }
+    },
+    "settings_cue_style_voice": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stimme"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voice"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voz"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voix"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voz"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voz"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Голос"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konuşma"
+          }
+        }
+      }
+    },
+    "settings_cue_style_tones": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Töne"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tones"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tonos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tonalités"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tons"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tons"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сигналы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tonlar"
+          }
+        }
+      }
+    },
+    "settings_cue_style_tones_caption": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klänge statt Sprache: aufsteigend fürs Laufen, absteigend fürs Gehen, Ticken für Countdown-Warnungen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chimes instead of speech: rising for a run, falling for a walk, ticks for countdown warnings."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonidos en lugar de voz: ascendente para correr, descendente para caminar y tics para los avisos de cuenta atrás."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des sons au lieu de la voix\\u00a0: montant pour courir, descendant pour marcher, bips courts pour les avertissements du compte à rebours."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sons en lugar de voz: ascendente para correr, descendente para camiñar e tics para os avisos de conta atrás."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sons em vez de voz: ascendente para correr, descendente para caminhar e bipes para os avisos de contagem regressiva."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сигналы вместо речи: восходящий — бег, нисходящий — ходьба, короткие щелчки — предупреждения обратного отсчёта."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konuşma yerine tonlar: koşu için yükselen, yürüyüş için alçalan, geri sayım uyarıları için kısa bip sesleri."
+          }
+        }
+      }
+    },
+    "settings_tone_volume": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tonlautstärke"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tone volume"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volumen de los tonos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume des tonalités"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume dos tons"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume dos tons"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Громкость сигналов"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton düzeyi"
+          }
+        }
+      }
+    },
+    "settings_test_tones": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Töne testen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test tones"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probar tonos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tester les tonalités"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probar tons"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Testar tons"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проверить сигналы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tonları test et"
           }
         }
       }
@@ -5371,6 +5695,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tek bir doğru teknik yoktur — en çok havayı almanızı sağlayan şekilde nefes alın. Birçok koşucu doğal olarak 2:2 ritmine alışır: 2 adımda nefes al, 2 adımda nefes ver. Diğerleri 3:2 tercih eder veya ihtiyaca göre nefes alır.\n\nHem burundan hem ağızdan nefes almak tamamen normaldir ve yüksek tempoda çalışırken tavsiye edilir. Nefes nefese kalıyorsanız çok hızlı koşuyorsunuz demektir — nefesiniz kontrol edilebilir hissettirene kadar yavaşlayın."
+          }
+        }
+      }
+    },
+    "guide_q_tones": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was bedeuten die Töne?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What do the tones mean?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Qué significan los tonos?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Que signifient les tonalités ?"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Que significan os tons?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O que significam os tons?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Что означают сигналы?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tonlar ne anlama geliyor?"
+          }
+        }
+      }
+    },
+    "guide_a_tones": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wenn du in den Einstellungen die Hinweisart „Töne“ wählst, ersetzen Klänge die Sprachansagen. Ein schneller Sprung nach oben heißt Laufen, zwei langsam fallende Töne heißen Gehen. Ein einzelner tiefer Ton beginnt das Aufwärmen, drei fallende Töne das Cool-down, und vier aufsteigende Töne bedeuten, dass du fertig bist. Countdown-Warnungen sind kurze Ticks: einer für die erste Warnung, zwei für die zweite. Tippe in den Einstellungen auf „Töne testen“, um Laufen und Gehen nacheinander zu hören."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you set Cue type to Tones in Settings, chimes replace the spoken announcements. A quick upward leap means run; a slow falling pair means walk. A single low note starts the warm-up, three falling notes start the cool-down, and four rising notes mean you've finished. Countdown warnings are short ticks: one for the first warning, two for the second. Tap Test tones in Settings to hear run and walk one after the other."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si eliges Tonos como tipo de aviso en Ajustes, los sonidos sustituyen a las indicaciones por voz. Un salto rápido hacia arriba significa correr; dos notas lentas que bajan significan caminar. Una sola nota grave inicia el calentamiento, tres notas descendentes inician el enfriamiento y cuatro notas ascendentes indican que has terminado. Los avisos de cuenta atrás son tics cortos: uno para el primer aviso y dos para el segundo. Toca Probar tonos en Ajustes para oír correr y caminar uno tras otro."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si vous choisissez Tonalités comme type de signal dans les paramètres, des sons remplacent les annonces vocales. Un saut rapide vers l'aigu signifie courir ; deux notes lentes qui descendent signifient marcher. Une seule note grave lance l'échauffement, trois notes descendantes le retour au calme, et quatre notes montantes indiquent que vous avez terminé. Les avertissements du compte à rebours sont de courts bips : un pour le premier, deux pour le second. Touchez Tester les tonalités dans les paramètres pour entendre courir et marcher l'un après l'autre."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se escolles Tons como tipo de aviso na configuración, os sons substitúen os anuncios por voz. Un salto rápido cara arriba significa correr; dúas notas lentas que baixan significan camiñar. Unha soa nota grave inicia o quecemento, tres notas descendentes inician a volta á calma e catro notas ascendentes indican que remataches. Os avisos de conta atrás son tics curtos: un para o primeiro aviso e dous para o segundo. Toca Probar tons na configuración para escoitar correr e camiñar un tras outro."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se você escolher Tons como tipo de aviso nas configurações, sons substituem os avisos de voz. Um salto rápido para cima significa correr; duas notas lentas descendo significam caminhar. Uma única nota grave inicia o aquecimento, três notas descendentes iniciam o desaquecimento e quatro notas ascendentes indicam que você terminou. Os avisos de contagem regressiva são bipes curtos: um para o primeiro aviso, dois para o segundo. Toque em Testar tons nas configurações para ouvir correr e caminhar um após o outro."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Если в настройках выбрать тип подсказок «Сигналы», вместо голосовых уведомлений звучат сигналы. Быстрый скачок вверх означает бег, два медленно понижающихся звука — ходьбу. Одна низкая нота начинает разминку, три нисходящие — заминку, а четыре восходящие означают, что тренировка окончена. Предупреждения обратного отсчёта — короткие щелчки: один для первого предупреждения, два для второго. Нажмите «Проверить сигналы» в настройках, чтобы услышать бег и ходьбу друг за другом."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarlarda uyarı türü olarak Tonlar'ı seçerseniz, sesli yönlendirmelerin yerini tonlar alır. Hızlı bir yükseliş koşu, yavaşça alçalan iki nota yürüyüş demektir. Tek bir pes nota ısınmayı, alçalan üç nota soğumayı başlatır; yükselen dört nota ise bitirdiğiniz anlamına gelir. Geri sayım uyarıları kısa bip sesleridir: ilk uyarı için bir, ikinci uyarı için iki. Koşu ve yürüyüşü art arda duymak için Ayarlar'daki Tonları test et düğmesine dokunun."
           }
         }
       }

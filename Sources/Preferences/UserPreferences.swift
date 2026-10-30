@@ -63,6 +63,10 @@ final class UserPreferences {
         didSet { defaults.set(countdownWarning2, forKey: "countdown_warning_2") }
     }
 
+    var cueStyle: CueStyle = CueStyle.fromStored(UserDefaults.standard.string(forKey: "cue_style")) {
+        didSet { defaults.set(cueStyle.rawValue, forKey: "cue_style") }
+    }
+
     var countdownWarning2Enabled: Bool = (UserDefaults.standard.object(forKey: "countdown_warning_2_enabled") as? Bool) ?? true {
         didSet { defaults.set(countdownWarning2Enabled, forKey: "countdown_warning_2_enabled") }
     }

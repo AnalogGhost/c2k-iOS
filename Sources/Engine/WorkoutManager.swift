@@ -20,6 +20,8 @@ final class WorkoutManager {
     private var engine: WorkoutEngine?
     private var locationTracker: LocationTracker?
     private let ttsManager = TTSManager()
+    // The voice, or a TonePlayer when the cue style is Tones; chosen per workout in start().
+    private var cuePlayer: any CuePlayer
     private let backgroundAudio = BackgroundAudioManager()
     private let nowPlaying = NowPlayingManager()
     private let haptics: HapticCuePlaying
@@ -30,6 +32,7 @@ final class WorkoutManager {
     // `haptics` is injectable so WorkoutManager can be exercised with a spy.
     init(haptics: HapticCuePlaying = HapticsPlayer()) {
         self.haptics = haptics
+        self.cuePlayer = ttsManager
     }
 
     func start(
@@ -52,6 +55,16 @@ final class WorkoutManager {
         ttsManager.setRate(prefs.ttsSpeechRate)
         ttsManager.setVolume(prefs.ttsVolume)
         ttsManager.setLanguage(prefs.appLanguage.bcp47 ?? Locale.preferredLanguages.first)
+        switch prefs.cueStyle {
+        case .voice:
+            cuePlayer = ttsManager
+        case .tones:
+            cuePlayer = TonePlayer(
+                volume: prefs.ttsVolume,
+                countdownThresholds: countdownWarningThresholds(
+                    prefs.countdownWarning1, prefs.countdownWarning2,
+                    warning2Enabled: prefs.countdownWarning2Enabled))
+        }
 
         haptics.configure(strength: prefs.vibrationStrength)
         if prefs.vibrationEnabled { haptics.start() }
@@ -85,7 +98,7 @@ final class WorkoutManager {
 
         let eng = WorkoutEngine(
             day: workoutDay,
-            tts: ttsManager,
+            tts: cuePlayer,
             ttsEnabled: prefs.ttsEnabled,
             countdownWarnings: prefs.countdownWarnings,
             countdownWarningSeconds1: prefs.countdownWarning1,
@@ -160,9 +173,9 @@ final class WorkoutManager {
                     let distance = self.locationTracker?.totalDistanceMeters ?? 0
                     repository.finishSession(id: sessionId, durationSeconds: elapsed,
                                              distanceMeters: distance, completed: true)
-                    // Let the final "Workout complete" announcement finish speaking before
-                    // cleanup() calls ttsManager.shutdown() -> stopSpeaking(.immediate), which
-                    // would otherwise cut the cue off. Bounded so a stuck TTS engine can't hang.
+                    // Let the final "Workout complete" announcement (or chime) finish before
+                    // cleanup() calls cuePlayer.shutdown(), which would otherwise cut the cue
+                    // off. Bounded so a stuck TTS engine can't hang.
                     await self.waitForSpeechToFinish()
                     self.cleanup()
                     return
@@ -199,7 +212,7 @@ final class WorkoutManager {
         let timeoutMs = 8_000
         let pollMs = 100
         var waitedMs = 0
-        while ttsManager.isSpeaking && waitedMs < timeoutMs {
+        while cuePlayer.isSpeaking && waitedMs < timeoutMs {
             try? await Task.sleep(for: .milliseconds(pollMs))
             waitedMs += pollMs
         }
@@ -212,7 +225,7 @@ final class WorkoutManager {
         engine = nil
         locationTracker?.stop()
         locationTracker = nil
-        ttsManager.shutdown()
+        cuePlayer.shutdown()
         haptics.stop()
         backgroundAudio.stop()
         nowPlaying.stop()

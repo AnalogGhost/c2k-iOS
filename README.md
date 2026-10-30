@@ -16,6 +16,7 @@ A free, open-source running trainer for iOS 17+. No account, no subscription, no
 ## Features
 
 - Voice coaching announces every interval
+- Tones mode — chimes instead of speech for interval changes and countdowns, for users who prefer not to hear a voice
 - Optional GPS distance and pace tracking
 - Workout history with streak tracking
 - Background audio — screen can stay off during workouts
