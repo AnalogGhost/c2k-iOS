@@ -7,13 +7,14 @@ struct WorkoutDay {
         intervals.reduce(0) { $0 + $1.durationSeconds }
     }
 
-    /// Drops the warm-up and cool-down intervals, for users who already warm up getting to
-    /// their run (Android issue #43) — the run/walk intervals that are the actual program are
-    /// untouched. Every program day has at least one run interval outside the warm-up/cool-down,
-    /// so this never empties the list.
-    func withoutWarmupCooldown() -> WorkoutDay {
-        WorkoutDay(week: week, day: day,
-                   intervals: intervals.filter { $0.type != .warmup && $0.type != .cooldown })
+    /// Drops the warm-up and/or cool-down intervals, for users who already warm up getting to
+    /// their run or cool down on the way home (Android issue #43) — the run/walk intervals that
+    /// are the actual program are untouched. Every program day has at least one run interval
+    /// outside the warm-up/cool-down, so this never empties the list.
+    func skipping(warmup: Bool, cooldown: Bool) -> WorkoutDay {
+        WorkoutDay(week: week, day: day, intervals: intervals.filter {
+            !(warmup && $0.type == .warmup) && !(cooldown && $0.type == .cooldown)
+        })
     }
 }
 
@@ -26,11 +27,10 @@ struct WorkoutPlan {
 
     var totalWeeks: Int { weeks.count }
 
-    /// The day as it will actually be run: the one place the skip warm-up/cool-down preference
-    /// is applied, so the program grid, preview sheet, and the workout itself can't disagree.
-    func workoutDay(week: Int, day: Int, skipWarmupCooldown: Bool) -> WorkoutDay {
-        let planDay = weeks[week - 1][day - 1]
-        return skipWarmupCooldown ? planDay.withoutWarmupCooldown() : planDay
+    /// The day as it will actually be run: the one place the skip warm-up/cool-down preferences
+    /// are applied, so the program grid, preview sheet, and the workout itself can't disagree.
+    func workoutDay(week: Int, day: Int, skipWarmup: Bool, skipCooldown: Bool) -> WorkoutDay {
+        weeks[week - 1][day - 1].skipping(warmup: skipWarmup, cooldown: skipCooldown)
     }
 
     /// The (week, day) to suggest next: the first uncompleted day *after* the latest completed

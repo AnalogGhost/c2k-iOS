@@ -127,10 +127,11 @@ struct SettingsView: View {
                     }
                 }
                 Toggle("Treadmill mode (disables GPS)", isOn: $prefs.treadmillMode)
-                Toggle(isOn: $prefs.skipWarmupCooldown) {
-                    Text("settings_skip_warmup_cooldown")
+                Toggle(isOn: $prefs.skipWarmup) {
+                    Text("settings_skip_warmup")
                     Text("settings_skip_warmup_cooldown_caption")
                 }
+                Toggle("settings_skip_cooldown", isOn: $prefs.skipCooldown)
                 Toggle("GPS tracking", isOn: $prefs.gpsEnabled)
                     .disabled(prefs.treadmillMode)
                 Toggle("Keep screen on during workout", isOn: $prefs.keepScreenOn)

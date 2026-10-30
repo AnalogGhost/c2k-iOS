@@ -152,7 +152,7 @@ struct HomeView: View {
             displayName: plan.displayName,
             week: wd.week,
             day: wd.day,
-            workoutDay: plan.workoutDay(week: wd.week, day: wd.day, skipWarmupCooldown: prefs.skipWarmupCooldown)
+            workoutDay: plan.workoutDay(week: wd.week, day: wd.day, skipWarmup: prefs.skipWarmup, skipCooldown: prefs.skipCooldown)
         )
     }
 }

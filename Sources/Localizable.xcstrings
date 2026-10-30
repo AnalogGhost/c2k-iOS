@@ -11794,55 +11794,108 @@
         }
       }
     },
-    "settings_skip_warmup_cooldown": {
+    "settings_skip_warmup": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skip warm-up and cool-down"
-          }
-        },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufwärmen und Abkühlen überspringen"
+            "value": "Aufwärmen überspringen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip warm-up"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Omitir calentamiento y enfriamiento"
+            "value": "Omitir calentamiento"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ignorer l'échauffement et la récupération"
+            "value": "Ignorer l'échauffement"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Omitir quecemento e arrefecemento"
+            "value": "Omitir quecemento"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pular aquecimento e desaquecimento"
+            "value": "Pular aquecimento"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Пропустить разминку и заминку"
+            "value": "Пропустить разминку"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Isınmayı ve soğumayı atla"
+            "value": "Isınmayı atla"
+          }
+        }
+      }
+    },
+    "settings_skip_cooldown": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abkühlen überspringen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip cool-down"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omitir enfriamiento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ignorer la récupération"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omitir arrefecemento"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pular desaquecimento"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пропустить заминку"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soğumayı atla"
           }
         }
       }
@@ -11850,52 +11903,52 @@
     "settings_skip_warmup_cooldown_caption": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Warming up gradually reduces injury risk — skip this if you already walk to and from your run."
-          }
-        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Langsames Aufwärmen senkt das Verletzungsrisiko – überspringen, wenn du schon zu Fuß zu deiner Laufstrecke gehst."
           }
         },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warming up gradually reduces injury risk — skip this if you already walk to your run."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calentar gradualmente reduce el riesgo de lesiones; omítelo si ya caminas para ir y volver de tu carrera."
+            "value": "Calentar gradualmente reduce el riesgo de lesiones; omítelo si ya caminas para ir a tu carrera."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "S'échauffer progressivement réduit le risque de blessure — ignorez cette étape si vous marchez déjà pour aller courir et en revenir."
+            "value": "S'échauffer progressivement réduit le risque de blessure — ignorez cette étape si vous marchez déjà pour aller courir."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Quecer gradualmente reduce o risco de lesión; omíteo se xa camiñas para ir e volver da túa carreira."
+            "value": "Quecer gradualmente reduce o risco de lesión; omíteo se xa camiñas para ir á túa carreira."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aquecer gradualmente reduz o risco de lesões — pule esta etapa se você já caminha até o local da corrida e de volta."
+            "value": "Aquecer gradualmente reduz o risco de lesões — pule esta etapa se você já caminha até o local da corrida."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Постепенная разминка снижает риск травм — пропустите её, если вы уже идёте пешком до места пробежки и обратно."
+            "value": "Постепенная разминка снижает риск травм — пропустите её, если вы уже идёте пешком до места пробежки."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kademeli ısınma sakatlanma riskini azaltır — koşunuza gidip gelirken zaten yürüyorsanız bunu atlayabilirsiniz."
+            "value": "Kademeli ısınma sakatlanma riskini azaltır — koşunuza giderken zaten yürüyorsanız bunu atlayabilirsiniz."
           }
         }
       }

@@ -82,8 +82,16 @@ final class UserPreferences {
         didSet { defaults.set(treadmillMode, forKey: "treadmill_mode") }
     }
 
-    var skipWarmupCooldown: Bool = (UserDefaults.standard.object(forKey: "skip_warmup_cooldown") as? Bool) ?? false {
-        didSet { defaults.set(skipWarmupCooldown, forKey: "skip_warmup_cooldown") }
+    // 1.2.20 had a single "skip_warmup_cooldown" switch; it seeds both of these until the user
+    // changes one, so anyone who had it on keeps skipping both.
+    var skipWarmup: Bool = (UserDefaults.standard.object(forKey: "skip_warmup") as? Bool)
+        ?? (UserDefaults.standard.object(forKey: "skip_warmup_cooldown") as? Bool) ?? false {
+        didSet { defaults.set(skipWarmup, forKey: "skip_warmup") }
+    }
+
+    var skipCooldown: Bool = (UserDefaults.standard.object(forKey: "skip_cooldown") as? Bool)
+        ?? (UserDefaults.standard.object(forKey: "skip_warmup_cooldown") as? Bool) ?? false {
+        didSet { defaults.set(skipCooldown, forKey: "skip_cooldown") }
     }
 
     var weightKg: Double? = UserDefaults.standard.object(forKey: "weight_kg") as? Double {

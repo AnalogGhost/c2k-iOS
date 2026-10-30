@@ -40,7 +40,7 @@ final class WorkoutManager {
         guard !isRunning else { return }
 
         let workoutDay = Programs.byId(programId).workoutDay(
-            week: week, day: day, skipWarmupCooldown: prefs.skipWarmupCooldown)
+            week: week, day: day, skipWarmup: prefs.skipWarmup, skipCooldown: prefs.skipCooldown)
         self.repository = repository
 
         isRunning = true

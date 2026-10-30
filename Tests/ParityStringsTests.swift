@@ -29,7 +29,7 @@ final class ParityStringsTests: XCTestCase {
     func testPlainStringsExistInEveryLanguage() {
         let keys = [
             "history_week_section_this_week", "history_month_section_this_month",
-            "settings_skip_warmup_cooldown", "settings_skip_warmup_cooldown_caption",
+            "settings_skip_warmup", "settings_skip_cooldown", "settings_skip_warmup_cooldown_caption",
             "settings_periodic_time_cues", "settings_periodic_time_cue_interval",
         ]
         for language in Self.languages {
@@ -44,9 +44,9 @@ final class ParityStringsTests: XCTestCase {
 
     func testOnlyEnglishKeepsTheEnglishWording() {
         // Guards against a language silently falling back to the English text.
-        let key = "settings_skip_warmup_cooldown"
+        let key = "settings_skip_warmup"
         let english = string(key, "en")
-        XCTAssertEqual(english, "Skip warm-up and cool-down")
+        XCTAssertEqual(english, "Skip warm-up")
         for language in Self.languages where language != "en" {
             XCTAssertNotEqual(string(key, language), english, language)
         }

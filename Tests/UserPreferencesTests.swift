@@ -4,7 +4,7 @@ import XCTest
 // UserPreferences reads and writes UserDefaults.standard directly, so these tests save the
 // keys they touch and put them back afterwards.
 final class UserPreferencesTests: XCTestCase {
-    private let keys = ["periodic_time_cues", "periodic_time_cue_interval", "skip_warmup_cooldown"]
+    private let keys = ["periodic_time_cues", "periodic_time_cue_interval", "skip_warmup_cooldown", "skip_warmup", "skip_cooldown"]
     private var saved: [String: Any] = [:]
 
     override func setUp() {
@@ -30,7 +30,8 @@ final class UserPreferencesTests: XCTestCase {
         let prefs = UserPreferences()
         XCTAssertFalse(prefs.periodicTimeCues)
         XCTAssertEqual(prefs.periodicTimeCueInterval, 30)
-        XCTAssertFalse(prefs.skipWarmupCooldown)
+        XCTAssertFalse(prefs.skipWarmup)
+        XCTAssertFalse(prefs.skipCooldown)
     }
 
     func testReadingDefaultsDoesNotWriteThem() {
@@ -52,20 +53,41 @@ final class UserPreferencesTests: XCTestCase {
         XCTAssertEqual(UserPreferences().periodicTimeCueInterval, 75)
     }
 
-    func testSkipWarmupCooldownPersistsUnderTheAndroidKey() {
-        UserPreferences().skipWarmupCooldown = true
-        XCTAssertEqual(UserDefaults.standard.object(forKey: "skip_warmup_cooldown") as? Bool, true)
-        XCTAssertTrue(UserPreferences().skipWarmupCooldown)
+    func testSkipWarmupAndCooldownPersistUnderTheAndroidKeys() {
+        UserPreferences().skipWarmup = true
+        XCTAssertEqual(UserDefaults.standard.object(forKey: "skip_warmup") as? Bool, true)
+        XCTAssertTrue(UserPreferences().skipWarmup)
+        XCTAssertFalse(UserPreferences().skipCooldown)
+
+        UserPreferences().skipCooldown = true
+        XCTAssertEqual(UserDefaults.standard.object(forKey: "skip_cooldown") as? Bool, true)
+        XCTAssertTrue(UserPreferences().skipCooldown)
+    }
+
+    // 1.2.20 stored a single switch; whoever had it on keeps skipping both after updating.
+    func testTheOldCombinedSwitchSeedsBothNewOnes() {
+        UserDefaults.standard.set(true, forKey: "skip_warmup_cooldown")
+        let prefs = UserPreferences()
+        XCTAssertTrue(prefs.skipWarmup)
+        XCTAssertTrue(prefs.skipCooldown)
+    }
+
+    func testChangingOneNewSwitchOverridesTheOldCombinedOne() {
+        UserDefaults.standard.set(true, forKey: "skip_warmup_cooldown")
+        UserPreferences().skipCooldown = false
+        let prefs = UserPreferences()
+        XCTAssertTrue(prefs.skipWarmup)
+        XCTAssertFalse(prefs.skipCooldown)
     }
 
     func testTurningAPreferenceBackOffIsPersisted() {
         let prefs = UserPreferences()
-        prefs.skipWarmupCooldown = true
+        prefs.skipWarmup = true
         prefs.periodicTimeCues = true
-        prefs.skipWarmupCooldown = false
+        prefs.skipWarmup = false
         prefs.periodicTimeCues = false
         let reloaded = UserPreferences()
-        XCTAssertFalse(reloaded.skipWarmupCooldown)
+        XCTAssertFalse(reloaded.skipWarmup)
         XCTAssertFalse(reloaded.periodicTimeCues)
     }
 }

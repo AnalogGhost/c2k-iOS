@@ -33,7 +33,7 @@ struct ProgramSelectView: View {
     // So the day grid and preview sheet show the same duration/intervals the workout will
     // actually run with (see WorkoutManager, which applies this same preference).
     private func displayDay(week: Int, day: Int) -> WorkoutDay {
-        plan.workoutDay(week: week, day: day, skipWarmupCooldown: prefs.skipWarmupCooldown)
+        plan.workoutDay(week: week, day: day, skipWarmup: prefs.skipWarmup, skipCooldown: prefs.skipCooldown)
     }
 
     var body: some View {
