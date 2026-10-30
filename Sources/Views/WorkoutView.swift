@@ -159,7 +159,7 @@ private struct ActiveWorkoutContent: View {
             if let next = state.nextInterval {
                 Text(nextIntervalText(next))
                     .font(.subheadline)
-                    .foregroundColor(intervalColor(next.type).opacity(0.75))
+                    .foregroundColor(intervalTextColor(next.type))
             }
             details
             Spacer()
@@ -181,7 +181,7 @@ private struct ActiveWorkoutContent: View {
             size: size
         ) {
             VStack(spacing: 4) {
-                Text(label).font(.title3.bold()).foregroundColor(ringColor)
+                Text(label).font(.title3.bold()).foregroundColor(intervalTextColor(state.currentInterval.type))
                 Text(formatTime(state.secondsRemainingInInterval))
                     .font(.system(size: 42, weight: .bold, design: .rounded))
             }
@@ -194,7 +194,7 @@ private struct ActiveWorkoutContent: View {
             if isLandscape, let next = state.nextInterval {
                 Text(nextIntervalText(next))
                     .font(.subheadline)
-                    .foregroundColor(intervalColor(next.type).opacity(0.75))
+                    .foregroundColor(intervalTextColor(next.type))
             }
 
             Text(String(format: String(localized: "workout_elapsed"), formatTime(state.elapsedSessionSeconds)))
@@ -317,7 +317,7 @@ private struct PausedWorkoutContent: View {
             size: size
         ) {
             VStack(spacing: 4) {
-                Text(label).font(.title3.bold()).foregroundColor(ringColor)
+                Text(label).font(.title3.bold()).foregroundColor(intervalTextColor(state.currentInterval.type))
                 Text(formatTime(state.secondsRemainingInInterval))
                     .font(.system(size: 42, weight: .bold, design: .rounded))
             }
@@ -365,7 +365,7 @@ private struct CompletedContent: View {
         VStack(spacing: 8) {
             Text("Workout Complete!")
                 .font(.largeTitle.bold())
-                .foregroundColor(.warmCoolGreen)
+                .foregroundColor(.greenText)
             Text("Great job! Keep up the good work.")
                 .font(.body).foregroundStyle(.secondary)
         }
@@ -396,7 +396,7 @@ private struct CompletedContent: View {
                 if elapsedSeconds < best.durationSeconds {
                     Text("New personal best!")
                         .font(.headline)
-                        .foregroundColor(.warmCoolGreen)
+                        .foregroundColor(.greenText)
                 }
                 Text(String(format: String(localized: "workout_previous_best"), formatTime(best.durationSeconds)))
                     .font(.subheadline).foregroundStyle(.secondary)

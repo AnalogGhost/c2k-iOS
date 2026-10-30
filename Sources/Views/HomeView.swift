@@ -18,7 +18,7 @@ struct HomeView: View {
                 if streak > 0 {
                     Section {
                         Text(streakText)
-                            .foregroundColor(.runOrange)
+                            .foregroundColor(.runOrangeText)
                             .font(.subheadline)
                             .listRowBackground(Color.clear)
                             .accessibilityIdentifier("home-streak")
@@ -31,7 +31,7 @@ struct HomeView: View {
                             path.append(.workout(programId: info.programId, week: info.week, day: info.day))
                         } label: {
                             Label("Workout in progress — tap to return", systemImage: "figure.run")
-                                .foregroundColor(.warmCoolGreen)
+                                .foregroundColor(.greenText)
                         }
                     }
                 }

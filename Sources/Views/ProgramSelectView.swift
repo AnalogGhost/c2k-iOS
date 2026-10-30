@@ -95,7 +95,7 @@ struct ProgramSelectView: View {
                                 .font(.headline).foregroundStyle(.primary)
                             if weekComplete {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.warmCoolGreen).font(.subheadline)
+                                    .foregroundColor(.greenText).font(.subheadline)
                             }
                             Spacer()
                             Image(systemName: expanded ? "chevron.up" : "chevron.down")
@@ -162,7 +162,7 @@ private struct DayButton: View {
         if completed {
             Button(action: action) { label }
                 .buttonStyle(.bordered)
-                .tint(.warmCoolGreen)
+                .tint(.greenText)
         } else {
             Button(action: action) { label }
                 .buttonStyle(.borderedProminent)

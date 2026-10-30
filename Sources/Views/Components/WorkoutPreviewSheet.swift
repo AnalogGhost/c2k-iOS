@@ -61,20 +61,12 @@ private struct IntervalGroupRow: View {
     var body: some View {
         HStack {
             Text(label + (group.count > 1 ? " × \(group.count)" : ""))
-                .foregroundColor(color)
+                .foregroundColor(intervalTextColor(group.type))
             Spacer()
             Text(formatDuration(group.durationSeconds))
         }
         .font(.body)
         .padding(.vertical, 6)
-    }
-
-    private var color: Color {
-        switch group.type {
-        case .run:              return .runOrange
-        case .walk:             return .walkBlue
-        case .warmup, .cooldown: return .warmCoolGreen
-        }
     }
 
     private var label: String { intervalLabel(group.type) }

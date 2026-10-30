@@ -26,7 +26,7 @@ struct HistoryView: View {
                     if streak > 0 {
                         Section {
                             Text(String.localizedStringWithFormat(NSLocalizedString("home_streak", comment: ""), streak))
-                                .foregroundColor(.runOrange)
+                                .foregroundColor(.runOrangeText)
                                 .font(.subheadline)
                                 .listRowBackground(Color.clear)
                                 .accessibilityIdentifier("history-streak")
@@ -236,7 +236,7 @@ private struct SessionRow: View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 if session.completed {
-                    Image(systemName: "checkmark.circle.fill").foregroundColor(.warmCoolGreen)
+                    Image(systemName: "checkmark.circle.fill").foregroundColor(.greenText)
                 }
                 Text("\(displayName)  ·  \(weekDay)")
                     .font(.headline)
