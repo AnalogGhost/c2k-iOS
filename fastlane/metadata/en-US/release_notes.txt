@@ -1,5 +1,9 @@
-• See weekly and monthly summaries on the History screen, with a quick comparison to the previous week and month.
-• New setting to skip the warm-up and cool-down, for days when you already walk to and from your run.
-• Added an optional voice reminder that periodically announces time remaining during an interval, on a cadence you choose in Settings.
-• The lock screen now shows how many running intervals are left, not just overall progress.
-• Fixed the wording of the workout count on the History screen in the Russian translation.
+• "Skip warm-up" and "Skip cool-down" are now separate settings, so you can skip one and keep the other. Your existing choice carries over.
+• New button on the workout screen to skip a warm-up or cool-down while it is running.
+• New option to turn off the second countdown warning and keep only the first.
+• New Tones mode: chimes instead of a voice for interval changes, countdowns and the end of a workout. Settings → Cue type → Tones.
+• Your weekly streak now also shows on the History screen.
+• Interval changes can also buzz your smartwatch. Settings → Also notify smartwatch. Thanks to west1nat0r.
+• Stop the same workout early twice and C2K suggests repeating the week before.
+• Run, walk and completed-day colors are easier to read.
+• Translation fixes.

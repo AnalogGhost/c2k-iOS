@@ -1,5 +1,9 @@
-• La pantalla de Historial ahora muestra resúmenes semanales y mensuales, con una comparación rápida con la semana y el mes anteriores.
-• Nuevo ajuste para omitir el calentamiento y el enfriamiento, para los días en que ya caminas para ir y volver de tu carrera.
-• Nuevo recordatorio de voz opcional que anuncia periódicamente el tiempo restante durante un intervalo, con la frecuencia que elijas en Ajustes.
-• La pantalla de bloqueo ahora muestra cuántos intervalos de carrera quedan, no solo el progreso general.
-• Se corrigió el texto del número de entrenamientos en la traducción al ruso de la pantalla de Historial.
+• «Omitir calentamiento» y «Omitir enfriamiento» son ahora ajustes separados, así que puedes omitir uno y mantener el otro. Tu elección anterior se conserva.
+• Nuevo botón en la pantalla de entrenamiento para omitir un calentamiento o enfriamiento en curso.
+• Nueva opción para desactivar el segundo aviso de cuenta atrás y dejar solo el primero.
+• Nuevo modo Tonos: sonidos en lugar de voz para los cambios de intervalo, las cuentas atrás y el final del entrenamiento. Configuración → Tipo de aviso → Tonos.
+• Tu racha semanal ahora también aparece en el Historial.
+• Los cambios de intervalo también pueden hacer vibrar tu smartwatch. Configuración → Avisar también al smartwatch. Gracias a west1nat0r.
+• Si dejas el mismo entrenamiento a medias dos veces, C2K te propone repetir la semana anterior.
+• Los colores de correr, caminar y día completado se leen mejor.
+• Correcciones de traducción.

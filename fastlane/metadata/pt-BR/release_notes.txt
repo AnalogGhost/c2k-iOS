@@ -1,5 +1,9 @@
-• A tela de Histórico agora mostra resumos semanais e mensais, com uma comparação rápida com a semana e o mês anteriores.
-• Nova opção para pular o aquecimento e o desaquecimento, para os dias em que você já caminha até o local da corrida e de volta.
-• Novo lembrete de voz opcional que anuncia periodicamente o tempo restante durante um intervalo, na frequência que você escolher nos Ajustes.
-• A tela de bloqueio agora mostra quantos intervalos de corrida faltam, e não apenas o progresso geral.
-• Corrigido o texto da contagem de treinos na tradução em russo da tela de Histórico.
+• "Pular aquecimento" e "Pular desaquecimento" agora são opções separadas, então você pode pular um e manter o outro. Sua escolha anterior é mantida.
+• Novo botão na tela de treino para pular um aquecimento ou desaquecimento em andamento.
+• Nova opção para desativar o segundo aviso de contagem regressiva e manter apenas o primeiro.
+• Novo modo Tons: sons em vez de voz nas trocas de intervalo, nas contagens regressivas e no fim do treino. Configurações → Tipo de aviso → Tons.
+• Sua sequência semanal agora também aparece no Histórico.
+• As trocas de intervalo também podem vibrar seu smartwatch. Configurações → Avisar também o smartwatch. Agradecimentos a west1nat0r.
+• Se você interromper o mesmo treino cedo duas vezes, o C2K sugere repetir a semana anterior.
+• As cores de correr, caminhar e dia concluído estão mais fáceis de ler.
+• Correções de tradução.

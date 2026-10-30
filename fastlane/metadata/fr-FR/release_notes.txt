@@ -1,5 +1,9 @@
-• L'écran Historique affiche désormais des résumés hebdomadaires et mensuels, avec une comparaison rapide à la semaine et au mois précédents.
-• Nouveau réglage pour ignorer l'échauffement et la récupération, pour les jours où vous marchez déjà pour aller courir et en revenir.
-• Nouveau rappel vocal facultatif qui annonce périodiquement le temps restant pendant un intervalle, à la cadence choisie dans les Réglages.
-• L'écran verrouillé indique désormais le nombre d'intervalles de course restants, et plus seulement la progression globale.
-• Correction du libellé du nombre de séances sur l'écran Historique dans la traduction russe.
+• « Ignorer l'échauffement » et « Ignorer la récupération » sont désormais deux réglages distincts : vous pouvez ignorer l'un et garder l'autre. Votre choix actuel est conservé.
+• Nouveau bouton sur l'écran de séance pour ignorer un échauffement ou une récupération en cours.
+• Nouvelle option pour désactiver le second avertissement du compte à rebours et ne garder que le premier.
+• Nouveau mode Tonalités : des sons à la place de la voix pour les changements d'intervalle, les comptes à rebours et la fin de la séance. Paramètres → Type de signal → Tonalités.
+• Vos semaines d'affilée s'affichent désormais aussi dans l'Historique.
+• Les changements d'intervalle peuvent aussi faire vibrer votre montre. Paramètres → Notifier aussi la montre. Merci à west1nat0r.
+• Si vous arrêtez deux fois la même séance avant la fin, C2K propose de refaire la semaine précédente.
+• Les couleurs de course, de marche et des jours terminés sont plus lisibles.
+• Corrections de traduction.

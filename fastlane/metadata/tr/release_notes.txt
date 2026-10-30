@@ -1,5 +1,9 @@
-• Geçmiş ekranında artık önceki hafta ve ayla hızlı bir karşılaştırmayla birlikte haftalık ve aylık özetler görüntüleniyor.
-• Koşunuza zaten yürüyerek gidip geliyorsanız ısınmayı ve soğumayı atlamanızı sağlayan yeni bir ayar eklendi.
-• Aralık sırasında kalan süreyi Ayarlar'da seçtiğiniz sıklıkta sesli olarak bildiren isteğe bağlı bir hatırlatıcı eklendi.
-• Kilit ekranı artık yalnızca genel ilerlemeyi değil, kaç koşu aralığının kaldığını da gösteriyor.
-• Geçmiş ekranındaki antrenman sayısı ifadesi Rusça çeviride düzeltildi.
+• "Isınmayı atla" ve "Soğumayı atla" artık ayrı ayarlar; birini atlayıp diğerini koruyabilirsiniz. Mevcut seçiminiz korunur.
+• Antrenman ekranında, devam eden ısınmayı veya soğumayı atlamak için yeni bir düğme.
+• İkinci geri sayım uyarısını kapatıp yalnızca ilkini bırakmak için yeni bir seçenek.
+• Yeni Tonlar modu: aralık değişimlerinde, geri sayımlarda ve antrenman sonunda ses yerine tonlar. Ayarlar → Uyarı türü → Tonlar.
+• Haftalık seriniz artık Geçmiş ekranında da görünüyor.
+• Aralık değişimleri artık akıllı saatinizi de titretebilir. Ayarlar → Akıllı saate de bildir. west1nat0r'a teşekkürler.
+• Aynı antrenmanı iki kez erken bırakırsanız C2K bir önceki haftayı tekrarlamayı önerir.
+• Koşu, yürüyüş ve tamamlanan gün renkleri daha kolay okunuyor.
+• Çeviri düzeltmeleri.

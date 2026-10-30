@@ -1,5 +1,9 @@
-• Im Verlauf gibt es jetzt wöchentliche und monatliche Zusammenfassungen mit einem kurzen Vergleich zur Vorwoche bzw. zum Vormonat.
-• Neue Einstellung, um Aufwärmen und Abkühlen zu überspringen – für Tage, an denen du bereits zu deinem Lauf hin- und zurückgehst.
-• Neue optionale Sprachansage, die während eines Intervalls regelmäßig die verbleibende Zeit ansagt – in einem Abstand, den du in den Einstellungen festlegst.
-• Der Sperrbildschirm zeigt jetzt, wie viele Laufintervalle noch übrig sind, nicht nur den Gesamtfortschritt.
-• Die Formulierung der Trainingsanzahl im Verlauf wurde in der russischen Übersetzung korrigiert.
+• „Aufwärmen überspringen" und „Abkühlen überspringen" sind jetzt getrennte Einstellungen – du kannst eines überspringen und das andere behalten. Deine bisherige Auswahl bleibt erhalten.
+• Neue Schaltfläche im Training, um ein laufendes Aufwärmen oder Abkühlen zu überspringen.
+• Neue Option, um die zweite Countdown-Warnung auszuschalten und nur die erste zu behalten.
+• Neuer Tonmodus: Klänge statt Sprachausgabe bei Intervallwechseln, Countdowns und am Ende des Trainings. Einstellungen → Hinweisart → Töne.
+• Deine Wochen in Folge werden jetzt auch im Verlauf angezeigt.
+• Intervallwechsel können jetzt auch deine Smartwatch vibrieren lassen. Einstellungen → Auch Smartwatch benachrichtigen. Vielen Dank an west1nat0r.
+• Brichst du dasselbe Training zweimal früh ab, schlägt C2K vor, die Woche davor zu wiederholen.
+• Die Farben für Laufen, Gehen und erledigte Tage sind besser lesbar.
+• Korrekturen an Übersetzungen.
