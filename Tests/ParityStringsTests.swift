@@ -35,6 +35,7 @@ final class ParityStringsTests: XCTestCase {
             "settings_tts_enabled", "settings_cue_style", "settings_cue_style_voice", "settings_cue_style_tones",
             "settings_cue_style_tones_caption", "settings_tone_volume", "settings_test_tones",
             "guide_q_tones", "guide_a_tones",
+            "progression_title", "progression_body_pre_c25k", "progression_action_pre_c25k", "progression_action_dismiss",
         ]
         for language in Self.languages {
             for key in keys {
@@ -114,6 +115,28 @@ final class ParityStringsTests: XCTestCase {
         XCTAssertEqual(text("es", 3), "3 carreras restantes")
         XCTAssertEqual(text("ru", 2), "Осталось пробежек: 2")
         XCTAssertEqual(text("tr", 4), "4 koşu kaldı")
+    }
+
+    func testProgressionSuggestionPicksTheRightPluralAndWeekInEveryLanguage() {
+        func stops(_ language: String, _ count: Int) -> String {
+            String(format: string("progression_body_stops", language) ?? "missing", locale: Locale(identifier: language), count)
+        }
+        for language in Self.languages {
+            for count in [2, 3, 5, 21] {
+                let text = stops(language, count)
+                XCTAssertTrue(text.contains("\(count)"), "\(language)/\(count): \(text)")
+                XCTAssertFalse(text.contains("%"), "\(language)/\(count): \(text)")
+            }
+            for key in ["progression_body_repeat_week", "progression_action_repeat_week"] {
+                let text = String(format: string(key, language) ?? "missing", 3)
+                XCTAssertTrue(text.contains("3"), "\(key) in \(language): \(text)")
+                XCTAssertFalse(text.contains("%"), "\(key) in \(language): \(text)")
+            }
+        }
+        XCTAssertEqual(stops("en", 1), "You've stopped this workout early 1 time.")
+        XCTAssertEqual(stops("en", 2), "You've stopped this workout early 2 times.")
+        XCTAssertEqual(stops("ru", 2), "Вы прервали эту тренировку досрочно 2 раза.")
+        XCTAssertEqual(stops("ru", 5), "Вы прервали эту тренировку досрочно 5 раз.")
     }
 
     func testWorkoutCountLabelFollowsEachLanguagesPluralRules() {

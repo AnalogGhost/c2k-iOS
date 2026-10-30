@@ -123,6 +123,7 @@ struct ProgramSelectView: View {
         .confirmationDialog("Reset progress", isPresented: $showResetConfirm, titleVisibility: .visible) {
             Button("Reset", role: .destructive) {
                 SessionRepository(context: context).resetProgress(programId: programId)
+                prefs.clearProgression()
             }
             Button("Cancel", role: .cancel) {}
         } message: {

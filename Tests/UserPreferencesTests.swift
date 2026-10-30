@@ -4,7 +4,7 @@ import XCTest
 // UserPreferences reads and writes UserDefaults.standard directly, so these tests save the
 // keys they touch and put them back afterwards.
 final class UserPreferencesTests: XCTestCase {
-    private let keys = ["periodic_time_cues", "periodic_time_cue_interval", "skip_warmup_cooldown", "skip_warmup", "skip_cooldown", "countdown_warning_2_enabled", "cue_style"]
+    private let keys = ["periodic_time_cues", "periodic_time_cue_interval", "skip_warmup_cooldown", "skip_warmup", "skip_cooldown", "countdown_warning_2_enabled", "cue_style", "repeated_week", "progression_dismissed_at"]
     private var saved: [String: Any] = [:]
 
     override func setUp() {
@@ -52,6 +52,33 @@ final class UserPreferencesTests: XCTestCase {
     func testAnUnknownStoredCueStyleFallsBackToVoice() {
         UserDefaults.standard.set("CHIMES", forKey: "cue_style")
         XCTAssertEqual(UserPreferences().cueStyle, .voice)
+    }
+
+    // Stored as "programId|week|sinceMillis", the same string Android writes.
+    func testRepeatedWeekRoundTripsInTheAndroidFormat() {
+        let since = Date(timeIntervalSince1970: 1_700_000_000.123)
+        UserPreferences().repeatedWeek = RepeatedWeek(programId: "C25K", week: 2, since: since)
+        XCTAssertEqual(UserDefaults.standard.string(forKey: "repeated_week"), "C25K|2|1700000000123")
+        let reloaded = UserPreferences().repeatedWeek
+        XCTAssertEqual(reloaded?.programId, "C25K")
+        XCTAssertEqual(reloaded?.week, 2)
+        XCTAssertEqual(reloaded?.since.timeIntervalSince1970 ?? 0, since.timeIntervalSince1970, accuracy: 0.001)
+    }
+
+    func testAMalformedRepeatedWeekIsIgnored() {
+        UserDefaults.standard.set("C25K|two|123", forKey: "repeated_week")
+        XCTAssertNil(UserPreferences().repeatedWeek)
+    }
+
+    func testClearingProgressionRemovesTheRepeatedWeekAndDismissal() {
+        let prefs = UserPreferences()
+        prefs.repeatedWeek = RepeatedWeek(programId: "C25K", week: 2, since: .now)
+        prefs.progressionDismissedAt = .now
+        prefs.clearProgression()
+        XCTAssertNil(UserDefaults.standard.object(forKey: "repeated_week"))
+        XCTAssertNil(UserDefaults.standard.object(forKey: "progression_dismissed_at"))
+        XCTAssertNil(UserPreferences().repeatedWeek)
+        XCTAssertNil(UserPreferences().progressionDismissedAt)
     }
 
     func testReadingDefaultsDoesNotWriteThem() {

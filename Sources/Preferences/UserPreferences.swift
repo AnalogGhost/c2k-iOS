@@ -102,6 +102,44 @@ final class UserPreferences {
         didSet { defaults.set(skipCooldown, forKey: "skip_cooldown") }
     }
 
+    // "programId|week|sinceMillis", set when the runner accepts a suggestion to repeat a week —
+    // the same format Android stores.
+    var repeatedWeek: RepeatedWeek? = UserPreferences.parseRepeatedWeek(UserDefaults.standard.string(forKey: "repeated_week")) {
+        didSet {
+            if let r = repeatedWeek {
+                defaults.set("\(r.programId)|\(r.week)|\(Int64(r.since.timeIntervalSince1970 * 1000))", forKey: "repeated_week")
+            } else {
+                defaults.removeObject(forKey: "repeated_week")
+            }
+        }
+    }
+
+    // When the runner last tapped "Not now" on a step-back suggestion, in epoch millis like Android.
+    var progressionDismissedAt: Date? = (UserDefaults.standard.object(forKey: "progression_dismissed_at") as? Int64)
+        .map { Date(timeIntervalSince1970: Double($0) / 1000) } {
+        didSet {
+            if let d = progressionDismissedAt {
+                defaults.set(Int64(d.timeIntervalSince1970 * 1000), forKey: "progression_dismissed_at")
+            } else {
+                defaults.removeObject(forKey: "progression_dismissed_at")
+            }
+        }
+    }
+
+    // Run when a program's progress is reset, so a repeated week doesn't outlive the history it
+    // was based on.
+    func clearProgression() {
+        repeatedWeek = nil
+        progressionDismissedAt = nil
+    }
+
+    static func parseRepeatedWeek(_ stored: String?) -> RepeatedWeek? {
+        guard let parts = stored?.split(separator: "|", omittingEmptySubsequences: false), parts.count == 3,
+              let week = Int(parts[1]), let millis = Int64(parts[2]) else { return nil }
+        return RepeatedWeek(programId: String(parts[0]), week: week,
+                            since: Date(timeIntervalSince1970: Double(millis) / 1000))
+    }
+
     var weightKg: Double? = UserDefaults.standard.object(forKey: "weight_kg") as? Double {
         didSet { defaults.set(weightKg, forKey: "weight_kg") }
     }

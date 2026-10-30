@@ -56,6 +56,16 @@ struct HomeView: View {
                         }
                         .presentationDetents([.medium, .large])
                     }
+
+                    if let suggestion = progressionSuggestion(for: next) {
+                        Section {
+                            ProgressionSuggestionCard(
+                                suggestion: suggestion,
+                                onAccept: { accept(suggestion, for: next) },
+                                onDismiss: { prefs.progressionDismissedAt = .now }
+                            )
+                        }
+                    }
                 }
 
                 Section("Choose a program") {
@@ -146,7 +156,10 @@ struct HomeView: View {
         guard let plan = Programs.all().first(where: { $0.programId == programId }) else { return nil }
         let repo = SessionRepository(context: context)
         let completed = repo.completedDays(programId: programId)
-        guard let wd = plan.nextWorkout(completedDays: completed) else { return nil }
+        // A week the runner chose to repeat comes first; once it's done again, the plan's usual
+        // next workout (the day they were stuck on) takes over.
+        guard let wd = ProgressionAdvisor.nextInRepeatedWeek(plan: plan, repeated: prefs.repeatedWeek, sessions: allSessions)
+            ?? plan.nextWorkout(completedDays: completed) else { return nil }
         return NextWorkout(
             programId: programId,
             displayName: plan.displayName,
@@ -154,6 +167,66 @@ struct HomeView: View {
             day: wd.day,
             workoutDay: plan.workoutDay(week: wd.week, day: wd.day, skipWarmup: prefs.skipWarmup, skipCooldown: prefs.skipCooldown)
         )
+    }
+}
+
+extension HomeView {
+    private func progressionSuggestion(for next: NextWorkout) -> ProgressionSuggestion? {
+        ProgressionAdvisor.suggest(plan: Programs.byId(next.programId), week: next.week, day: next.day,
+                                   sessions: allSessions, dismissedAt: prefs.progressionDismissedAt)
+    }
+
+    private func accept(_ suggestion: ProgressionSuggestion, for next: NextWorkout) {
+        switch suggestion {
+        case .repeatWeek(let week, _):
+            prefs.repeatedWeek = RepeatedWeek(programId: next.programId, week: week, since: .now)
+        case .tryPreC25K:
+            prefs.lastProgramId = Programs.idPreC25K
+        }
+    }
+}
+
+private struct ProgressionSuggestionCard: View {
+    let suggestion: ProgressionSuggestion
+    let onAccept: () -> Void
+    let onDismiss: () -> Void
+
+    private var message: String {
+        let stops = String.localizedStringWithFormat(
+            NSLocalizedString("progression_body_stops", comment: ""), suggestion.earlyStops)
+        switch suggestion {
+        case .repeatWeek(let week, _):
+            return stops + " " + String(format: String(localized: "progression_body_repeat_week"), week)
+        case .tryPreC25K:
+            return stops + " " + String(localized: "progression_body_pre_c25k")
+        }
+    }
+
+    private var action: String {
+        switch suggestion {
+        case .repeatWeek(let week, _):
+            return String(format: String(localized: "progression_action_repeat_week"), week)
+        case .tryPreC25K:
+            return String(localized: "progression_action_pre_c25k")
+        }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("progression_title").font(.headline)
+            Text(message).font(.subheadline)
+            HStack {
+                Spacer()
+                Button("progression_action_dismiss", action: onDismiss)
+                    .buttonStyle(.borderless)
+                    .accessibilityIdentifier("progression-dismiss")
+                Button(action, action: onAccept)
+                    .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("progression-accept")
+            }
+        }
+        .padding(.vertical, 4)
+        .accessibilityIdentifier("progression-suggestion")
     }
 }
 
