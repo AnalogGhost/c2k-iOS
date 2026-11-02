@@ -45,6 +45,17 @@ def next_build_number(api_key)
   latest.to_i + 1
 end
 
+# deliver's verify_only validates a binary, so it crashes on a nil path when there's no
+# IPA. The lanes that upload without a build do their own dry run: list what would be
+# sent and upload nothing.
+def preview_upload(path)
+  root = File.expand_path("../#{path}", __dir__)
+  files = Dir.glob("**/*", base: root).select { |f| File.file?(File.join(root, f)) }.sort
+  UI.user_error!("Nothing to upload in #{path}") if files.empty?
+  files.each { |f| UI.message("  #{f}") }
+  UI.important("Dry run: #{files.count} files under #{path} would be uploaded. Pass verify_only:false to upload.")
+end
+
 def build_release_ipa(api_key)
   build_number = next_build_number(api_key)
   UI.message("Building #{marketing_version} (#{build_number})")
@@ -111,19 +122,22 @@ platform :ios do
 
   desc "Upload only the listing text, URLs, and release notes. No build. Dry run by default."
   lane :metadata do |options|
+    next preview_upload(METADATA_PATH) if flag(options, :verify_only, true)
+
     upload_to_app_store(
       api_key: asc_api_key,
       metadata_path: METADATA_PATH,
       skip_binary_upload: true,
       skip_screenshots: true,
       skip_metadata: false,
-      force: true,
-      verify_only: flag(options, :verify_only, true)
+      force: true
     )
   end
 
   desc "Upload only the screenshots. No build. Dry run by default."
   lane :upload_screenshots do |options|
+    next preview_upload(SCREENSHOTS_PATH) if flag(options, :verify_only, true)
+
     upload_to_app_store(
       api_key: asc_api_key,
       screenshots_path: SCREENSHOTS_PATH,
@@ -131,8 +145,7 @@ platform :ios do
       skip_metadata: true,
       skip_screenshots: false,
       overwrite_screenshots: true,
-      force: true,
-      verify_only: flag(options, :verify_only, true)
+      force: true
     )
   end
 
@@ -147,8 +160,8 @@ platform :ios do
     )
   end
 
-  desc "Tag v<MARKETING_VERSION> and create the matching GitHub release"
-  lane :release do
+  desc "Tag v<MARKETING_VERSION> and create the matching GitHub release. Pass yes:true to skip the confirm."
+  lane :release do |options|
     ensure_git_status_clean
     tag = "v#{marketing_version}"
 
@@ -159,7 +172,7 @@ platform :ios do
     UI.important("Tagged #{tag} locally.")
     UI.message("Release notes:\n#{notes}")
 
-    unless UI.confirm("Push #{tag} to origin and create the GitHub release now?")
+    unless flag(options, :yes, false) || UI.confirm("Push #{tag} to origin and create the GitHub release now?")
       UI.user_error!("Aborted. Remove the local tag with: git tag -d #{tag}")
     end
 

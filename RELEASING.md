@@ -111,10 +111,10 @@ This mirrors the Android app (`~/Projects/c2k`).
 | `screenshots` | Capture raw screenshots (`snapshot`) + composite the framed/captioned set. No upload. | — |
 | `reframe` | Re-run only the framing step over the existing raw screenshots. | — |
 | `store` | Build a signed app-store IPA and upload the build + metadata. | **dry run** (`verify_only:true`) |
-| `metadata` | Upload only the listing text, URLs, and release notes. No build. | **dry run** |
-| `upload_screenshots` | Upload only the screenshots. No build. | **dry run** |
+| `metadata` | Upload only the listing text, URLs, and release notes. No build. | **dry run** (lists the files it would upload) |
+| `upload_screenshots` | Upload only the screenshots. No build. | **dry run** (lists the files it would upload) |
 | `beta` | Build and upload to TestFlight only. | — |
-| `release` | Tag `v<version>` and create the GitHub release, behind a confirm prompt. | — |
+| `release` | Tag `v<version>` and create the GitHub release, behind a confirm prompt (`yes:true` skips it). | — |
 
 Common options: `verify_only:false` (actually upload), `submit:true` (submit for
 review), `skip_screenshots:false`, `skip_metadata:true`.

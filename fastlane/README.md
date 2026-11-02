@@ -79,7 +79,7 @@ Build and upload to TestFlight only
 [bundle exec] fastlane ios release
 ```
 
-Tag v<MARKETING_VERSION> and create the matching GitHub release
+Tag v<MARKETING_VERSION> and create the matching GitHub release. Pass yes:true to skip the confirm.
 
 ----
 
