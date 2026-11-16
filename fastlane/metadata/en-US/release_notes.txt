@@ -1,4 +1,5 @@
 • New: hear your distance and pace every 500 m or 1 km. Settings → Distance and pace updates.
+• Route export now sends a .gpx file that map apps such as OsmAnd and Organic Maps can open.
 • Music from other apps, such as Spotify, returns to full volume after each spoken cue instead of staying quiet.
 • A run cut short when iOS closes the app is now kept.
 • Cues are spoken in English when the iPhone has no voice for the app's language.

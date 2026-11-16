@@ -1,4 +1,5 @@
 • Neu: Distanz und Tempo alle 500 m oder 1 km. Einstellungen → Distanz- und Tempoansagen.
+• Der Routenexport sendet jetzt eine .gpx-Datei, die Karten-Apps wie OsmAnd und Organic Maps öffnen können.
 • Musik aus anderen Apps wie Spotify wird nach jeder Ansage wieder laut, statt leise zu bleiben.
 • Ein Lauf, den iOS durch Schließen der App abbricht, bleibt erhalten.
 • Hat das iPhone keine Stimme für die Sprache der App, kommen die Ansagen auf Englisch.

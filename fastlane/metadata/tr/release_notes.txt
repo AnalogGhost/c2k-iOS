@@ -1,4 +1,5 @@
 • Yeni: her 500 m veya 1 km'de mesafe ve tempo. Ayarlar → Mesafe ve tempo bildirimleri.
+• Rota dışa aktarma artık OsmAnd ve Organic Maps gibi harita uygulamalarının açabildiği bir .gpx dosyası gönderiyor.
 • Spotify gibi diğer uygulamalardaki müzik, her sesli bildirimden sonra kısık kalmak yerine eski sesine döner.
 • iOS uygulamayı kapattığı için yarıda kalan koşu artık saklanır.
 • iPhone'da uygulamanın dili için ses yoksa bildirimler İngilizce okunur.

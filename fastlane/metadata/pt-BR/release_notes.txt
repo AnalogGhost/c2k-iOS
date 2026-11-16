@@ -1,4 +1,5 @@
 • Novo: distância e ritmo a cada 500 m ou 1 km. Configurações → Avisos de distância e ritmo.
+• A exportação de rotas agora envia um arquivo .gpx que apps de mapas como OsmAnd e Organic Maps conseguem abrir.
 • A música de outros apps, como o Spotify, volta ao volume normal depois de cada aviso falado em vez de ficar baixa.
 • Uma corrida interrompida quando o iOS fecha o app agora é mantida.
 • Os avisos são falados em inglês se o iPhone não tiver voz para o idioma do app.

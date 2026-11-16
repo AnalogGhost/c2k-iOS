@@ -1,4 +1,5 @@
 • Nouveau : distance et allure tous les 500 m ou 1 km. Paramètres → Annonces de distance et d'allure.
+• L'export de parcours envoie désormais un fichier .gpx que les apps de cartes comme OsmAnd et Organic Maps peuvent ouvrir.
 • La musique d'autres apps, comme Spotify, retrouve son volume après chaque annonce au lieu de rester basse.
 • Une course interrompue quand iOS ferme l'app est conservée.
 • Les annonces sont en anglais si l'iPhone n'a pas de voix pour la langue de l'app.
