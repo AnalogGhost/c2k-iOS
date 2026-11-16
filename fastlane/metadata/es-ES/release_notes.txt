@@ -1,9 +1,5 @@
-• «Omitir calentamiento» y «Omitir enfriamiento» son ahora ajustes separados, así que puedes omitir uno y mantener el otro. Tu elección anterior se conserva.
-• Nuevo botón en la pantalla de entrenamiento para omitir un calentamiento o enfriamiento en curso.
-• Nueva opción para desactivar el segundo aviso de cuenta atrás y dejar solo el primero.
-• Nuevo modo Tonos: sonidos en lugar de voz para los cambios de intervalo, las cuentas atrás y el final del entrenamiento. Configuración → Tipo de aviso → Tonos.
-• Tu racha semanal ahora también aparece en el Historial.
-• Los cambios de intervalo también pueden hacer vibrar tu smartwatch. Configuración → Avisar también al smartwatch. Gracias a west1nat0r.
-• Si dejas el mismo entrenamiento a medias dos veces, C2K te propone repetir la semana anterior.
-• Los colores de correr, caminar y día completado se leen mejor.
-• Correcciones de traducción.
+• Nuevo: distancia y ritmo cada 500 m o 1 km. Configuración → Avisos de distancia y ritmo.
+• La música de otras apps, como Spotify, vuelve a su volumen tras cada aviso hablado en lugar de quedarse baja.
+• Una carrera cortada porque iOS cierra la app ahora se guarda.
+• Los avisos se dicen en inglés si el iPhone no tiene voz para el idioma de la app.
+• Corregido: GPS activado a mitad de carrera, coma decimal en el peso, intervalos un poco más largos de lo debido y el inicio de un aviso que se cortaba.

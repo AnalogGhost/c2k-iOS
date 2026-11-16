@@ -1,9 +1,5 @@
-• "Skip warm-up" and "Skip cool-down" are now separate settings, so you can skip one and keep the other. Your existing choice carries over.
-• New button on the workout screen to skip a warm-up or cool-down while it is running.
-• New option to turn off the second countdown warning and keep only the first.
-• New Tones mode: chimes instead of a voice for interval changes, countdowns and the end of a workout. Settings → Cue type → Tones.
-• Your weekly streak now also shows on the History screen.
-• Interval changes can also buzz your smartwatch. Settings → Also notify smartwatch. Thanks to west1nat0r.
-• Stop the same workout early twice and C2K suggests repeating the week before.
-• Run, walk and completed-day colors are easier to read.
-• Translation fixes.
+• New: hear your distance and pace every 500 m or 1 km. Settings → Distance and pace updates.
+• Music from other apps, such as Spotify, returns to full volume after each spoken cue instead of staying quiet.
+• A run cut short when iOS closes the app is now kept.
+• Cues are spoken in English when the iPhone has no voice for the app's language.
+• Fixed: GPS switched on mid-run, decimal commas in weight, intervals running slightly long, the start of a cue being cut off.

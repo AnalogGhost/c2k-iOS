@@ -1,9 +1,5 @@
-• « Ignorer l'échauffement » et « Ignorer la récupération » sont désormais deux réglages distincts : vous pouvez ignorer l'un et garder l'autre. Votre choix actuel est conservé.
-• Nouveau bouton sur l'écran de séance pour ignorer un échauffement ou une récupération en cours.
-• Nouvelle option pour désactiver le second avertissement du compte à rebours et ne garder que le premier.
-• Nouveau mode Tonalités : des sons à la place de la voix pour les changements d'intervalle, les comptes à rebours et la fin de la séance. Paramètres → Type de signal → Tonalités.
-• Vos semaines d'affilée s'affichent désormais aussi dans l'Historique.
-• Les changements d'intervalle peuvent aussi faire vibrer votre montre. Paramètres → Notifier aussi la montre. Merci à west1nat0r.
-• Si vous arrêtez deux fois la même séance avant la fin, C2K propose de refaire la semaine précédente.
-• Les couleurs de course, de marche et des jours terminés sont plus lisibles.
-• Corrections de traduction.
+• Nouveau : distance et allure tous les 500 m ou 1 km. Paramètres → Annonces de distance et d'allure.
+• La musique d'autres apps, comme Spotify, retrouve son volume après chaque annonce au lieu de rester basse.
+• Une course interrompue quand iOS ferme l'app est conservée.
+• Les annonces sont en anglais si l'iPhone n'a pas de voix pour la langue de l'app.
+• Corrigé : GPS activé en cours de course, virgule décimale du poids, intervalles un peu trop longs, début d'annonce coupé.

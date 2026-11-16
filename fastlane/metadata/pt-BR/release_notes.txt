@@ -1,9 +1,5 @@
-• "Pular aquecimento" e "Pular desaquecimento" agora são opções separadas, então você pode pular um e manter o outro. Sua escolha anterior é mantida.
-• Novo botão na tela de treino para pular um aquecimento ou desaquecimento em andamento.
-• Nova opção para desativar o segundo aviso de contagem regressiva e manter apenas o primeiro.
-• Novo modo Tons: sons em vez de voz nas trocas de intervalo, nas contagens regressivas e no fim do treino. Configurações → Tipo de aviso → Tons.
-• Sua sequência semanal agora também aparece no Histórico.
-• As trocas de intervalo também podem vibrar seu smartwatch. Configurações → Avisar também o smartwatch. Agradecimentos a west1nat0r.
-• Se você interromper o mesmo treino cedo duas vezes, o C2K sugere repetir a semana anterior.
-• As cores de correr, caminhar e dia concluído estão mais fáceis de ler.
-• Correções de tradução.
+• Novo: distância e ritmo a cada 500 m ou 1 km. Configurações → Avisos de distância e ritmo.
+• A música de outros apps, como o Spotify, volta ao volume normal depois de cada aviso falado em vez de ficar baixa.
+• Uma corrida interrompida quando o iOS fecha o app agora é mantida.
+• Os avisos são falados em inglês se o iPhone não tiver voz para o idioma do app.
+• Corrigido: GPS ligado no meio da corrida, vírgula decimal no peso, intervalos um pouco mais longos e o início de um aviso cortado.

@@ -1,9 +1,5 @@
-• "Isınmayı atla" ve "Soğumayı atla" artık ayrı ayarlar; birini atlayıp diğerini koruyabilirsiniz. Mevcut seçiminiz korunur.
-• Antrenman ekranında, devam eden ısınmayı veya soğumayı atlamak için yeni bir düğme.
-• İkinci geri sayım uyarısını kapatıp yalnızca ilkini bırakmak için yeni bir seçenek.
-• Yeni Tonlar modu: aralık değişimlerinde, geri sayımlarda ve antrenman sonunda ses yerine tonlar. Ayarlar → Uyarı türü → Tonlar.
-• Haftalık seriniz artık Geçmiş ekranında da görünüyor.
-• Aralık değişimleri artık akıllı saatinizi de titretebilir. Ayarlar → Akıllı saate de bildir. west1nat0r'a teşekkürler.
-• Aynı antrenmanı iki kez erken bırakırsanız C2K bir önceki haftayı tekrarlamayı önerir.
-• Koşu, yürüyüş ve tamamlanan gün renkleri daha kolay okunuyor.
-• Çeviri düzeltmeleri.
+• Yeni: her 500 m veya 1 km'de mesafe ve tempo. Ayarlar → Mesafe ve tempo bildirimleri.
+• Spotify gibi diğer uygulamalardaki müzik, her sesli bildirimden sonra kısık kalmak yerine eski sesine döner.
+• iOS uygulamayı kapattığı için yarıda kalan koşu artık saklanır.
+• iPhone'da uygulamanın dili için ses yoksa bildirimler İngilizce okunur.
+• Düzeltildi: koşu sırasında açılan GPS, kiloda ondalık virgül, biraz uzun süren aralıklar ve kesilen bildirim başlangıcı.
