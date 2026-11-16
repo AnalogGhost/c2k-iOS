@@ -8,6 +8,9 @@ final class WorkoutSession {
     var week: Int
     var day: Int
     var startedAt: Date
+    /// When the workout ended, finished or stopped by the runner. Nil while it runs, and stays nil
+    /// for a workout the app was closed during (by iOS, or a crash): that run is recovered on the
+    /// next launch with the time and distance saved so far, but the runner didn't end it.
     var completedAt: Date?
     var durationSeconds: Int
     var distanceMeters: Double

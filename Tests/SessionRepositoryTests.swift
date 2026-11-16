@@ -101,4 +101,54 @@ final class SessionRepositoryTests: XCTestCase {
         let session = try! context.fetch(FetchDescriptor<WorkoutSession>()).first { $0.id == id }
         XCTAssertEqual(session?.distanceMeters, filtered)
     }
+
+    // MARK: - Interrupted workouts
+
+    private func session(_ id: UUID) throws -> WorkoutSession? {
+        try context.fetch(FetchDescriptor<WorkoutSession>(predicate: #Predicate { $0.id == id })).first
+    }
+
+    func testCheckpointSavesProgressOfARunningWorkoutOnly() throws {
+        let running = repo.startSession(programId: "C25K", week: 1, day: 1)
+        repo.checkpointSession(id: running, durationSeconds: 600, distanceMeters: 1500)
+        XCTAssertEqual(try session(running)?.durationSeconds, 600)
+        XCTAssertEqual(try session(running)?.distanceMeters, 1500)
+
+        let ended = repo.startSession(programId: "C25K", week: 1, day: 2)
+        repo.finishSession(id: ended, durationSeconds: 1800, distanceMeters: 5000, completed: true)
+        repo.checkpointSession(id: ended, durationSeconds: 900, distanceMeters: 2000)
+        XCTAssertEqual(try session(ended)?.durationSeconds, 1800)
+    }
+
+    func testRecoveryKeepsAnInterruptedRunAndRebuildsItsDistanceFromTheRoute() throws {
+        let id = repo.startSession(programId: "C25K", week: 1, day: 1)
+        repo.checkpointSession(id: id, durationSeconds: 900, distanceMeters: 100)
+        // ~1.1 km north at a jogging pace, recorded after the last checkpoint.
+        addRoute(to: id, points: [(0, 0), (0.005, 200), (0.01, 400)])
+
+        XCTAssertEqual(repo.recoverInterruptedSessions(startedBefore: .now.addingTimeInterval(1)), 1)
+        let s = try XCTUnwrap(try session(id))
+        XCTAssertEqual(s.durationSeconds, 900)
+        XCTAssertEqual(s.distanceMeters, 1112, accuracy: 5)
+        XCTAssertNil(s.completedAt)
+        XCTAssertFalse(s.completed)
+    }
+
+    func testRecoveryRemovesARunClosedBeforeAnythingWasSaved() throws {
+        let id = repo.startSession(programId: "C25K", week: 1, day: 1)
+        XCTAssertEqual(repo.recoverInterruptedSessions(startedBefore: .now.addingTimeInterval(1)), 0)
+        XCTAssertNil(try session(id))
+    }
+
+    func testRecoveryLeavesEndedAndJustStartedWorkoutsAlone() throws {
+        let ended = repo.startSession(programId: "C25K", week: 1, day: 1)
+        repo.finishSession(id: ended, durationSeconds: 1800, distanceMeters: 5000, completed: false)
+        let cutoff = Date.now
+        let fresh = repo.startSession(programId: "C25K", week: 1, day: 2)
+        try XCTUnwrap(try session(fresh)).startedAt = cutoff.addingTimeInterval(1)
+
+        XCTAssertEqual(repo.recoverInterruptedSessions(startedBefore: cutoff), 0)
+        XCTAssertEqual(try session(ended)?.distanceMeters, 5000)
+        XCTAssertNotNil(try session(fresh))
+    }
 }

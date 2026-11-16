@@ -31,6 +31,43 @@ final class SessionRepository {
         try? context.save()
     }
 
+    /// Saves a running workout's progress so far, so it survives the app being closed. Never
+    /// touches a workout that has already ended.
+    func checkpointSession(id: UUID, durationSeconds: Int, distanceMeters: Double) {
+        guard let session = fetchSession(id: id), session.completedAt == nil else { return }
+        session.durationSeconds = durationSeconds
+        session.distanceMeters = distanceMeters
+        try? context.save()
+    }
+
+    /// Recovers workouts the app was closed during (by iOS or a crash), started before `cutoff`
+    /// so a workout starting right now is never touched. Each keeps its last saved time, with the
+    /// distance rebuilt from its recorded route, which runs right up to the moment the app closed;
+    /// its completedAt stays nil, marking it as not ended by the runner. One with nothing to keep
+    /// (closed within its first seconds) is deleted. Safe to run on every launch. Returns how
+    /// many workouts were recovered.
+    @discardableResult
+    func recoverInterruptedSessions(startedBefore cutoff: Date) -> Int {
+        let descriptor = FetchDescriptor<WorkoutSession>(
+            predicate: #Predicate { $0.completedAt == nil && $0.startedAt < cutoff }
+        )
+        var recovered = 0
+        for session in (try? context.fetch(descriptor)) ?? [] {
+            let points = fetchRoutePoints(sessionId: session.id)
+            if session.durationSeconds == 0 && points.isEmpty {
+                context.delete(session)
+                continue
+            }
+            recovered += 1
+            if points.count >= 2 {
+                let routed = DistanceCalculator.filteredDistanceMeters(points: points)
+                if routed > session.distanceMeters { session.distanceMeters = routed }
+            }
+        }
+        try? context.save()
+        return recovered
+    }
+
     func addRoutePoint(_ point: RoutePoint) {
         context.insert(point)
         try? context.save()

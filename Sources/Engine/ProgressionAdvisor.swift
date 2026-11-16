@@ -43,7 +43,8 @@ enum ProgressionAdvisor {
         let inPlan = sessions.filter { $0.programId == plan.programId }
         let lastFinished = inPlan.filter(\.completed).map(\.startedAt).max() ?? .distantPast
         let stops = inPlan.filter {
-            !$0.completed && $0.week == week && $0.day == day &&
+            // completedAt == nil: the app was closed mid-run, not the runner stopping early.
+            !$0.completed && $0.completedAt != nil && $0.week == week && $0.day == day &&
                 $0.durationSeconds >= minAttemptSeconds && $0.startedAt > lastFinished
         }
         let sinceDismissed = stops.filter { $0.startedAt > (dismissedAt ?? .distantPast) }.count

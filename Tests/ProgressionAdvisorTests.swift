@@ -22,6 +22,8 @@ final class ProgressionAdvisorTests: XCTestCase {
         s.startedAt = at(startedAt)
         s.completed = completed
         s.durationSeconds = durationSeconds
+        // The runner ended it, as the app always records; nil is a run the app was closed during.
+        s.completedAt = s.startedAt.addingTimeInterval(Double(durationSeconds))
         return s
     }
 
@@ -41,6 +43,12 @@ final class ProgressionAdvisorTests: XCTestCase {
         let sessions = [stoppedEarly(3, 2, startedAt: 10), stoppedEarly(3, 2, startedAt: 20)]
         XCTAssertEqual(ProgressionAdvisor.suggest(plan: plan(), week: 3, day: 2, sessions: sessions, dismissedAt: nil),
                        .repeatWeek(week: 2, earlyStops: 2))
+    }
+
+    func testRunsTheAppWasClosedDuringAreNotEarlyStops() {
+        let closed = [stoppedEarly(2, 1, startedAt: 10), stoppedEarly(2, 1, startedAt: 20)]
+        closed.forEach { $0.completedAt = nil }
+        XCTAssertNil(ProgressionAdvisor.suggest(plan: plan(), week: 2, day: 1, sessions: closed, dismissedAt: nil))
     }
 
     func testAttemptsShorterThanTheMinimumDoNotCount() {

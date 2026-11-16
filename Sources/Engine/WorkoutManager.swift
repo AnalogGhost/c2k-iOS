@@ -157,9 +157,20 @@ final class WorkoutManager {
         cleanup()
     }
 
+    // How often a running workout's time and distance are saved, so a run the app is closed
+    // during (by iOS or a crash) keeps nearly all of it.
+    static let checkpointIntervalSeconds = 15
+
+    private func checkpoint(_ s: WorkoutState.ActiveSnapshot, repository: SessionRepository) {
+        repository.checkpointSession(id: s.sessionId, durationSeconds: s.elapsedSessionSeconds,
+                                     distanceMeters: locationTracker?.totalDistanceMeters ?? 0)
+    }
+
     private func startPolling(vibrationEnabled: Bool, notifyWatch: Bool, repository: SessionRepository) {
         pollingTask = Task { [weak self] in
             var lastIntervalIndex = -1
+            var lastCheckpointSeconds = 0
+            var checkpointedPause = false
             while !Task.isCancelled {
                 guard let self, let engine = self.engine else { return }
 
@@ -177,9 +188,20 @@ final class WorkoutManager {
                     }
                     lastIntervalIndex = s.intervalIndex
                     self.updateNowPlaying(s, isPlaying: true)
+                    checkpointedPause = false
+                    if s.elapsedSessionSeconds - lastCheckpointSeconds >= Self.checkpointIntervalSeconds {
+                        lastCheckpointSeconds = s.elapsedSessionSeconds
+                        self.checkpoint(s, repository: repository)
+                    }
 
                 case .paused(let s):
                     self.updateNowPlaying(s, isPlaying: false)
+                    // A paused run is the likeliest to be closed by iOS: save it now.
+                    if !checkpointedPause {
+                        checkpointedPause = true
+                        lastCheckpointSeconds = s.elapsedSessionSeconds
+                        self.checkpoint(s, repository: repository)
+                    }
 
                 case .completed(let sessionId, let elapsed):
                     if vibrationEnabled { self.haptics.play(.workoutComplete) }

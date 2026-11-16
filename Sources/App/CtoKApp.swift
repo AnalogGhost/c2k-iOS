@@ -5,6 +5,9 @@ import SwiftData
 struct CtoKApp: App {
     @State private var prefs: UserPreferences
     private let container: ModelContainer
+    // A workout runs in this process, so none can be running at launch: any that never ended
+    // was cut off by iOS or a crash. The cutoff keeps a workout started in the next moments out.
+    private let launchedAt = Date.now
 
     init() {
         #if DEBUG
@@ -39,9 +42,20 @@ struct CtoKApp: App {
             HomeView()
                 .environment(prefs)
                 .environment(WorkoutManager.shared)
-                .task { repairGpsDistancesIfNeeded() }
+                .task {
+                    recoverInterruptedWorkouts()
+                    repairGpsDistancesIfNeeded()
+                }
         }
         .modelContainer(container)
+    }
+
+    @MainActor
+    private func recoverInterruptedWorkouts() {
+        #if DEBUG
+        if CommandLine.arguments.contains("--screenshot-seed") { return }
+        #endif
+        SessionRepository(context: container.mainContext).recoverInterruptedSessions(startedBefore: launchedAt)
     }
 
     // One-time cleanup of distances inflated by faulty GPS data recorded before the
