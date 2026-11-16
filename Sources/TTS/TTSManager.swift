@@ -79,17 +79,29 @@ final class TTSManager: NSObject {
         languageOverride ?? AVSpeechSynthesisVoice.currentLanguageCode()
     }
 
-    private func resolvedVoice() -> AVSpeechSynthesisVoice? {
-        let code = resolvedLanguageCode()
-        return AVSpeechSynthesisVoice(language: code)
-            ?? AVSpeechSynthesisVoice(language: String(code.prefix(2)))
+    private static func voice(for code: String) -> AVSpeechSynthesisVoice? {
+        AVSpeechSynthesisVoice(language: code) ?? AVSpeechSynthesisVoice(language: String(code.prefix(2)))
+    }
+
+    static let englishBundle =
+        Bundle.main.path(forResource: "en", ofType: "lproj").flatMap(Bundle.init(path:)) ?? .main
+
+    /// The language cues are actually spoken in: the resolved language when the device has a voice
+    /// for it, else English. With no voice for the app's language (Galician on most iPhones), iOS
+    /// would read the translated text with another language's voice and pronunciation.
+    static func cueLanguage(for code: String, hasVoice: (String) -> Bool = { voice(for: $0) != nil }) -> String {
+        hasVoice(code) ? code : "en"
     }
 
     func announce(_ announcement: Announcement, queueAdd: Bool = false) {
-        let utterance = AVSpeechUtterance(string: text(for: announcement))
+        let code = resolvedLanguageCode()
+        let fellBack = Self.cueLanguage(for: code) != code
+        let utterance = AVSpeechUtterance(
+            string: text(for: announcement, bundle: fellBack ? Self.englishBundle : .main))
         utterance.rate = speechRate
         utterance.volume = volume
-        utterance.voice = resolvedVoice()   // nil is valid — AVSpeech falls back to the default
+        // nil is valid — AVSpeech falls back to the default
+        utterance.voice = Self.voice(for: fellBack ? "en" : code)
         if !queueAdd {
             synthesizer.stopSpeaking(at: .word)
             pending.removeAll()
@@ -117,46 +129,46 @@ final class TTSManager: NSObject {
         ducking.endDucking()
     }
 
-    func text(for announcement: Announcement) -> String {
+    func text(for announcement: Announcement, bundle: Bundle = .main) -> String {
         switch announcement {
-        case .intervalStart(let interval):   return interval.announcement
-        case .workoutComplete:               return NSLocalizedString("tts_workout_complete", comment: "")
+        case .intervalStart(let interval):   return interval.announcement(bundle: bundle)
+        case .workoutComplete:               return NSLocalizedString("tts_workout_complete", bundle: bundle, comment: "")
         case .countdownWarning(let seconds):
             return String.localizedStringWithFormat(
-                NSLocalizedString("tts_seconds_remaining", comment: ""), seconds)
-        case .nextInterval(let interval):    return nextIntervalText(interval.type)
-        case .lastRunInterval:               return NSLocalizedString("tts_last_run", comment: "")
-        case .halfway:                       return NSLocalizedString("tts_halfway", comment: "")
+                NSLocalizedString("tts_seconds_remaining", bundle: bundle, comment: ""), seconds)
+        case .nextInterval(let interval):    return nextIntervalText(interval.type, bundle: bundle)
+        case .lastRunInterval:               return NSLocalizedString("tts_last_run", bundle: bundle, comment: "")
+        case .halfway:                       return NSLocalizedString("tts_halfway", bundle: bundle, comment: "")
         case .intervalMidpoint(let phraseIndex):
             let key = Self.encouragementPhraseKeys[phraseIndex % Self.encouragementPhraseKeys.count]
-            return NSLocalizedString(key, comment: "")
+            return NSLocalizedString(key, bundle: bundle, comment: "")
         case .periodicTimeRemaining(let seconds):
-            return String(format: NSLocalizedString("tts_time_remaining", comment: ""),
-                          Interval.spokenDuration(seconds: seconds))
+            return String(format: NSLocalizedString("tts_time_remaining", bundle: bundle, comment: ""),
+                          Interval.spokenDuration(seconds: seconds, bundle: bundle))
         case .distanceSplit(let meters, let pace):
-            let distance = Self.spokenDistance(meters: meters)
+            let distance = Self.spokenDistance(meters: meters, bundle: bundle)
             guard let pace else { return distance }
-            return String(format: NSLocalizedString("tts_distance_split_pace", comment: ""),
-                          distance, Interval.spokenDuration(seconds: pace))
+            return String(format: NSLocalizedString("tts_distance_split_pace", bundle: bundle, comment: ""),
+                          distance, Interval.spokenDuration(seconds: pace, bundle: bundle))
         }
     }
 
     // Spoken with whole-number plurals only ("1 kilometre 500 metres", not "1.5 kilometres"):
     // languages disagree on the plural form for a fraction (French says "1,5 kilomètre" but
     // "2,5 kilomètres"), matching Android.
-    static func spokenDistance(meters: Int) -> String {
+    static func spokenDistance(meters: Int, bundle: Bundle = .main) -> String {
         let km = meters / 1000
         let m = meters % 1000
-        let kmStr = km > 0 ? String.localizedStringWithFormat(NSLocalizedString("tts_distance_km", comment: ""), km) : nil
-        let mStr = m > 0 ? String.localizedStringWithFormat(NSLocalizedString("tts_distance_m", comment: ""), m) : nil
+        let kmStr = km > 0 ? String.localizedStringWithFormat(NSLocalizedString("tts_distance_km", bundle: bundle, comment: ""), km) : nil
+        let mStr = m > 0 ? String.localizedStringWithFormat(NSLocalizedString("tts_distance_m", bundle: bundle, comment: ""), m) : nil
         switch (kmStr, mStr) {
-        case let (k?, m?): return String(format: NSLocalizedString("tts_distance_km_m", comment: ""), k, m)
+        case let (k?, m?): return String(format: NSLocalizedString("tts_distance_km_m", bundle: bundle, comment: ""), k, m)
         case let (k?, nil): return k
         default: return mStr ?? ""
         }
     }
 
-    private func nextIntervalText(_ type: IntervalType) -> String {
+    private func nextIntervalText(_ type: IntervalType, bundle: Bundle) -> String {
         let key: String
         switch type {
         case .run:      key = "tts_next_run"
@@ -164,7 +176,7 @@ final class TTSManager: NSObject {
         case .warmup:   key = "tts_next_warmup"
         case .cooldown: key = "tts_next_cooldown"
         }
-        return NSLocalizedString(key, comment: "")
+        return NSLocalizedString(key, bundle: bundle, comment: "")
     }
 }
 

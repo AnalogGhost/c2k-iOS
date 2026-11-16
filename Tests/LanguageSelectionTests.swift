@@ -91,4 +91,18 @@ final class TTSManagerLanguageTests: XCTestCase {
         tts.setLanguage("gl")
         XCTAssertEqual(tts.resolvedLanguageCode(), "gl")
     }
+
+    func testCuesFallBackToEnglishWhenTheDeviceHasNoVoiceForTheLanguage() {
+        XCTAssertEqual(TTSManager.cueLanguage(for: "gl", hasVoice: { $0 != "gl" }), "en")
+        XCTAssertEqual(TTSManager.cueLanguage(for: "de", hasVoice: { _ in true }), "de")
+    }
+
+    func testCueTextFollowsTheBundleItIsBuiltIn() throws {
+        let de = try XCTUnwrap(Bundle.main.path(forResource: "de", ofType: "lproj").flatMap(Bundle.init(path:)))
+        let tts = TTSManager()
+        let walk = TTSManager.Announcement.intervalStart(Interval(type: .walk, durationSeconds: 90))
+        XCTAssertEqual(tts.text(for: walk, bundle: TTSManager.englishBundle), "Walk for 1 minute and 30 seconds")
+        XCTAssertNotEqual(tts.text(for: walk, bundle: de), tts.text(for: walk, bundle: TTSManager.englishBundle))
+        XCTAssertTrue(tts.text(for: walk, bundle: de).contains("Minute"))
+    }
 }
