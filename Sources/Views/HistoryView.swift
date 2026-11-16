@@ -103,8 +103,8 @@ struct HistoryView: View {
     private func exportGpx(session: WorkoutSession) {
         let points = SessionRepository(context: context).routePoints(sessionId: session.id)
         guard !points.isEmpty else { return }
-        let gpx = buildGpx(session: session, points: points)
-        let av = UIActivityViewController(activityItems: [gpx], applicationActivities: nil)
+        guard let file = try? GpxExport.writeFile(session: session, points: points) else { return }
+        let av = UIActivityViewController(activityItems: [file], applicationActivities: nil)
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let root = scene.windows.first?.rootViewController {
             root.present(av, animated: true)
@@ -282,26 +282,4 @@ private func buildCsv(sessions: [WorkoutSession]) -> String {
         return "\(name),\(s.week),\(s.day),\(date),\(formatDuration(s.durationSeconds)),\(Int(s.distanceMeters)),\(s.completed)"
     }
     return ([header] + rows).joined(separator: "\n")
-}
-
-private func buildGpx(session: WorkoutSession, points: [RoutePoint]) -> String {
-    var lines = [
-        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-        "<gpx version=\"1.1\" creator=\"C2K\" xmlns=\"http://www.topografix.com/GPX/1/1\">",
-        "  <trk>",
-        "    <name>C2K W\(session.week)D\(session.day)</name>",
-        "    <trkseg>",
-    ]
-    for point in points {
-        let alt = point.altitudeMeters.map { "      <ele>\($0)</ele>" } ?? ""
-        let ts = point.timestamp.ISO8601Format()
-        lines += [
-            "      <trkpt lat=\"\(point.latitude)\" lon=\"\(point.longitude)\">",
-            alt,
-            "        <time>\(ts)</time>",
-            "      </trkpt>",
-        ]
-    }
-    lines += ["    </trkseg>", "  </trk>", "</gpx>"]
-    return lines.filter { !$0.isEmpty }.joined(separator: "\n")
 }
