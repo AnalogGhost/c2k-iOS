@@ -9,10 +9,12 @@ final class TonePlayer: NSObject {
     private var rendered: [Chime: Data] = [:]
     private var player: AVAudioPlayer?
     private var holdsDuck = false
+    private let ducking: AudioDucking
 
-    init(volume: Float = 1.0, countdownThresholds: [Int] = []) {
+    init(volume: Float = 1.0, countdownThresholds: [Int] = [], ducking: AudioDucking = StandaloneDucking.shared) {
         self.volume = volume
         self.countdownThresholds = countdownThresholds
+        self.ducking = ducking
     }
 
     // Every announcement that maps to a chime arrives as a flush, never queued, so a new chime
@@ -46,20 +48,14 @@ final class TonePlayer: NSObject {
 
     private func activateDucking() {
         guard !holdsDuck else { return }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.duckOthers])
-            try AVAudioSession.sharedInstance().setActive(true)
-            holdsDuck = true
-        } catch {
-            // Play without ducking rather than dropping the cue.
-        }
+        holdsDuck = true
+        ducking.beginDucking(mode: .default)
     }
 
     private func releaseDucking() {
         guard holdsDuck else { return }
         holdsDuck = false
-        // Hand the session back to the background keep-alive loop's category, as TTSManager does.
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+        ducking.endDucking()
     }
 }
 

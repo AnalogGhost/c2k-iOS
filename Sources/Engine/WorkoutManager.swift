@@ -35,6 +35,7 @@ final class WorkoutManager {
         self.haptics = haptics
         self.watchCues = watchCues
         self.cuePlayer = ttsManager
+        ttsManager.ducking = backgroundAudio
     }
 
     /// `workoutDay` replaces the program's day; tests pass a few seconds' worth of intervals so a
@@ -68,7 +69,8 @@ final class WorkoutManager {
                 volume: prefs.ttsVolume,
                 countdownThresholds: countdownWarningThresholds(
                     prefs.countdownWarning1, prefs.countdownWarning2,
-                    warning2Enabled: prefs.countdownWarning2Enabled))
+                    warning2Enabled: prefs.countdownWarning2Enabled),
+                ducking: backgroundAudio)
         }
 
         haptics.configure(strength: prefs.vibrationStrength)

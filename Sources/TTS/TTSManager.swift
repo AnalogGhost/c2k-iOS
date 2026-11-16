@@ -34,6 +34,8 @@ final class TTSManager: NSObject {
     // mirrors Android's per-utterance-group AudioFocusRequest handling.
     private var pending: Set<ObjectIdentifier> = []
     private var holdsDuck = false
+    // During a workout this is the BackgroundAudioManager, which owns the session.
+    var ducking: AudioDucking = StandaloneDucking.shared
 
     private static let encouragementPhraseKeys = [
         "tts_encouragement_1", "tts_encouragement_2", "tts_encouragement_3",
@@ -103,22 +105,14 @@ final class TTSManager: NSObject {
 
     private func activateDuckingIfNeeded() {
         guard !holdsDuck else { return }
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(.playback, mode: .voicePrompt, options: [.duckOthers])
-            try session.setActive(true)
-            holdsDuck = true
-        } catch {
-            // Speak without ducking rather than failing the announcement.
-        }
+        holdsDuck = true
+        ducking.beginDucking(mode: .voicePrompt)
     }
 
     private func releaseDuckingIfIdle() {
         guard holdsDuck, pending.isEmpty else { return }
         holdsDuck = false
-        // Hand the session back to the background keep-alive loop's category; don't deactivate
-        // it here — BackgroundAudioManager owns the session lifecycle for the whole workout.
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+        ducking.endDucking()
     }
 
     func text(for announcement: Announcement) -> String {

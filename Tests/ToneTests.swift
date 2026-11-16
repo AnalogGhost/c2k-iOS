@@ -1,3 +1,4 @@
+import AVFoundation
 import XCTest
 @testable import CtoK
 
@@ -153,5 +154,28 @@ final class ToneCuesTests: XCTestCase {
         for announcement in wordOnly {
             XCTAssertNil(ToneCues.chime(for: announcement, countdownThresholds: bothWarnings), "\(announcement)")
         }
+    }
+}
+
+private final class DuckingSpy: AudioDucking {
+    var begins = 0
+    var ends = 0
+    func beginDucking(mode: AVAudioSession.Mode) { begins += 1 }
+    func endDucking() { ends += 1 }
+}
+
+final class TonePlayerDuckingTests: XCTestCase {
+    // Other apps only get their volume back when the duck is released, so every cue that takes
+    // the duck must hand it back exactly once.
+    func testBackToBackChimesHoldOneDuckAndReleaseItOnce() {
+        let spy = DuckingSpy()
+        let player = TonePlayer(ducking: spy)
+        player.play(.run)
+        player.play(.walk)
+        XCTAssertEqual(spy.begins, 1)
+        XCTAssertEqual(spy.ends, 0)
+        player.shutdown()
+        player.shutdown()
+        XCTAssertEqual(spy.ends, 1)
     }
 }

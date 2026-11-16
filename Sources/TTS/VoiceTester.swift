@@ -2,8 +2,7 @@ import AVFoundation
 import Observation
 
 // Standalone "Test voice" flow for Settings. Owns its own AVSpeechSynthesizer and its own
-// audio-session teardown — it must NOT reuse the workout TTSManager, whose ducking release
-// deliberately never deactivates the session (BackgroundAudioManager owns that lifecycle).
+// audio-session teardown, and reports synthesis failures that the workout TTSManager ignores.
 @Observable
 @MainActor
 final class VoiceTester: NSObject, AVSpeechSynthesizerDelegate {
