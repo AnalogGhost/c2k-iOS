@@ -12,10 +12,28 @@ final class BackgroundAudioManager: AudioDucking {
     private var isRunning = false
     private var isDucking = false
     private var pendingRelease: DispatchWorkItem?
+    private var releaseAttempts = 0
+
+    private let session: AudioSessionControlling
+    private let schedule: (TimeInterval, DispatchWorkItem) -> Void
+    private let keepsAlive: Bool
 
     // Time for the synthesizer's last buffer to drain after didFinish; deactivating any sooner
-    // fails with "session has running I/O" and leaves other apps ducked.
-    private static let releaseDelay: TimeInterval = 0.3
+    // fails with "session has running I/O" and leaves other apps ducked. If it still fails, the
+    // release is retried this often, up to `maxReleaseAttempts` times.
+    static let releaseDelay: TimeInterval = 0.3
+    static let maxReleaseAttempts = 6
+
+    /// `session`, `schedule` and `keepsAlive` are seams for tests; the app uses the defaults.
+    init(session: AudioSessionControlling = AVAudioSession.sharedInstance(),
+         schedule: @escaping (TimeInterval, DispatchWorkItem) -> Void = { delay, work in
+             DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: work)
+         },
+         keepsAlive: Bool = true) {
+        self.session = session
+        self.schedule = schedule
+        self.keepsAlive = keepsAlive
+    }
 
     func start() {
         #if DEBUG
@@ -35,7 +53,7 @@ final class BackgroundAudioManager: AudioDucking {
         isDucking = false
         isRunning = false
         stopKeepAlive()
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        try? session.setActive(false, options: .notifyOthersOnDeactivation)
     }
 
     // MARK: AudioDucking
@@ -52,10 +70,9 @@ final class BackgroundAudioManager: AudioDucking {
         }
         isDucking = true
         stopKeepAlive()   // the cue's own audio keeps the app alive while it plays
-        let session = AVAudioSession.sharedInstance()
-        try? session.setActive(false)
+        try? session.setActive(false, options: [])
         try? session.setCategory(.playback, mode: mode, options: [.duckOthers])
-        try? session.setActive(true)
+        try? session.setActive(true, options: [])
     }
 
     func endDucking() {
@@ -64,16 +81,32 @@ final class BackgroundAudioManager: AudioDucking {
             return
         }
         guard isDucking, pendingRelease == nil else { return }
+        releaseAttempts = 0
+        scheduleRelease()
+    }
+
+    private func scheduleRelease() {
         let work = DispatchWorkItem { [weak self] in self?.releaseDuck() }
         pendingRelease = work
-        DispatchQueue.main.asyncAfter(deadline: .now() + Self.releaseDelay, execute: work)
+        schedule(Self.releaseDelay, work)
     }
 
     private func releaseDuck() {
         pendingRelease = nil
         guard isDucking else { return }
+        releaseAttempts += 1
+        do {
+            try session.setActive(false, options: .notifyOthersOnDeactivation)
+        } catch {
+            // Still busy finishing the cue. Swallowing this left other apps ducked until the
+            // runner restarted them, so try again shortly.
+            if releaseAttempts < Self.maxReleaseAttempts {
+                scheduleRelease()
+                return
+            }
+            // Give up rather than hold the keep-alive off for the rest of the workout.
+        }
         isDucking = false
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
         guard isRunning, activateMixing() else { return }
         startKeepAlive()
     }
@@ -82,10 +115,9 @@ final class BackgroundAudioManager: AudioDucking {
 
     @discardableResult
     private func activateMixing() -> Bool {
-        let session = AVAudioSession.sharedInstance()
         do {
             try session.setCategory(.playback, mode: .default, options: [.mixWithOthers])
-            try session.setActive(true)
+            try session.setActive(true, options: [])
             return true
         } catch {
             return false
@@ -93,7 +125,7 @@ final class BackgroundAudioManager: AudioDucking {
     }
 
     private func startKeepAlive() {
-        guard audioEngine == nil else { return }
+        guard keepsAlive, audioEngine == nil else { return }
         let engine = AVAudioEngine()
         let player = AVAudioPlayerNode()
         engine.attach(player)
