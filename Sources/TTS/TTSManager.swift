@@ -51,6 +51,8 @@ final class TTSManager: NSObject {
         case halfway
         case intervalMidpoint(phraseIndex: Int)
         case periodicTimeRemaining(Int)
+        /// `meters` covered so far, with the average pace over the last split when it's usable.
+        case distanceSplit(meters: Int, paceSecondsPerKm: Int?)
     }
 
     override init() {
@@ -131,6 +133,26 @@ final class TTSManager: NSObject {
         case .periodicTimeRemaining(let seconds):
             return String(format: NSLocalizedString("tts_time_remaining", comment: ""),
                           Interval.spokenDuration(seconds: seconds))
+        case .distanceSplit(let meters, let pace):
+            let distance = Self.spokenDistance(meters: meters)
+            guard let pace else { return distance }
+            return String(format: NSLocalizedString("tts_distance_split_pace", comment: ""),
+                          distance, Interval.spokenDuration(seconds: pace))
+        }
+    }
+
+    // Spoken with whole-number plurals only ("1 kilometre 500 metres", not "1.5 kilometres"):
+    // languages disagree on the plural form for a fraction (French says "1,5 kilomètre" but
+    // "2,5 kilomètres"), matching Android.
+    static func spokenDistance(meters: Int) -> String {
+        let km = meters / 1000
+        let m = meters % 1000
+        let kmStr = km > 0 ? String.localizedStringWithFormat(NSLocalizedString("tts_distance_km", comment: ""), km) : nil
+        let mStr = m > 0 ? String.localizedStringWithFormat(NSLocalizedString("tts_distance_m", comment: ""), m) : nil
+        switch (kmStr, mStr) {
+        case let (k?, m?): return String(format: NSLocalizedString("tts_distance_km_m", comment: ""), k, m)
+        case let (k?, nil): return k
+        default: return mStr ?? ""
         }
     }
 

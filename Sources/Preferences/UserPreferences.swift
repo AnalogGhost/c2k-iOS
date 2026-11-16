@@ -91,6 +91,18 @@ final class UserPreferences {
         didSet { defaults.set(periodicTimeCueInterval, forKey: "periodic_time_cue_interval") }
     }
 
+    var distanceCues: Bool = (UserDefaults.standard.object(forKey: "distance_cues") as? Bool) ?? false {
+        didSet { defaults.set(distanceCues, forKey: "distance_cues") }
+    }
+
+    /// Distance between spoken distance-and-pace updates, in metres: one of `distanceCueSplits`.
+    var distanceCueSplitMeters: Int = {
+        let v = UserDefaults.standard.object(forKey: "distance_cue_split_meters") as? Int
+        return v.flatMap { distanceCueSplits.contains($0) ? $0 : nil } ?? 1000
+    }() {
+        didSet { defaults.set(distanceCueSplitMeters, forKey: "distance_cue_split_meters") }
+    }
+
     var treadmillMode: Bool = (UserDefaults.standard.object(forKey: "treadmill_mode") as? Bool) ?? false {
         didSet { defaults.set(treadmillMode, forKey: "treadmill_mode") }
     }

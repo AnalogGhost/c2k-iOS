@@ -150,6 +150,7 @@ final class ToneCuesTests: XCTestCase {
         let wordOnly: [TTSManager.Announcement] = [
             .nextInterval(Interval(type: .run, durationSeconds: 60)), .intervalMidpoint(phraseIndex: 0),
             .periodicTimeRemaining(30), .halfway, .lastRunInterval,
+            .distanceSplit(meters: 1000, paceSecondsPerKm: 400),
         ]
         for announcement in wordOnly {
             XCTAssertNil(ToneCues.chime(for: announcement, countdownThresholds: bothWarnings), "\(announcement)")

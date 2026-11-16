@@ -21,7 +21,8 @@ enum ToneCues {
                 ? .countdownSecond : .countdownFirst
         case .workoutComplete:
             return .complete
-        case .nextInterval, .intervalMidpoint, .periodicTimeRemaining, .halfway, .lastRunInterval:
+        case .nextInterval, .intervalMidpoint, .periodicTimeRemaining, .halfway, .lastRunInterval,
+             .distanceSplit:
             return nil
         }
     }

@@ -12,6 +12,7 @@ enum AnnouncementKind: Equatable {
     case halfway
     case intervalMidpoint(Int)
     case periodicTimeRemaining(Int)
+    case distanceSplit(Int, Int?)
 }
 
 @MainActor
@@ -29,6 +30,7 @@ final class TTSSpy: TTSAnnouncing {
         case .halfway: kind = .halfway
         case .intervalMidpoint(let phraseIndex): kind = .intervalMidpoint(phraseIndex)
         case .periodicTimeRemaining(let seconds): kind = .periodicTimeRemaining(seconds)
+        case .distanceSplit(let meters, let pace): kind = .distanceSplit(meters, pace)
         }
         calls.append((kind, queueAdd))
     }

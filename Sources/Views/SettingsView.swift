@@ -75,6 +75,21 @@ struct SettingsView: View {
                             SecondsSlider(label: String(localized: "settings_periodic_time_cue_interval"), seconds: $prefs.periodicTimeCueInterval, range: 15...120)
                         }
 
+                        Toggle(isOn: $prefs.distanceCues) {
+                            Text("settings_distance_cues")
+                            Text("settings_distance_cues_subtitle")
+                        }
+                        .accessibilityIdentifier("settings-distance-cues")
+
+                        if prefs.distanceCues {
+                            Picker(String(localized: "settings_distance_cue_split"), selection: $prefs.distanceCueSplitMeters) {
+                                Text("settings_distance_split_500m").tag(500)
+                                Text("settings_distance_split_1km").tag(1000)
+                            }
+                            .pickerStyle(.segmented)
+                            .accessibilityIdentifier("settings-distance-split")
+                        }
+
                         VStack(alignment: .leading, spacing: 4) {
                             HStack {
                                 Text("Voice speed")

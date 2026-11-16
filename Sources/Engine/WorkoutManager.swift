@@ -28,6 +28,7 @@ final class WorkoutManager {
     private let watchCues: WatchCuePosting
     private var pollingTask: Task<Void, Never>?
     private var currentSessionId: UUID?
+    private var splitTracker: SplitCueTracker?
     private var repository: SessionRepository?
 
     // `haptics` and `watchCues` are injectable so WorkoutManager can be exercised with spies.
@@ -99,6 +100,11 @@ final class WorkoutManager {
         } else {
             gpsActive = false
         }
+
+        splitTracker = SplitCueTracker.isActive(
+            ttsEnabled: prefs.ttsEnabled, cueStyle: prefs.cueStyle,
+            distanceCues: prefs.distanceCues, gpsTracking: locationTracker != nil
+        ) ? SplitCueTracker(splitMeters: prefs.distanceCueSplitMeters) : nil
 
         let sessionId = repository.startSession(programId: programId, week: week, day: day)
         currentSessionId = sessionId
@@ -189,6 +195,11 @@ final class WorkoutManager {
                     lastIntervalIndex = s.intervalIndex
                     self.updateNowPlaying(s, isPlaying: true)
                     checkpointedPause = false
+                    // Queued behind any interval cue rather than cutting it off.
+                    if let distance = self.locationTracker?.totalDistanceMeters,
+                       let cue = self.splitTracker?.onProgress(totalMeters: distance, elapsedSeconds: s.elapsedSessionSeconds) {
+                        self.cuePlayer.announce(cue, queueAdd: true)
+                    }
                     if s.elapsedSessionSeconds - lastCheckpointSeconds >= Self.checkpointIntervalSeconds {
                         lastCheckpointSeconds = s.elapsedSessionSeconds
                         self.checkpoint(s, repository: repository)
@@ -262,6 +273,7 @@ final class WorkoutManager {
         engine = nil
         locationTracker?.stop()
         locationTracker = nil
+        splitTracker = nil
         cuePlayer.shutdown()
         haptics.stop()
         watchCues.clear()
