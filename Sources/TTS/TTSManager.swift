@@ -83,6 +83,9 @@ final class TTSManager: NSObject {
         AVSpeechSynthesisVoice(language: code) ?? AVSpeechSynthesisVoice(language: String(code.prefix(2)))
     }
 
+    // Silence before a cue that has to take the duck, while the output switches over.
+    static let leadIn: TimeInterval = 0.4
+
     static let englishBundle =
         Bundle.main.path(forResource: "en", ofType: "lproj").flatMap(Bundle.init(path:)) ?? .main
 
@@ -105,6 +108,11 @@ final class TTSManager: NSObject {
         if !queueAdd {
             synthesizer.stopSpeaking(at: .word)
             pending.removeAll()
+        }
+        if !holdsDuck {
+            // Lowering other audio and switching the output to this app can swallow the first few
+            // hundred milliseconds, often the number in "2 minutes remaining" (Android issue #50).
+            utterance.preUtteranceDelay = Self.leadIn
         }
         pending.insert(ObjectIdentifier(utterance))
         activateDuckingIfNeeded()
