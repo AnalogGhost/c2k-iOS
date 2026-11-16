@@ -65,6 +65,9 @@ enum ScreenshotSeed {
                 stopped.startedAt = now.addingTimeInterval(-hoursAgo * 3600)
                 stopped.durationSeconds = 10 * 60
                 stopped.completed = false
+                // Stopped by the runner, as the app records it; a nil completedAt would be a run
+                // the app was closed during, which the advisor doesn't count.
+                stopped.completedAt = stopped.startedAt.addingTimeInterval(10 * 60)
                 context.insert(stopped)
             }
         }
