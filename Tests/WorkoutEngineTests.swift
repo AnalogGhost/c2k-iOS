@@ -504,4 +504,79 @@ final class WorkoutEngineTests: XCTestCase {
         XCTAssertEqual(s.currentInterval.type, .warmup)
         engine.stop()
     }
+
+    // MARK: Virtual clock
+
+    private final class ManualClock {
+        var now = Date(timeIntervalSinceReferenceDate: 0)
+    }
+
+    private func makeClockedEngine(
+        intervals: [Interval], tts: TTSSpy, clock: ManualClock,
+        countdownWarnings: Bool = false, warning1: Int = 10, warning2: Int = 5
+    ) -> WorkoutEngine {
+        let engine = WorkoutEngine(
+            day: WorkoutDay(week: 1, day: 1, intervals: intervals), tts: tts, ttsEnabled: true,
+            countdownWarnings: countdownWarnings,
+            countdownWarningSeconds1: warning1, countdownWarningSeconds2: warning2,
+            midIntervalCues: false, clock: { clock.now })
+        engine.start(sessionId: UUID())
+        engine.stop()   // the test drives every tick itself
+        return engine
+    }
+
+    /// Ticks every 200 ms, each landing `lateness` seconds after its slot, until the workout ends.
+    private func runToCompletion(_ engine: WorkoutEngine, clock: ManualClock, lateness: TimeInterval) {
+        let start = clock.now
+        var n = 0
+        repeat {
+            n += 1
+            clock.now = start.addingTimeInterval(Double(n) * 0.2 + lateness)
+        } while engine.tick(now: clock.now) && n < 100_000
+    }
+
+    func testLateTicksDoNotStretchAWorkout() {
+        let clock = ManualClock()
+        let intervals = (0..<18).map { Interval(type: $0.isMultiple(of: 2) ? .run : .walk, durationSeconds: 60) }
+        let engine = makeClockedEngine(intervals: intervals, tts: TTSSpy(), clock: clock)
+        runToCompletion(engine, clock: clock, lateness: 0.15)
+
+        guard case .completed(_, let elapsed) = engine.state else { return XCTFail("not completed") }
+        // 18 minutes exactly; timing each interval from its tick would add ~0.15 s per interval.
+        XCTAssertEqual(elapsed, 18 * 60)
+    }
+
+    func testAStallLongerThanASecondStartsTheNextIntervalFromTheTick() {
+        let clock = ManualClock()
+        let engine = makeClockedEngine(intervals: [
+            Interval(type: .run, durationSeconds: 10),
+            Interval(type: .walk, durationSeconds: 10),
+        ], tts: TTSSpy(), clock: clock)
+
+        clock.now = clock.now.addingTimeInterval(13)   // frozen 3 s past the boundary
+        engine.tick(now: clock.now)
+        clock.now = clock.now.addingTimeInterval(0.2)
+        engine.tick(now: clock.now)
+
+        guard case .active(let s) = engine.state else { return XCTFail("not active") }
+        XCTAssertEqual(s.intervalIndex, 1)
+        XCTAssertEqual(s.secondsRemainingInInterval, 10)   // the walk keeps its full length
+    }
+
+    func testAWarningAsLongAsTheIntervalDoesNotCutOffItsStartCue() {
+        let clock = ManualClock()
+        let spy = TTSSpy()
+        let engine = makeClockedEngine(intervals: [
+            Interval(type: .run, durationSeconds: 10),
+            Interval(type: .walk, durationSeconds: 10),
+        ], tts: spy, clock: clock, countdownWarnings: true, warning1: 10, warning2: 5)
+
+        clock.now = clock.now.addingTimeInterval(0.2)
+        engine.tick(now: clock.now)
+        XCTAssertEqual(spy.count(.countdownWarning(10)), 0)
+
+        clock.now = clock.now.addingTimeInterval(5)
+        engine.tick(now: clock.now)
+        XCTAssertEqual(spy.count(.countdownWarning(5)), 1)
+    }
 }

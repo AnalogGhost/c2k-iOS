@@ -38,14 +38,20 @@ final class WorkoutEngine {
     private var lastPeriodicCueElapsed = -1
     // Set by skipWarmupOrCooldown(), consumed by the run loop.
     private var skipRequested = false
+    private let clock: () -> Date
+
+    // Up to this much lateness at an interval change is taken from the next interval.
+    private static let maxCarriedOvershoot: TimeInterval = 1
 
     init(
         day: WorkoutDay, tts: any TTSAnnouncing, ttsEnabled: Bool, countdownWarnings: Bool,
         countdownWarningSeconds1: Int = 10, countdownWarningSeconds2: Int = 5,
         countdownWarning2Enabled: Bool = true,
         midIntervalCues: Bool = true,
-        periodicTimeCues: Bool = false, periodicTimeCueIntervalSeconds: Int = 30
+        periodicTimeCues: Bool = false, periodicTimeCueIntervalSeconds: Int = 30,
+        clock: @escaping () -> Date = { .now }
     ) {
+        self.clock = clock
         self.day = day
         self.tts = tts
         self.ttsEnabled = ttsEnabled
@@ -60,7 +66,7 @@ final class WorkoutEngine {
     func start(sessionId: UUID) {
         self.sessionId = sessionId
         intervalIndex = 0
-        let now = Date.now
+        let now = clock()
         sessionStartTime = now
         intervalStartTime = now
         isPaused = false
@@ -75,13 +81,13 @@ final class WorkoutEngine {
     func pause() {
         guard !isPaused, case .active(let snapshot) = state else { return }
         isPaused = true
-        pausedAt = .now
+        pausedAt = clock()
         state = .paused(snapshot: snapshot)
     }
 
     func resume() {
         guard isPaused, let pausedAt, case .paused(let snapshot) = state else { return }
-        let pauseDuration = Date.now.timeIntervalSince(pausedAt)
+        let pauseDuration = clock().timeIntervalSince(pausedAt)
         // Move reference times forward so elapsed time doesn't include the pause
         sessionStartTime = sessionStartTime.addingTimeInterval(pauseDuration)
         intervalStartTime = intervalStartTime.addingTimeInterval(pauseDuration)
@@ -108,91 +114,106 @@ final class WorkoutEngine {
             try? await Task.sleep(for: .milliseconds(200))
             guard !Task.isCancelled else { break }
             guard !isPaused else { continue }
-
-            let now = Date.now
-            if skipRequested {
-                skipRequested = false
-                let skippable = day.intervals[intervalIndex]
-                if skippable.type == .warmup || skippable.type == .cooldown {
-                    // Backdate the interval start so the normal end-of-interval path below runs:
-                    // announcement and warning reset, or completion for a final cool-down.
-                    intervalStartTime = now.addingTimeInterval(-Double(skippable.durationSeconds))
-                }
-            }
-            let sessionElapsed = Int(now.timeIntervalSince(sessionStartTime))
-            let intervalElapsed = Int(now.timeIntervalSince(intervalStartTime))
-            let currentInterval = day.intervals[intervalIndex]
-            let remaining = currentInterval.durationSeconds - intervalElapsed
-
-            if remaining <= 0 {
-                let finishedInterval = day.intervals[intervalIndex]
-                intervalIndex += 1
-                if intervalIndex >= day.intervals.count {
-                    // Pin a final Active frame to 0 before completing. If the screen locks, a
-                    // suspended lifecycle-aware observer would otherwise freeze on the last
-                    // Active value it received (1-3s left) even though the workout is done.
-                    state = .active(.init(
-                        currentInterval: finishedInterval,
-                        nextInterval: nil,
-                        intervalIndex: intervalIndex - 1,
-                        totalIntervals: day.intervals.count,
-                        remainingRunIntervals: remainingRunIntervals(from: intervalIndex - 1),
-                        secondsRemainingInInterval: 0,
-                        elapsedSessionSeconds: sessionElapsed,
-                        sessionId: sessionId
-                    ))
-                    if ttsEnabled { tts.announce(.workoutComplete) }
-                    state = .completed(sessionId: sessionId, elapsedSessionSeconds: sessionElapsed)
-                    return
-                }
-                intervalStartTime = now
-                warnedCountdowns.removeAll()
-                midpointAnnounced = false
-                lastPeriodicCueElapsed = -1
-                announceInterval(at: intervalIndex)
-                continue
-            }
-
-            if countdownWarnings && ttsEnabled &&
-                warningThresholds.contains(remaining) && !warnedCountdowns.contains(remaining) {
-                warnedCountdowns.insert(remaining)
-                tts.announce(.countdownWarning(remaining))
-                if remaining == warningThresholds.last {
-                    // Look-ahead: the smallest threshold is the last warning before the interval
-                    // ends, so it also announces what's coming next.
-                    if intervalIndex + 1 < day.intervals.count {
-                        tts.announce(.nextInterval(day.intervals[intervalIndex + 1]), queueAdd: true)
-                    }
-                }
-            }
-
-            if periodicTimeCues && ttsEnabled && periodicTimeCueIntervalSeconds > 0 &&
-                intervalElapsed > 0 && intervalElapsed % periodicTimeCueIntervalSeconds == 0 &&
-                intervalElapsed != lastPeriodicCueElapsed {
-                lastPeriodicCueElapsed = intervalElapsed
-                tts.announce(.periodicTimeRemaining(remaining), queueAdd: true)
-            }
-
-            if midIntervalCues && ttsEnabled &&
-                currentInterval.type == .run &&
-                currentInterval.durationSeconds >= 60 &&
-                intervalElapsed >= currentInterval.durationSeconds / 2 &&
-                !midpointAnnounced {
-                midpointAnnounced = true
-                tts.announce(.intervalMidpoint(phraseIndex: intervalIndex), queueAdd: true)
-            }
-
-            state = .active(.init(
-                currentInterval: day.intervals[intervalIndex],
-                nextInterval: day.intervals[safe: intervalIndex + 1],
-                intervalIndex: intervalIndex,
-                totalIntervals: day.intervals.count,
-                remainingRunIntervals: remainingRunIntervals(from: intervalIndex),
-                secondsRemainingInInterval: remaining,
-                elapsedSessionSeconds: sessionElapsed,
-                sessionId: sessionId
-            ))
+            guard tick(now: clock()) else { return }
         }
+    }
+
+    /// One pass of the run loop at `now`. Returns false once the workout has completed.
+    /// Internal so tests can drive the engine on a virtual clock.
+    @discardableResult
+    func tick(now: Date) -> Bool {
+        guard !isPaused else { return true }
+        if case .completed = state { return false }
+        if skipRequested {
+            skipRequested = false
+            let skippable = day.intervals[intervalIndex]
+            if skippable.type == .warmup || skippable.type == .cooldown {
+                // Backdate the interval start so the normal end-of-interval path below runs:
+                // announcement and warning reset, or completion for a final cool-down.
+                intervalStartTime = now.addingTimeInterval(-Double(skippable.durationSeconds))
+            }
+        }
+        let sessionElapsed = Int(now.timeIntervalSince(sessionStartTime))
+        let intervalElapsed = Int(now.timeIntervalSince(intervalStartTime))
+        let currentInterval = day.intervals[intervalIndex]
+        let remaining = currentInterval.durationSeconds - intervalElapsed
+
+        if remaining <= 0 {
+            let finishedInterval = day.intervals[intervalIndex]
+            intervalIndex += 1
+            if intervalIndex >= day.intervals.count {
+                // Pin a final Active frame to 0 before completing. If the screen locks, a
+                // suspended lifecycle-aware observer would otherwise freeze on the last
+                // Active value it received (1-3s left) even though the workout is done.
+                state = .active(.init(
+                    currentInterval: finishedInterval,
+                    nextInterval: nil,
+                    intervalIndex: intervalIndex - 1,
+                    totalIntervals: day.intervals.count,
+                    remainingRunIntervals: remainingRunIntervals(from: intervalIndex - 1),
+                    secondsRemainingInInterval: 0,
+                    elapsedSessionSeconds: sessionElapsed,
+                    sessionId: sessionId
+                ))
+                if ttsEnabled { tts.announce(.workoutComplete) }
+                state = .completed(sessionId: sessionId, elapsedSessionSeconds: sessionElapsed)
+                return false
+            }
+            // Start the next interval at the boundary, not at this tick, so the few milliseconds
+            // each tick lands late don't add up over a workout (about 2 s on a 30-minute one).
+            // After a longer stall (the phone briefly frozen), start it now instead: the runner
+            // hears the cue late but still gets the whole interval.
+            let boundary = intervalStartTime.addingTimeInterval(Double(finishedInterval.durationSeconds))
+            intervalStartTime = now.timeIntervalSince(boundary) <= Self.maxCarriedOvershoot ? boundary : now
+            warnedCountdowns.removeAll()
+            midpointAnnounced = false
+            lastPeriodicCueElapsed = -1
+            announceInterval(at: intervalIndex)
+            return true
+        }
+
+        // A threshold equal to the interval's length would fire on the first tick and flush
+        // the interval-start cue (warnings don't queue), so only warn once time has passed.
+        if countdownWarnings && ttsEnabled && remaining < currentInterval.durationSeconds &&
+            warningThresholds.contains(remaining) && !warnedCountdowns.contains(remaining) {
+            warnedCountdowns.insert(remaining)
+            tts.announce(.countdownWarning(remaining))
+            if remaining == warningThresholds.last {
+                // Look-ahead: the smallest threshold is the last warning before the interval
+                // ends, so it also announces what's coming next.
+                if intervalIndex + 1 < day.intervals.count {
+                    tts.announce(.nextInterval(day.intervals[intervalIndex + 1]), queueAdd: true)
+                }
+            }
+        }
+
+        if periodicTimeCues && ttsEnabled && periodicTimeCueIntervalSeconds > 0 &&
+            intervalElapsed > 0 && intervalElapsed % periodicTimeCueIntervalSeconds == 0 &&
+            intervalElapsed != lastPeriodicCueElapsed {
+            lastPeriodicCueElapsed = intervalElapsed
+            tts.announce(.periodicTimeRemaining(remaining), queueAdd: true)
+        }
+
+        if midIntervalCues && ttsEnabled &&
+            currentInterval.type == .run &&
+            currentInterval.durationSeconds >= 60 &&
+            intervalElapsed >= currentInterval.durationSeconds / 2 &&
+            !midpointAnnounced {
+            midpointAnnounced = true
+            tts.announce(.intervalMidpoint(phraseIndex: intervalIndex), queueAdd: true)
+        }
+
+        state = .active(.init(
+            currentInterval: day.intervals[intervalIndex],
+            nextInterval: day.intervals[safe: intervalIndex + 1],
+            intervalIndex: intervalIndex,
+            totalIntervals: day.intervals.count,
+            remainingRunIntervals: remainingRunIntervals(from: intervalIndex),
+            secondsRemainingInInterval: remaining,
+            elapsedSessionSeconds: sessionElapsed,
+            sessionId: sessionId
+        ))
+        return true
     }
 
     // Counts the current interval too, so the figure only drops once a run has finished.
