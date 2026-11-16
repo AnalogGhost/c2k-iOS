@@ -95,6 +95,12 @@ final class WorkoutManager {
                     repository.addRoutePoint(RoutePoint(sessionId: sessionId, update: update))
                 }
             }
+            // The manager keeps its request while Location is off and delivers fixes once it comes
+            // on, so a runner who switches it on mid-run is tracked; the indicator follows.
+            tracker.onAvailabilityChange = { [weak self] available in
+                self?.gpsActive = available
+                if !available { self?.hasGpsLock = false }
+            }
             tracker.start()
             gpsActive = tracker.isAvailable
         } else {

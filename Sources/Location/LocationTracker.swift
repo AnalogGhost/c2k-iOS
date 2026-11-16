@@ -8,6 +8,8 @@ final class LocationTracker: NSObject, CLLocationManagerDelegate {
     var hasGpsLock = false
 
     var onUpdate: ((LocationUpdate) -> Void)?
+    // Location Services or the app's permission switched on or off, including mid-run.
+    var onAvailabilityChange: ((Bool) -> Void)?
 
     private let manager = CLLocationManager()
     private var lastLocation: CLLocation?
@@ -77,5 +79,7 @@ final class LocationTracker: NSObject, CLLocationManagerDelegate {
         isAvailable = CLLocationManager.locationServicesEnabled() &&
             (manager.authorizationStatus == .authorizedWhenInUse ||
              manager.authorizationStatus == .authorizedAlways)
+        if !isAvailable { hasGpsLock = false }
+        onAvailabilityChange?(isAvailable)
     }
 }
