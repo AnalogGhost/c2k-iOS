@@ -190,8 +190,8 @@ struct SettingsView: View {
                         .multilineTextAlignment(.trailing)
                         .frame(maxWidth: 100)
                         .onChange(of: weightText) { _, newValue in
-                            if let parsed = Double(newValue), parsed > 0 {
-                                prefs.weightKg = prefs.weightUnit.toKg(parsed)
+                            if let kg = parseWeightKg(newValue, unit: prefs.weightUnit) {
+                                prefs.weightKg = kg
                             } else if newValue.isEmpty {
                                 prefs.weightKg = nil
                             }
@@ -245,13 +245,6 @@ struct SettingsView: View {
         }
         // .system: already active only if there was no override to begin with.
         return previous == .system
-    }
-
-    private func formatWeight(_ value: Double) -> String {
-        let rounded = (value * 10).rounded() / 10
-        return rounded == rounded.rounded()
-            ? String(format: "%.0f", rounded)
-            : String(format: "%.1f", rounded)
     }
 }
 
