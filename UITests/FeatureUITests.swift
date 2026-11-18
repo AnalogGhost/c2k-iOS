@@ -126,7 +126,7 @@ final class FeatureUITests: XCTestCase {
 
     // MARK: - Workout
 
-    func testTheWarmupCanBeSkippedFromTheWorkoutScreen() {
+    func testIntervalsCanBeSkippedBothWaysFromTheWorkoutScreen() {
         launch()
         app.buttons["program-C25K"].tap()
         XCTAssertTrue(app.buttons["day-3-3"].waitForExistence(timeout: 10))
@@ -134,13 +134,21 @@ final class FeatureUITests: XCTestCase {
         XCTAssertTrue(app.buttons["start-workout"].waitForExistence(timeout: 10))
         app.buttons["start-workout"].tap()
 
-        let skip = app.buttons["workout-skip-phase"]
-        XCTAssertTrue(skip.waitForExistence(timeout: 60))
-        XCTAssertTrue(skip.label.contains("Skip warm-up"))
-        skip.tap()
-        // Run intervals can't be skipped, so the button goes once the warm-up is over.
-        let gone = NSPredicate(format: "exists == false")
-        expectation(for: gone, evaluatedWith: skip)
+        let next = app.buttons["workout-next"]
+        let previous = app.buttons["workout-previous"]
+        XCTAssertTrue(next.waitForExistence(timeout: 60))
+        XCTAssertTrue(next.label.contains("Skip warm-up"))
+        XCTAssertFalse(previous.isEnabled, "there's nothing before the warm-up")
+        next.tap()
+        // Once the warm-up is over the button moves on interval by interval, and Previous goes back.
+        let movedOn = NSPredicate(format: "label CONTAINS 'Next'")
+        expectation(for: movedOn, evaluatedWith: next)
+        waitForExpectations(timeout: 5)
+        XCTAssertTrue(previous.isEnabled)
+
+        previous.tap()
+        let backAtWarmup = NSPredicate(format: "label CONTAINS 'Skip warm-up'")
+        expectation(for: backAtWarmup, evaluatedWith: next)
         waitForExpectations(timeout: 5)
         XCTAssertTrue(app.buttons["workout-pause"].exists)
 

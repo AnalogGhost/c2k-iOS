@@ -145,8 +145,12 @@ final class WorkoutManager {
         locationTracker?.resume()
     }
 
-    func skipWarmupOrCooldown() {
-        engine?.skipWarmupOrCooldown()
+    func skipToNextInterval() {
+        engine?.skipToNextInterval()
+    }
+
+    func skipToPreviousInterval() {
+        engine?.skipToPreviousInterval()
     }
 
     func stop() {

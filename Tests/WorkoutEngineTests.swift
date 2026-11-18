@@ -435,78 +435,6 @@ final class WorkoutEngineTests: XCTestCase {
         engine.stop()
     }
 
-    // MARK: - Skip warm-up / cool-down
-
-    func testSkippingTheWarmupMovesStraightToTheNextInterval() async {
-        let spy = TTSSpy()
-        let engine = makeEngine(intervals: [
-            Interval(type: .warmup, durationSeconds: 300), Interval(type: .run, durationSeconds: 60),
-        ], tts: spy)
-        engine.start(sessionId: UUID())
-        await waitUntil { if case .active = engine.state { return true }; return false }
-
-        engine.skipWarmupOrCooldown()
-        await waitUntil(timeout: 2) {
-            guard case .active(let s) = engine.state else { return false }
-            return s.currentInterval.type == .run
-        }
-        guard case .active(let s) = engine.state else { XCTFail("expected active"); return }
-        XCTAssertEqual(s.currentInterval.type, .run)
-        XCTAssertEqual(spy.count(.intervalStart(.run, 60)), 1)
-        // Session time keeps counting real time rather than jumping by the skipped warm-up.
-        XCTAssertLessThan(s.elapsedSessionSeconds, 5)
-        engine.stop()
-    }
-
-    func testSkippingTheFinalCooldownCompletesTheWorkout() async {
-        let spy = TTSSpy()
-        let engine = makeEngine(intervals: [
-            Interval(type: .run, durationSeconds: 1), Interval(type: .cooldown, durationSeconds: 300),
-        ], tts: spy)
-        engine.start(sessionId: UUID())
-        await waitUntil(timeout: 3) {
-            guard case .active(let s) = engine.state else { return false }
-            return s.currentInterval.type == .cooldown
-        }
-
-        engine.skipWarmupOrCooldown()
-        await waitUntil(timeout: 2) { if case .completed = engine.state { return true }; return false }
-        guard case .completed = engine.state else { XCTFail("skipping the cool-down should complete"); return }
-        XCTAssertEqual(spy.count(.workoutComplete), 1)
-    }
-
-    func testSkipIsIgnoredDuringARunInterval() async {
-        let spy = TTSSpy()
-        let engine = makeEngine(intervals: [
-            Interval(type: .run, durationSeconds: 300), Interval(type: .walk, durationSeconds: 60),
-        ], tts: spy)
-        engine.start(sessionId: UUID())
-        await waitUntil { if case .active = engine.state { return true }; return false }
-
-        engine.skipWarmupOrCooldown()
-        try? await Task.sleep(for: .milliseconds(600))
-        guard case .active(let s) = engine.state else { XCTFail("expected active"); return }
-        XCTAssertEqual(s.currentInterval.type, .run)
-        engine.stop()
-    }
-
-    func testSkipIsIgnoredWhilePaused() async {
-        let spy = TTSSpy()
-        let engine = makeEngine(intervals: [
-            Interval(type: .warmup, durationSeconds: 300), Interval(type: .run, durationSeconds: 60),
-        ], tts: spy)
-        engine.start(sessionId: UUID())
-        await waitUntil { if case .active = engine.state { return true }; return false }
-
-        engine.pause()
-        engine.skipWarmupOrCooldown()
-        engine.resume()
-        try? await Task.sleep(for: .milliseconds(600))
-        guard case .active(let s) = engine.state else { XCTFail("expected active"); return }
-        XCTAssertEqual(s.currentInterval.type, .warmup)
-        engine.stop()
-    }
-
     // MARK: Virtual clock
 
     private final class ManualClock {
@@ -580,5 +508,118 @@ final class WorkoutEngineTests: XCTestCase {
         clock.now = clock.now.addingTimeInterval(5)
         engine.tick(now: clock.now)
         XCTAssertEqual(spy.count(.countdownWarning(5)), 1)
+    }
+
+    // MARK: Skipping intervals
+
+    private func tick(_ engine: WorkoutEngine, _ clock: ManualClock, after seconds: TimeInterval) {
+        clock.now = clock.now.addingTimeInterval(seconds)
+        engine.tick(now: clock.now)
+    }
+
+    /// Ticks every 200 ms for `seconds`, as the run loop would.
+    private func run(_ engine: WorkoutEngine, _ clock: ManualClock, for seconds: TimeInterval) {
+        for _ in 0..<Int((seconds / 0.2).rounded()) { tick(engine, clock, after: 0.2) }
+    }
+
+    private func activeSnapshot(_ engine: WorkoutEngine) -> WorkoutState.ActiveSnapshot? {
+        if case .active(let s) = engine.state { return s }
+        return nil
+    }
+
+    private let skipDay = [
+        Interval(type: .warmup, durationSeconds: 300), Interval(type: .run, durationSeconds: 60),
+        Interval(type: .walk, durationSeconds: 90), Interval(type: .cooldown, durationSeconds: 300),
+    ]
+
+    func testSkippingForwardStartsTheNextIntervalInFull() {
+        let clock = ManualClock()
+        let spy = TTSSpy()
+        let engine = makeClockedEngine(intervals: skipDay, tts: spy, clock: clock)
+        run(engine, clock, for: 20)
+
+        engine.skipToNextInterval()
+        tick(engine, clock, after: 0.2)
+        XCTAssertEqual(activeSnapshot(engine)?.intervalIndex, 1)
+        XCTAssertEqual(activeSnapshot(engine)?.secondsRemainingInInterval, 60)
+        XCTAssertEqual(spy.count(.intervalStart(.run, 60)), 1)
+
+        // A run can be skipped as well as the warm-up.
+        engine.skipToNextInterval()
+        tick(engine, clock, after: 0.2)
+        XCTAssertEqual(activeSnapshot(engine)?.currentInterval.type, .walk)
+        // Session time keeps counting real time rather than jumping by what was skipped.
+        XCTAssertEqual(activeSnapshot(engine)?.elapsedSessionSeconds, 20)
+    }
+
+    func testSkippingBackRepeatsThePreviousIntervalFromTheStart() {
+        let clock = ManualClock()
+        let spy = TTSSpy()
+        let engine = makeClockedEngine(intervals: skipDay, tts: spy, clock: clock)
+        run(engine, clock, for: 330)   // 30 s into the run
+        run(engine, clock, for: 40)    // 10 s into the walk
+        XCTAssertEqual(activeSnapshot(engine)?.currentInterval.type, .walk)
+
+        engine.skipToPreviousInterval()
+        tick(engine, clock, after: 0.2)
+        XCTAssertEqual(activeSnapshot(engine)?.intervalIndex, 1)
+        XCTAssertEqual(activeSnapshot(engine)?.secondsRemainingInInterval, 60)
+        XCTAssertEqual(spy.count(.intervalStart(.run, 60)), 2)
+
+        // The repeated run then hands over to the walk as usual.
+        run(engine, clock, for: 60.4)
+        XCTAssertEqual(activeSnapshot(engine)?.currentInterval.type, .walk)
+        XCTAssertEqual(activeSnapshot(engine)?.secondsRemainingInInterval, 90)
+    }
+
+    func testSkippingBackOnTheFirstIntervalRestartsIt() {
+        let clock = ManualClock()
+        let engine = makeClockedEngine(intervals: skipDay, tts: TTSSpy(), clock: clock)
+        run(engine, clock, for: 100)
+
+        engine.skipToPreviousInterval()
+        tick(engine, clock, after: 0.2)
+        XCTAssertEqual(activeSnapshot(engine)?.intervalIndex, 0)
+        XCTAssertEqual(activeSnapshot(engine)?.secondsRemainingInInterval, 300)
+    }
+
+    func testTapsBetweenTicksAddUp() {
+        let clock = ManualClock()
+        let engine = makeClockedEngine(intervals: skipDay, tts: TTSSpy(), clock: clock)
+
+        engine.skipToNextInterval()
+        engine.skipToNextInterval()
+        tick(engine, clock, after: 0.2)
+        XCTAssertEqual(activeSnapshot(engine)?.currentInterval.type, .walk)
+
+        engine.skipToPreviousInterval()
+        engine.skipToNextInterval()
+        tick(engine, clock, after: 0.2)
+        XCTAssertEqual(activeSnapshot(engine)?.currentInterval.type, .walk)
+    }
+
+    func testSkippingPastTheLastIntervalCompletesTheWorkout() {
+        let clock = ManualClock()
+        let spy = TTSSpy()
+        let engine = makeClockedEngine(intervals: skipDay, tts: spy, clock: clock)
+        tick(engine, clock, after: 1)
+        for _ in skipDay { engine.skipToNextInterval() }
+        engine.skipToNextInterval()   // one more than there are left
+
+        XCTAssertFalse(engine.tick(now: clock.now.addingTimeInterval(0.2)))
+        guard case .completed = engine.state else { return XCTFail("skipping past the end should complete") }
+        XCTAssertEqual(spy.count(.workoutComplete), 1)
+    }
+
+    func testSkippingIsIgnoredWhilePaused() {
+        let clock = ManualClock()
+        let engine = makeClockedEngine(intervals: skipDay, tts: TTSSpy(), clock: clock)
+        tick(engine, clock, after: 1)
+
+        engine.pause()
+        engine.skipToNextInterval()
+        engine.resume()
+        tick(engine, clock, after: 0.2)
+        XCTAssertEqual(activeSnapshot(engine)?.currentInterval.type, .warmup)
     }
 }

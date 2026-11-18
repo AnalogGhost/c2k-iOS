@@ -172,17 +172,25 @@ final class WorkoutManagerTests: XCTestCase {
         guard case .active = manager.workoutState else { return XCTFail("expected active after resume") }
     }
 
-    func testSkippingTheWarmupThroughTheManagerMovesToTheRun() async {
+    func testSkippingThroughTheManagerMovesBetweenIntervals() async {
         start(shortDay([.warmup, .run], seconds: 300))
         await waitUntil { if case .active = manager.workoutState { return true }; return false }
 
-        manager.skipWarmupOrCooldown()
+        manager.skipToNextInterval()
         await waitUntil {
             if case .active(let s) = manager.workoutState { return s.currentInterval.type == .run }
             return false
         }
         guard case .active(let s) = manager.workoutState else { return XCTFail("expected active") }
         XCTAssertEqual(s.currentInterval.type, .run)
+
+        manager.skipToPreviousInterval()
+        await waitUntil {
+            if case .active(let s) = manager.workoutState { return s.currentInterval.type == .warmup }
+            return false
+        }
+        guard case .active(let back) = manager.workoutState else { return XCTFail("expected active") }
+        XCTAssertEqual(back.currentInterval.type, .warmup)
     }
 
     func testASecondStartWhileRunningIsIgnored() async {

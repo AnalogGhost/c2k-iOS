@@ -43,7 +43,8 @@ struct WorkoutView: View {
                     isLandscape: isLandscape,
                     onPause: { workoutManager.pause() },
                     onStop: { showStopDialog = true },
-                    onSkipWarmupOrCooldown: { workoutManager.skipWarmupOrCooldown() }
+                    onPreviousInterval: { workoutManager.skipToPreviousInterval() },
+                    onNextInterval: { workoutManager.skipToNextInterval() }
                 )
             case .paused(let s):
                 PausedWorkoutContent(
@@ -131,7 +132,8 @@ private struct ActiveWorkoutContent: View {
     let isLandscape: Bool
     let onPause: () -> Void
     let onStop: () -> Void
-    let onSkipWarmupOrCooldown: () -> Void
+    let onPreviousInterval: () -> Void
+    let onNextInterval: () -> Void
 
     private var ringColor: Color { intervalColor(state.currentInterval.type) }
     private var label: String { intervalLabel(state.currentInterval.type) }
@@ -236,21 +238,27 @@ private struct ActiveWorkoutContent: View {
                 .buttonStyle(.bordered)
                 .tint(.secondary)
             }
-            if let skipLabel {
-                Button(action: onSkipWarmupOrCooldown) {
-                    Label(skipLabel, systemImage: "forward.end.fill")
+            HStack(spacing: 24) {
+                Button(action: onPreviousInterval) {
+                    Label("workout_skip_back", systemImage: "backward.end.fill")
                 }
-                .accessibilityIdentifier("workout-skip-phase")
-                .buttonStyle(.borderless)
+                .accessibilityIdentifier("workout-previous")
+                .disabled(state.intervalIndex == 0)
+
+                Button(action: onNextInterval) {
+                    Label(nextLabel, systemImage: "forward.end.fill")
+                }
+                .accessibilityIdentifier("workout-next")
             }
+            .buttonStyle(.borderless)
         }
     }
 
-    private var skipLabel: LocalizedStringKey? {
+    private var nextLabel: LocalizedStringKey {
         switch state.currentInterval.type {
-        case .warmup:   return "workout_skip_warmup"
-        case .cooldown: return "workout_skip_cooldown"
-        case .run, .walk: return nil
+        case .warmup:     return "workout_skip_warmup"
+        case .cooldown:   return "workout_skip_cooldown"
+        case .run, .walk: return "workout_skip_next"
         }
     }
 

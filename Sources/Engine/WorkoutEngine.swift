@@ -36,8 +36,9 @@ final class WorkoutEngine {
     private var warnedCountdowns: Set<Int> = []
     private var midpointAnnounced = false
     private var lastPeriodicCueElapsed = -1
-    // Set by skipWarmupOrCooldown(), consumed by the run loop.
-    private var skipRequested = false
+    // Net intervals to move, set by skipToNextInterval() and skipToPreviousInterval() and
+    // consumed by the run loop.
+    private var pendingSkip = 0
     private let clock: () -> Date
 
     // Up to this much lateness at an interval change is taken from the next interval.
@@ -73,7 +74,7 @@ final class WorkoutEngine {
         warnedCountdowns.removeAll()
         midpointAnnounced = false
         lastPeriodicCueElapsed = -1
-        skipRequested = false
+        pendingSkip = 0
         announceInterval(at: intervalIndex)
         timerTask = Task { await runLoop() }
     }
@@ -96,11 +97,18 @@ final class WorkoutEngine {
         state = .active(snapshot)
     }
 
-    /// Ends the current warm-up or cool-down early; ignored while paused and during any other
-    /// interval. Only raises a flag, which the run loop applies on its next tick, so a request
-    /// landing just as an interval changes naturally can't cut the following interval short.
-    func skipWarmupOrCooldown() {
-        if !isPaused { skipRequested = true }
+    /// Ends the current interval and starts the next; on the last interval this completes the
+    /// workout. Ignored while paused. Only records the request, which the run loop applies on its
+    /// next tick, so a tap landing just as an interval changes naturally moves one interval, not two.
+    func skipToNextInterval() {
+        if !isPaused { pendingSkip += 1 }
+    }
+
+    /// Starts the previous interval again from the beginning, so a runner can repeat a run they
+    /// had the legs for. Restarts the first interval when there's none before it. Ignored while
+    /// paused.
+    func skipToPreviousInterval() {
+        if !isPaused { pendingSkip -= 1 }
     }
 
     func stop() {
@@ -124,13 +132,16 @@ final class WorkoutEngine {
     func tick(now: Date) -> Bool {
         guard !isPaused else { return true }
         if case .completed = state { return false }
-        if skipRequested {
-            skipRequested = false
-            let skippable = day.intervals[intervalIndex]
-            if skippable.type == .warmup || skippable.type == .cooldown {
-                // Backdate the interval start so the normal end-of-interval path below runs:
-                // announcement and warning reset, or completion for a final cool-down.
-                intervalStartTime = now.addingTimeInterval(-Double(skippable.durationSeconds))
+        if pendingSkip != 0 {
+            let target = intervalIndex + pendingSkip
+            pendingSkip = 0
+            if target >= day.intervals.count {
+                // Past the end: backdate the last interval so the end-of-interval path below
+                // completes the workout.
+                intervalIndex = day.intervals.count - 1
+                intervalStartTime = now.addingTimeInterval(-Double(day.intervals[intervalIndex].durationSeconds))
+            } else {
+                beginInterval(at: max(0, target), startingAt: now)
             }
         }
         let sessionElapsed = Int(now.timeIntervalSince(sessionStartTime))
@@ -164,11 +175,8 @@ final class WorkoutEngine {
             // After a longer stall (the phone briefly frozen), start it now instead: the runner
             // hears the cue late but still gets the whole interval.
             let boundary = intervalStartTime.addingTimeInterval(Double(finishedInterval.durationSeconds))
-            intervalStartTime = now.timeIntervalSince(boundary) <= Self.maxCarriedOvershoot ? boundary : now
-            warnedCountdowns.removeAll()
-            midpointAnnounced = false
-            lastPeriodicCueElapsed = -1
-            announceInterval(at: intervalIndex)
+            beginInterval(at: intervalIndex,
+                          startingAt: now.timeIntervalSince(boundary) <= Self.maxCarriedOvershoot ? boundary : now)
             return true
         }
 
@@ -219,6 +227,15 @@ final class WorkoutEngine {
     // Counts the current interval too, so the figure only drops once a run has finished.
     private func remainingRunIntervals(from index: Int) -> Int {
         day.intervals.dropFirst(index).filter { $0.type == .run }.count
+    }
+
+    private func beginInterval(at index: Int, startingAt start: Date) {
+        intervalIndex = index
+        intervalStartTime = start
+        warnedCountdowns.removeAll()
+        midpointAnnounced = false
+        lastPeriodicCueElapsed = -1
+        announceInterval(at: index)
     }
 
     private func announceInterval(at index: Int) {
