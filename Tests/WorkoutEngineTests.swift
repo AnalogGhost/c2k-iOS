@@ -142,7 +142,7 @@ final class WorkoutEngineTests: XCTestCase {
             if case .completed = engine.state { return true }; return false
         }
 
-        guard case .completed(let completedId, let elapsed) = engine.state else {
+        guard case .completed(let completedId, let elapsed, _) = engine.state else {
             XCTFail("workout should have completed"); return
         }
         XCTAssertEqual(completedId, sessionId)
@@ -471,7 +471,7 @@ final class WorkoutEngineTests: XCTestCase {
         let engine = makeClockedEngine(intervals: intervals, tts: TTSSpy(), clock: clock)
         runToCompletion(engine, clock: clock, lateness: 0.15)
 
-        guard case .completed(_, let elapsed) = engine.state else { return XCTFail("not completed") }
+        guard case .completed(_, let elapsed, _) = engine.state else { return XCTFail("not completed") }
         // 18 minutes exactly; timing each interval from its tick would add ~0.15 s per interval.
         XCTAssertEqual(elapsed, 18 * 60)
     }
@@ -621,5 +621,62 @@ final class WorkoutEngineTests: XCTestCase {
         engine.resume()
         tick(engine, clock, after: 0.2)
         XCTAssertEqual(activeSnapshot(engine)?.currentInterval.type, .warmup)
+    }
+
+    // MARK: Skipped runs
+
+    private func skippedRun(_ engine: WorkoutEngine) -> Bool? {
+        if case .completed(_, _, let skippedRun) = engine.state { return skippedRun }
+        return nil
+    }
+
+    func testAWorkoutRunInFullHasNoSkippedRun() {
+        let clock = ManualClock()
+        let engine = makeClockedEngine(intervals: skipDay, tts: TTSSpy(), clock: clock)
+        runToCompletion(engine, clock: clock, lateness: 0)
+        XCTAssertEqual(skippedRun(engine), false)
+    }
+
+    func testSkippingARunMarksTheWorkout() {
+        let clock = ManualClock()
+        let engine = makeClockedEngine(intervals: skipDay, tts: TTSSpy(), clock: clock)
+        run(engine, clock, for: 310)   // 10 s into the run
+        engine.skipToNextInterval()
+        runToCompletion(engine, clock: clock, lateness: 0)
+        XCTAssertEqual(skippedRun(engine), true)
+    }
+
+    func testSkippingPastTheEndWithARunLeftMarksTheWorkout() {
+        let clock = ManualClock()
+        let engine = makeClockedEngine(intervals: [
+            Interval(type: .walk, durationSeconds: 60), Interval(type: .run, durationSeconds: 60),
+        ], tts: TTSSpy(), clock: clock)
+        run(engine, clock, for: 70)   // into the final run
+        engine.skipToNextInterval()
+        run(engine, clock, for: 0.2)
+        XCTAssertEqual(skippedRun(engine), true)
+    }
+
+    func testARunSkippedThenRunAgainCounts() {
+        let clock = ManualClock()
+        let engine = makeClockedEngine(intervals: skipDay, tts: TTSSpy(), clock: clock)
+        run(engine, clock, for: 310)
+        engine.skipToNextInterval()
+        run(engine, clock, for: 1)
+        engine.skipToPreviousInterval()   // back to the run, and this time run it all
+        runToCompletion(engine, clock: clock, lateness: 0)
+        XCTAssertEqual(skippedRun(engine), false)
+    }
+
+    func testSkippingTheWarmupWalksAndCooldownStillCounts() {
+        let clock = ManualClock()
+        let engine = makeClockedEngine(intervals: skipDay, tts: TTSSpy(), clock: clock)
+        engine.skipToNextInterval()        // warm-up
+        run(engine, clock, for: 60.4)      // the run, in full
+        engine.skipToNextInterval()        // walk
+        run(engine, clock, for: 0.4)
+        engine.skipToNextInterval()        // cool-down
+        run(engine, clock, for: 0.2)
+        XCTAssertEqual(skippedRun(engine), false)
     }
 }

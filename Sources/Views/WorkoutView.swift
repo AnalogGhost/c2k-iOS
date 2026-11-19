@@ -53,9 +53,10 @@ struct WorkoutView: View {
                     onResume: { workoutManager.resume() },
                     onStop: { showStopDialog = true }
                 )
-            case .completed(let sessionId, let elapsed):
+            case .completed(let sessionId, let elapsed, let skippedRun):
                 CompletedContent(
                     elapsedSeconds: elapsed,
+                    skippedRun: skippedRun,
                     distanceMeters: workoutManager.distanceMeters,
                     weightKg: prefs.weightKg,
                     personalBest: personalBest,
@@ -362,6 +363,7 @@ private struct PausedWorkoutContent: View {
 
 private struct CompletedContent: View {
     let elapsedSeconds: Int
+    let skippedRun: Bool
     let distanceMeters: Double
     let weightKg: Double?
     let personalBest: WorkoutSession?
@@ -374,8 +376,10 @@ private struct CompletedContent: View {
             Text("Workout Complete!")
                 .font(.largeTitle.bold())
                 .foregroundColor(.greenText)
-            Text("Great job! Keep up the good work.")
+            Text(skippedRun ? LocalizedStringKey("workout_skipped_run_not_counted") : "Great job! Keep up the good work.")
                 .font(.body).foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .accessibilityIdentifier("workout-complete-message")
         }
 
         VStack(spacing: 4) {

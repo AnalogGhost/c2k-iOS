@@ -39,6 +39,9 @@ final class WorkoutEngine {
     // Net intervals to move, set by skipToNextInterval() and skipToPreviousInterval() and
     // consumed by the run loop.
     private var pendingSkip = 0
+    // Run intervals that ran to their end. Skipping one leaves it out; running it again after
+    // going back puts it in, so only runs never finished count against the workout.
+    private var finishedRuns: Set<Int> = []
     private let clock: () -> Date
 
     // Up to this much lateness at an interval change is taken from the next interval.
@@ -75,6 +78,7 @@ final class WorkoutEngine {
         midpointAnnounced = false
         lastPeriodicCueElapsed = -1
         pendingSkip = 0
+        finishedRuns.removeAll()
         announceInterval(at: intervalIndex)
         timerTask = Task { await runLoop() }
     }
@@ -132,6 +136,7 @@ final class WorkoutEngine {
     func tick(now: Date) -> Bool {
         guard !isPaused else { return true }
         if case .completed = state { return false }
+        var skippedToEnd = false
         if pendingSkip != 0 {
             let target = intervalIndex + pendingSkip
             pendingSkip = 0
@@ -140,6 +145,7 @@ final class WorkoutEngine {
                 // completes the workout.
                 intervalIndex = day.intervals.count - 1
                 intervalStartTime = now.addingTimeInterval(-Double(day.intervals[intervalIndex].durationSeconds))
+                skippedToEnd = true
             } else {
                 beginInterval(at: max(0, target), startingAt: now)
             }
@@ -151,6 +157,7 @@ final class WorkoutEngine {
 
         if remaining <= 0 {
             let finishedInterval = day.intervals[intervalIndex]
+            if finishedInterval.type == .run && !skippedToEnd { finishedRuns.insert(intervalIndex) }
             intervalIndex += 1
             if intervalIndex >= day.intervals.count {
                 // Pin a final Active frame to 0 before completing. If the screen locks, a
@@ -167,7 +174,11 @@ final class WorkoutEngine {
                     sessionId: sessionId
                 ))
                 if ttsEnabled { tts.announce(.workoutComplete) }
-                state = .completed(sessionId: sessionId, elapsedSessionSeconds: sessionElapsed)
+                let skippedRun = day.intervals.indices.contains {
+                    day.intervals[$0].type == .run && !finishedRuns.contains($0)
+                }
+                state = .completed(sessionId: sessionId, elapsedSessionSeconds: sessionElapsed,
+                                   skippedRun: skippedRun)
                 return false
             }
             // Start the next interval at the boundary, not at this tick, so the few milliseconds

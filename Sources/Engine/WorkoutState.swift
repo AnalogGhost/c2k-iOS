@@ -4,7 +4,9 @@ enum WorkoutState {
     case idle
     case active(ActiveSnapshot)
     case paused(snapshot: ActiveSnapshot)
-    case completed(sessionId: UUID, elapsedSessionSeconds: Int)
+    /// `skippedRun`: a run interval was never run to its end, so the workout doesn't count
+    /// toward the runner's progress.
+    case completed(sessionId: UUID, elapsedSessionSeconds: Int, skippedRun: Bool)
 
     struct ActiveSnapshot {
         let currentInterval: Interval

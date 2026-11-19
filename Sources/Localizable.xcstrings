@@ -13449,6 +13449,59 @@
         }
       }
     },
+    "workout_skipped_run_not_counted": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast einen Lauf übersprungen, deshalb zählt dieses Training nicht für deinen Fortschritt. Wiederhole es, wenn du bereit bist."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You skipped a run, so this workout won't count toward your progress. Run it again when you're ready."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te saltaste una carrera, así que este entrenamiento no cuenta para tu progreso. Repítelo cuando quieras."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez sauté une course, cette séance ne compte donc pas dans votre progression. Refaites-la quand vous le souhaitez."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saltaches unha carreira, así que este adestramento non conta para o teu progreso. Repíteo cando queiras."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você pulou uma corrida, então este treino não conta para o seu progresso. Repita quando quiser."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы пропустили пробежку, поэтому эта тренировка не засчитывается в ваш прогресс. Повторите её, когда будете готовы."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir koşuyu atladınız, bu yüzden bu antrenman ilerlemenize sayılmaz. Hazır olduğunuzda tekrarlayın."
+          }
+        }
+      }
+    },
     "workout_skip_cooldown": {
       "extractionState": "manual",
       "localizations": {

@@ -224,11 +224,13 @@ final class WorkoutManager {
                         self.checkpoint(s, repository: repository)
                     }
 
-                case .completed(let sessionId, let elapsed):
+                case .completed(let sessionId, let elapsed, let skippedRun):
                     if vibrationEnabled { self.haptics.play(.workoutComplete) }
                     let distance = self.locationTracker?.totalDistanceMeters ?? 0
+                    // A skipped run means the day's work wasn't done: it's saved as an early stop,
+                    // so the runner repeats the day rather than moving on.
                     repository.finishSession(id: sessionId, durationSeconds: elapsed,
-                                             distanceMeters: distance, completed: true)
+                                             distanceMeters: distance, completed: !skippedRun)
                     // Let the final "Workout complete" announcement (or chime) finish before
                     // cleanup() calls cuePlayer.shutdown(), which would otherwise cut the cue
                     // off. Bounded so a stuck TTS engine can't hang.

@@ -97,6 +97,23 @@ final class WorkoutManagerTests: XCTestCase {
         XCTAssertEqual(repo.completedDays(programId: Programs.idC25K), [WeekDay(week: 1, day: 1)])
     }
 
+    func testAWorkoutWithASkippedRunIsSavedAsAnEarlyStop() async {
+        start(shortDay([.run, .walk], seconds: 300))
+        await waitUntil { if case .active = manager.workoutState { return true }; return false }
+        manager.skipToNextInterval()
+        await waitUntil {
+            if case .active(let s) = manager.workoutState { return s.currentInterval.type == .walk }
+            return false
+        }
+        manager.skipToNextInterval()
+        await waitUntil { !manager.isRunning }
+
+        XCTAssertEqual(sessions.count, 1)
+        XCTAssertEqual(sessions.first?.completed, false)
+        XCTAssertNotNil(sessions.first?.completedAt, "ended by the runner, not by the app closing")
+        XCTAssertEqual(repo.completedDays(programId: Programs.idC25K), [])
+    }
+
     func testThePhoneVibratesAtEachIntervalChangeAndAtTheEnd() async {
         start(shortDay([.warmup, .run, .walk]))
         await waitUntil { !manager.isRunning }
