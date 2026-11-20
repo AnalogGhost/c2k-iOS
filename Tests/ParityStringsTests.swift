@@ -32,6 +32,8 @@ final class ParityStringsTests: XCTestCase {
             "settings_skip_warmup", "settings_skip_cooldown", "settings_skip_warmup_cooldown_caption",
             "settings_periodic_time_cues", "settings_periodic_time_cue_interval",
             "workout_skip_warmup", "workout_skip_cooldown", "workout_skip_back", "workout_skip_next", "workout_skipped_run_not_counted",
+            "settings_backup", "settings_backup_caption", "settings_backup_export", "settings_backup_import",
+            "backup_export_done", "backup_export_failed", "backup_import_nothing_new", "backup_import_failed", "backup_import_too_new",
             "settings_tts_enabled", "settings_cue_style", "settings_cue_style_voice", "settings_cue_style_tones",
             "settings_cue_style_tones_caption", "settings_tone_volume", "settings_test_tones",
             "guide_q_tones", "guide_a_tones",

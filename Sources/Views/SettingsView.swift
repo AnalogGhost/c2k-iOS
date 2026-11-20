@@ -12,6 +12,11 @@ struct SettingsView: View {
     @State private var watchCuesDenied = false
     @State private var pendingRestartLanguage: AppLanguage?
     @State private var languageBeforeChange: AppLanguage?
+    @Environment(\.modelContext) private var context
+    @State private var backupDocument: BackupDocument?
+    @State private var showingBackupExporter = false
+    @State private var showingBackupImporter = false
+    @State private var backupMessage: String?
 
     var body: some View {
         @Bindable var prefs = prefs
@@ -223,6 +228,8 @@ struct SettingsView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
+
+            backupSection
         }
         .navigationTitle("Settings")
         .accessibilityIdentifier("screen-settings")
@@ -249,6 +256,72 @@ struct SettingsView: View {
             }
         } message: {
             Text("settings_language_restart_body")
+        }
+    }
+
+    // The exporter, importer and alert each sit on their own view: SwiftUI drops all but one of
+    // several file dialogs attached to the same view.
+    private var backupSection: some View {
+        Section(String(localized: "settings_backup")) {
+            Button(String(localized: "settings_backup_export")) { prepareBackupExport() }
+                .accessibilityIdentifier("settings-export-backup")
+                .fileExporter(
+                    isPresented: $showingBackupExporter,
+                    document: backupDocument,
+                    contentType: .json,
+                    defaultFilename: Backup.fileName()
+                ) { result in
+                    switch result {
+                    case .success:
+                        backupMessage = String(localized: "backup_export_done")
+                    case .failure(let error):
+                        if (error as? CocoaError)?.code != .userCancelled {
+                            backupMessage = String(localized: "backup_export_failed")
+                        }
+                    }
+                    backupDocument = nil
+                }
+            Button(String(localized: "settings_backup_import")) { showingBackupImporter = true }
+                .accessibilityIdentifier("settings-import-backup")
+                // Some apps save .json files as plain text or untyped data.
+                .fileImporter(isPresented: $showingBackupImporter,
+                              allowedContentTypes: [.json, .plainText, .data]) { result in
+                    if case .success(let url) = result { importBackup(from: url) }
+                }
+            Text("settings_backup_caption")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .alert(backupMessage ?? "", isPresented: Binding(
+            get: { backupMessage != nil },
+            set: { if !$0 { backupMessage = nil } }
+        )) {
+            Button("OK", role: .cancel) {}
+        }
+    }
+
+    private func prepareBackupExport() {
+        do {
+            backupDocument = BackupDocument(data: try SessionRepository(context: context).exportBackup().encoded())
+            showingBackupExporter = true
+        } catch {
+            backupMessage = String(localized: "backup_export_failed")
+        }
+    }
+
+    private func importBackup(from url: URL) {
+        let accessing = url.startAccessingSecurityScopedResource()
+        defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+        do {
+            let backup = try Backup.decode(Data(contentsOf: url))
+            let added = try SessionRepository(context: context).importBackup(backup)
+            backupMessage = added == 0
+                ? String(localized: "backup_import_nothing_new")
+                : String.localizedStringWithFormat(NSLocalizedString("backup_import_done", comment: ""), added)
+        } catch Backup.ReadError.newerVersion {
+            backupMessage = String(localized: "backup_import_too_new")
+        } catch {
+            backupMessage = String(localized: "backup_import_failed")
         }
     }
 

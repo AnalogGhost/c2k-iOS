@@ -38,6 +38,29 @@ final class FeatureUITests: XCTestCase {
 
     // MARK: - Settings
 
+    func testExportingABackupOpensTheSaveDialog() {
+        launch()
+        open("nav-settings", screen: "screen-settings")
+
+        let export = app.buttons["settings-export-backup"]
+        scrollTo(export)
+        XCTAssertTrue(export.isHittable)
+        XCTAssertTrue(app.buttons["settings-import-backup"].exists)
+        let settings = XCTAttachment(screenshot: app.screenshot())
+        settings.name = "backup-settings"; settings.lifetime = .keepAlways
+        add(settings)
+
+        export.tap()
+        // The system save dialog, offering the dated file name.
+        let fileName = app.descendants(matching: .any)
+            .matching(NSPredicate(format: "value BEGINSWITH 'c2k-backup-' OR label BEGINSWITH 'c2k-backup-'")).firstMatch
+        let shown = fileName.waitForExistence(timeout: 10)
+        let dialog = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        dialog.name = "backup-save-dialog"; dialog.lifetime = .keepAlways
+        add(dialog)
+        XCTAssertTrue(shown, "the save dialog should offer the backup's file name")
+    }
+
     func testChoosingTonesSwapsTheVoiceControlsForTestTones() {
         launch()
         open("nav-settings", screen: "screen-settings")

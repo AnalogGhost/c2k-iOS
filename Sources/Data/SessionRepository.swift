@@ -142,6 +142,73 @@ final class SessionRepository {
         try? context.save()
     }
 
+    /// Every workout and its route, oldest first, for the runner to keep as a file.
+    func exportBackup(exportedAt: Date = .now) -> Backup {
+        let sessions = (try? context.fetch(FetchDescriptor<WorkoutSession>(sortBy: [SortDescriptor(\.startedAt)]))) ?? []
+        return Backup(exportedAt: exportedAt.millisecondsSince1970, sessions: sessions.map { session in
+            Backup.Session(
+                programId: session.programId,
+                week: session.week,
+                day: session.day,
+                startedAt: session.startedAt.millisecondsSince1970,
+                completedAt: session.completedAt?.millisecondsSince1970,
+                durationSeconds: session.durationSeconds,
+                distanceMeters: session.distanceMeters,
+                completed: session.completed,
+                route: fetchRoutePoints(sessionId: session.id).map {
+                    Backup.Point(
+                        latitude: $0.latitude,
+                        longitude: $0.longitude,
+                        altitudeMeters: $0.altitudeMeters,
+                        speedMps: $0.speedMps.map(Double.init),
+                        recordedAt: $0.timestamp.millisecondsSince1970
+                    )
+                }
+            )
+        })
+    }
+
+    /// Adds a backup's workouts to the history, all or none. Merges rather than replaces: a
+    /// workout already here (same program and start time) is skipped, so importing the same file
+    /// twice, or into a phone that's already been used, does no harm. Workouts from a program this
+    /// version doesn't have are skipped too. Returns how many workouts were added.
+    func importBackup(_ backup: Backup) throws -> Int {
+        struct Key: Hashable { let programId: String; let startedAt: Int64 }
+        let existingSessions = try context.fetch(FetchDescriptor<WorkoutSession>())
+        var existing = Set(existingSessions.map { Key(programId: $0.programId, startedAt: $0.startedAt.millisecondsSince1970) })
+        let knownPrograms = Set(Programs.all().map(\.programId))
+        var added = 0
+        for item in backup.sessions {
+            guard knownPrograms.contains(item.programId), item.week >= 1, item.day >= 1,
+                  existing.insert(Key(programId: item.programId, startedAt: item.startedAt)).inserted
+            else { continue }
+            let session = WorkoutSession(programId: item.programId, week: item.week, day: item.day)
+            session.startedAt = Date(millisecondsSince1970: item.startedAt)
+            session.completedAt = item.completedAt.map(Date.init(millisecondsSince1970:))
+            session.durationSeconds = item.durationSeconds
+            session.distanceMeters = item.distanceMeters
+            session.completed = item.completed
+            context.insert(session)
+            for point in item.route {
+                context.insert(RoutePoint(sessionId: session.id, update: LocationUpdate(
+                    latitude: point.latitude,
+                    longitude: point.longitude,
+                    altitudeMeters: point.altitudeMeters,
+                    speedMps: point.speedMps.map(Float.init),
+                    timestamp: Date(millisecondsSince1970: point.recordedAt)
+                )))
+            }
+            added += 1
+        }
+        do {
+            try context.save()
+        } catch {
+            context.rollback()
+            throw error
+        }
+        return added
+    }
+
     private func fetchSession(id: UUID) -> WorkoutSession? {
         let descriptor = FetchDescriptor<WorkoutSession>(
             predicate: #Predicate { $0.id == id }
