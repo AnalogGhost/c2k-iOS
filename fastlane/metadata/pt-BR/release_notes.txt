@@ -1,6 +1,3 @@
-• Novo: distância e ritmo a cada 500 m ou 1 km. Configurações → Avisos de distância e ritmo.
-• A exportação de rotas agora envia um arquivo .gpx que apps de mapas como OsmAnd e Organic Maps conseguem abrir.
-• A música de outros apps, como o Spotify, volta ao volume normal depois de cada aviso falado em vez de ficar baixa.
-• Uma corrida interrompida quando o iOS fecha o app agora é mantida.
-• Os avisos são falados em inglês se o iPhone não tiver voz para o idioma do app.
-• Corrigido: GPS ligado no meio da corrida, vírgula decimal no peso, intervalos um pouco mais longos e o início de um aviso cortado.
+• Novo: avance ou volte entre os intervalos durante o treino com Anterior e Próximo.
+• Um treino só conta como concluído se você correr todos os intervalos de corrida. Voltar para repetir um tudo bem; pular um, não.
+• Novo: salve seu histórico de treinos em um arquivo e restaure-o, até em um celular novo. Configurações → Backup. Backups do Android e do iPhone funcionam nos dois apps.

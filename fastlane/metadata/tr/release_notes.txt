@@ -1,6 +1,3 @@
-• Yeni: her 500 m veya 1 km'de mesafe ve tempo. Ayarlar → Mesafe ve tempo bildirimleri.
-• Rota dışa aktarma artık OsmAnd ve Organic Maps gibi harita uygulamalarının açabildiği bir .gpx dosyası gönderiyor.
-• Spotify gibi diğer uygulamalardaki müzik, her sesli bildirimden sonra kısık kalmak yerine eski sesine döner.
-• iOS uygulamayı kapattığı için yarıda kalan koşu artık saklanır.
-• iPhone'da uygulamanın dili için ses yoksa bildirimler İngilizce okunur.
-• Düzeltildi: koşu sırasında açılan GPS, kiloda ondalık virgül, biraz uzun süren aralıklar ve kesilen bildirim başlangıcı.
+• Yeni: antrenman sırasında Önceki ve Sonraki ile aralıklar arasında ileri veya geri geç.
+• Bir antrenman ancak her koşu aralığını koşarsan tamamlanmış sayılır. Geri dönüp birini tekrarlamak olur, birini atlamak olmaz.
+• Yeni: antrenman geçmişini bir dosyaya kaydet ve geri yükle, yeni bir telefonda bile. Ayarlar → Yedek. Android ve iPhone yedekleri iki uygulamada da çalışır.

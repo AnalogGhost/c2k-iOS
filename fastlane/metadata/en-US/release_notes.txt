@@ -1,6 +1,3 @@
-• New: hear your distance and pace every 500 m or 1 km. Settings → Distance and pace updates.
-• Route export now sends a .gpx file that map apps such as OsmAnd and Organic Maps can open.
-• Music from other apps, such as Spotify, returns to full volume after each spoken cue instead of staying quiet.
-• A run cut short when iOS closes the app is now kept.
-• Cues are spoken in English when the iPhone has no voice for the app's language.
-• Fixed: GPS switched on mid-run, decimal commas in weight, intervals running slightly long, the start of a cue being cut off.
+• New: skip forwards or back through intervals during a workout with Previous and Next.
+• A workout counts as done only if you run every run interval. Going back to repeat one is fine; skipping one is not.
+• New: save your workout history to a file and restore it, even on a new phone. Settings → Backup. Android and iPhone backups work in either app.
