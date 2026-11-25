@@ -230,6 +230,14 @@ struct SettingsView: View {
             }
 
             backupSection
+
+            Section {
+                // A plain link to the App Store page, not a prompt: Apple allows only its own.
+                Link(destination: ShareLinks.writeReview) {
+                    Label(String(localized: "settings_rate"), systemImage: "star")
+                }
+                .accessibilityIdentifier("settings-rate")
+            }
         }
         .navigationTitle("Settings")
         .accessibilityIdentifier("screen-settings")

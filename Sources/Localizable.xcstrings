@@ -15841,6 +15841,276 @@
           }
         }
       }
+    },
+    "celebration_title": {
+      "comment": "Completed screen title after a program's last workout; %@ is the program name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You finished %@!"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast %@ geschafft!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Has terminado %@!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez terminé %@ !"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remataches %@!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você concluiu %@!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы завершили программу «%@»!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ programını bitirdin!"
+          }
+        }
+      }
+    },
+    "celebration_message": {
+      "comment": "Under the program-finished title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You've done every workout in the program. Congratulations!"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast jedes Training des Programms absolviert. Herzlichen Glückwunsch!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Has completado todos los entrenamientos del programa. ¡Enhorabuena!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez fait toutes les séances du programme. Félicitations !"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fixeches todos os adestramentos do programa. Parabéns!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você fez todos os treinos do programa. Parabéns!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы прошли все тренировки программы. Поздравляем!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Programdaki her antrenmanı tamamladın. Tebrikler!"
+          }
+        }
+      }
+    },
+    "celebration_share": {
+      "comment": "Button that opens the share sheet after finishing a program",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teilen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compartir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partager"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compartir"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compartilhar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поделиться"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paylaş"
+          }
+        }
+      }
+    },
+    "celebration_share_text": {
+      "comment": "Text shared after finishing a program; %@ is the program name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I just finished %@ with C2K, a free open-source running coach with no ads or tracking: https://hackerapps.com/apps/c2k/"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich habe gerade %@ mit C2K geschafft, einem kostenlosen Open-Source-Lauftrainer ohne Werbung und Tracking: https://hackerapps.com/apps/c2k/"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acabo de terminar %@ con C2K, un entrenador de carrera gratuito y de código abierto, sin anuncios ni rastreo: https://hackerapps.com/apps/c2k/"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je viens de terminer %@ avec C2K, un coach de course gratuit et open source, sans pub ni pistage : https://hackerapps.com/apps/c2k/"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acabo de rematar %@ con C2K, un adestrador de carreira gratuíto e de código aberto, sen anuncios nin rastrexo: https://hackerapps.com/apps/c2k/"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acabei de concluir %@ com o C2K, um treinador de corrida gratuito e de código aberto, sem anúncios nem rastreamento: https://hackerapps.com/apps/c2k/"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Я только что завершил(а) программу «%@» в C2K — бесплатном тренере по бегу с открытым кодом, без рекламы и слежки: https://hackerapps.com/apps/c2k/"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C2K ile %@ programını bitirdim. C2K reklamsız, takipsiz, ücretsiz ve açık kaynaklı bir koşu koçu: https://hackerapps.com/apps/c2k/"
+          }
+        }
+      }
+    },
+    "settings_rate": {
+      "comment": "Settings row that opens the app's store page to leave a review",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rate C2K"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C2K bewerten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valorar C2K"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noter C2K"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valorar C2K"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaliar o C2K"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оценить C2K"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C2K'yı değerlendir"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

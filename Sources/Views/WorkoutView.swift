@@ -1,6 +1,7 @@
 import SwiftUI
 import CoreLocation
 import SwiftData
+import StoreKit
 
 struct WorkoutView: View {
     let programId: String
@@ -12,10 +13,12 @@ struct WorkoutView: View {
     @Environment(WorkoutManager.self) private var workoutManager
     @Environment(\.modelContext) private var context
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @Environment(\.requestReview) private var requestReview
 
     @State private var permissionResolved = false
     @State private var showStopDialog = false
     @State private var personalBest: WorkoutSession?
+    @State private var celebration: Celebration?
     @State private var locationManager = CLLocationManager()
 
     private var programName: String {
@@ -60,9 +63,14 @@ struct WorkoutView: View {
                     distanceMeters: workoutManager.distanceMeters,
                     weightKg: prefs.weightKg,
                     personalBest: personalBest,
+                    celebration: celebration,
+                    programName: programName,
                     onDone: { path.removeAll() }
                 )
-                .onAppear { loadPersonalBest(excluding: sessionId) }
+                .onAppear {
+                    loadPersonalBest(excluding: sessionId)
+                    celebrateIfDue()
+                }
             default:
                 Text(workoutManager.isRunning ? "Reconnecting…" : "Starting…")
                     .foregroundStyle(.secondary)
@@ -113,6 +121,16 @@ struct WorkoutView: View {
             programId: programId, week: week, day: day,
             prefs: prefs, repository: repo
         )
+    }
+
+    /// Works out whether this workout finished a program or week 3, and if so asks iOS for its
+    /// review prompt once the screen has settled. iOS decides whether the prompt actually shows.
+    private func celebrateIfDue() {
+        guard celebration == nil else { return }
+        celebration = CelebrationTrigger.evaluate(after: workoutManager.workoutState,
+                                                  plan: Programs.byId(programId), week: week, day: day)
+        guard celebration != nil else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { requestReview() }
     }
 
     private func loadPersonalBest(excluding sessionId: UUID) {
@@ -367,16 +385,23 @@ private struct CompletedContent: View {
     let distanceMeters: Double
     let weightKg: Double?
     let personalBest: WorkoutSession?
+    let celebration: Celebration?
+    let programName: String
     let onDone: () -> Void
+
+    private var finishedProgram: Bool { celebration == .programFinished }
 
     var body: some View {
         Spacer()
 
         VStack(spacing: 8) {
-            Text("Workout Complete!")
+            Text(finishedProgram ? String(format: String(localized: "celebration_title"), programName)
+                                 : String(localized: "Workout Complete!"))
                 .font(.largeTitle.bold())
                 .foregroundColor(.greenText)
-            Text(skippedRun ? LocalizedStringKey("workout_skipped_run_not_counted") : "Great job! Keep up the good work.")
+                .multilineTextAlignment(.center)
+                .accessibilityIdentifier("workout-complete-title")
+            Text(message)
                 .font(.body).foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
                 .accessibilityIdentifier("workout-complete-message")
@@ -418,9 +443,24 @@ private struct CompletedContent: View {
 
         Spacer()
 
-        Button("Done", action: onDone)
-            .buttonStyle(.borderedProminent)
-            .padding(.horizontal, 40)
+        VStack(spacing: 12) {
+            if finishedProgram {
+                ShareLink(item: String(format: String(localized: "celebration_share_text"), programName)) {
+                    Label(String(localized: "celebration_share"), systemImage: "square.and.arrow.up")
+                }
+                .buttonStyle(.bordered)
+                .accessibilityIdentifier("celebration-share")
+            }
+            Button("Done", action: onDone)
+                .buttonStyle(.borderedProminent)
+        }
+        .padding(.horizontal, 40)
+    }
+
+    private var message: String {
+        if skippedRun { return String(localized: "workout_skipped_run_not_counted") }
+        if finishedProgram { return String(localized: "celebration_message") }
+        return String(localized: "Great job! Keep up the good work.")
     }
 }
 

@@ -21,7 +21,7 @@ enum ScreenshotSeed {
         // may have changed: each launch starts from the same state.
         for key in ["cue_style", "countdown_warning_2_enabled", "skip_warmup", "skip_cooldown",
                     "skip_warmup_cooldown", "smartwatch_cues", "vibration_enabled",
-                    "repeated_week", "progression_dismissed_at", "tts_enabled"] {
+                    "repeated_week", "progression_dismissed_at", "tts_enabled", "week3_celebrated"] {
             d.removeObject(forKey: key)
         }
     }

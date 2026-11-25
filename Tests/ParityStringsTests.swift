@@ -39,6 +39,7 @@ final class ParityStringsTests: XCTestCase {
             "guide_q_tones", "guide_a_tones",
             "progression_title", "progression_body_pre_c25k", "progression_action_pre_c25k", "progression_action_dismiss",
             "settings_vibration_smartwatch", "settings_vibration_watch_caption",
+            "celebration_message", "celebration_share", "settings_rate",
         ]
         for language in Self.languages {
             for key in keys {
@@ -106,6 +107,19 @@ final class ParityStringsTests: XCTestCase {
         XCTAssertEqual(english, "Skip warm-up")
         for language in Self.languages where language != "en" {
             XCTAssertNotEqual(string(key, language), english, language)
+        }
+    }
+
+    func testCelebrationStringsNameTheProgramInEveryLanguage() {
+        for language in Self.languages {
+            for key in ["celebration_title", "celebration_share_text"] {
+                guard let format = string(key, language) else { XCTFail("\(key) missing in \(language)"); continue }
+                let text = String(format: format, "Couch to 5K")
+                XCTAssertTrue(text.contains("Couch to 5K"), "\(key)/\(language): \(text)")
+                XCTAssertFalse(text.contains("%"), "\(key)/\(language): \(text)")
+            }
+            XCTAssertTrue(string("celebration_share_text", language)?.hasSuffix(ShareLinks.website.absoluteString) ?? false,
+                          "the shared text should end with the website link in \(language)")
         }
     }
 
