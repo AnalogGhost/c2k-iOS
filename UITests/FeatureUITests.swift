@@ -61,6 +61,15 @@ final class FeatureUITests: XCTestCase {
         XCTAssertTrue(shown, "the save dialog should offer the backup's file name")
     }
 
+    func testSettingsHasARateRow() {
+        launch()
+        open("nav-settings", screen: "screen-settings")
+        let rate = element("settings-rate")
+        scrollTo(rate, maxSwipes: 12)
+        XCTAssertTrue(rate.isHittable)
+        XCTAssertTrue(rate.label.contains("Rate C2K"))
+    }
+
     func testChoosingTonesSwapsTheVoiceControlsForTestTones() {
         launch()
         open("nav-settings", screen: "screen-settings")
@@ -176,6 +185,34 @@ final class FeatureUITests: XCTestCase {
         XCTAssertTrue(app.buttons["workout-pause"].exists)
 
         app.buttons["workout-pause"].tap()
+    }
+
+    /// Runs one C25K workout to its end on the fast clock, without skipping anything.
+    private func finishWorkout(week: Int, day: Int) {
+        launch(["--fast-workout"])
+        app.buttons["program-C25K"].tap()
+        // The list is lazy, so a later week's days only exist once scrolled to.
+        XCTAssertTrue(app.buttons["day-3-3"].waitForExistence(timeout: 10))
+        let dayButton = app.buttons["day-\(week)-\(day)"]
+        scrollTo(dayButton, maxSwipes: 15)
+        XCTAssertTrue(dayButton.isHittable)
+        dayButton.tap()
+        XCTAssertTrue(app.buttons["start-workout"].waitForExistence(timeout: 10))
+        app.buttons["start-workout"].tap()
+        XCTAssertTrue(element("workout-complete-title").waitForExistence(timeout: 60),
+                      "the workout didn't finish")
+    }
+
+    func testFinishingTheLastWorkoutCelebratesTheProgram() {
+        finishWorkout(week: 9, day: 3)
+        XCTAssertEqual(element("workout-complete-title").label, "You finished Couch to 5K!")
+        XCTAssertTrue(app.buttons["celebration-share"].exists)
+    }
+
+    func testAnOrdinaryWorkoutIsNotCelebrated() {
+        finishWorkout(week: 4, day: 1)
+        XCTAssertEqual(element("workout-complete-title").label, "Workout Complete!")
+        XCTAssertFalse(app.buttons["celebration-share"].exists)
     }
 
     // MARK: - Localisation

@@ -125,7 +125,8 @@ final class WorkoutManager {
             countdownWarning2Enabled: prefs.countdownWarning2Enabled,
             midIntervalCues: prefs.midIntervalCues,
             periodicTimeCues: prefs.periodicTimeCues,
-            periodicTimeCueIntervalSeconds: prefs.periodicTimeCueInterval
+            periodicTimeCueIntervalSeconds: prefs.periodicTimeCueInterval,
+            clock: Self.workoutClock()
         )
         engine = eng
         eng.start(sessionId: sessionId)
@@ -133,6 +134,18 @@ final class WorkoutManager {
         startPolling(vibrationEnabled: prefs.vibrationEnabled,
                      notifyWatch: prefs.vibrationEnabled && prefs.smartwatchCues,
                      repository: repository)
+    }
+
+    /// The engine's clock. UI tests launch with `--fast-workout` (debug builds only) to run a
+    /// workout 600 times faster, so they can finish one without skipping its runs.
+    private static func workoutClock() -> () -> Date {
+        #if DEBUG
+        if CommandLine.arguments.contains("--fast-workout") {
+            let start = Date()
+            return { start.addingTimeInterval(Date().timeIntervalSince(start) * 600) }
+        }
+        #endif
+        return { .now }
     }
 
     func pause() {
