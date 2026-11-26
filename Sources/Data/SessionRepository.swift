@@ -103,6 +103,11 @@ final class SessionRepository {
         return Set(sessions.map { WeekDay(week: $0.week, day: $0.day) })
     }
 
+    func sessions(programId: String) -> [WorkoutSession] {
+        let descriptor = FetchDescriptor<WorkoutSession>(predicate: #Predicate { $0.programId == programId })
+        return (try? context.fetch(descriptor)) ?? []
+    }
+
     func bestSession(programId: String, week: Int, day: Int, excluding: UUID? = nil) -> WorkoutSession? {
         let descriptor = FetchDescriptor<WorkoutSession>(
             predicate: #Predicate {

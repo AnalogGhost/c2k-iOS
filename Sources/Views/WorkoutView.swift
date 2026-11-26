@@ -19,6 +19,7 @@ struct WorkoutView: View {
     @State private var showStopDialog = false
     @State private var personalBest: WorkoutSession?
     @State private var celebration: Celebration?
+    @State private var programSummary: ProgramSummary?
     @State private var locationManager = CLLocationManager()
 
     private var programName: String {
@@ -65,11 +66,17 @@ struct WorkoutView: View {
                     personalBest: personalBest,
                     celebration: celebration,
                     programName: programName,
+                    programSummary: programSummary,
+                    nextPrograms: Programs.nextPrograms(after: programId).map(Programs.byId),
+                    onOpenProgram: { path = [.program(programId: $0)] },
                     onDone: { path.removeAll() }
                 )
                 .onAppear {
                     loadPersonalBest(excluding: sessionId)
                     celebrateIfDue()
+                    if celebration == .programFinished {
+                        loadProgramSummary(currentId: sessionId, durationSeconds: elapsed)
+                    }
                 }
             default:
                 Text(workoutManager.isRunning ? "Reconnecting…" : "Starting…")
@@ -130,7 +137,16 @@ struct WorkoutView: View {
         celebration = CelebrationTrigger.evaluate(after: workoutManager.workoutState,
                                                   plan: Programs.byId(programId), week: week, day: day)
         guard celebration != nil else { return }
+        // UI tests and screenshots run on seeded data; iOS's review sheet would cover the screen.
+        if CommandLine.arguments.contains("--screenshot-seed") { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { requestReview() }
+    }
+
+    private func loadProgramSummary(currentId: UUID, durationSeconds: Int) {
+        let sessions = SessionRepository(context: context).sessions(programId: programId)
+        programSummary = ProgramSummary.of(sessions: sessions, programId: programId, currentId: currentId,
+                                           durationSeconds: durationSeconds,
+                                           distanceMeters: workoutManager.distanceMeters)
     }
 
     private func loadPersonalBest(excluding sessionId: UUID) {
@@ -387,13 +403,36 @@ private struct CompletedContent: View {
     let personalBest: WorkoutSession?
     let celebration: Celebration?
     let programName: String
+    let programSummary: ProgramSummary?
+    let nextPrograms: [WorkoutPlan]
+    let onOpenProgram: (String) -> Void
     let onDone: () -> Void
 
     private var finishedProgram: Bool { celebration == .programFinished }
 
     var body: some View {
-        Spacer()
+        if finishedProgram {
+            // The program totals and next programs make this screen taller than a small phone.
+            ScrollView {
+                VStack(spacing: 24) {
+                    header
+                    workoutStats
+                    if let programSummary { totals(programSummary) }
+                    if !nextPrograms.isEmpty { nextProgramButtons }
+                    buttons
+                }
+                .padding(.vertical, 8)
+            }
+        } else {
+            Spacer()
+            header
+            workoutStats.padding(.top, 16)
+            Spacer()
+            buttons
+        }
+    }
 
+    private var header: some View {
         VStack(spacing: 8) {
             Text(finishedProgram ? String(format: String(localized: "celebration_title"), programName)
                                  : String(localized: "Workout Complete!"))
@@ -406,7 +445,9 @@ private struct CompletedContent: View {
                 .multilineTextAlignment(.center)
                 .accessibilityIdentifier("workout-complete-message")
         }
+    }
 
+    private var workoutStats: some View {
         VStack(spacing: 4) {
             Text(String(format: String(localized: "workout_complete_time"), formatTime(elapsedSeconds)))
                 .font(.title2.bold())
@@ -425,24 +466,62 @@ private struct CompletedContent: View {
                         .foregroundStyle(.secondary)
                 }
             }
-        }
-        .padding(.top, 16)
 
-        if let best = personalBest {
-            VStack(spacing: 4) {
-                if elapsedSeconds < best.durationSeconds {
-                    Text("New personal best!")
-                        .font(.headline)
-                        .foregroundColor(.greenText)
+            if let best = personalBest {
+                VStack(spacing: 4) {
+                    if elapsedSeconds < best.durationSeconds {
+                        Text("New personal best!")
+                            .font(.headline)
+                            .foregroundColor(.greenText)
+                    }
+                    Text(String(format: String(localized: "workout_previous_best"), formatTime(best.durationSeconds)))
+                        .font(.subheadline).foregroundStyle(.secondary)
                 }
-                Text(String(format: String(localized: "workout_previous_best"), formatTime(best.durationSeconds)))
-                    .font(.subheadline).foregroundStyle(.secondary)
+                .padding(.top, 8)
             }
-            .padding(.top, 8)
         }
+    }
 
-        Spacer()
+    private func totals(_ summary: ProgramSummary) -> some View {
+        VStack(spacing: 4) {
+            Text(String(localized: "celebration_totals")).font(.caption.bold()).foregroundStyle(.secondary)
+            HStack {
+                Spacer()
+                StatItem(value: "\(summary.workouts)", label: workoutsLabel(count: summary.workouts))
+                Spacer()
+                if summary.distanceMeters > 0 {
+                    StatItem(value: String(format: "%.1f", summary.distanceMeters / 1000), label: String(localized: "km"))
+                    Spacer()
+                }
+                StatItem(value: formatDuration(summary.durationSeconds), label: String(localized: "time"))
+                Spacer()
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("celebration-totals")
+    }
 
+    private var nextProgramButtons: some View {
+        VStack(spacing: 8) {
+            Text(String(localized: "celebration_next_title")).font(.headline)
+            ForEach(nextPrograms, id: \.programId) { plan in
+                Button { onOpenProgram(plan.programId) } label: {
+                    VStack(spacing: 2) {
+                        Text(plan.localizedName).font(.body.bold())
+                        Text(plan.localizedDescription)
+                            .font(.caption).foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 4)
+                }
+                .buttonStyle(.bordered)
+                .accessibilityIdentifier("celebration-next-\(plan.programId)")
+            }
+        }
+    }
+
+    private var buttons: some View {
         VStack(spacing: 12) {
             if finishedProgram {
                 ShareLink(item: String(format: String(localized: "celebration_share_text"), programName)) {

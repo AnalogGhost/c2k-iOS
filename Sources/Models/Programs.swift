@@ -26,6 +26,17 @@ enum Programs {
         }
     }
 
+    /// The programs to suggest once `programId` is finished, the closest fit first.
+    static func nextPrograms(after programId: String) -> [String] {
+        switch programId {
+        case idPreC25K:        return [idC25K]
+        case idC25K:           return [idB210K, idFiveKI]
+        case idB210K, idC210K: return [idOHR, idFiveKI]
+        case idFiveKI:         return [idB210K]
+        default:               return []
+        }
+    }
+
     static func all() -> [WorkoutPlan] {
         [preC25K, c25K, c210K, b210K, oneHourRunner, fiveKImprover]
     }

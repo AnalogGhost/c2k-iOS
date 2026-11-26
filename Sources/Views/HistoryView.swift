@@ -215,7 +215,7 @@ func workoutsLabel(count: Int) -> String {
     return String(counted[counted.index(after: space)...])
 }
 
-private struct StatItem: View {
+struct StatItem: View {
     let value: String
     let label: String
 
@@ -265,7 +265,7 @@ private struct SessionRow: View {
     }
 }
 
-private func formatDuration(_ totalSeconds: Int) -> String {
+func formatDuration(_ totalSeconds: Int) -> String {
     let h = totalSeconds / 3600
     let m = (totalSeconds % 3600) / 60
     let s = totalSeconds % 60

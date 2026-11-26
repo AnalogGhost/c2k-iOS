@@ -206,7 +206,18 @@ final class FeatureUITests: XCTestCase {
     func testFinishingTheLastWorkoutCelebratesTheProgram() {
         finishWorkout(week: 9, day: 3)
         XCTAssertEqual(element("workout-complete-title").label, "You finished Couch to 5K!")
+        // The seeded eight workouts plus this one.
+        XCTAssertTrue(element("celebration-totals").label.contains("9, workouts"), element("celebration-totals").label)
+        let shot = XCTAttachment(screenshot: app.screenshot())
+        shot.name = "program-finished"; shot.lifetime = .keepAlways
+        add(shot)
+
+        let next = app.buttons["celebration-next-B210K"]
+        scrollTo(next)
+        XCTAssertTrue(app.buttons["celebration-next-5KI"].exists)
         XCTAssertTrue(app.buttons["celebration-share"].exists)
+        next.tap()
+        XCTAssertTrue(app.buttons["day-1-1"].waitForExistence(timeout: 10), "Bridge to 10K didn't open")
     }
 
     func testAnOrdinaryWorkoutIsNotCelebrated() {

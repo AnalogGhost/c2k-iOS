@@ -39,7 +39,8 @@ final class ParityStringsTests: XCTestCase {
             "guide_q_tones", "guide_a_tones",
             "progression_title", "progression_body_pre_c25k", "progression_action_pre_c25k", "progression_action_dismiss",
             "settings_vibration_smartwatch", "settings_vibration_watch_caption",
-            "celebration_message", "celebration_share", "settings_rate",
+            "celebration_message", "celebration_share", "settings_rate", "celebration_totals",
+            "celebration_next_title",
         ]
         for language in Self.languages {
             for key in keys {

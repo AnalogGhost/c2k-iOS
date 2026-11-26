@@ -119,7 +119,9 @@ struct HomeView: View {
             .navigationDestination(for: AppRoute.self) { route in
                 switch route {
                 case .program(let id):
-                    ProgramSelectView(programId: id, path: $path)
+                    // Keyed by program, so a program opened from another's finished screen starts
+                    // at the top instead of keeping the other's scroll position.
+                    ProgramSelectView(programId: id, path: $path).id(id)
                 case .workout(let id, let week, let day):
                     WorkoutView(programId: id, week: week, day: day, path: $path)
                 case .history:
