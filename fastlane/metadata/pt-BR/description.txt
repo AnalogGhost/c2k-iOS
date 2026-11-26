@@ -1,4 +1,4 @@
-O C2K é um treinador de corrida gratuito e de código aberto para iOS que te guia do sofá até correr 5 km, 10 km e além — sem anúncios e sem rastreamento.
+O C2K é um treinador de corrida offline que leva iniciantes do sofá até correr 5 km, 10 km e além. Os seis programas de treino estão incluídos, sem assinatura, sem compras no app e sem conta. As instruções por voz te guiam em cada treino sem precisar olhar o celular, e seus treinos ficam no seu dispositivo, a menos que você exporte um backup. O C2K é gratuito e de código aberto, sem anúncios e sem rastreamento.
 
 Programas:
 • Pre-C25K — início suave de 3 semanas para iniciantes absolutos
@@ -13,15 +13,21 @@ Recursos:
 • Treinamento personalizável — ajuste a velocidade/volume da voz, o momento dos avisos de contagem regressiva e os avisos intermediários
 • Teste a voz antes de um treino
 • Avisos por vibração como alternativa ou complemento à voz
+• Modo Tons — sons curtos em vez de voz nas trocas de intervalo e nas contagens regressivas
+• Alertas no Apple Watch — uma notificação a cada troca de intervalo, para o relógio vibrar no seu pulso
 • Ajuste a intensidade da vibração e o idioma
 • Cronômetro de treino em segundo plano — continua com a tela desligada
 • Controles na tela bloqueada — veja o progresso do intervalo e pause/retome pela tela bloqueada ou pela Central de Controle
 • Rastreamento por GPS (opcional) — registra distância e ritmo; também funciona sem GPS
 • Modo esteira — para treinos internos sem GPS
+• Pule o aquecimento ou o desaquecimento — nas Configurações ou com um toque durante o treino
+• Navegue entre intervalos — avance, ou volte para repetir uma corrida, durante o treino
 • Histórico de treinos — registro de sessões com distância total, tempo, melhor ritmo, corrida mais longa e calorias estimadas
 • Acompanhamento de progresso — lembra quais semanas e dias você já completou, com opção de redefinir
+• Um passo atrás quando está difícil — interrompa o mesmo treino cedo duas vezes e o C2K sugere repetir a semana anterior
+• Backup — salve seu histórico de treinos e rotas em um arquivo e importe em um celular novo
 • Guia de corrida integrado — perguntas frequentes sobre ritmo, equipamentos e terminologia
 • Disponível em 8 idiomas — inglês, alemão, espanhol, francês, galego, português (Brasil), russo, turco
-• Totalmente offline — nenhum dado sai do seu aparelho
+• Funciona offline — o C2K nunca se conecta à internet
 
 C2K é software livre distribuído sob a licença GNU General Public License v3.

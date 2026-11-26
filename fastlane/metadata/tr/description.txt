@@ -1,4 +1,4 @@
-C2K, seni koltuğundan 5K, 10K ve ötesine koşmaya yönlendiren, iOS için ücretsiz ve açık kaynak bir koşu antrenörüdür — reklamsız ve takipsiz.
+C2K, yeni başlayanları koltuktan 5K, 10K ve ötesine taşıyan çevrimdışı bir koşu antrenörüdür. Altı antrenman programının hepsi dahildir; abonelik, uygulama içi satın alma ve hesap yoktur. Sesli yönlendirmeler telefona bakmanıza gerek kalmadan her antrenmanda size eşlik eder ve antrenmanlarınız siz bir yedek dışa aktarmadıkça cihazınızda kalır. C2K ücretsiz ve açık kaynaklıdır; reklam ve takip yoktur.
 
 Programlar:
 • 5K Ön Hazırlık — tam yeni başlayanlar için 3 haftalık hafif başlangıç
@@ -13,15 +13,21 @@ Programlar:
 • Özelleştirilebilir yönlendirme — ses hızını/düzeyini, geri sayım uyarı zamanlamasını ve aralık ortası ipuçlarını ayarlayın
 • Antrenmandan önce sesi test edin
 • Sese alternatif veya ek olarak titreşimli uyarılar; Hafif, Orta ve Güçlü güç seviyeleri
+• Tonlar modu — aralık değişimlerinde ve geri sayımlarda ses yerine kısa tonlar
+• Apple Watch uyarıları — her aralık değişiminde bir bildirim, böylece saatiniz bileğinizde titreşir
 • Cihaz dilinden bağımsız, elle dil seçimi
 • Arka planda çalışan antrenman zamanlayıcısı — ekran kapalıyken çalışmaya devam eder
 • Kilit ekranı denetimleri — aralık ilerlemesini görün, kilit ekranından ya da Kontrol Merkezi'nden duraklatın/sürdürün
 • GPS takibi (isteğe bağlı) — mesafe ve tempoyu kaydeder; GPS olmadan da çalışır
 • Koşu bandı modu — GPS olmadan kapalı alan koşuları
+• Isınmayı veya soğumayı atlayın — Ayarlar'dan veya antrenman sırasında tek dokunuşla
+• Aralıklar arasında geçiş — antrenman sırasında ileri atlayın ya da bir koşuyu tekrarlamak için geri dönün
 • Antrenman geçmişi — toplam mesafe, süre, en iyi tempo, en uzun koşu ve kalori tahminlerini içeren oturum günlüğü
 • İlerleme takibi — tamamladığınız haftaları ve günleri hatırlar, sıfırlama seçeneği sunar
+• Zorlandığınızda bir adım geri — aynı antrenmanı iki kez erken bırakırsanız C2K bir önceki haftayı tekrarlamayı önerir
+• Yedekleme — antrenman geçmişinizi ve rotalarınızı bir dosyaya kaydedin, yeni bir telefona aktarın
 • Uygulama içi koşu rehberi — tempo, ekipman ve terimleri kapsayan SSS
 • 8 dilde — İngilizce, Almanca, İspanyolca, Fransızca, Galiçyaca, Portekizce (Brezilya), Rusça, Türkçe
-• Tamamen çevrimdışı — hiçbir veri cihazından çıkmaz
+• Çevrimdışı çalışır — C2K internete hiç bağlanmaz
 
 C2K, GNU Genel Kamu Lisansı v3 altında yayınlanan özgür bir yazılımdır.

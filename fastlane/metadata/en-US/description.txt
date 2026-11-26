@@ -1,4 +1,4 @@
-C2K is a free, open-source running trainer for iOS that guides you from the couch to running 5K, 10K, and beyond — with no ads and no tracking.
+C2K is an offline running coach that takes beginners from the couch to running 5K, 10K, and beyond. All six training programs are included, with no subscription, no in-app purchases, and no account. Voice cues coach you through every workout without looking at your phone, and your workouts stay on your device unless you export a backup. C2K is free and open source, with no ads and no tracking.
 
 Programs:
 • Pre-C25K — 3-week gentle starter for absolute beginners
@@ -13,15 +13,21 @@ Features:
 • Customizable coaching — adjust voice speed/volume, countdown warning timing, and mid-interval cues
 • Test voice playback before a workout
 • Vibration cues as an alternative or addition to voice, with Light, Medium, and Strong strength presets
+• Tones mode — short chimes instead of a voice for interval changes and countdowns
+• Apple Watch alerts — a notification at each interval change, so your watch taps your wrist
 • Manual language selection, independent of your device language
 • Background workout timer — continues with the screen off
 • Lock screen controls — see interval progress and pause/resume from the lock screen or Control Center
 • GPS tracking (optional) — records distance and pace; works without GPS too
 • Treadmill mode — indoor runs without GPS
+• Skip the warm-up or cool-down — in Settings, or with one tap during a workout
+• Move between intervals — skip ahead, or go back to repeat a run, during a workout
 • Workout history — session log with total distance, time, best pace, longest run, and calorie estimates
 • Progress tracking — remembers which weeks and days you've completed, with the option to reset
+• Step back when it's tough — stop the same workout early twice and C2K suggests repeating the week before
+• Backup — save your workout history and routes to a file, and import it on a new phone
 • In-app running guide — FAQ covering pacing, gear, and terminology
 • Available in 8 languages — English, German, Spanish, French, Galician, Portuguese (Brazil), Russian, Turkish
-• Works entirely offline — no data ever leaves your device
+• Works offline — C2K never connects to the internet
 
 C2K is free software released under the GNU General Public License v3.
