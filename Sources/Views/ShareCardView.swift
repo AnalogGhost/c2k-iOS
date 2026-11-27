@@ -159,6 +159,7 @@ struct ShareCardSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") { dismiss() }
+                        .accessibilityIdentifier("share-card-done")
                 }
             }
         }

@@ -8,7 +8,8 @@
     {"name": "05_music", "main": "07_settings", "back": "04_workout"},
     {"name": "06_watch", "main": "04_workout", "watch": "watch:watch"},
     {"name": "07_guide", "main": "06_guide", "back": "03_preview"},
-    {"name": "08_progress", "main": "05_history", "back": "01_home"}
+    {"name": "08_progress", "main": "05_history", "back": "01_home"},
+    {"name": "09_share", "main": "09_share", "back": "05_history"}
   ],
   "copy": {
     "en-US": [
@@ -19,7 +20,8 @@
       ["Cues over|your {music.}", "Spoken cues or vibration. Your music dips, then returns."],
       ["Your watch|{buzzes too.}", "Alerts arrive as notifications. No watch app needed."],
       ["Not sure?|{Ask the guide.}", "Answers on pace, breathing, rest days and more."],
-      ["See how|far you've|{come.}", "Streaks, weekly totals and personal bests."]
+      ["See how|far you've|{come.}", "Streaks, weekly totals and personal bests."],
+      ["Share|{your run.}", "Your stats and route on a photo, made on your iPhone."]
     ],
     "de-DE": [
       ["{Laufen.}|Gehen.|Wiederholen.", "Vom Sofa zu 5 km, mit Ansagen für jeden Wechsel."],
@@ -29,7 +31,8 @@
       ["Ansagen über|deiner {Musik.}", "Sprachansagen oder Vibration. Die Musik wird leiser und kommt zurück."],
       ["Auch deine|Uhr {vibriert.}", "Hinweise kommen als Benachrichtigung. Keine Uhr-App nötig."],
       ["Unsicher?|{Frag den}|{Leitfaden.}", "Antworten zu Tempo, Atmung, Ruhetagen und mehr."],
-      ["Dein Fortschritt|auf einen {Blick.}", "Serien, Wochensummen und Bestleistungen."]
+      ["Dein Fortschritt|auf einen {Blick.}", "Serien, Wochensummen und Bestleistungen."],
+      ["Teile|{deinen Lauf.}", "Werte und Strecke auf einem Foto, erstellt auf deinem iPhone."]
     ],
     "es-ES": [
       ["{Corre.}|Camina.|Repite.", "Del sofá a los 5K, con avisos que te dicen cuándo cambiar."],
@@ -39,7 +42,8 @@
       ["Avisos sobre|tu {música.}", "Voz o vibración. Tu música baja y luego vuelve."],
       ["Tu reloj|{también vibra.}", "Los avisos llegan como notificaciones. Sin app para el reloj."],
       ["¿Dudas?|{Consulta}|{la guía.}", "Respuestas sobre ritmo, respiración, días de descanso y más."],
-      ["Mira cuánto|has {avanzado.}", "Rachas, totales semanales y mejores marcas."]
+      ["Mira cuánto|has {avanzado.}", "Rachas, totales semanales y mejores marcas."],
+      ["Comparte|{tu carrera.}", "Tus datos y tu ruta sobre una foto, creada en tu iPhone."]
     ],
     "fr-FR": [
       ["{Courez.}|Marchez.|Recommencez.", "Du canapé au 5 km, avec des signaux qui vous disent quand changer."],
@@ -49,7 +53,8 @@
       ["Des signaux|sur votre {musique.}", "Voix ou vibration. Votre musique baisse, puis revient."],
       ["Votre montre|{vibre aussi.}", "Les alertes arrivent en notifications. Aucune app de montre requise."],
       ["Un doute ?|{Le guide}|{répond.}", "Allure, respiration, jours de repos et plus encore."],
-      ["Voyez le|chemin {parcouru.}", "Séries, totaux hebdomadaires et records personnels."]
+      ["Voyez le|chemin {parcouru.}", "Séries, totaux hebdomadaires et records personnels."],
+      ["Partagez|{votre course.}", "Vos stats et votre parcours sur une photo, créée sur votre iPhone."]
     ],
     "pt-BR": [
       ["{Corra.}|Caminhe.|Repita.", "Do sofá aos 5K, com avisos que dizem quando trocar."],
@@ -59,7 +64,8 @@
       ["Avisos sobre|sua {música.}", "Voz ou vibração. Sua música abaixa e depois volta."],
       ["Seu relógio|{vibra também.}", "Os alertas chegam como notificações. Sem app no relógio."],
       ["Dúvidas?|{Veja o guia.}", "Respostas sobre ritmo, respiração, dias de descanso e mais."],
-      ["Veja até onde|você {chegou.}", "Sequências, totais semanais e recordes pessoais."]
+      ["Veja até onde|você {chegou.}", "Sequências, totais semanais e recordes pessoais."],
+      ["Compartilhe|{sua corrida.}", "Seus dados e seu percurso numa foto, criada no seu iPhone."]
     ],
     "ru": [
       ["{Бег.}|Шаг.|Повтор.", "От дивана до 5 км: подсказки скажут, когда сменить темп."],
@@ -69,7 +75,8 @@
       ["Подсказки|поверх {музыки.}", "Голос или вибрация. Музыка стихает, а потом возвращается."],
       ["Часы тоже|{вибрируют.}", "Оповещения приходят как уведомления. Приложение для часов не нужно."],
       ["Сомневаетесь?|{Загляните}|{в подсказки.}", "Темп, дыхание, дни отдыха и многое другое."],
-      ["Ваш прогресс|{как на ладони.}", "Серии, недельные итоги и личные рекорды."]
+      ["Ваш прогресс|{как на ладони.}", "Серии, недельные итоги и личные рекорды."],
+      ["Поделитесь|{пробежкой.}", "Результаты и маршрут на фото, созданном на вашем iPhone."]
     ],
     "tr": [
       ["{Koş.}|Yürü.|Tekrarla.", "Kanepeden 5K'ya, ne zaman geçeceğini söyleyen uyarılarla."],
@@ -79,7 +86,8 @@
       ["Uyarılar|müziğin {üstünde.}", "Ses veya titreşim. Müzik kısılır, sonra geri gelir."],
       ["Saatin de|{titreşir.}", "Uyarılar bildirim olarak gelir. Saat uygulaması gerekmez."],
       ["Aklında|soru mu var?|{Rehbere bak.}", "Tempo, nefes, dinlenme günleri ve daha fazlası."],
-      ["Ne kadar|ilerlediğini|{gör.}", "Seriler, haftalık toplamlar ve kişisel rekorlar."]
+      ["Ne kadar|ilerlediğini|{gör.}", "Seriler, haftalık toplamlar ve kişisel rekorlar."],
+      ["Koşunu|{paylaş.}", "İstatistiklerin ve rotan bir fotoğrafta, iPhone'unda hazırlanır."]
     ]
   }
 }

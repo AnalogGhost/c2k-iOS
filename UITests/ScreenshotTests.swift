@@ -30,6 +30,18 @@ final class ScreenshotTests: XCTestCase {
         tap(app.buttons["nav-history"])
         waitForScreen("screen-history")
         snapshot("05_history")
+
+        // The share image for the newest workout, which the seed gives a route to draw.
+        let share = app.buttons["history-share"].firstMatch
+        XCTAssertTrue(share.waitForExistence(timeout: 10))
+        for _ in 0..<8 where !share.isHittable { app.swipeUp() }
+        share.tap()
+        waitForScreen("share-card-sheet")
+        XCTAssertTrue(app.buttons["share-card-share"].waitForExistence(timeout: 10))
+        Thread.sleep(forTimeInterval: 1)       // let the rendered image replace the spinner
+        snapshot("09_share")
+        app.buttons["share-card-done"].tap()
+        XCTAssertTrue(marker("screen-history").waitForExistence(timeout: 10))
         goBack()
 
         tap(app.buttons["nav-guide"])
