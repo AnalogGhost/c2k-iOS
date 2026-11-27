@@ -1,3 +1,2 @@
-• Nuevo: avanza o retrocede entre intervalos durante el entrenamiento con Anterior y Siguiente.
-• Un entrenamiento solo cuenta como completado si corres todos los intervalos de carrera. Volver atrás para repetir uno está bien; saltarse uno, no.
-• Nuevo: guarda tu historial de entrenamientos en un archivo y restáuralo, incluso en un teléfono nuevo. Configuración → Copia de seguridad. Las copias de Android y iPhone funcionan en ambas apps.
+• Nuevo: comparte cualquier entrenamiento como imagen con su tiempo, distancia, ritmo y ruta. Elige tu propia foto, un color, una de las 13 fotos incluidas o una pegatina transparente.
+• Al terminar un programa ahora ves los totales de todo el programa y una sugerencia de qué correr después.

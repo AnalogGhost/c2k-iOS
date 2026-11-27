@@ -1,3 +1,2 @@
-• Neu: Mit Zurück und Weiter springst du während des Trainings zwischen den Intervallen.
-• Ein Training zählt nur als geschafft, wenn du jedes Laufintervall läufst. Zurückgehen und eins wiederholen ist in Ordnung, eins überspringen nicht.
-• Neu: Sichere deinen Trainingsverlauf in einer Datei und stelle ihn wieder her, auch auf einem neuen Telefon. Einstellungen → Sicherung. Sicherungen von Android und iPhone funktionieren in beiden Apps.
+• Neu: Teile jedes Training als Bild mit Zeit, Strecke, Tempo und Route. Wähle dein eigenes Foto, eine Farbe, eines von 13 mitgelieferten Fotos oder einen transparenten Sticker.
+• Wenn du ein Programm abschließt, siehst du jetzt deine Summen für das ganze Programm und einen Vorschlag, was du als Nächstes laufen kannst.

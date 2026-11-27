@@ -1,3 +1,2 @@
-• New: skip forwards or back through intervals during a workout with Previous and Next.
-• A workout counts as done only if you run every run interval. Going back to repeat one is fine; skipping one is not.
-• New: save your workout history to a file and restore it, even on a new phone. Settings → Backup. Android and iPhone backups work in either app.
+• New: share any workout as an image with its time, distance, pace and route. Pick your own photo, a color, one of 13 built-in photos or a see-through sticker.
+• Finishing a program now shows your totals for the whole program and suggests what to run next.
