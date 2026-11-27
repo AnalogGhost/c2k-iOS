@@ -10,6 +10,7 @@ struct HistoryView: View {
 
     @State private var deleteTarget: WorkoutSession?
     @State private var showDeleteConfirm = false
+    @State private var shareTarget: WorkoutSession?
 
     var body: some View {
         Group {
@@ -57,9 +58,9 @@ struct HistoryView: View {
 
                     Section("Sessions") {
                         ForEach(sessions, id: \.id) { session in
-                            SessionRow(session: session) {
-                                exportGpx(session: session)
-                            }
+                            SessionRow(session: session,
+                                       onExportGpx: { exportGpx(session: session) },
+                                       onShare: { shareTarget = session })
                             .swipeActions(edge: .trailing) {
                                 Button(role: .destructive) {
                                     deleteTarget = session
@@ -86,6 +87,10 @@ struct HistoryView: View {
                     .accessibilityLabel(Text("history_export"))
                 }
             }
+        }
+        .sheet(item: $shareTarget) { session in
+            ShareCardSheet(stats: .of(session: session),
+                           route: RouteOutline.normalized(SessionRepository(context: context).routePoints(sessionId: session.id)))
         }
         .confirmationDialog("Delete workout?", isPresented: $showDeleteConfirm, titleVisibility: .visible) {
             Button("Delete", role: .destructive) {
@@ -230,6 +235,7 @@ struct StatItem: View {
 private struct SessionRow: View {
     let session: WorkoutSession
     let onExportGpx: () -> Void
+    let onShare: () -> Void
 
     private var displayName: String {
         Programs.all().first(where: { $0.programId == session.programId })?.localizedName ?? session.programId
@@ -250,7 +256,14 @@ private struct SessionRow: View {
                         Image(systemName: "map").foregroundColor(.accentColor)
                     }
                     .buttonStyle(.plain)
+                    .padding(.trailing, 12)
                 }
+                Button(action: onShare) {
+                    Image(systemName: "square.and.arrow.up").foregroundColor(.accentColor)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(String(localized: "share_card_title"))
+                .accessibilityIdentifier("history-share")
             }
             Text(session.startedAt.formatted(date: .abbreviated, time: .shortened))
                 .font(.subheadline).foregroundStyle(.secondary)

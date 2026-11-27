@@ -26,6 +26,21 @@ enum ScreenshotSeed {
         }
     }
 
+    /// A loop round a park for the newest workout, so the share image has a route to draw.
+    private static func seedRoute(sessionId: UUID, started: Date, context: ModelContext) {
+        let centre = (lat: 51.5045, lon: -0.1520)   // an approximate park centre, nothing real recorded
+        for i in 0...360 {
+            let t = Double(i) / 360 * 2 * .pi
+            // An uneven loop, more like a real route than a circle.
+            let r = 0.0042 + 0.0009 * sin(3 * t) + 0.0005 * cos(5 * t)
+            let lat = centre.lat + r * sin(t)
+            let lon = centre.lon + 1.6 * r * cos(t)
+            let update = LocationUpdate(latitude: lat, longitude: lon, altitudeMeters: nil, speedMps: 2.2,
+                                        timestamp: started.addingTimeInterval(Double(i) * 5))
+            context.insert(RoutePoint(sessionId: sessionId, update: update))
+        }
+    }
+
     /// Three weeks of Couch to 5K history so the home streak, recent list, program
     /// grid, and history stats all fill in.
     static func seedHistory(context: ModelContext) {
@@ -55,6 +70,7 @@ enum ScreenshotSeed {
             session.distanceMeters = entry.km * 1000
             session.completed = true
             context.insert(session)
+            if index == sessions.count - 1 { seedRoute(sessionId: session.id, started: started, context: context) }
         }
 
         // `--seed-early-stops`: two early stops on the next workout (week 3 day 3), so Home shows

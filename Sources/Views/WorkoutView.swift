@@ -20,6 +20,7 @@ struct WorkoutView: View {
     @State private var personalBest: WorkoutSession?
     @State private var celebration: Celebration?
     @State private var programSummary: ProgramSummary?
+    @State private var shareCard: (stats: ShareCardStats, route: [CGPoint])?
     @State private var locationManager = CLLocationManager()
 
     private var programName: String {
@@ -69,6 +70,7 @@ struct WorkoutView: View {
                     programSummary: programSummary,
                     nextPrograms: Programs.nextPrograms(after: programId).map(Programs.byId),
                     onOpenProgram: { path = [.program(programId: $0)] },
+                    onShare: { openShareCard(sessionId: sessionId, elapsed: elapsed) },
                     onDone: { path.removeAll() }
                 )
                 .onAppear {
@@ -96,6 +98,13 @@ struct WorkoutView: View {
                         Image(systemName: "chevron.left")
                     }
                 }
+            }
+        }
+        .sheet(isPresented: Binding(get: { shareCard != nil }, set: { if !$0 { shareCard = nil } })) {
+            if let shareCard {
+                ShareCardSheet(stats: shareCard.stats, route: shareCard.route,
+                               message: shareCard.stats.finishedProgram
+                                   ? String(format: String(localized: "celebration_share_text"), programName) : nil)
             }
         }
         .confirmationDialog("Stop workout?", isPresented: $showStopDialog, titleVisibility: .visible) {
@@ -147,6 +156,15 @@ struct WorkoutView: View {
         programSummary = ProgramSummary.of(sessions: sessions, programId: programId, currentId: currentId,
                                            durationSeconds: durationSeconds,
                                            distanceMeters: workoutManager.distanceMeters)
+    }
+
+    private func openShareCard(sessionId: UUID, elapsed: Int) {
+        let points = SessionRepository(context: context).routePoints(sessionId: sessionId)
+        let stats = ShareCardStats(programName: programName, week: week, day: day,
+                                   finishedProgram: celebration == .programFinished,
+                                   durationSeconds: elapsed, distanceMeters: workoutManager.distanceMeters,
+                                   date: .now)
+        shareCard = (stats, RouteOutline.normalized(points))
     }
 
     private func loadPersonalBest(excluding sessionId: UUID) {
@@ -406,6 +424,7 @@ private struct CompletedContent: View {
     let programSummary: ProgramSummary?
     let nextPrograms: [WorkoutPlan]
     let onOpenProgram: (String) -> Void
+    let onShare: () -> Void
     let onDone: () -> Void
 
     private var finishedProgram: Bool { celebration == .programFinished }
@@ -523,13 +542,11 @@ private struct CompletedContent: View {
 
     private var buttons: some View {
         VStack(spacing: 12) {
-            if finishedProgram {
-                ShareLink(item: String(format: String(localized: "celebration_share_text"), programName)) {
-                    Label(String(localized: "celebration_share"), systemImage: "square.and.arrow.up")
-                }
-                .buttonStyle(.bordered)
-                .accessibilityIdentifier("celebration-share")
+            Button(action: onShare) {
+                Label(String(localized: "celebration_share"), systemImage: "square.and.arrow.up")
             }
+            .buttonStyle(.bordered)
+            .accessibilityIdentifier("workout-share")
             Button("Done", action: onDone)
                 .buttonStyle(.borderedProminent)
         }

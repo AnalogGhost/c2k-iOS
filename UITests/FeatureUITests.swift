@@ -215,7 +215,7 @@ final class FeatureUITests: XCTestCase {
         let next = app.buttons["celebration-next-B210K"]
         scrollTo(next)
         XCTAssertTrue(app.buttons["celebration-next-5KI"].exists)
-        XCTAssertTrue(app.buttons["celebration-share"].exists)
+        XCTAssertTrue(app.buttons["workout-share"].exists)
         next.tap()
         XCTAssertTrue(app.buttons["day-1-1"].waitForExistence(timeout: 10), "Bridge to 10K didn't open")
     }
@@ -223,7 +223,36 @@ final class FeatureUITests: XCTestCase {
     func testAnOrdinaryWorkoutIsNotCelebrated() {
         finishWorkout(week: 4, day: 1)
         XCTAssertEqual(element("workout-complete-title").label, "Workout Complete!")
-        XCTAssertFalse(app.buttons["celebration-share"].exists)
+        XCTAssertFalse(element("celebration-totals").exists)
+    }
+
+    func testAnyFinishedWorkoutCanBeSharedAsAnImage() {
+        finishWorkout(week: 4, day: 1)
+        app.buttons["workout-share"].tap()
+        XCTAssertTrue(element("share-card-sheet").waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["share-card-share"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["share-bg-photo-1"].isSelected)
+        app.buttons["share-bg-gradient-1"].tap()
+        XCTAssertTrue(app.buttons["share-bg-gradient-1"].isSelected)
+        let shot = XCTAttachment(screenshot: app.screenshot())
+        shot.name = "share-card"; shot.lifetime = .keepAlways
+        add(shot)
+        app.buttons["share-bg-sticker"].tap()
+        XCTAssertTrue(app.buttons["share-bg-sticker"].isSelected)
+        XCTAssertTrue(app.buttons["share-card-share"].waitForExistence(timeout: 5))
+    }
+
+    func testAWorkoutInHistoryCanBeShared() {
+        launch()
+        open("nav-history", screen: "screen-history")
+        let share = app.buttons["history-share"].firstMatch
+        scrollTo(share, maxSwipes: 10)
+        share.tap()
+        XCTAssertTrue(element("share-card-sheet").waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["share-card-share"].waitForExistence(timeout: 5))
+        let shot = XCTAttachment(screenshot: app.screenshot())
+        shot.name = "share-card-history"; shot.lifetime = .keepAlways
+        add(shot)
     }
 
     // MARK: - Localisation
